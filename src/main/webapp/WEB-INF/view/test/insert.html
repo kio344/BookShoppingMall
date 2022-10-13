@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+>
+<head></head>
+<body>
+	<h1>insert페이지</h1>
+	<form method="post" th:object="${testRequest}">
+		<h3>아이디</h3>
+		<input th:field="*{memId}">
+		<span th:each="err : ${#fields.errors('memId')}" th:text=${err}></span>
+
+		<h3>비밀번호</h3>
+		<input th:field="*{memPw}">
+		<span th:each="err : ${#fields.errors('memPw')}" th:text=${err}></span>
+
+
+		<h3>비밀번호 확인</h3>
+		<input th:field="*{memPwRe}">
+		<span th:each="err : ${#fields.errors('memPwRe')}" th:text=${err}></span>
+
+
+		<h3>이름</h3>
+		<input th:field="*{memNm}">
+		<span th:each="err : ${#fields.errors('memNm')}" th:text=${err}></span>
+
+
+		<button>로그인</button>
+		
+	</form>
+</body>
+
+</html>
