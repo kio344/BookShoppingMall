@@ -51,7 +51,10 @@ public class TestController {
 	}
 	
 	@GetMapping("/layout")
-	public String layout() {
+	public String layout(Model model) {
+		model.addAttribute("addCss",new String[] {"/test/testCss"});
+		model.addAttribute("addJs",new String[] {"/test/testJs"});
+
 		return "test/mainLayoutTest";
 	}
 	
