@@ -1,0 +1,25 @@
+@charset "EUC-KR";
+
+html {font-size: 13px;}
+body {margin: 0;}
+a {text-decoration: none;}
+ul, ol {list-style: none; margin: 0; padding: 0;}
+dl, dt, dd {margin: 0; padding: 0;}
+
+input[type="text"], 
+input[type="password"], 
+input[type="email"], 
+input[type="number"] { border: 1px solid #d5d5d5; height: 35px; padding: 0 10px; border-radius: 20px;}
+main{ min-height: 600px; padding-top:0px;}
+.dn{ display: none !important; }
+button{border:none; background-color: rgba(255,255,255,0);}
+
+/** 여백*/
+.mr{ margin-right: 50px;}
+.ml{ margin-left: 50px;}
+.mt10{ margin-top: 10px; }
+.mt20{ margin-top: 20px; }
+.mt100{ margin-top: 100px; }
+.mb10{ margin-bottom: 10px; }
+.mb20{ margin-bottom: 20px; }
+/** 여백*/
