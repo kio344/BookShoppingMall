@@ -1,5 +1,6 @@
 package models.user.service;
 
+import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
@@ -43,10 +44,11 @@ public class JoinService {
 			throw new RuntimeException("전화번호 형식에 맞지 않습니다.");
 		}
 		
+		String hash = BCrypt.hashpw(memPw, BCrypt.gensalt(10));
 		
 		UserDto param = new UserDto();
 		param.setMemId(memId);
-		param.setMemPw(memPw); // bcrypt 되면 바꿔야함
+		param.setMemPw(hash);
 		param.setMemNm(joinRequest.getMemNm());
 		param.setFakeName(joinRequest.getFakeName());
 		param.setMobile(joinRequest.getMobile());
