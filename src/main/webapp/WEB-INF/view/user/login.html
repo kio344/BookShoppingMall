@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+
+<div>
+	<h1 th:text="#{user.login}"></h1>
+	<form method="post" action="@{/user/login}" autocomplete="off" th:object="${loginRequest}">
+	
+		<dl>
+			<dt th:text="#{user.memId}"></dt>
+			<dd>
+				<input type="text" name="memId" th:field="*{memId}">
+			</dd>
+		</dl>
+
+		<dl>
+			<dt th:text="#{user.memPw}"></dt>
+			<dd>
+				<input type="password" name="memPw" th:field="*{memPw}">
+			</dd>
+		</dl>
+	
+		<div class="btn-grp">
+			<button type="submit" th:text="#{user.login}"></button>
+		</div>
+	
+	</form>
+</div>
+
+</main>
+</html>

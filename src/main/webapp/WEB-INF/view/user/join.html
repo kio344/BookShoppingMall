@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+
+	<div>
+		<h1 th:text="#{user.join}"></h1>
+		
+		<form method="post" th:action="@{/user/join}" autocomplete="off" th:object="${joinRequest}">
+				
+			<dl>
+				<dt th:text="#{user.memId}"></dt>
+				<dd>
+					<input type="text" name="memId" th:field="*{memId}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt th:text="#{user.memPw}"></dt>
+				<dd>
+					<input type="password" name="memPw" th:field="*{memPw}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt th:text="#{user.memPwRe}"></dt>
+				<dd>
+					<input type="password" name="memPwRe" th:field="*{memPwRe}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt th:text="#{user.memNm}"></dt>
+				<dd>
+					<input type="text" name="memNm" th:field="*{memNm}">
+				</dd>
+			</dl>
+
+			<dl>
+				<dt th:text="#{user.fakeName}"></dt>
+				<dd>
+					<input type="text" name="fakeName" th:field="*{fakeName}">
+				</dd>
+			</dl>
+
+			<dl>
+				<dt th:text="#{user.mobile}"></dt>
+				<dd>
+					<input type="text" name="mobile" th:field="*{mobile}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt th:text="#{user.email}"></dt>
+				<dd>
+					<input type="email" name="email" th:field="*{email}">
+				</dd>
+			</dl>
+
+			<dl>
+				<dt th:text="#{user.adress}"></dt>
+				<dd>
+					<input type="text" name="adress" th:field="*{adress}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt th:text="#{user.birthDay}"></dt>
+				<dd>
+					<input type="" name="birthDay" th:field="*{birthDay}">
+				</dd>
+			</dl>
+
+
+			<dl>
+				<dt th:text="#{user.agreeTerms}"></dt>
+				<dd>
+					<input type="checkbox" name="agreeTerms" th:field="*{agreeTerms}" id="agreeTerms"> 
+						<label for="agreeTerms" th:text="#{user.agreeTerms}"></label>
+				</dd>
+			</dl>
+
+			<div class="btn-grp">
+				<button type="submit" th:text="#{user.join}"></button>
+				<button type="reset" th:text="#{user.reset}"></button>
+			</div>
+
+		</form>
+	</div>
+
+</main>
+</html>

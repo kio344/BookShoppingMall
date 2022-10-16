@@ -1,41 +1,52 @@
-package models.user;
+package models.entity;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
+import models.user.UserType;
 
-public class JoinRequest {
+@Entity
+public class User extends BaseEntity {
 
-	@NotBlank
-	@Size(min = 2)
+	@Id
+	@GeneratedValue
+	private Long memNo;
+
+	@Column(length = 45, unique = true, nullable = false)
 	private String memId;
-	@NotBlank
-	@Size(min = 4)
+	@Column(length = 60, unique = true, nullable = false)
 	private String memPw;
-	@NotBlank
-	private String memPwRe;
-	@NotBlank
+	@Column(length = 40, nullable = false)
 	private String memNm;
-	@NotBlank
-	@Size(min = 2)
+	@Column(length = 45, nullable = false)
 	private String fakeName;
-	@NotBlank
+	@Column(length = 11, nullable = false)
 	private String mobile;
-	@NotBlank
-	@Email
+	@Column(length = 100, nullable = false)
 	private String email;
-	@NotBlank
+	@Column(nullable = false)
 	private String adress;
-	@NotBlank
+	@Column(nullable = false)
 	private LocalDateTime birthDay;
-	@NotBlank
+	@Column(length = 4, nullable = false)
 	private String gender;
-	@AssertTrue
-	private boolean agreeTerms;
+	@Column(length = 7)
+	@Enumerated(EnumType.STRING)
+	private UserType userType;
+
+	public Long getMemNo() {
+		return memNo;
+	}
+
+	public void setMemNo(Long memNo) {
+		this.memNo = memNo;
+	}
 
 	public String getMemId() {
 		return memId;
@@ -51,14 +62,6 @@ public class JoinRequest {
 
 	public void setMemPw(String memPw) {
 		this.memPw = memPw;
-	}
-
-	public String getMemPwRe() {
-		return memPwRe;
-	}
-
-	public void setMemPwRe(String memPwRe) {
-		this.memPwRe = memPwRe;
 	}
 
 	public String getMemNm() {
@@ -117,19 +120,12 @@ public class JoinRequest {
 		this.gender = gender;
 	}
 
-	public boolean isAgreeTerms() {
-		return agreeTerms;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setAgreeTerms(boolean agreeTerms) {
-		this.agreeTerms = agreeTerms;
-	}
-
-	@Override
-	public String toString() {
-		return "JoinRequest [memId=" + memId + ", memPw=" + memPw + ", memPwRe=" + memPwRe + ", memNm=" + memNm
-				+ ", fakeName=" + fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress
-				+ ", birthDay=" + birthDay + ", gender=" + gender + ", agreeTerms=" + agreeTerms + "]";
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 }
