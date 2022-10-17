@@ -16,14 +16,14 @@
 						<a href="" class="mr">로그인</a>
 					
 					
-						${member.fakeName}님 환영합니다. 
+						${user.fakeName}님 환영합니다. 
 						<a href="">MyPage</a>
 						
 						<a href="">로그아웃</a>
 						
-							<a href="" target="_blank"  >관리자 페이지</a>
+							<a th:href="@{/admin}" target="_blank"  th:text="#{admin.page}"></a>
 						
-							<a href="" target="_blank"  >판매자 페이지</a>
+							<a th:href="@{/seller}" target="_blank"  th:text="#{seller.page}"></a>
 					
 				</div>
 			</div>
