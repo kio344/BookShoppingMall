@@ -13,12 +13,20 @@ public class AdminBoardDao {
 	@Autowired
 	private EntityManager em;
 	
-	public AdminBoardDto get(String id) {
+	public AdminBoardDto searchToId(String id) {
 		
 		BoardConfig entity = em.find(BoardConfig.class, id);
 		
 		return AdminBoardDto.toDto(entity);
 	}
+	/** TypedQuery 찾아보기
+	public AdminBoardDto searchToName(String name) {
+		
+		BoardConfig entity = em.find(BoardConfig.class, name);
+		
+		return AdminBoardDto.toDto(entity);
+	}
+	 */
 	
 	public AdminBoardDto save(AdminBoardDto dto) {
 		
@@ -28,7 +36,7 @@ public class AdminBoardDao {
 		
 		em.flush();
 		
-		return get(dto.getBoardId());
+		return searchToId(dto.getBoardId());
 	}
 	
 }
