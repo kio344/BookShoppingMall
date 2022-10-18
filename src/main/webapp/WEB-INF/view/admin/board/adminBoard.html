@@ -11,20 +11,23 @@
 				<dt>게시판 아이디</dt>
 				<dd>
 					<input type="text" th:field="*{boardId}">
+					<span th:each="err : ${#fields.errors('boardId')}" th:text="${err}"></span>
 				</dd>
 			</dl>
-
+			
 			<dl>
 				<dt>게시판 이름</dt>
 				<dd>
 					<input type="text" th:field="*{boardName}">
+					<span th:each="err : ${#fields.errors('boardName')}" th:text="${err}"></span>
 				</dd>
 			</dl>
 
 			<dl>
 				<dt>1페이지당 게시판 수</dt>
 				<dd>
-					<input type="text" th:field="*{pageCount}" value="20">
+					<input type="text" th:field="*{pageCount}">
+					<span th:each="err : ${#fields.errors('pageCount')}" th:text="${err}"></span>
 				</dd>
 			</dl>
 			

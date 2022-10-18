@@ -6,12 +6,12 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class AdminBoardRequest {
 
-	@NotBlank(message = "게시판 아이디를 입력해 주세요.")
+	@NotBlank(message = "게시판 아이디가 없습니다.")
 	private String boardId;
-	@NotBlank(message = "게시판 이름을 입력해 주세요.")
+	@NotBlank(message = "게시판 이름이 없습니다.")
 	private String boardName;
-	@Min(value = 1, message = "게시판에 표시할 개수를 정해주세요.")
-	private int pageCount;
+	@Min(value = 1, message = "페이지당 표시할 개수를 입력해 주세요.")
+	private int pageCount = 20;
 	private int isUse = 1;
 	private int memberOnly = 1;
 	private int commentUse = 1;
