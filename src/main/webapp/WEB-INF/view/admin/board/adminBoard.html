@@ -27,12 +27,32 @@
 					<input type="text" th:field="*{pageCount}">
 				</dd>
 			</dl>
-
+			
+			<dl>
+				<dt>게시판 사용 여부</dt>
+				<dd>
+					<input type="radio" th:field="*{isUse}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>회원 전용 게시판</dt>
+				<dd>
+					<input type="radio" th:field="*{memberOnly}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>댓글 허용 여부</dt>
+				<dd>
+					<input type="radio" th:field="*{commentUse}">
+				</dd>
+			</dl>
+			
 			<div class="btn">
 				<button type="reset">다시쓰기</button>
 				<button type="submit">추가하기</button>
 			</div>
-			<h1>관리자 페이지 관리 추가중</h1>
 		</div>
 	</form>
 </main>

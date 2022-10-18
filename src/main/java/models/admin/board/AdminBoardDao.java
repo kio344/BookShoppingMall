@@ -17,9 +17,18 @@ public class AdminBoardDao {
 		
 		BoardConfig entity = em.find(BoardConfig.class, id);
 		
-		
 		return AdminBoardDto.toDto(entity);
 	}
 	
+	public AdminBoardDto save(AdminBoardDto dto) {
+		
+		BoardConfig entity = AdminBoardDto.toEntity(dto);
+		
+		em.persist(entity);
+		
+		em.flush();
+		
+		return get(dto.getBoardId());
+	}
 	
 }

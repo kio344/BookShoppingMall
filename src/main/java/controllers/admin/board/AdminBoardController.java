@@ -16,7 +16,7 @@ import models.admin.board.service.AdminBoardService;
 @Controller
 @RequestMapping("/admin/board")
 public class AdminBoardController {
-
+	
 	@Autowired
 	private AdminBoardService adminBoardService;
 	
@@ -30,13 +30,13 @@ public class AdminBoardController {
 	}
 	
 	@PostMapping
-	public String adminBoardWrite(@Valid AdminBoardRequest aminBoardRequest, Errors errors) {
+	public String adminBoardWrite(@Valid AdminBoardRequest adminBoardRequest, Errors errors) {
 		
 		if (errors.hasErrors()) {
 			return "admin/board";
 		}
 		
-		adminBoardService.write(aminBoardRequest, errors);
+		adminBoardService.write(adminBoardRequest, errors);
 		
 		if(errors.hasErrors()) {
 			return "admin/board/adminBoard";

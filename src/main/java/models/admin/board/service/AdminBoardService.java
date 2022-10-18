@@ -1,6 +1,7 @@
 package models.admin.board.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
@@ -16,19 +17,19 @@ public class AdminBoardService {
 
 	public String write(AdminBoardRequest adminBoardRequest, Errors errors) {
 
+		AdminBoardDto dto = adminBoardDao.get(adminBoardRequest.getBoardId());
 		
-
-		System.out.println(adminBoardRequest.getBoardId());
-
-		AdminBoardDto dto = null;
-
-		dto = adminBoardDao.get(adminBoardRequest.getBoardId());
-		if (dto != null) {
-			if (adminBoardRequest.getBoardId().equals(dto.getBoardId()) || adminBoardRequest.getBoardName().equals(dto.getBoardName())|| adminBoardRequest.getPageCount() == 0) {
-				return "";
-			}
+		if (dto == null) {
+				dto = new AdminBoardDto();
+				dto.setBoardId(adminBoardRequest.getBoardId());
+				dto.setBoardName(adminBoardRequest.getBoardName());
+				dto.setPageCount(adminBoardRequest.getPageCount());
+		}else {
+			return null;
 		}
-
+		
+		adminBoardDao.save(dto);
+		
 		return "";
 
 	}
