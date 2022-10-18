@@ -3,7 +3,7 @@ package models.admin.board;
 import models.common.BaseDto;
 import models.entity.BoardConfig;
 
-public class BoardDto extends BaseDto {
+public class AdminBoardDto extends BaseDto {
 
 	private String boardId;
 	private String boardName;
@@ -60,7 +60,7 @@ public class BoardDto extends BaseDto {
 		this.commentUse = commentUse;
 	}
 	
-	public static BoardConfig toEntity(BoardDto dto) {
+	public static BoardConfig toEntity(AdminBoardDto dto) {
 		BoardConfig entity = new BoardConfig();
 		if(dto == null) return null;
 		
@@ -75,8 +75,8 @@ public class BoardDto extends BaseDto {
 		return entity;
 	}
 	
-	public static BoardDto toDto(BoardConfig entity) {
-		BoardDto dto = new BoardDto();
+	public static AdminBoardDto toDto(BoardConfig entity) {
+		AdminBoardDto dto = new AdminBoardDto();
 		if(entity == null ) return null;
 		
 		dto.setBoardId(entity.getBoardId());

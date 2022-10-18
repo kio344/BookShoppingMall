@@ -1,25 +1,19 @@
-package models.entity;
+package models.admin.board;
 
-import javax.persistence.Column;
+import javax.validation.constraints.Min;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.NotBlank;
 
-@Entity
-public class BoardConfig extends BaseEntity {
+public class AdminBoardRequest {
 
-	@Id
-	@Column(length = 45)
+	@NotBlank(message = "게시판 아이디를 입력해 주세요.")
 	private String boardId;
-	@Column(length = 45, unique = true)
+	@NotBlank(message = "게시판 이름을 입력해 주세요.")
 	private String boardName;
-	@Column(length = 255)
+	@Min(value = 1, message = "게시판에 표시할 개수를 정해주세요.")
 	private int pageCount;
-	@Column(columnDefinition = "TINYINT(1)", length = 1)
 	private int isUse;
-	@Column(columnDefinition = "TINYINT(1)", length = 1)
 	private int memberOnly;
-	@Column(columnDefinition = "TINYINT(1)", length = 1)
 	private int commentUse;
 
 	public String getBoardId() {
@@ -68,13 +62,6 @@ public class BoardConfig extends BaseEntity {
 
 	public void setCommentUse(int commentUse) {
 		this.commentUse = commentUse;
-	}
-
-	@Override
-	public String toString() {
-		return "AdminBoard [boardId=" + boardId + ", boardName=" + boardName + ", pageCount=" + pageCount + ", isUse="
-				+ isUse + ", memberOnly=" + memberOnly + ", commentUse=" + commentUse + ", getRegDt()=" + getRegDt()
-				+ ", getModDt()=" + getModDt() + "]";
 	}
 
 }

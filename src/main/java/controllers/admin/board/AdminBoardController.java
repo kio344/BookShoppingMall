@@ -1,23 +1,53 @@
 package controllers.admin.board;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import models.admin.board.AdminBoardRequest;
+import models.admin.board.service.AdminBoardService;
 
 @Controller
 @RequestMapping("/admin/board")
 public class AdminBoardController {
 
+	@Autowired
+	private AdminBoardService adminBoardService;
+	
 	@GetMapping
-	public String adminBoard() {
+	public String adminBoard(Model model) {
+		AdminBoardRequest aminBoardRequest = new AdminBoardRequest();
+		
+		model.addAttribute("adminBoardRequest", aminBoardRequest);
 		
 		return "admin/board/adminBoard";
 	}
 	
 	@PostMapping
-	public String adminBoardEx() {
+	public String adminBoardWrite(@Valid AdminBoardRequest aminBoardRequest, Errors errors) {
 		
-		return null;
+		if (errors.hasErrors()) {
+			return "admin/board";
+		}
+		
+		adminBoardService.write(aminBoardRequest, errors);
+		
+		if(errors.hasErrors()) {
+			return "admin/board/adminBoard";
+		}
+		
+		return "redirect:/admin/board";
 	}
 }
+
+
+
+
+
+

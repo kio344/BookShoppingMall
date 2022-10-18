@@ -8,16 +8,17 @@ import org.springframework.stereotype.Component;
 import models.entity.BoardConfig;
 
 @Component
-public class BoardDao {
+public class AdminBoardDao {
 	
 	@Autowired
 	private EntityManager em;
 	
-	public BoardDto get(String id) {
+	public AdminBoardDto get(String id) {
 		
 		BoardConfig entity = em.find(BoardConfig.class, id);
 		
-		return BoardDto.toDto(entity);
+		
+		return AdminBoardDto.toDto(entity);
 	}
 	
 	
