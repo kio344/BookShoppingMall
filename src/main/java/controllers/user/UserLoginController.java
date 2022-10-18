@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import common.error.CommonException;
 import models.user.LoginRequest;
 import models.user.UserDto;
 import models.user.service.LoginService;
@@ -35,11 +36,16 @@ public class UserLoginController {
 	
 	@PostMapping
 	public String process(@Valid LoginRequest loginRequest, Errors errors, HttpSession session) {
-		
-	 	UserDto user = service.login(loginRequest, errors);
-		
-	 	session.setAttribute("user", user);
-	 	
+		try {
+			UserDto user = service.login(loginRequest, errors);
+			
+			System.out.println();
+			
+			session.setAttribute("user", user);
+			
+		} catch (CommonException e) {
+			errors.rejectValue(e.getField(), e.getMessage());
+		}
 	 	if(errors.hasErrors()) {
 	 		return "user/login";
 	 	}

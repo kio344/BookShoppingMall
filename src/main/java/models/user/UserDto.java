@@ -1,7 +1,5 @@
 package models.user;
 
-import java.time.LocalDateTime;
-
 import models.common.BaseDto;
 import models.entity.User;
 
@@ -15,7 +13,7 @@ public class UserDto extends BaseDto {
 	private String mobile;
 	private String email;
 	private String adress;
-	private LocalDateTime birthDay;
+	private String birthDay;
 	private String gender;
 	private UserType userType;
 
@@ -83,11 +81,11 @@ public class UserDto extends BaseDto {
 		this.adress = adress;
 	}
 
-	public LocalDateTime getBirthDay() {
+	public String getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(LocalDateTime birthDay) {
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
 
@@ -124,15 +122,16 @@ public class UserDto extends BaseDto {
 
 		User entity = new User();
 
-		entity.setMemId(entity.getMemId());
-		entity.setMemPw(entity.getMemPw());
-		entity.setMemNm(entity.getMemNm());
-		entity.setFakeName(entity.getFakeName());
-		entity.setMobile(entity.getMobile());
-		entity.setEmail(entity.getEmail());
-		entity.setAdress(entity.getAdress());
-		entity.setBirthDay(entity.getBirthDay());
-		entity.setGender(entity.getGender());
+		entity.setMemId(user.getMemId());
+		entity.setMemPw(user.getMemPw());
+		entity.setMemNm(user.getMemNm());
+		entity.setFakeName(user.getFakeName());
+		entity.setMobile(user.getMobile());
+		entity.setEmail(user.getEmail());
+		entity.setAdress(user.getAdress());
+		entity.setBirthDay(user.getBirthDay());
+		entity.setGender(user.getGender());
+		entity.setUserType(user.getUserType());
 
 		return entity;
 
@@ -154,10 +153,11 @@ public class UserDto extends BaseDto {
 		user.setAdress(entity.getAdress());
 		user.setBirthDay(entity.getBirthDay());
 		user.setGender(entity.getGender());
+		
 		user.setRegDt(entity.getRegDt());
 		user.setModDt(entity.getModDt());
 		user.setUserType(entity.getUserType());
-
+		
 		return user;
 
 	}

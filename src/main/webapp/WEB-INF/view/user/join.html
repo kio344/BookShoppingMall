@@ -68,10 +68,19 @@
 			<dl>
 				<dt th:text="#{user.birthDay}"></dt>
 				<dd>
-					<input type="" name="birthDay" th:field="*{birthDay}">
+					<input type="date" name="birthDay" th:field="*{birthDay}">
 				</dd>
 			</dl>
 
+			<dl>
+				<dt th:text="#{user.gender}"></dt>
+				<dd>
+					<input type="radio" name="gender" id="gender" th:field="*{gender}" value="men">
+					<label for="gender">남자</label>
+					<input type="radio" name="gender" id="gender" th:field="*{gender}" value="women">
+					<label for="gender">여자</label>
+				</dd>
+			</dl>
 
 			<dl>
 				<dt th:text="#{user.agreeTerms}"></dt>
