@@ -1,7 +1,5 @@
 package models.user;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Size;
 
@@ -31,7 +29,7 @@ public class JoinRequest {
 	@NotBlank
 	private String adress;
 	@NotBlank
-	private LocalDateTime birthDay;
+	private String birthDay;
 	@NotBlank
 	private String gender;
 	@AssertTrue
@@ -101,11 +99,11 @@ public class JoinRequest {
 		this.adress = adress;
 	}
 
-	public LocalDateTime getBirthDay() {
+	public String getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(LocalDateTime birthDay) {
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
 

@@ -28,7 +28,6 @@ public class UserDao {
 			tq.setParameter("memId", memId);
 
 			User entity = tq.getSingleResult(); // 쿼리로 찾은 아이디 정보들
-
 			return UserDto.toDto(entity);
 
 		} catch (Exception e) { // 아이디를 못 찾으면 null 리턴

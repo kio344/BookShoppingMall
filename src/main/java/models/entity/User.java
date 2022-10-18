@@ -1,7 +1,5 @@
 package models.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,7 +31,7 @@ public class User extends BaseEntity {
 	@Column(nullable = false)
 	private String adress;
 	@Column(nullable = false)
-	private LocalDateTime birthDay;
+	private String birthDay;
 	@Column(length = 4, nullable = false)
 	private String gender;
 	@Column(length = 7)
@@ -104,11 +102,11 @@ public class User extends BaseEntity {
 		this.adress = adress;
 	}
 
-	public LocalDateTime getBirthDay() {
+	public String getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(LocalDateTime birthDay) {
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
 
@@ -125,6 +123,7 @@ public class User extends BaseEntity {
 	}
 
 	public void setUserType(UserType userType) {
+		if(userType == null) userType = UserType.USER;
 		this.userType = userType;
 	}
 
