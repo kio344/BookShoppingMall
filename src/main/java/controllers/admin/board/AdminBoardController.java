@@ -22,9 +22,9 @@ public class AdminBoardController {
 	
 	@GetMapping
 	public String adminBoard(Model model) {
-		AdminBoardRequest aminBoardRequest = new AdminBoardRequest();
+		AdminBoardRequest adminBoardRequest = new AdminBoardRequest();
 		
-		model.addAttribute("adminBoardRequest", aminBoardRequest);
+		model.addAttribute("adminBoardRequest", adminBoardRequest);
 		
 		return "admin/board/adminBoard";
 	}

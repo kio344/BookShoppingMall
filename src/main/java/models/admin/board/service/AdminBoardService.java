@@ -20,10 +20,8 @@ public class AdminBoardService {
 		AdminBoardDto dto = adminBoardDao.get(adminBoardRequest.getBoardId());
 		
 		if (dto == null) {
-				dto = new AdminBoardDto();
-				dto.setBoardId(adminBoardRequest.getBoardId());
-				dto.setBoardName(adminBoardRequest.getBoardName());
-				dto.setPageCount(adminBoardRequest.getPageCount());
+				dto = AdminBoardRequest.toDto(adminBoardRequest);
+				
 		}else {
 			return null;
 		}

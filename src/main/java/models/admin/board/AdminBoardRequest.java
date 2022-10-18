@@ -12,9 +12,9 @@ public class AdminBoardRequest {
 	private String boardName;
 	@Min(value = 1, message = "게시판에 표시할 개수를 정해주세요.")
 	private int pageCount;
-	private int isUse;
-	private int memberOnly;
-	private int commentUse;
+	private int isUse = 1;
+	private int memberOnly = 1;
+	private int commentUse = 1;
 
 	public String getBoardId() {
 		return boardId;
@@ -63,5 +63,20 @@ public class AdminBoardRequest {
 	public void setCommentUse(int commentUse) {
 		this.commentUse = commentUse;
 	}
-
+	
+	
+	public static AdminBoardDto toDto(AdminBoardRequest adminBoardRequest) {
+		if(adminBoardRequest == null) return null;
+		
+		AdminBoardDto dto = new AdminBoardDto();
+		
+		dto.setBoardId(adminBoardRequest.getBoardId());
+		dto.setBoardName(adminBoardRequest.getBoardName());
+		dto.setPageCount(adminBoardRequest.getPageCount());
+		dto.setIsUse(adminBoardRequest.getIsUse());
+		dto.setMemberOnly(adminBoardRequest.getMemberOnly());
+		dto.setCommentUse(adminBoardRequest.getCommentUse());
+		
+		return dto;
+	}
 }
