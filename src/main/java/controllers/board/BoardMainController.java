@@ -17,4 +17,13 @@ public class BoardMainController {
 		return "board/index";
 	}
 	
+	@GetMapping("/write")
+	public String aa(Model model) {
+		
+		model.addAttribute("addCss", new String[] { "/board/write" });
+		model.addAttribute("addJs", new String[] { "/ckeditor/ckeditor", "/board/board" });
+		
+		return "board/write";
+	}
+	
 }

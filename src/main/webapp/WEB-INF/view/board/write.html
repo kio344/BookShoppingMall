@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main/main}">
+
+	<main layout:fragment="main">
+		<div class="content">
+			<div class="submenu">
+				<ul>
+					<li><a th:href="@{/board/notice}">공지사항</a></li>
+					<li><a th:href="@{/board/freetalk}">자유게시판</a></li>
+					<li><a th:href="@{/board/info}">정보공유</a></li>
+					<li><a th:href="@{/board/good}">추천게시판</a></li>
+				</ul>
+			</div>
+			<div class="board_write">
+				<form>
+					<div class="write_header">
+						<span><strong>게시판 글쓰기</strong></span>
+						<button type="submit"><i class="xi-pen xi-x">글쓰기</i></button>
+					</div>
+					<div class="write_content">
+						<div>
+							<span>제목</span>
+							<input type="text">
+						</div>
+						<div>
+							<span>작성자</span>
+							<input type="text">
+						</div>
+						<div class="file">
+							<button type="button" class="file_button"><i class="xi-file-add xi-x"></i>파일첨부</button>
+							<div class="file_drag">
+								<span><i class="xi-file-upload xi-x"></i>업로드 할 파일을 드래그 해주세요</span>
+							</div>
+						</div>
+						<div class="wrap_text">
+							<textarea id="text_content" name="text_content" class="text_content"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+
+</html>
