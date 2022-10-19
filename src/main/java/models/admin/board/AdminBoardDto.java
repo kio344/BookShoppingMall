@@ -60,6 +60,12 @@ public class AdminBoardDto extends BaseDto {
 		this.commentUse = commentUse;
 	}
 	
+	@Override
+	public String toString() {
+		return "AdminBoardDto [boardId=" + boardId + ", boardName=" + boardName + ", pageCount=" + pageCount
+				+ ", isUse=" + isUse + ", memberOnly=" + memberOnly + ", commentUse=" + commentUse + "]";
+	}
+
 	public static BoardConfig toEntity(AdminBoardDto dto) {
 		BoardConfig entity = new BoardConfig();
 		if(dto == null) return null;

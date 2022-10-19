@@ -35,6 +35,10 @@ public class AdminBoardService {
 		adminBoardDao.save(dto);
 		
 		return "";
-
+	}
+	
+	public String update() {
+		
+		return null;
 	}
 }

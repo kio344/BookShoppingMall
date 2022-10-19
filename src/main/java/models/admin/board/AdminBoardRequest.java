@@ -64,7 +64,12 @@ public class AdminBoardRequest {
 		this.commentUse = commentUse;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "AdminBoardRequest [boardId=" + boardId + ", boardName=" + boardName + ", pageCount=" + pageCount
+				+ ", isUse=" + isUse + ", memberOnly=" + memberOnly + ", commentUse=" + commentUse + "]";
+	}
+
 	public static AdminBoardDto toDto(AdminBoardRequest adminBoardRequest) {
 		if(adminBoardRequest == null) return null;
 		
@@ -78,5 +83,20 @@ public class AdminBoardRequest {
 		dto.setCommentUse(adminBoardRequest.getCommentUse());
 		
 		return dto;
+	}
+	
+	public static AdminBoardRequest toRequest(AdminBoardDto dto) {
+		if(dto == null) return null;
+		
+		AdminBoardRequest request = new AdminBoardRequest();
+		
+		request.setBoardId(dto.getBoardId());
+		request.setBoardName(dto.getBoardName());
+		request.setPageCount(dto.getPageCount());
+		request.setIsUse(dto.getIsUse());
+		request.setMemberOnly(dto.getMemberOnly());
+		request.setCommentUse(dto.getCommentUse());
+		
+		return request;
 	}
 }
