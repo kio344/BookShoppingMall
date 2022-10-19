@@ -4,7 +4,7 @@
 
 <div>
 	<h1 th:text="#{user.login}"></h1>
-	<form method="post" action="@{/user/login}" autocomplete="off" th:object="${loginRequest}">
+	<form method="post" th:action="@{/user/login}" autocomplete="off" th:object="${loginRequest}">
 	
 		<dl>
 			<dt th:text="#{user.memId}"></dt>
