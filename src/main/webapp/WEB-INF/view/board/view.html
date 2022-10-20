@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+
+<main layout:fragment="main">
+	<div class="content">
+		<div class="submenu">
+			<ul>
+				<li><a th:href="@{/board/notice}">공지사항</a></li>
+				<li><a th:href="@{/board/freetalk}">자유게시판</a></li>
+				<li><a th:href="@{/board/info}">정보공유</a></li>
+				<li><a th:href="@{/board/good}">추천게시판</a></li>
+			</ul>
+		</div>
+		<div class="board_view" th:object="${boardDataDto}">
+			<div class="view_header">
+				<span><strong>게시글</strong></span>
+				<a th:if="${session.user.memId == boardDataDto.user.memId}" th:href="@{/board/update/{id}(id=${boardDataDto.id)}">
+					<i class="xi-wrench xi-x">수정하기</i>
+				</a>
+			</div>
+			<div class="view_content">
+					<div>
+						<span>제목</span>
+						<h2 th:text="*{subject}"></h2>
+					</div>
+					<div>
+						<span>작성자</span>
+						<h2 th:text="*{poster}"></h2>
+					</div>
+					<div class="view_text" th:utext="*{contents}">
+					</div>
+				</div>
+		</div>
+	</div>
+</main>
+
+</html>
