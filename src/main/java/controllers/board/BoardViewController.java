@@ -20,8 +20,8 @@ public class BoardViewController {
 	@GetMapping("/view/{id}")
 	public String form(@PathVariable(name = "id") Long id, Model model) {
 		
-		BoardDataDto board = boardViewService.view(id);
-		model.addAttribute("boardDataDto", board);
+		BoardDataDto boardDataDto = boardViewService.view(id, model);
+		model.addAttribute("boardDataDto", boardDataDto);
 		
 		return "board/view";
 	}
