@@ -22,7 +22,7 @@ const fileUpload = {
 			}
 
 			const xhr = new XMLHttpRequest();
-			xhr.open("POST", "../../file/upload?gid=" + gidEl.value);
+			xhr.open("POST", "../../file/upload");
 			xhr.addEventListener("readystatechange", function() {
 				if (xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE) {
 					const data = JSON.parse(xhr.responseText);

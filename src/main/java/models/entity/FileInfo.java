@@ -24,7 +24,7 @@ public class FileInfo extends BaseEntity {
 	private String extension;
 	private boolean done;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "memNo")
 	private User user; // 회원 Entity(파일 삭제시 소유를 체크)
 

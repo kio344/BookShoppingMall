@@ -21,7 +21,7 @@ public class BoardViewService {
 	
 	public BoardDataDto view(Long id, Model model) {
 		
-		BoardDataDto board = boardDataDao.get(id);
+		BoardDataDto board = boardDataDao.countUp(id);
 		
 		List<FileInfoDto> fileInfos = fileInfoDao.gets(board.getGid());
 		

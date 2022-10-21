@@ -8,7 +8,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import models.entity.BoardConfig;
 import models.entity.BoardData;
+import models.entity.User;
 
 @Component
 public class BoardDataDao {
@@ -34,10 +36,30 @@ public class BoardDataDao {
 			entity.setPoster(dto.getPoster());
 		}
 		
+		if(dto.getBoard() != null) {
+			BoardConfig config = em.find(BoardConfig.class, dto.getBoard().getBoardId());
+			entity.setBoard(config);
+		}
+		if(dto.getUser() != null) {
+			User user = em.find(User.class, dto.getUser().getMemNo());
+			entity.setUser(user);
+		}
+		
 		em.persist(entity);
 		em.flush();
 		
 		return get(entity.getId());
+	}
+	
+	public BoardDataDto countUp(Long id) {
+		
+		BoardData entity = em.find(BoardData.class, id);
+		entity.setHit(entity.getHit() + 1);
+		
+		em.persist(entity);
+		em.flush();
+		
+		return entity == null ? null : BoardDataDto.toDto(entity);
 	}
 	
 	/**

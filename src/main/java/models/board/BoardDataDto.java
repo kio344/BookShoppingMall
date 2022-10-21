@@ -60,6 +60,9 @@ public class BoardDataDto extends BaseDto{
 	}
 
 	public Long getHit() {
+		if(hit == null) {
+			hit = 0L;
+		}
 		return hit;
 	}
 

@@ -22,6 +22,7 @@ public class BoardViewController {
 		
 		BoardDataDto boardDataDto = boardViewService.view(id, model);
 		model.addAttribute("boardDataDto", boardDataDto);
+		model.addAttribute("addCss", new String[] { "/board/view" });
 		
 		return "board/view";
 	}

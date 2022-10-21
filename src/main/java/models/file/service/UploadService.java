@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import models.file.FileInfoDao;
 import models.file.FileInfoDto;
+import models.user.UserDao;
 import models.user.UserDto;
 
 @Service
@@ -29,7 +30,6 @@ public class UploadService {
 	private HttpServletRequest req;
 
 	public List<FileInfoDto> upload(MultipartFile[] files, String gid) {
-		gid = gid == null ? "" + System.currentTimeMillis() : gid; // 그룹ID가 없는 경우는 새로 생성
 		String uploadPath = req.getServletContext().getRealPath(".") + "/../resources/static/uploads";
 		
 		

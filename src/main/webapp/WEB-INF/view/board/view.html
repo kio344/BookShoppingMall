@@ -16,16 +16,18 @@
 		<div class="board_view" th:object="${boardDataDto}">
 			<div class="view_header">
 				<span><strong>게시글</strong></span>
-				<a th:if="${session.user.memId == boardDataDto.user.memId}" th:href="@{/board/update/{id}(id=${boardDataDto.id)}">
-					<i class="xi-wrench xi-x">수정하기</i>
-				</a>
+				<th:block th:if="${session.user != null}">
+					<a th:if="${session.user.memId == boardDataDto.user.memId}" th:href="@{/board/update/{id}(id=${boardDataDto.id})}">
+						<i class="xi-wrench xi-x">수정하기</i>
+					</a>
+				</th:block>
 			</div>
 			<div class="view_content">
 				<div>
 					<span>제목</span>
 					<h2 th:text="*{subject}"></h2>
 				</div>
-				<div th:if="${fileInfos != null}">
+				<div th:if="${fileInfos != null}" class="file_list">
 					<ul>
 						<li th:each="file : ${fileInfos}" th:object="${file}">
 							<a th:href="@{/file/download/{id}(id=${file.id})}" th:text="*{fileName}"></a>
