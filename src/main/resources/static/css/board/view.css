@@ -1,0 +1,49 @@
+main {
+	background-color: rgb(247, 243, 243);
+}
+
+.content {
+	padding-top: 50px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.content .submenu {
+	float: left;
+	border: 1px solid #b6d0e1;
+	text-align: center;
+	margin: 10px;
+	position: fixed;
+	background-color: #b6d0e1;
+}
+
+.content .submenu ul li {
+	margin: 10px;
+}
+
+.content .submenu ul li a {
+	font-weight: 700;
+}
+
+.content .board_view {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+.content .board_view .view_header span {
+	font-size: 20px;
+}
+
+.content .board_view .view_header a {
+	float: right;
+	cursor: pointer;
+}
+
+.content .board_view .view_header {
+	border-bottom: 1px solid #000000;
+	padding-bottom: 5px;
+}
+
+.content .board_view .view_content {
+	padding-top: 5px;
+}

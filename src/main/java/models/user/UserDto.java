@@ -144,6 +144,8 @@ public class UserDto extends BaseDto {
 
 		UserDto user = new UserDto();
 
+		
+		user.setMemNo(entity.getMemNo());
 		user.setMemId(entity.getMemId());
 		user.setMemPw(entity.getMemPw());
 		user.setMemNm(entity.getMemNm());
