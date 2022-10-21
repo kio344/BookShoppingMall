@@ -68,7 +68,7 @@
 		</div>
 	</form>
 	<br>
-	<form th:action="@{/admin/list}" method="post">
+	<form th:action="@{/admin/list}" method="post" target="ifrm">
 		<div class="adminBoardTable">
 		<h1>게시판 수정 / 삭제</h1>
 			<table>
@@ -148,8 +148,9 @@
 				<option value="delete">삭제</option>
 			</select>
 			합니다
-			<button onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
+			<button th:onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
 		</div>
 	</form>
+	<iframe name="ifrm" class="boardDn"></iframe>
 </main>
 </html>

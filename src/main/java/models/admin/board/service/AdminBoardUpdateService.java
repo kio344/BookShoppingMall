@@ -1,6 +1,7 @@
 package models.admin.board.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +16,16 @@ public class AdminBoardUpdateService {
 	private AdminBoardDao adminBoardDao;
 
 	public void update(HttpServletRequest request) {
-
+		
 		/** 유효성 검사 S */
 		String[] boardIds = request.getParameterValues("boardId");
 		if (boardIds == null) {
-			/** 오류 출력 */
+			throw new RuntimeException("게시판을 선택 하세요.");
 		} else {
 			for (String id : boardIds) {
 				String boardNm = request.getParameter("boardName_" + id);
 				if (boardNm == null || boardNm.isBlank()) {
-					/** 오류 출력 s */
+					throw new RuntimeException("게시판을 이름을 입력 하세요.");
 				}
 			}
 		}
