@@ -1,5 +1,7 @@
 package models.admin.board;
 
+import java.time.LocalDateTime;
+
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -15,6 +17,15 @@ public class AdminBoardRequest {
 	private int isUse = 1;
 	private int memberOnly = 1;
 	private int commentUse = 1;
+	private LocalDateTime modDt;
+	
+	public LocalDateTime getModDt() {
+		return modDt;
+	}
+
+	public void setModDt(LocalDateTime modDt) {
+		this.modDt = modDt;
+	}
 
 	public String getBoardId() {
 		return boardId;

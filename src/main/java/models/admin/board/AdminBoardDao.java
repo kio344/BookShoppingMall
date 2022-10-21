@@ -45,12 +45,28 @@ public class AdminBoardDao {
 	public AdminBoardDto save(AdminBoardDto dto) {
 
 		BoardConfig entity = AdminBoardDto.toEntity(dto);
-
+		
 		em.persist(entity);
-
+		
 		em.flush();
-
+		
 		return searchToId(dto.getBoardId());
+	}
+	
+	public void updateBoard(AdminBoardDto dto) {
+		
+		BoardConfig entity = em.find(BoardConfig.class, dto.getBoardId());
+		
+		entity.setBoardName(dto.getBoardName());
+		entity.setCommentUse(dto.getCommentUse());
+		entity.setIsUse(dto.getIsUse());
+		entity.setMemberOnly(dto.getMemberOnly());
+		entity.setPageCount(dto.getPageCount());
+		
+		em.persist(entity);
+		
+		em.flush();
+		
 	}
 
 }

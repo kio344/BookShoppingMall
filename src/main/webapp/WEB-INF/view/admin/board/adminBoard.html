@@ -96,11 +96,11 @@
 
 						<td><input disabled th:value="*{boardId}"></td>
 
-						<td><input type="text" th:value="${adminBoard.boardName}"></td>
+						<td><input type="text" th:name="boardName + ${('_') +(adminBoard.boardId)}"  th:value="${adminBoard.boardName}"></td>
+ 
+						<td><input type="number" th:name="pageCount + ${('_') +(adminBoard.boardId)}" th:value="*{pageCount}"></td>
 
-						<td><input disabled th:value="*{pageCount}"></td>
-
-						<td><select th:name="${adminBoard.isUse}">
+						<td><select th:name="isUse + ${('_') +(adminBoard.boardId)}">
 								<th:block th:if="${adminBoard.isUse == 1}">
 									<option value="1" selected>적용</option>
 									<option value="0">미 적용</option>
@@ -111,7 +111,7 @@
 								</th:block>
 						</select></td>
 
-						<td><select th:name="${adminBoard.commentUse}">
+						<td><select th:name="memberOnly + ${('_') +(adminBoard.boardId)}">
 								<th:block th:if="${adminBoard.commentUse == 1}">
 									<option value="1" selected>적용</option>
 									<option value="0">미 적용</option>
@@ -122,7 +122,7 @@
 								</th:block>
 						</select></td>
 
-						<td><select th:name="${adminBoard.memberOnly}">
+						<td><select th:name="commentUse + ${('_') +(adminBoard.boardId)}">
 								<th:block th:if="${adminBoard.memberOnly == 1}">
 									<option value="1" selected>적용</option>
 									<option value="0">미 적용</option>
@@ -148,7 +148,7 @@
 				<option value="delete">삭제</option>
 			</select>
 			합니다
-			<button onclick="return confrim('정말로 처리하시겠습니까?');">처리하기</button>
+			<button onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
 		</div>
 	</form>
 </main>
