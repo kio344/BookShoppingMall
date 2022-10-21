@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import models.entity.FileInfo;
+import models.entity.User;
+import models.user.UserDto;
 
 @Component
 public class FileInfoDao {
@@ -19,6 +22,10 @@ public class FileInfoDao {
 	public FileInfoDto register(FileInfoDto dto) {
 		
 		FileInfo entity = FileInfoDto.toEntity(dto);
+		if(dto.getUser() != null) {
+			User user = em.find(User.class, dto.getUser().getMemNo());
+			entity.setUser(user);
+		}
 		
 		em.persist(entity);
 		em.flush();

@@ -32,11 +32,10 @@ public class BoardWriteService {
 		}
 		
 		UserDto user = (UserDto)session.getAttribute("user");
-		// 어드민 보드 데이터 불러오기 해야함
-		//AdminBoardDto adminBoard = adminBoardDao.get(request.getBoardId());
+		AdminBoardDto adminBoard = adminBoardDao.searchToId(request.getBoardId());
 		
 		BoardDataDto param = new BoardDataDto();
-		//param.setBoard(null);
+		param.setBoard(adminBoard);
 		param.setContents(request.getContents());
 		param.setGid(request.getGid());
 		param.setPoster(request.getPoster());
