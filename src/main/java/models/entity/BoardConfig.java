@@ -21,7 +21,7 @@ public class BoardConfig extends BaseEntity {
 	private int memberOnly;
 	@Column(columnDefinition = "TINYINT(1)", length = 1)
 	private int commentUse;
-
+	
 	public String getBoardId() {
 		return boardId;
 	}

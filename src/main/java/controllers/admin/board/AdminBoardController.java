@@ -1,10 +1,9 @@
 package controllers.admin.board;
 
-import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +29,12 @@ public class AdminBoardController {
 	private AdminBoardService adminBoardService;
 	
 	@Autowired
+	private AdminBoardUpdateService adminBoardUpdateService;
+	
+	@Autowired
+	private AdminBoardDeleteService adminBoardDeleteService;
+	
+	@Autowired
 	private AdminBoardDao adminBoardDao;
 	
 	@GetMapping("/board")
@@ -46,7 +51,11 @@ public class AdminBoardController {
 	}
 	
 	@PostMapping("/board")
-	public String adminBoardWrite(@Valid AdminBoardRequest adminBoardRequest, Errors errors) {
+	public String adminBoardWrite(@Valid AdminBoardRequest adminBoardRequest, Errors errors, Model model) {
+		List<AdminBoardDto> list = adminBoardDao.gets();
+		
+		model.addAttribute("list", list);
+		model.addAttribute("addCss", new String[] {"/board/admin/adminBoard"});
 		
 		if (errors.hasErrors()) {
 			return "admin/board/adminBoard";
@@ -58,23 +67,20 @@ public class AdminBoardController {
 			return "admin/board/adminBoard";
 		}
 		
-		
-		
 		return "redirect:/admin/board";
 	}
 	
 	@PostMapping("/list")
-	public String adminBoardList(@Valid AdminBoardRequest adminBoardRequest, Model model, @RequestParam(value = "mode", required = false) String mode, @RequestParam(value = "boardId", required = false) String boardId ) {
+	public String adminBoardList(HttpServletRequest req, Model model, @RequestParam(value = "mode", required = false) String mode) {
+		List<AdminBoardDto> list = adminBoardDao.gets();
 		
-		AdminBoardDto dto = adminBoardDao.searchToId(boardId);
-		adminBoardRequest = AdminBoardRequest.toRequest(dto);
+		model.addAttribute("list", list);
+		model.addAttribute("addCss", new String[] {"/board/admin/adminBoard"});
 		
 		if(mode.equals("update")) {
-			AdminBoardUpdateService updateService = new AdminBoardUpdateService();
-			updateService.update(adminBoardRequest);
+			adminBoardUpdateService.update(req);
 		}else if(mode.equals("delete")) {
-			AdminBoardDeleteService deleteService = new AdminBoardDeleteService();
-			deleteService.delete(adminBoardRequest);
+			adminBoardDeleteService.delete(req);
 		}
 		
 		return "redirect:/admin/board";

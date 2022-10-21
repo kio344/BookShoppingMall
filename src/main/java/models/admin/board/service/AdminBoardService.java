@@ -15,6 +15,7 @@ public class AdminBoardService {
 	@Autowired
 	private AdminBoardDao adminBoardDao;
 
+	/** 게시판 등록 S */
 	public String write(AdminBoardRequest adminBoardRequest, Errors errors) {
 
 		AdminBoardDto dto = adminBoardDao.searchToId(adminBoardRequest.getBoardId());
@@ -36,9 +37,6 @@ public class AdminBoardService {
 		
 		return "";
 	}
+	/** 게시판 등록 E */
 	
-	public String update() {
-		
-		return null;
-	}
 }
