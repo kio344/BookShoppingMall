@@ -23,22 +23,54 @@
 				</th:block>
 			</div>
 			<div class="view_content">
-				<div>
-					<span>제목</span>
-					<h2 th:text="*{subject}"></h2>
-				</div>
-				<div th:if="${fileInfos != null}" class="file_list">
-					<ul>
+				<div th:if="${fileInfos != null}" class="file_wrap">
+					<button type="button" id="file_btn" class="file_btn"><i class="xi-caret-down-square-o">파일목록</i></button>
+					<ul class="file_list" id="file_list">
 						<li th:each="file : ${fileInfos}" th:object="${file}">
 							<a th:href="@{/file/download/{id}(id=${file.id})}" th:text="*{fileName}"></a>
 						</li>
 					</ul>
 				</div>
 				<div>
+					<span>제목</span>
+					<h2 th:text="*{subject}"></h2>
+				</div>
+				<div>
 					<span>작성자</span>
 					<h2 th:text="*{poster}"></h2>
 				</div>
 				<div class="view_text" th:utext="*{contents}">
+				</div>
+			</div>
+			<div class="comment_wrap">
+				<th:block th:if="${session.user != null}">
+				<div class="write_comment">
+					<form method="post" th:action="@{/board/comment/write}" autocomplete="off">
+						<h2 th:text="${session.user.memId}"></h2>
+						<textarea name="comment" ></textarea>
+						<button type="submit" class="comment_btn"><i class="xi-comment xi-5x"></i></button>
+					</form>
+				</div>
+				</th:block>
+				<div class="view_comment">
+					<div class="one_view">
+						<h3>닉네임</h3>
+						<div class="one_text">
+							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+						</div>
+					</div>
+					<div class="one_view">
+						<h3>닉네임</h3>
+						<div class="one_text">
+							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+						</div>
+					</div>
+					<div class="one_view">
+						<h3>닉네임</h3>
+						<div class="one_text">
+							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
