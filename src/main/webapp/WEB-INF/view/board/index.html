@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleag/layout" layout:decorate="~{layouts/main/main}">
+
+	<main layout:fragment="main">
+		<div class="content">
+			<div class="submenu">
+				<ul>
+					<li><a th:href="@{/board/notice}">공지사항</a></li>
+					<li><a th:href="@{/board/freetalk}">자유게시판</a></li>
+					<li><a th:href="@{/board/info}">정보공유</a></li>
+					<li><a th:href="@{/board/good}">추천게시판</a></li>
+				</ul>
+			</div>
+			<div class="board_info">
+				<div class="board_search">
+					<form method="get" th:action="@{/board/}" autocomplete="off">
+						<select class="select" name="select">
+							<option>번호</option>
+							<option>제목</option>
+							<option>작성자</option>
+						</select>
+						<input type="text" name="search">
+						<button type="submit"><i class="xi-search xi-x"></i></button>
+					</form>
+				</div>
+				<table>
+					<thead>
+						<tr class="info_header">
+							<th class="col1">번호</th>
+							<th class="col2">제목</th>
+							<th class="col3">작성자</th>
+							<th class="col4">작성일</th>
+							<th class="col5">조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="info_body" th:each="board : ${boards}" th:object="${board}">
+							<td class="col1" th:text="*{id}">no</td>
+							<td class="col2">
+								<a th:href="@{/board/view/{id}(id=${board.id})}" th:text="*{subject}"></a>
+							</td>
+							<td class="col3" th:text="*{poster}">poster</td>
+							<td class="col4" th:text="${#temporals.format(board.regDt, 'yyyy.MM.dd HH.mm')}">regDt</td>
+							<td class="col5" th:text="*{hit}">count</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+
+</html>

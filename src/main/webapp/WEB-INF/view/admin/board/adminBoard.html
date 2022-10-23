@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin/adminLayout}">
+
+<main layout:fragment="main">
+	<form th:action="@{/admin/board}" method="post"
+		th:object="${adminBoardRequest}">
+		<div class="adminBoard">
+			<dl>
+				<dt>게시판 아이디</dt>
+				<dd>
+					<input type="text" th:field="*{boardId}"> <span
+						th:each="err : ${#fields.errors('boardId')}" th:text="${err}"></span>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>게시판 이름</dt>
+				<dd>
+					<input type="text" th:field="*{boardName}"> <span
+						th:each="err : ${#fields.errors('boardName')}" th:text="${err}"></span>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>1페이지당 게시판 수</dt>
+				<dd>
+					<input type="text" th:field="*{pageCount}"> <span
+						th:each="err : ${#fields.errors('pageCount')}" th:text="${err}"></span>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>게시판 사용 여부</dt>
+				<dd>
+					<input type="radio" th:field="*{isUse}" id="isUse_1" value="1"
+						checked> <label for="isUse_1">사용</label> <input
+						type="radio" th:field="*{isUse}" id="isUse_0" value="0"> <label
+						for="isUse_0">미 사용</label>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>회원 전용 여부</dt>
+				<dd>
+					<input type="radio" th:field="*{memberOnly}" id="memberOnly_1"
+						value="1" checked="checked"> <label for="memberOnly_1">적용</label>
+					<input type="radio" th:field="*{memberOnly}" id="memberOnly_0"
+						value="0"> <label for="memberOnly_0">미 적용</label>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>댓글 허용 여부</dt>
+				<dd>
+					<input type="radio" th:field="*{commentUse}" id="commentUse_1"
+						value="1" checked> <label for="commentUse_1">사용</label> <input
+						type="radio" th:field="*{commentUse}" id="commentUse_0" value="0">
+					<label for="commentUse_0">미 사용</label>
+				</dd>
+			</dl>
+
+			<div class="btn">
+				<button type="reset">다시쓰기</button>
+				<button type="submit">추가하기</button>
+			</div>
+		</div>
+	</form>
+	<br>
+	<form th:action="@{/admin/list}" method="post" target="ifrm">
+		<div class="adminBoardTable">
+		<h1>게시판 수정 / 삭제</h1>
+			<table>
+				<thead>
+					<tr>
+						<th><input type="checkbox"></th>
+						<th>게시판 아이디</th>
+						<th>게시판 이름</th>
+						<th>페이지당 표시할 개수</th>
+						<th>사용 허용 여부</th>
+						<th>회원 전용 여부</th>
+						<th>댓글 허용 여부</th>
+						<th>추가한 날짜</th>
+						<th>수정한 날짜</th>
+						<th>게시판으로 이동</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="adminBoard : ${list}" th:object="${adminBoard}">
+						<td>
+							<div>
+								<input type="checkbox" name="boardId" th:value="${adminBoard.boardId}">
+							</div>
+						</td>
+
+						<td><input disabled th:value="*{boardId}"></td>
+
+						<td><input type="text" th:name="boardName + ${('_') +(adminBoard.boardId)}"  th:value="${adminBoard.boardName}"></td>
+ 
+						<td><input type="number" th:name="pageCount + ${('_') +(adminBoard.boardId)}" th:value="*{pageCount}"></td>
+
+						<td><select th:name="isUse + ${('_') +(adminBoard.boardId)}">
+								<th:block th:if="${adminBoard.isUse == 1}">
+									<option value="1" selected>적용</option>
+									<option value="0">미 적용</option>
+								</th:block>
+								<th:block th:if="${adminBoard.isUse == 0}">
+									<option value="1">적용</option>
+									<option value="0" selected>미 적용</option>
+								</th:block>
+						</select></td>
+
+						<td><select th:name="memberOnly + ${('_') +(adminBoard.boardId)}">
+								<th:block th:if="${adminBoard.commentUse == 1}">
+									<option value="1" selected>적용</option>
+									<option value="0">미 적용</option>
+								</th:block>
+								<th:block th:if="${adminBoard.commentUse == 0}">
+									<option value="1">적용</option>
+									<option value="0" selected>미 적용</option>
+								</th:block>
+						</select></td>
+
+						<td><select th:name="commentUse + ${('_') +(adminBoard.boardId)}">
+								<th:block th:if="${adminBoard.memberOnly == 1}">
+									<option value="1" selected>적용</option>
+									<option value="0">미 적용</option>
+								</th:block>
+								<th:block th:if="${adminBoard.memberOnly == 0}">
+									<option value="1">적용</option>
+									<option value="0" selected>미 적용</option>
+								</th:block>
+						</select></td>
+
+						<td th:text="${#temporals.format(adminBoard.regDt, 'yy.MM.dd')}"></td>
+
+						<td th:text="${#temporals.format(adminBoard.modDt, 'yy.MM.dd')}"></td>
+
+						<td><a th:href="${admin}" th:text="글쓰기"></a> / <a
+							th:href="${admin}" th:text="글목록"></a></td>
+					</tr>
+				</tbody>
+			</table>
+			게시판을
+			<select th:name="mode">
+				<option value="update">수정</option>
+				<option value="delete">삭제</option>
+			</select>
+			합니다
+			<button th:onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
+		</div>
+	</form>
+	<iframe name="ifrm" class="boardDn"></iframe>
+</main>
+</html>

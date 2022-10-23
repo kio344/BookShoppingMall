@@ -1,0 +1,88 @@
+main {
+	background-color: rgb(247, 243, 243);
+}
+
+.content {
+	padding-top: 50px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.content .submenu {
+	float: left;
+	border: 1px solid #b6d0e1;
+	text-align: center;
+	margin: 10px;
+	position: fixed;
+	background-color: #b6d0e1;
+}
+
+.content .submenu ul li {
+	margin: 10px;
+}
+
+.content .submenu ul li a {
+	font-weight: 700;
+}
+
+.content .board_info {
+	margin: 0 auto;
+	width: 1200px;
+	text-align: center;
+}
+
+table, th, td {
+	border-top: 1px solid #000;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+.content .board_info table {
+	width: 100%;
+	border-top: 1px solid #141212;
+	border-bottom: 1px solid #141212;
+}
+
+.content .board_info table .info_header {
+	border-bottom: 2px solid #141212;
+	background-color: #678dab;
+}
+
+.content .board_info table .info_body {
+	background-color: rgb(255, 255, 255);
+}
+
+.col1, .col3, .col4, .col5 {
+	width: 100px;
+}
+
+.content .board_info .board_search {
+	float: right;
+	margin: 10px;
+}
+
+/** select 태그 꾸미기 */
+select::-ms-expand {
+	display: none;
+}
+
+.select {
+	-o-appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 150px;
+	height: 35px;
+	background:
+		url('images/arrow.png')
+		calc(100% - 5px) center no-repeat;
+	background-size: 20px;
+	padding: 5px 30px 5px 10px;
+	border-radius: 4px;
+	outline: 0 none;
+}
+.select option {
+  background: #85c1c7;
+  color: #fff;
+  padding: 3px 0;
+}

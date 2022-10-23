@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+
+<main layout:fragment="main">
+	<div class="content">
+		<div class="submenu">
+			<ul>
+				<li><a th:href="@{/board/notice}">공지사항</a></li>
+				<li><a th:href="@{/board/freetalk}">자유게시판</a></li>
+				<li><a th:href="@{/board/info}">정보공유</a></li>
+				<li><a th:href="@{/board/good}">추천게시판</a></li>
+			</ul>
+		</div>
+		<div class="board_view" th:object="${boardDataDto}">
+			<div class="view_header">
+				<span><strong>게시글</strong></span>
+				<th:block th:if="${session.user != null}">
+					<a th:if="${session.user.memId == boardDataDto.user.memId}" th:href="@{/board/update/{id}(id=${boardDataDto.id})}">
+						<i class="xi-wrench xi-x">수정하기</i>
+					</a>
+				</th:block>
+			</div>
+			<div class="view_content">
+				<div th:if="${fileInfos != null}" class="file_wrap">
+					<button type="button" id="file_btn" class="file_btn"><i class="xi-caret-down-square-o">파일목록</i></button>
+					<ul class="file_list" id="file_list">
+						<li th:each="file : ${fileInfos}" th:object="${file}">
+							<a th:href="@{/file/download/{id}(id=${file.id})}" th:text="*{fileName}"></a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<span>제목</span>
+					<h2 th:text="*{subject}"></h2>
+				</div>
+				<div>
+					<span>작성자</span>
+					<h2 th:text="*{poster}"></h2>
+				</div>
+				<div class="view_text" th:utext="*{contents}">
+				</div>
+			</div>
+			<div class="comment_wrap">
+				<th:block th:if="${session.user != null}">
+				<div class="write_comment">
+					<form method="post" th:action="@{/board/comment/write}" autocomplete="off">
+						<h2 th:text="${session.user.memId}"></h2>
+						<textarea name="comment" ></textarea>
+						<button type="submit" class="comment_btn"><i class="xi-comment xi-5x"></i></button>
+					</form>
+				</div>
+				</th:block>
+				<div class="view_comment">
+					<div class="one_view">
+						<h3>닉네임</h3>
+						<div class="one_text">
+							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+						</div>
+					</div>
+					<div class="one_view">
+						<h3>닉네임</h3>
+						<div class="one_text">
+							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+						</div>
+					</div>
+					<div class="one_view">
+						<h3>닉네임</h3>
+						<div class="one_text">
+							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+</html>

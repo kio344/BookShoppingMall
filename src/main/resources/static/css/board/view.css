@@ -1,0 +1,95 @@
+main {
+	background-color: rgb(247, 243, 243);
+}
+
+.content {
+	padding-top: 50px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.content .submenu {
+	float: left;
+	border: 1px solid #b6d0e1;
+	text-align: center;
+	margin: 10px;
+	position: fixed;
+	background-color: #b6d0e1;
+}
+
+.content .submenu ul li {
+	margin: 10px;
+}
+
+.content .submenu ul li a {
+	font-weight: 700;
+}
+
+.content .board_view {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+.content .board_view .view_header span {
+	font-size: 20px;
+}
+
+.content .board_view .view_header a {
+	float: right;
+	cursor: pointer;
+}
+
+.content .board_view .view_header {
+	border-bottom: 1px solid #000000;
+	padding-bottom: 5px;
+}
+
+.content .board_view .view_content {
+	padding-top: 5px;
+}
+.content .board_view .view_content div h2 {
+	border: 1px solid #000;
+	padding : 10px;
+}
+.content .board_view .view_content .file_wrap {
+	float: right;
+}
+.content .board_view .view_content .file_wrap .file_btn {
+	cursor: pointer;
+}
+.content .board_view .view_content .file_wrap .file_list {
+	display: none;
+}
+.content .board_view .view_content .file_wrap .file_list.action {
+	display: block;
+	border: 1px solid #000;
+	box-shadow: 5px 5px 5px 5px #444;
+	background: #fff;
+}
+.content .board_view .comment_wrap .write_comment {
+	margin-bottom: 20px;
+}
+.content .board_view .view_content .view_text {
+	border: 1px solid #000;
+	min-height: 250px;
+}
+.content .board_view .comment_wrap .write_comment textarea {
+	width: calc(100% - 200px);
+	height: 100px;
+	resize: none;
+}
+.content .board_view .comment_wrap .write_comment .comment_btn {
+	width: 180px;
+	height: 100px;
+	float: right;
+	text-align: center;
+	border: 1px solid #616161;
+	background-color: #fff;
+	cursor: pointer;
+}
+.content .board_view .comment_wrap .view_comment {
+	border-top: 1px solid #000;
+}
+.content .board_view .comment_wrap .view_comment .one_view {
+	border-bottom: 1px solid #000;
+}

@@ -1,0 +1,15 @@
+.adminBoard{
+	width: 1200px; margin: 0 auto; padding-top: 50px;
+}
+.adminBoardTable{
+	
+	width: 1100px;
+	margin: 0 auto;
+}
+table { border-spacing: 0; padding: 0; width: 100%; }
+table td input { width: 100%; }
+.adminBoardTable tr, .adminBoardTable th, .adminBoardTable td{
+	border : 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}

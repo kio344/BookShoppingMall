@@ -1,0 +1,79 @@
+main {
+	background-color: rgb(247, 243, 243);
+}
+
+.content {
+	padding-top: 50px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.content .submenu {
+	float: left;
+	border: 1px solid #b6d0e1;
+	text-align: center;
+	margin: 10px;
+	position: fixed;
+	background-color: #b6d0e1;
+}
+
+.content .submenu ul li {
+	margin: 10px;
+}
+
+.content .submenu ul li a {
+	font-weight: 700;
+}
+
+.content .board_write {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+.content .board_write .write_header span {
+	font-size: 20px;
+}
+
+.content .board_write .write_header button {
+	float: right;
+	cursor: pointer;
+}
+
+.content .board_write .write_header {
+	border-bottom: 1px solid #000000;
+	padding-bottom: 5px;
+}
+
+.content .board_write .write_content {
+	padding-top: 5px;
+}
+
+.content .board_write .write_content input[type='text'] {
+	width: 100%;
+}
+
+.content .board_write .write_content .wrap_file .file_drag {
+	width: 50%;
+	height: 100px;
+	border: 1px solid #000000;
+	background-color: #ffffff;
+	overflow-y: auto;
+	padding: 10px;
+	box-shadow: 5px 5px 5px 5px #444;
+	text-align: center;
+}
+.content .board_write .write_content .wrap_file .file_drag ul li {
+	text-align: left;
+	font-size: 15px;
+}
+
+.content .board_write .write_content .wrap_file .file_button {
+	cursor: pointer;
+	border: 1px solid #444;
+	padding: 5px;
+	margin: 5px;
+}
+
+.content .board_write .write_content .wrap_text {
+	padding-top: 30px;
+}
