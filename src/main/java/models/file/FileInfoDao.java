@@ -65,4 +65,13 @@ public class FileInfoDao {
 		return fileInfos;
 	}
 
+	public void delete(Long id) {
+		
+		FileInfo entity = em.find(FileInfo.class, id);
+		
+		em.remove(entity);
+		em.flush();
+		
+	}
+	
 }
