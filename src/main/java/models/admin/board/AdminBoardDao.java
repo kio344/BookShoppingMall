@@ -66,6 +66,15 @@ public class AdminBoardDao {
 		em.persist(entity);
 		
 		em.flush();
+	}
+	
+	public void deleteBoard(String boardId){
+		
+		BoardConfig entity = em.find(BoardConfig.class, boardId);
+		
+		em.remove(entity);
+		
+		em.flush();
 		
 	}
 
