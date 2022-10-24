@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 
 import models.board.BoardDataDao;
 import models.board.BoardDataDto;
+import models.comment.CommentDao;
+import models.comment.CommentDto;
 import models.file.FileInfoDao;
 import models.file.FileInfoDto;
 
@@ -18,6 +20,8 @@ public class BoardViewService {
 	private BoardDataDao boardDataDao;
 	@Autowired
 	private FileInfoDao fileInfoDao;
+	@Autowired
+	private CommentDao commentDao;
 	
 	public BoardDataDto view(Long id, Model model) {
 		
@@ -25,7 +29,10 @@ public class BoardViewService {
 		
 		List<FileInfoDto> fileInfos = fileInfoDao.gets(board.getGid());
 		
+		List<CommentDto> commentDtos = commentDao.gets(board.getGid());
+		
 		model.addAttribute("fileInfos", fileInfos);
+		model.addAttribute("commentDtos", commentDtos);
 		
 		return board;
 	}

@@ -39,7 +39,10 @@
 							<td class="col2">
 								<a th:href="@{/board/view/{id}(id=${board.id})}" th:text="*{subject}"></a>
 							</td>
-							<td class="col3" th:text="*{poster}">poster</td>
+							<td class="col3">
+								<span th:text="*{poster}"></span>
+								<span>(<th:block th:text="*{user.memId}"></th:block>)</span>
+							</td>
 							<td class="col4" th:text="${#temporals.format(board.regDt, 'yyyy.MM.dd HH.mm')}">regDt</td>
 							<td class="col5" th:text="*{hit}">count</td>
 						</tr>
