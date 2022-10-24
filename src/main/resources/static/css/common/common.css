@@ -38,7 +38,10 @@ nav a {  text-align: center; font-size: 1.5rem; padding: 15px 20px;  }
 .btn-grp button:last-of-type { background-color: #fff; color: #212121; margin-left: 2px; }
 .btn-grp button:first-of-type { margin-right: 2px; }
 
-
 main{
 	padding-top: 35px;
+}
+
+.boardDn{
+	display: none !important;
 }
