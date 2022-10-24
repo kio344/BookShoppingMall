@@ -92,6 +92,18 @@ public class BoardDataDao {
 		return boards;
 	}
 	
+	public BoardDataDto searchGid(String gid) {
+		
+		String sql = "SELECT b FROM BoardData b WHERE gid = :gid";
+		
+		TypedQuery<BoardData> entity = em.createQuery(sql, BoardData.class);
+		entity.setParameter("gid", gid);
+		
+		BoardData en = entity.getSingleResult();
+		
+		return en == null ? null : BoardDataDto.toDto(en);
+	}
+	
 	/**
 	 * 게시글 삭제
 	 * @param id
