@@ -98,7 +98,6 @@ public class BoardDataDto extends BaseDto{
 		}
 		BoardData entity = new BoardData();
 		
-		entity.setId(dto.getId());
 		entity.setGid(dto.getGid());
 		entity.setSubject(dto.getSubject());
 		entity.setPoster(dto.getPoster());

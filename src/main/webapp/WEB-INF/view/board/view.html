@@ -37,6 +37,7 @@
 				</div>
 				<div>
 					<span>작성자</span>
+					<span>(<th:block th:text="*{user.memId}"></th:block>)</span>
 					<h2 th:text="*{poster}"></h2>
 				</div>
 				<div class="view_text" th:utext="*{contents}">
@@ -46,30 +47,24 @@
 				<th:block th:if="${session.user != null}">
 				<div class="write_comment">
 					<form method="post" th:action="@{/board/comment/write}" autocomplete="off">
-						<h2 th:text="${session.user.memId}"></h2>
-						<textarea name="comment" ></textarea>
+						<input type="hidden" name="gid" th:value="${boardDataDto.gid}">
+						<h2 th:text="${session.user.fakeName}"></h2>
+						<textarea name="comments"></textarea>
 						<button type="submit" class="comment_btn"><i class="xi-comment xi-5x"></i></button>
 					</form>
 				</div>
 				</th:block>
 				<div class="view_comment">
-					<div class="one_view">
-						<h3>닉네임</h3>
+					<div class="one_view" th:each="comment : ${commentDtos}" th:object="${comment}">
+						<h3 th:text="poster"></h3>
 						<div class="one_text">
-							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
+							<span th:text="*{comments}"></span>
 						</div>
-					</div>
-					<div class="one_view">
-						<h3>닉네임</h3>
-						<div class="one_text">
-							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
-						</div>
-					</div>
-					<div class="one_view">
-						<h3>닉네임</h3>
-						<div class="one_text">
-							<sapn>내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다내용이다</sapn>
-						</div>
+						<th:block th:if="${session.user != null}">
+							<th:block th:if="${session.user.memId == comment.user.memId}">
+								<button type="button">수정하기</button>
+							</th:block>
+						</th:block>
 					</div>
 				</div>
 			</div>
