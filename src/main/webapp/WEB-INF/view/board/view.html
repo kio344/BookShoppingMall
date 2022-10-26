@@ -20,6 +20,9 @@
 					<a th:if="${session.user.memId == boardDataDto.user.memId}" th:href="@{/board/update/{id}(id=${boardDataDto.id})}">
 						<i class="xi-wrench xi-x">수정하기</i>
 					</a>
+					<a th:if="${session.user.memId == boardDataDto.user.memId}" th:href="@{/board/delete/{id}(id=${boardDataDto.id})}">
+						<i class="xi-close-circle xi-x">삭제하기</i>
+					</a>
 				</th:block>
 			</div>
 			<div class="view_content">

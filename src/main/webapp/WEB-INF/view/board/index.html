@@ -38,6 +38,7 @@
 							<td class="col1" th:text="*{id}">no</td>
 							<td class="col2">
 								<a th:href="@{/board/view/{id}(id=${board.id})}" th:text="*{subject}"></a>
+								<th:block th:if="*{private == true}"><i class="xi-lock"></i></th:block>
 							</td>
 							<td class="col3">
 								<span th:text="*{poster}"></span>
@@ -48,6 +49,21 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="page_wrap" th:object="${pagination}">
+					<th:block th:if="*{isFirstCnt == false}">
+						<a th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
+							<i class="xi-backward">이전</i>
+						</a>
+					</th:block>
+					<th:block th:each="page : ${pagination.pages}">
+							<a th:href="@{/board/{id}?page={page}(id=${boardId}, page=${page})}" th:text="${page}"></a>
+					</th:block>
+					<th:block th:if="*{isLastCnt == false}">
+						<a th:href="@{/board/{id}?page={next}(id=${boardId}, next=${pagination.next})}">
+							<i class="xi-forward">다음</i>
+						</a>
+					</th:block>
+				</div>
 			</div>
 		</div>
 	</main>

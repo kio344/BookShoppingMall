@@ -19,6 +19,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -30,6 +31,9 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import common.auth.BoardPrivateCheck;
+import common.auth.MemberCheck;
+import common.page.Pagination;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
 @Configuration
@@ -110,6 +114,13 @@ public class MvcConfig implements WebMvcConfigurer {
 				.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(formatter)).build();
 		converters.add(0, new MappingJackson2HttpMessageConverter(objectMapper));
 	}
+	
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(boardPrivateCheck()).addPathPatterns("/board/view/**");
+		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**").excludePathPatterns("/board/view/**");
+	}
 
 	@Bean
 	public MessageSource messageSource() {
@@ -127,4 +138,15 @@ public class MvcConfig implements WebMvcConfigurer {
 
 		return configurer;
 	}
+	
+	@Bean
+	public BoardPrivateCheck boardPrivateCheck() {
+		return new BoardPrivateCheck();
+	}
+	
+	@Bean
+	public MemberCheck memberCheck() {
+		return new MemberCheck();
+	}
+	
 }
