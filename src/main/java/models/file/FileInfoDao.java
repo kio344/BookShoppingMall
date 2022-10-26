@@ -75,4 +75,18 @@ public class FileInfoDao {
 		
 	}
 	
+	public void deletes(String gid) {
+		String sql = "SELECT f FROM FileInfo f WHERE gid=:gid";
+		TypedQuery<FileInfo> files = em.createQuery(sql, FileInfo.class);
+		files.setParameter("gid", gid);
+		
+		List<FileInfo> fileInfos = files.getResultList();
+		
+		for(FileInfo file : fileInfos) {
+			em.remove(file);
+		}
+		em.flush();
+		
+	}
+	
 }
