@@ -13,8 +13,6 @@ public class ProductSaveService {
 	@Autowired
 	private ProductDao productDao;
 	
-	
-	
 	public void save(ProductRequest req, HttpSession session) {
 		UserDto user = (UserDto)session.getAttribute("user");
 		

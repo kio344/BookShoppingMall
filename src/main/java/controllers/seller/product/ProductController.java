@@ -48,10 +48,7 @@ public class ProductController {
 		try {
 			out = response.getWriter();
 			saveService.save(request, session);
-			/**
-			 * 실행은 되는데 alert가 안뜸.
-			 */
-			out.print("<script>alert('요청이 완료 되었습니다.')</script>");
+			return "redirect:/seller/productRequest/alert";
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}

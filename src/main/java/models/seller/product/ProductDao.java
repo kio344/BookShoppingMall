@@ -19,9 +19,9 @@ public class ProductDao {
 	public void save(ProductDto dto){
 		Product entity = ProductDto.toEntity(dto);
 		
-			em.persist(entity);
-			em.flush();
-			
+		em.persist(entity);
+		
+		em.flush();
 	}
 	
 	public void argee(ProductDto dto) {
@@ -32,6 +32,7 @@ public class ProductDao {
 		
 		em.persist(entity);
 		em.flush();
+		
 	}
 	
 	public void rejected() {
