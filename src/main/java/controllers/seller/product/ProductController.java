@@ -48,7 +48,9 @@ public class ProductController {
 		try {
 			out = response.getWriter();
 			saveService.save(request, session);
+			/** alert 테스트중 S*/
 			return "redirect:/seller/productRequest/alert";
+			/** alert 테스트중 E*/
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
