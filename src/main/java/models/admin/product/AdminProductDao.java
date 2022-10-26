@@ -26,18 +26,4 @@ public class AdminProductDao {
 		
 		return list;
 	}
-	
-	/** 아직 미완 이거 마저 해야함
-
-	public void confirm(String bookName) {
-		
-		TypedQuery<Product> entity = em.createQuery("SELECT p FROM Product p WHERE bookName=:bookName", Product.class);
-		
-		entity.setParameter("bookName", bookName);
-		
-		Product list = entity.getSingleResult();
-	}
-	
-	 */
-	
 }

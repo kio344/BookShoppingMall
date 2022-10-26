@@ -10,20 +10,34 @@
 				<thead>
 					<tr>
 						<th><input type="checkbox"></th>
-						<th>책 이름</th>
-						<th>출판사</th>
 						<th>판매자</th>
-						<th>카테고리</th>
+						<th>시리얼 넘버</th>
+						<th>책 이름</th>
+						<th>글쓴이</th>
 						<th>가격</th>
-						<th>수량</th>
+						<th>카테고리</th>
+						<th>출판사</th>
+						<th>남은 수량</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="product : ${product}" th:object="${product}">
+					
+						<td>
+							<div>
+								<input type="checkbox" name="product" th:value="*{num}">
+							</div>
+						</td>
+							
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{seller}">
+							</div>
+						</td>
 
 						<td>
 							<div>
-								<input type="checkbox" name="product" th:value="${product.bookName}">
+								<input type="text" disabled th:value="*{serialnum}">
 							</div>
 						</td>
 
@@ -35,19 +49,7 @@
 
 						<td>
 							<div>
-								<input type="text" disabled th:value="*{publisher}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{seller}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{category}">
+								<input type="text" disabled th:value="*{writer}">
 							</div>
 						</td>
 
@@ -57,6 +59,18 @@
 							</div>
 						</td>
 
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{category}">
+							</div>
+						</td>
+						
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{publisher}">
+							</div>
+						</td>
+						
 						<td>
 							<div>
 								<input type="number" disabled th:value="*{count}">

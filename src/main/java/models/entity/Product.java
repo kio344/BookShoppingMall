@@ -10,49 +10,37 @@ import javax.persistence.Id;
 import models.seller.product.Progress;
 
 @Entity
-public class Product {
+public class Product extends BaseEntity {
 
 	@Id
 	@GeneratedValue
-	private int num;
-	@Column(unique = true)
-	private String bookName;
-	@Column
-	private String publisher;
+	private Long num;
 	@Column
 	private String seller;
 	@Column
+	private String serialnum;
+	@Column(unique = true)
+	private String bookName;
+	@Column
+	private String writer;
+	@Column
+	private Long price;
+	@Column
 	private String category;
 	@Column
-	private int price;
+	private String publisher;
 	@Column
 	private int count;
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Progress progress = Progress.Examine;
 
-	public int getNum() { 
+	public Long getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(Long num) {
 		this.num = num;
-	}
-
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
 	}
 
 	public String getSeller() {
@@ -63,6 +51,38 @@ public class Product {
 		this.seller = seller;
 	}
 
+	public String getSerialnum() {
+		return serialnum;
+	}
+
+	public void setSerialnum(String serialnum) {
+		this.serialnum = serialnum;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -71,12 +91,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public int getPrice() {
-		return price;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	public int getCount() {
@@ -90,10 +110,19 @@ public class Product {
 	public Progress getProgress() {
 		return progress;
 	}
-	
+
 	public void setProgress(Progress progress) {
-		
 		this.progress = progress;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
+				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
+				+ ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
+				+ getModDt() + "]";
+	}
 	
+	
+
 }

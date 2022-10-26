@@ -1,40 +1,27 @@
 package models.seller.product;
 
+import models.common.BaseDto;
 import models.entity.Product;
 
-public class ProductDto {
+public class ProductDto extends BaseDto{
 
-	private int num;
-	private String bookName;
-	private String publisher;
+	private Long num;
 	private String seller;
+	private String serialnum;
+	private String bookName;
+	private String writer;
+	private Long price;
 	private String category;
-	private int price;
+	private String publisher;
 	private int count;
-	private Progress progress;
+	private Progress progress = Progress.Examine;
 
-	public int getNum() {
+	public Long getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(Long num) {
 		this.num = num;
-	}
-
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
 	}
 
 	public String getSeller() {
@@ -45,6 +32,38 @@ public class ProductDto {
 		this.seller = seller;
 	}
 
+	public String getSerialnum() {
+		return serialnum;
+	}
+
+	public void setSerialnum(String serialnum) {
+		this.serialnum = serialnum;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -53,12 +72,12 @@ public class ProductDto {
 		this.category = category;
 	}
 
-	public int getPrice() {
-		return price;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	public int getCount() {
@@ -68,7 +87,7 @@ public class ProductDto {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
+
 	public Progress getProgress() {
 		return progress;
 	}
@@ -79,22 +98,26 @@ public class ProductDto {
 
 	@Override
 	public String toString() {
-		return "ProductDto [num=" + num + ", bookName=" + bookName + ", publisher=" + publisher + ", seller=" + seller
-				+ ", category=" + category + ", price=" + price + ", count=" + count + ", progress=" + progress + "]";
+		return "ProductDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
+				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
+				+ ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
+				+ getModDt() + "]";
 	}
-		
+
 	public static ProductDto toDto(Product entity) {
 		ProductDto dto = new ProductDto();
 		
 		if(entity == null) return null;
 		
-		dto.setBookName(entity.getBookName());
-		dto.setCategory(entity.getCategory());
-		dto.setCount(entity.getCount());
 		dto.setNum(entity.getNum());
-		dto.setPrice(entity.getPrice());
-		dto.setPublisher(entity.getPublisher());
 		dto.setSeller(entity.getSeller());
+		dto.setSerialnum(entity.getSerialnum());
+		dto.setBookName(entity.getBookName());
+		dto.setWriter(entity.getWriter());
+		dto.setPrice(entity.getPrice());
+		dto.setCategory(entity.getCategory());
+		dto.setPublisher(entity.getPublisher());
+		dto.setCount(entity.getCount());
 		dto.setProgress(entity.getProgress());
 		
 		return dto;
@@ -102,20 +125,21 @@ public class ProductDto {
 	
 	public static Product toEntity(ProductDto dto) {
 		Product entity = new Product();
+		
 		if(dto == null) return null;
 		
-		entity.setBookName(dto.getBookName());
-		entity.setCategory(dto.getCategory());
-		entity.setCount(dto.getCount());
 		entity.setNum(dto.getNum());
-		entity.setPrice(dto.getPrice());
-		entity.setPublisher(dto.getPublisher());
 		entity.setSeller(dto.getSeller());
+		entity.setSerialnum(dto.getSerialnum());
+		entity.setBookName(dto.getBookName());
+		entity.setWriter(dto.getWriter());
+		entity.setPrice(dto.getPrice());
+		entity.setCategory(dto.getCategory());
+		entity.setPublisher(dto.getPublisher());
+		entity.setCount(dto.getCount());
 		entity.setProgress(dto.getProgress());
 		
 		return entity;
-
-		
 	}
 	
 }

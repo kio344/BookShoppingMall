@@ -6,20 +6,21 @@
 <main layout:fragment="main">
 	<form th:action="@{/seller/productRequest}" method="post" th:object="${productRequest}">
 		<h1>판매 신청 하기</h1>
+		
+		<div>
+			판매자 : <input type="text" disabled name="seller" th:value="${user.memId}">
+		</div>
+		
+		<div>
+			시리얼 넘버 : <input type="text" name="serialnum" th:field="*{serialnum}">
+		</div>
+		
 		<div>
 			책 이름 : <input type="text" name="bookName" th:field="*{bookName}">
 		</div>
 
 		<div>
-			출판사 : <input type="text" name="publisher" th:field="*{publisher}">
-		</div>
-
-		<div>
-			판매자 : <input type="text" name="seller" th:field="*{seller}">
-		</div>
-
-		<div>
-			카테고리 : <input type="text" name="category" th:field="*{category}">
+			글쓴이 : <input type="text" name="writer" th:field="*{writer}">
 		</div>
 
 		<div>
@@ -27,10 +28,18 @@
 		</div>
 
 		<div>
+			카테고리 : <input type="text" name="category" th:field="*{category}">
+		</div>
+
+		<div>
+			출판사 : <input type="text" name="publisher" th:field="*{publisher}">
+		</div>
+
+		<div>
 			수량 : <input type="number" name="count" th:field="*{count}">
 		</div>
 		
-		<input type="file">
+		이미지 파일 : <input type="file">
 
 		<button type="submit">신청하기</button>
 	</form>

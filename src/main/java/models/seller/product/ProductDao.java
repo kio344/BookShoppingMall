@@ -21,6 +21,20 @@ public class ProductDao {
 		
 			em.persist(entity);
 			em.flush();
+			
+	}
+	
+	public void argee(ProductDto dto) {
+		
+		Product entity = em.find(Product.class, dto.getNum());
+		
+		entity.setProgress(dto.getProgress());
+		
+		em.persist(entity);
+		em.flush();
+	}
+	
+	public void rejected() {
 		
 	}
 }
