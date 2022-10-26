@@ -35,6 +35,16 @@ public class CommentDao {
 
 		return get(entity.getId());
 	}
+	
+	public CommentDto update(CommentDto param) {
+		
+		Comment entity = em.find(Comment.class, param.getId());
+		entity.setComments(param.getComments());
+		
+		em.persist(entity);
+		em.flush();
+		return CommentDto.toDto(entity);
+	}
 
 	public CommentDto get(Long id) {
 
@@ -51,6 +61,16 @@ public class CommentDao {
 		List<CommentDto> comments = params.getResultStream().map(CommentDto::toDto).toList();
 		
 		return comments;
+	}
+	
+	public CommentDto delete(Long id) {
+		
+		Comment entity = em.find(Comment.class, id);
+		
+		em.remove(entity);
+		em.flush();
+		
+		return CommentDto.toDto(entity);
 	}
 
 }
