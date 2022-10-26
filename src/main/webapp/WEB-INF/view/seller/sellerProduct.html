@@ -4,40 +4,35 @@
 	layout:decorate="~{layouts/seller/sellerLayout}">
 
 <main layout:fragment="main">
-	<form th:action="@{/productRequest}" method="post" th:object="${productRequest}">
+	<form th:action="@{/seller/productRequest}" method="post" th:object="${productRequest}">
 		<h1>판매 신청 하기</h1>
 		<div>
-			책 이름 : 
-			<input type="text" name="bookName" th:field="*{bookName}">
+			책 이름 : <input type="text" name="bookName" th:field="*{bookName}">
 		</div>
 
 		<div>
-			출판사 : 
-			<input type="text" name="publisher" th:field="*{publisher}">
+			출판사 : <input type="text" name="publisher" th:field="*{publisher}">
 		</div>
 
 		<div>
-			판매자 : 
-			<input type="text" name="seller" th:field="*{seller}">
+			판매자 : <input type="text" name="seller" th:field="*{seller}">
 		</div>
 
 		<div>
-			카테고리 : 
-			<input type="text" name="category" th:field="*{category}">
+			카테고리 : <input type="text" name="category" th:field="*{category}">
 		</div>
 
 		<div>
-			가격 : 
-			<input type="number" name="price" th:field="*{price}">
+			가격 : <input type="number" name="price" th:field="*{price}">
 		</div>
 
 		<div>
-			수량 : 
-			<input type="number" name="count" th:field="*{count}">
+			수량 : <input type="number" name="count" th:field="*{count}">
 		</div>
 		
+		<input type="file">
+
 		<button type="submit">신청하기</button>
-		
 	</form>
 </main>
 </html>

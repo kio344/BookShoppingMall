@@ -2,8 +2,12 @@ package models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import models.seller.product.Progress;
 
 @Entity
 public class Product {
@@ -11,7 +15,7 @@ public class Product {
 	@Id
 	@GeneratedValue
 	private int num;
-	@Column
+	@Column(unique = true)
 	private String bookName;
 	@Column
 	private String publisher;
@@ -23,6 +27,9 @@ public class Product {
 	private int price;
 	@Column
 	private int count;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private Progress progress = Progress.Examine;
 
 	public int getNum() { 
 		return num;
@@ -80,4 +87,13 @@ public class Product {
 		this.count = count;
 	}
 
+	public Progress getProgress() {
+		return progress;
+	}
+	
+	public void setProgress(Progress progress) {
+		
+		this.progress = progress;
+	}
+	
 }

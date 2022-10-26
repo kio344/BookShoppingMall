@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin/adminLayout}">
+<main layout:fragment="main">
+	<div class="adminProduct">
+
+		<form th:action="@{/admin/productManager}" method="post">
+			<table>
+				<thead>
+					<tr>
+						<th><input type="checkbox"></th>
+						<th>책 이름</th>
+						<th>출판사</th>
+						<th>판매자</th>
+						<th>카테고리</th>
+						<th>가격</th>
+						<th>수량</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${product}" th:object="${product}">
+
+						<td>
+							<div>
+								<input type="checkbox" name="product" th:value="${product.bookName}">
+							</div>
+						</td>
+
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{bookName}">
+							</div>
+						</td>
+
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{publisher}">
+							</div>
+						</td>
+
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{seller}">
+							</div>
+						</td>
+
+						<td>
+							<div>
+								<input type="text" disabled th:value="*{category}">
+							</div>
+						</td>
+
+						<td>
+							<div>
+								<input type="number" disabled th:value="*{price}">
+							</div>
+						</td>
+
+						<td>
+							<div>
+								<input type="number" disabled th:value="*{count}">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			상품을
+			<select th:name="mode">
+				<option value="agree">수락</option>
+				<option value="rejected">거절</option>
+			</select>
+			합니다
+			</th:block>
+			<button th:onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
+		</form>
+	</div>
+</main>
+</html>

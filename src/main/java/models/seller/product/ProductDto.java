@@ -11,6 +11,7 @@ public class ProductDto {
 	private String category;
 	private int price;
 	private int count;
+	private Progress progress;
 
 	public int getNum() {
 		return num;
@@ -67,11 +68,19 @@ public class ProductDto {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	public Progress getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Progress progress) {
+		this.progress = progress;
+	}
 
 	@Override
 	public String toString() {
 		return "ProductDto [num=" + num + ", bookName=" + bookName + ", publisher=" + publisher + ", seller=" + seller
-				+ ", category=" + category + ", price=" + price + ", count=" + count + "]";
+				+ ", category=" + category + ", price=" + price + ", count=" + count + ", progress=" + progress + "]";
 	}
 		
 	public static ProductDto toDto(Product entity) {
@@ -86,6 +95,7 @@ public class ProductDto {
 		dto.setPrice(entity.getPrice());
 		dto.setPublisher(entity.getPublisher());
 		dto.setSeller(entity.getSeller());
+		dto.setProgress(entity.getProgress());
 		
 		return dto;
 	}
@@ -101,6 +111,7 @@ public class ProductDto {
 		entity.setPrice(dto.getPrice());
 		entity.setPublisher(dto.getPublisher());
 		entity.setSeller(dto.getSeller());
+		entity.setProgress(dto.getProgress());
 		
 		return entity;
 

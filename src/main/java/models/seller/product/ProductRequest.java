@@ -57,4 +57,10 @@ public class ProductRequest {
 		this.count = count;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductRequest [bookName=" + bookName + ", publisher=" + publisher + ", seller=" + seller
+				+ ", category=" + category + ", price=" + price + ", count=" + count + "]";
+	}
+
 }
