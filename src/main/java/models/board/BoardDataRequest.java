@@ -12,6 +12,8 @@ public class BoardDataRequest {
 	private String contents;
 	private Long id;
 	private String gid;
+	private boolean isPrivate;
+	private String privatePassword;
 
 	private String boardId;
 
@@ -64,6 +66,22 @@ public class BoardDataRequest {
 
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+
+	public boolean isPrivate() {
+		return isPrivate;
+	}
+
+	public void setPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
+	}
+
+	public String getPrivatePassword() {
+		return privatePassword;
+	}
+
+	public void setPrivatePassword(String privatePassword) {
+		this.privatePassword = privatePassword;
 	}
 
 }

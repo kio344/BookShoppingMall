@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import models.board.BoardDataDao;
 import models.board.BoardDataDto;
 import models.board.BoardDataRequest;
 import models.board.service.BoardWriteService;
@@ -19,41 +20,39 @@ import models.user.UserDto;
 
 @Controller
 @RequestMapping("/board")
-public class BoardWriteController {
+public class BoardUpdateController {
 	
 	@Autowired
 	private BoardWriteService service;
-	
-	@GetMapping("/write/{boardId}")
-	public String form(@PathVariable(name = "boardId") String boardId, Model model, HttpSession session) {
+	@Autowired
+	private BoardDataDao boardDataDao;
+
+	@GetMapping("/update/{id}")
+	public String form(@PathVariable(name = "id") Long id, Model model, HttpSession session) {
+		
 		model.addAttribute("addCss", new String[] { "/board/write" });
 		model.addAttribute("addJs", new String[] { "/ckeditor/ckeditor", "/board/board", "/file/fileupload" });
 		
-		BoardDataRequest boardDataRequest = new BoardDataRequest();
-		UserDto user = (UserDto)session.getAttribute("user");
-		if(user != null) {
-			boardDataRequest.setPoster(user.getFakeName());
-		}
-		boardDataRequest.setBoardId(boardId);
+		BoardDataRequest boardDataRequest = BoardDataDto.toRequest(boardDataDao.get(id));
+		
 		model.addAttribute("boardDataRequest", boardDataRequest);
-		model.addAttribute("mode", "insert");
+		model.addAttribute("mode", "update");
 		
 		return "board/write";
 	}
 	
-	@PostMapping("/write")
+	@PostMapping("/update")
 	public String process(@Valid BoardDataRequest request, Errors errors, Model model, HttpSession session) {
+		
 		model.addAttribute("addCss", new String[] { "/board/write" });
 		model.addAttribute("addJs", new String[] { "/ckeditor/ckeditor", "/board/board", "/file/fileupload" });
 	
 		BoardDataDto board = service.register(request, errors, session);
 		
 		if(errors.hasErrors()) {
-			return "board/write";
+			return "board/update";
 		}
-		
-		
 		return "redirect:/board/view/" + board.getId();
 	}
-
+	
 }
