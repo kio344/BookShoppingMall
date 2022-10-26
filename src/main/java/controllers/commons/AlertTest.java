@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("seller/productRequest/alert")
 public class AlertTest {
-		
+		/** 테스트 중 */
 	@GetMapping(produces = "text/html; charset=utf-8")
 	public String alert(HttpServletRequest req) {
 		
@@ -17,5 +17,5 @@ public class AlertTest {
 		
 		return "<script>alert('요청이 완료 되었습니다.'); parent.location.replace('" + path + "');</script>";
 	}
-	
+	/** 테스트 중 */	
 }
