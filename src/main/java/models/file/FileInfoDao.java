@@ -34,9 +34,10 @@ public class FileInfoDao {
 	}
 	
 	public void doneFinish(String gid) {
-		String sql = "SELECT f FROM FileInfo f WHERE gid=:gid";
+		String sql = "SELECT f FROM FileInfo f WHERE gid=:gid AND done=:done";
 		TypedQuery<FileInfo> files = em.createQuery(sql, FileInfo.class);
 		files.setParameter("gid", gid);
+		files.setParameter("done", false);
 		
 		List<FileInfo> fileInfos = files.getResultList();
 		
