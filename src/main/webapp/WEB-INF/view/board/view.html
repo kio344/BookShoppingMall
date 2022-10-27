@@ -66,7 +66,7 @@
 				<div class="view_comment">
 					<div class="one_view" th:each="comment : ${commentDtos}"
 						th:object="${comment}">
-						<h3 th:text="poster"></h3>
+						<h3 th:text="*{poster}"></h3>
 						<div class="one_text">
 							<span th:text="*{comments}"></span>
 						<th:block th:if="${session.user != null}">
