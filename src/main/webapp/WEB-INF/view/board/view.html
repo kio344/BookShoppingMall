@@ -66,7 +66,16 @@
 				<div class="view_comment">
 					<div class="one_view" th:each="comment : ${commentDtos}"
 						th:object="${comment}">
-						<h3 th:text="*{poster}"></h3>
+						<th:block th:if="*{isFirstComment == false}">
+							<div>
+								<h3>└ [[${comment.poster}]]</h3>
+							</div>
+						</th:block>
+						<th:block th:if="*{isFirstComment == true}">
+							<div>
+								<h3 th:text="*{poster}"></h3>
+							</div>
+						</th:block>
 						<div class="one_text">
 							<span th:text="*{comments}"></span>
 						<th:block th:if="${session.user != null}">
@@ -75,6 +84,9 @@
 								<a th:href="@{/board/comment/delete/{id}(id=${comment.id})}">삭제하기</a>
 							</th:block>
 						</th:block>
+						</div>
+						<div th:if="*{isFirstComment == true}">
+							<button type="button" id="reply" th:data-id=${comment.id}>답글달기</button>
 						</div>
 					</div>
 				</div>
@@ -85,6 +97,12 @@
 		<form method="post" action="../comment/update/<%=id%>" autocomplete="off">
 			<textarea name="comments"><%=text%></textarea>
 			<button type="submit"><i class="xi-comment xi-x">수정하기</i></button>
+		</form>
+	</script>
+	<script type="text/html" id="replyTpl">
+		<form method="post" action="../reply/write/<%=id%>" autocomplete="off">
+			<textarea name="comments"></textarea>
+			<button type="submit"><i class="xi-comment xi-x">작성하기</i></button>
 		</form>
 	</script>
 </main>

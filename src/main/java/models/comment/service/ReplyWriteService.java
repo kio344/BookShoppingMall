@@ -13,31 +13,35 @@ import models.comment.CommentDto;
 import models.user.UserDto;
 
 @Service
-public class CommentWriteService {
-	
+public class ReplyWriteService {
+
 	@Autowired
 	private CommentDao commentDao;
 	@Autowired
 	private BoardDataDao boardDataDao;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private HttpServletRequest request;
 
-	public BoardDataDto regist(HttpServletRequest request) {
+	public BoardDataDto regist(Long id) {
 		
-		String gid = request.getParameter("gid");
+		CommentDto com = commentDao.get(id);
 		String comments = request.getParameter("comments");
+		
 		UserDto user = (UserDto)session.getAttribute("user");
-		BoardDataDto board = boardDataDao.searchGid(gid);
+		BoardDataDto board = boardDataDao.searchGid(com.getGid());
 		
 		CommentDto param = new CommentDto();
 		param.setBoard(board);
 		param.setUser(user);
 		param.setPoster(user.getFakeName());
+		param.setMatchComment(id);
 		param.setComments(comments);
-		param.setFirstComment(true);
-		param.setGid(gid);
+		param.setFirstComment(false);
+		param.setGid(com.getGid());
 		
-		commentDao.register(param);
+		commentDao.replyInsert(param);
 		
 		return board;
 	}

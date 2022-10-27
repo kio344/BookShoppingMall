@@ -88,6 +88,10 @@ select::-ms-expand {
   padding: 3px 0;
 }
 
+.write {
+	float: right;
+}
+
 /** 페이지 네이션 */
 .content .board_info .page_wrap a {
 	border: 1px solid #aaffff;
