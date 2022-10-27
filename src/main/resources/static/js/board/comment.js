@@ -22,4 +22,23 @@ window.addEventListener("DOMContentLoaded", function() {
 		parent.appendChild(formEl);
 		
 	});
+	
+	/** 답글 등록 */
+	const replyBtn = document.getElementById("reply");
+	replyBtn.addEventListener("click", function(e) {
+		const id = replyBtn.dataset.id;
+		
+		const tplEl = document.getElementById("replyTpl");
+		const tpl = tplEl.innerHTML;
+		const domParser = new DOMParser();
+		let html = tpl;
+		html = html.replace(/<%=id%>/g, id);
+		const dom = domParser.parseFromString(html, "text/html");
+		const formEl = dom.querySelector("form");
+		
+		const parent = e.target.parentElement;
+		parent.removeChild(replyBtn);
+		
+		parent.appendChild(formEl);
+	});
 });

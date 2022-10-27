@@ -36,6 +36,20 @@ public class CommentDao {
 		return get(entity.getId());
 	}
 	
+	public CommentDto replyInsert(CommentDto param) {
+		Comment entity = CommentDto.toEntity(param);
+
+		User user = em.find(User.class, param.getUser().getMemNo());
+		BoardData board = em.find(BoardData.class, param.getBoard().getId());
+		entity.setBoard(board);
+		entity.setUser(user);
+
+		em.persist(entity);
+		em.flush();
+
+		return get(entity.getId());
+	}
+	
 	public CommentDto update(CommentDto param) {
 		
 		Comment entity = em.find(Comment.class, param.getId());
@@ -54,7 +68,7 @@ public class CommentDao {
 	}
 	
 	public List<CommentDto> gets(String gid) {
-		String sql = "SELECT c FROM Comment c WHERE gid = :gid";
+		String sql = "SELECT c FROM Comment c WHERE gid = :gid ORDER BY matchComment, regDt";
 		TypedQuery<Comment> params = em.createQuery(sql, Comment.class);
 		params.setParameter("gid", gid);
 		

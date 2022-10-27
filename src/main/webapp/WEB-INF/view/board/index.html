@@ -49,6 +49,9 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="write">
+					<a th:href="@{/board/write/{id}(id=${boardId})}"><i class="xi-pen xi-x">글쓰기</i></a>
+				</div>
 				<div class="page_wrap" th:object="${pagination}">
 					<th:block th:if="*{isFirstCnt == false}">
 						<a th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
