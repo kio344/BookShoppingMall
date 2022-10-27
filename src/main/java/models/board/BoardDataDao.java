@@ -102,6 +102,7 @@ public class BoardDataDao {
 				break;
 			}
 		}
+		sql += " ORDER BY regDt DESC";
 		TypedQuery<BoardData> entities = em.createQuery(sql, BoardData.class);
 		entities.setParameter("boardId", boardId);
 		if(select != null && search != null) {
