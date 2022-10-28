@@ -84,11 +84,35 @@ public class BoardDataDao {
 	 * @param boardId
 	 * @return
 	 */
-	public List<BoardDataDto> gets(String boardId, int page, int limit) {
+	public List<BoardDataDto> gets(String boardId, int page, int limit, String select, String search) {
 		int offset = (page - 1) * limit;
 		String sql = "SELECT b FROM BoardData b WHERE boardId = :boardId";
+		if(select != null && search != null) {
+			switch (select) {
+			case "id":
+				sql += " AND id = :id";
+				break;
+			case "subject":
+				sql += " AND subject LIKE CONCAT('%',:subject,'%')";
+				break;
+			case "poster":
+				sql += " AND poster LIKE CONCAT('%',:poster,'%')";
+				break;
+			default:
+				break;
+			}
+		}
+		sql += " ORDER BY regDt DESC";
 		TypedQuery<BoardData> entities = em.createQuery(sql, BoardData.class);
 		entities.setParameter("boardId", boardId);
+		if(select != null && search != null) {
+			if(select.equals("id")) {
+				Long x = Long.parseLong(search);
+				entities.setParameter(select, x);
+			} else {
+				entities.setParameter(select, search);
+			}
+		}
 		entities.setFirstResult(offset);
 		entities.setMaxResults(limit);
 		
@@ -123,12 +147,14 @@ public class BoardDataDao {
 	 * 게시글 삭제
 	 * @param id
 	 */
-	public void delete(Long id) {
+	public BoardDataDto delete(Long id) {
 		
 		BoardData entity = em.find(BoardData.class, id);
 		
 		em.remove(entity);
 		em.flush();
+		
+		return BoardDataDto.toDto(entity);
 		
 	}
 
