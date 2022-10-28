@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleag/layout"
+	layout:decorate="~{layouts/main/main}">
+
+	<main layout:fragment="main" style="padding-top: 50px;">
+		<form method="post" th:action="@{/board/private}" autocomplete="off" th:object="${boardPrivateRequest}">
+			<input type="hidden" name="id" th:field="*{id}">
+			<div th:each="err : ${#fields.globalErrors()}" th:text="${err}"
+					class="error"></div>
+			<label for="password">비밀번호</label>
+			<input type="password" id="password" name="password" th:field="*{password}">
+			<div th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error"></div>
+		</form>
+	</main>
+
+</html>

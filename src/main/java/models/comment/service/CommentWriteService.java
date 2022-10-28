@@ -26,12 +26,8 @@ public class CommentWriteService {
 		
 		String gid = request.getParameter("gid");
 		String comments = request.getParameter("comments");
-		System.out.println(gid);
-		System.out.println(comments);
 		UserDto user = (UserDto)session.getAttribute("user");
 		BoardDataDto board = boardDataDao.searchGid(gid);
-		
-		System.out.println(board);
 		
 		CommentDto param = new CommentDto();
 		param.setBoard(board);

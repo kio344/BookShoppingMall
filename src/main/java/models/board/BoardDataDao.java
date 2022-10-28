@@ -29,20 +29,25 @@ public class BoardDataDao {
 		
 		if(dto.getId() == null) { // 추가
 			entity = BoardDataDto.toEntity(dto);
+			if(dto.getBoard() != null) {
+				BoardConfig config = em.find(BoardConfig.class, dto.getBoard().getBoardId());
+				entity.setBoard(config);
+			}
+			if(dto.getUser() != null) {
+				User user = em.find(User.class, dto.getUser().getMemNo());
+				entity.setUser(user);
+			}
 		} else { // 수정
 			entity = em.find(BoardData.class, dto.getId());
 			entity.setSubject(dto.getSubject());
 			entity.setContents(dto.getContents());
 			entity.setPoster(dto.getPoster());
-		}
-		
-		if(dto.getBoard() != null) {
-			BoardConfig config = em.find(BoardConfig.class, dto.getBoard().getBoardId());
-			entity.setBoard(config);
-		}
-		if(dto.getUser() != null) {
-			User user = em.find(User.class, dto.getUser().getMemNo());
-			entity.setUser(user);
+			if(entity.isPrivate() != dto.isPrivate()) {
+				entity.setPrivate(dto.isPrivate());
+				if(dto.isPrivate()) {
+					entity.setPrivatePassword(dto.getPrivatePassword());
+				}
+			}
 		}
 		
 		em.persist(entity);
@@ -79,17 +84,51 @@ public class BoardDataDao {
 	 * @param boardId
 	 * @return
 	 */
-	public List<BoardDataDto> gets(String boardId, int page, int limit) {
+	public List<BoardDataDto> gets(String boardId, int page, int limit, String select, String search) {
 		int offset = (page - 1) * limit;
 		String sql = "SELECT b FROM BoardData b WHERE boardId = :boardId";
+		if(select != null && search != null) {
+			switch (select) {
+			case "id":
+				sql += " AND id = :id";
+				break;
+			case "subject":
+				sql += " AND subject LIKE CONCAT('%',:subject,'%')";
+				break;
+			case "poster":
+				sql += " AND poster LIKE CONCAT('%',:poster,'%')";
+				break;
+			default:
+				break;
+			}
+		}
+		sql += " ORDER BY regDt DESC";
 		TypedQuery<BoardData> entities = em.createQuery(sql, BoardData.class);
 		entities.setParameter("boardId", boardId);
+		if(select != null && search != null) {
+			if(select.equals("id")) {
+				Long x = Long.parseLong(search);
+				entities.setParameter(select, x);
+			} else {
+				entities.setParameter(select, search);
+			}
+		}
 		entities.setFirstResult(offset);
 		entities.setMaxResults(limit);
 		
 		List<BoardDataDto> boards = entities.getResultStream().map(BoardDataDto::toDto).toList();
 		
 		return boards;
+	}
+	
+	public Long total(String boardId) {
+		
+		String sql = "SELECT COUNT(*) FROM BoardData b WHERE boardId = :boardId";
+		TypedQuery<Long> entities = em.createQuery(sql, Long.class);
+		entities.setParameter("boardId", boardId);
+		
+		Long total = entities.getSingleResult();
+		return total;
 	}
 	
 	public BoardDataDto searchGid(String gid) {
@@ -108,12 +147,14 @@ public class BoardDataDao {
 	 * 게시글 삭제
 	 * @param id
 	 */
-	public void delete(Long id) {
+	public BoardDataDto delete(Long id) {
 		
 		BoardData entity = em.find(BoardData.class, id);
 		
 		em.remove(entity);
 		em.flush();
+		
+		return BoardDataDto.toDto(entity);
 		
 	}
 

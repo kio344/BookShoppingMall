@@ -91,7 +91,6 @@ public class AdminBoardController {
 				adminBoardUpdateService.update(req);
 				out.println("<script>parent.location.reload();</script>");
 			} catch (RuntimeException e) {
-
 				out.println("<script>alert('" + e.getMessage() + "')</script>");
 				out.println("<script>parent.location.reload();</script>");
 

@@ -23,6 +23,9 @@ public class BoardData extends BaseEntity {
 	@Column(nullable = false)
 	private String contents;
 	private Long hit;
+	private boolean isPrivate;
+	@Column(length = 65)
+	private String privatePassword;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "boardId")
 	private BoardConfig board;
@@ -76,6 +79,22 @@ public class BoardData extends BaseEntity {
 
 	public void setHit(Long hit) {
 		this.hit = hit;
+	}
+
+	public boolean isPrivate() {
+		return isPrivate;
+	}
+
+	public void setPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
+	}
+
+	public String getPrivatePassword() {
+		return privatePassword;
+	}
+
+	public void setPrivatePassword(String privatePassword) {
+		this.privatePassword = privatePassword;
 	}
 
 	public BoardConfig getBoard() {
