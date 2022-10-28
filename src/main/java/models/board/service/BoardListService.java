@@ -43,6 +43,7 @@ public class BoardListService {
 		
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("boardId", boardId);
+		model.addAttribute("boardName", boardConfig.getBoardName());
 		
 		
 		return boards;
