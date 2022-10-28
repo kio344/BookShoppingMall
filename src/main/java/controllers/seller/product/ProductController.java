@@ -37,6 +37,7 @@ public class ProductController {
 		model.addAttribute("productRequest", productRequest);
 		model.addAttribute("user", user);
 		model.addAttribute("addCss", new String [] {"/product/adminProduct"});
+		model.addAttribute("addJs", new String [] {"/sellerProduct/product"});
 		
 		return "seller/sellerProduct";
 	}
@@ -44,17 +45,18 @@ public class ProductController {
 	@PostMapping("/productRequest")
 	public String productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
 		
-		PrintWriter out;  
-		try {
-			out = response.getWriter();
-			saveService.save(request, session);
-			/** alert 테스트중 S*/
-			return "redirect:/seller/productRequest/alert";
-			/** alert 테스트중 E*/
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
+		saveService.save(request, session);
+//		PrintWriter out;  
+//		try {
+//			out = response.getWriter();
+//			
+//			/** alert 테스트중 S*/
+//			return "redirect:/seller/productRequest/alert";
+//			/** alert 테스트중 E*/
+//		} catch (RuntimeException e) {
+//			e.printStackTrace();
+//		}
 		
-		return "redirect:/seller/sellerProduct";
+		return "";
 	}
 }
