@@ -80,13 +80,13 @@
 							<span th:text="*{comments}"></span>
 						<th:block th:if="${session.user != null}">
 							<th:block th:if="${session.user.memId == comment.user.memId}">
-								<button type="button" id="update" th:data-id="${comment.id}">수정하기</button>
+								<button type="button" class="update" th:data-id="${comment.id}">수정하기</button>
 								<a th:href="@{/board/comment/delete/{id}(id=${comment.id})}">삭제하기</a>
 							</th:block>
 						</th:block>
 						</div>
 						<div th:if="*{isFirstComment == true}">
-							<button type="button" id="reply" th:data-id=${comment.id}>답글달기</button>
+							<button type="button" class="reply" th:data-id=${comment.id}>답글달기</button>
 						</div>
 					</div>
 				</div>
