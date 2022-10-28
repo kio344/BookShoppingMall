@@ -93,3 +93,8 @@ main {
 .content .board_view .comment_wrap .view_comment .one_view {
 	border-bottom: 1px solid #000;
 }
+textarea {
+	width: 100%;
+	height: 100px;
+	resize: none;
+}

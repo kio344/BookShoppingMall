@@ -77,3 +77,15 @@ main {
 .content .board_write .write_content .wrap_text {
 	padding-top: 30px;
 }
+.content .board_write .write_header #private, .content .board_write .write_header label  {
+	float: right;
+}
+.content .board_write .password {
+	display: none;
+}
+.content .board_write .password.action {
+	display: block;
+}
+.content .board_write .password input[type="password"] {
+	width: 100%;
+}

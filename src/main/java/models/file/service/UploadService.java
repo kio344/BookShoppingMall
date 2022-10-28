@@ -32,9 +32,7 @@ public class UploadService {
 	public List<FileInfoDto> upload(MultipartFile[] files, String gid) {
 		String uploadPath = req.getServletContext().getRealPath(".") + "/../resources/static/uploads";
 		
-		
 		UserDto user = (UserDto)session.getAttribute("user");
-		
 		
 		List<FileInfoDto> fileInfos = new ArrayList<>();
 		
@@ -50,7 +48,7 @@ public class UploadService {
 			param.setUser(user);
 			
 			FileInfoDto fileInfo = fileInfoDao.register(param);
-
+			
 			// 2. 파일 등록 번호 -> 분산될 디렉토리 번호 결정, 파일 명으로 업로드
 			Long id = fileInfo.getId();
 			String folder = "" + (id % 10);

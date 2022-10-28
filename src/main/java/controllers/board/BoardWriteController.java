@@ -45,12 +45,12 @@ public class BoardWriteController {
 	public String process(@Valid BoardDataRequest request, Errors errors, Model model, HttpSession session) {
 		model.addAttribute("addCss", new String[] { "/board/write" });
 		model.addAttribute("addJs", new String[] { "/ckeditor/ckeditor", "/board/board", "/file/fileupload" });
+	
+		BoardDataDto board = service.register(request, errors, session);
+		
 		if(errors.hasErrors()) {
 			return "board/write";
 		}
-		
-	
-		BoardDataDto board = service.register(request, errors, session);
 		
 		
 		return "redirect:/board/view/" + board.getId();
