@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
 	xmlns:th="http://www.thymeleaf.org"
+	
 >
 <body>
 	<header th:fragment="header">
@@ -12,15 +13,16 @@
 				</div>
 				<div class="layout_width">
 					
-						<a href="" >회원가입</a>
-						<a href="" class="mr">로그인</a>
+						<a th:href="@{/user/join}" >회원가입</a>
+						<a th:href="@{/user/login}" class="mr">로그인</a>
 					
-					
+						
 						${user.fakeName}님 환영합니다.
 						
 						<a href="">MyPage</a>
 						
 						<a href="">로그아웃</a>
+						
 						
 							<a th:href="@{/admin}" target="_blank"  th:text="#{admin.page}"></a>
 						
