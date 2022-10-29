@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
+import models.entity.ProductRequest;
 
 @Component
 public class ProductDao {
@@ -17,7 +17,7 @@ public class ProductDao {
 
 	
 	public void save(ProductDto dto){
-		Product entity = ProductDto.toEntity(dto);
+		ProductRequest entity = ProductDto.toEntity(dto);
 		
 			em.persist(entity);
 			em.flush();
@@ -26,7 +26,7 @@ public class ProductDao {
 	
 	public void argee(ProductDto dto) {
 		
-		Product entity = em.find(Product.class, dto.getNum());
+		ProductRequest entity = em.find(ProductRequest.class, dto.getNum());
 		
 		entity.setProgress(dto.getProgress());
 		

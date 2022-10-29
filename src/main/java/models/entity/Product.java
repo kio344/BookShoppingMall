@@ -1,13 +1,16 @@
 package models.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import models.seller.product.Progress;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product extends BaseEntity {
@@ -15,25 +18,40 @@ public class Product extends BaseEntity {
 	@Id
 	@GeneratedValue
 	private Long num;
-	@Column
-	private String seller;
+	
+	@JoinColumn(name = "seller")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User seller;
+	
 	@Column
 	private String serialnum;
+	
 	@Column(unique = true)
 	private String bookName;
+	
 	@Column
 	private String writer;
+	
 	@Column
 	private Long price;
+	
 	@Column
 	private String category;
+	
 	@Column
 	private String publisher;
+	
 	@Column
 	private int count;
+
 	@Column
-	@Enumerated(EnumType.STRING)
-	private Progress progress = Progress.Examine;
+	private Long salesRate;
+	
+	@JoinColumn(name = "review")
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<ProductReview> review=new ArrayList<>();
+	
+	
 
 	public Long getNum() {
 		return num;
@@ -43,11 +61,11 @@ public class Product extends BaseEntity {
 		this.num = num;
 	}
 
-	public String getSeller() {
+	public User getSeller() {
 		return seller;
 	}
 
-	public void setSeller(String seller) {
+	public void setSeller(User seller) {
 		this.seller = seller;
 	}
 
@@ -107,22 +125,11 @@ public class Product extends BaseEntity {
 		this.count = count;
 	}
 
-	public Progress getProgress() {
-		return progress;
-	}
-
-	public void setProgress(Progress progress) {
-		this.progress = progress;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
 				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-				+ ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
-				+ getModDt() + "]";
+				+ ", count=" + count + ", getRegDt()=" + getRegDt() + ", getModDt()=" + getModDt() + "]";
 	}
-	
-	
 
 }
