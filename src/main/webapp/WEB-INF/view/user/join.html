@@ -8,11 +8,13 @@
 		<h1 th:text="#{user.join}"></h1>
 		
 		<form method="post" th:action="@{/user/join}" autocomplete="off" th:object="${joinRequest}">
+			<div th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error"></div>
 				
 			<dl>
 				<dt th:text="#{user.memId}"></dt>
 				<dd>
 					<input type="text" name="memId" th:field="*{memId}">
+					<div th:each="err : ${#fields.errors('memId')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 			
@@ -20,6 +22,7 @@
 				<dt th:text="#{user.memPw}"></dt>
 				<dd>
 					<input type="password" name="memPw" th:field="*{memPw}">
+					<div th:each="err : ${#fields.errors('memPw')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 			
@@ -27,6 +30,7 @@
 				<dt th:text="#{user.memPwRe}"></dt>
 				<dd>
 					<input type="password" name="memPwRe" th:field="*{memPwRe}">
+					<div th:each="err : ${#fields.errors('memPwRe')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 			
@@ -34,6 +38,7 @@
 				<dt th:text="#{user.memNm}"></dt>
 				<dd>
 					<input type="text" name="memNm" th:field="*{memNm}">
+					<div th:each="err : ${#fields.errors('memNm')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 
@@ -41,6 +46,7 @@
 				<dt th:text="#{user.fakeName}"></dt>
 				<dd>
 					<input type="text" name="fakeName" th:field="*{fakeName}">
+					<div th:each="err : ${#fields.errors('fakeName')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 
@@ -48,6 +54,7 @@
 				<dt th:text="#{user.mobile}"></dt>
 				<dd>
 					<input type="text" name="mobile" th:field="*{mobile}">
+					<div th:each="err : ${#fields.errors('mobile')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 			
@@ -55,6 +62,7 @@
 				<dt th:text="#{user.email}"></dt>
 				<dd>
 					<input type="email" name="email" th:field="*{email}">
+					<div th:each="err : ${#fields.errors('email')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 
@@ -62,6 +70,7 @@
 				<dt th:text="#{user.adress}"></dt>
 				<dd>
 					<input type="text" name="adress" th:field="*{adress}">
+					<div th:each="err : ${#fields.errors('adress')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 			
@@ -69,6 +78,7 @@
 				<dt th:text="#{user.birthDay}"></dt>
 				<dd>
 					<input type="date" name="birthDay" th:field="*{birthDay}">
+					<div th:each="err : ${#fields.errors('birthDay')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 
@@ -87,6 +97,7 @@
 				<dd>
 					<input type="checkbox" name="agreeTerms" th:field="*{agreeTerms}" id="agreeTerms"> 
 						<label for="agreeTerms" th:text="#{user.agreeTerms}"></label>
+						<div th:each="err : ${#fields.errors('agreeTerms')}" th:text="${err}" class='error'></div>
 				</dd>
 			</dl>
 
