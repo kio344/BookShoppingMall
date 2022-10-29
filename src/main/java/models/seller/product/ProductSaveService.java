@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import models.entity.User;
 import models.user.UserDto;
 
 @Service
@@ -16,11 +17,11 @@ public class ProductSaveService {
 	
 	
 	public void save(ProductRequest req, HttpSession session) {
-		UserDto user = (UserDto)session.getAttribute("user");
-		
+		UserDto userSession = (UserDto)session.getAttribute("user");
+			
 		ProductDto dto = new ProductDto();
-
-		dto.setSeller(user.getMemId());
+		
+		dto.setSeller(userSession);
 		dto.setSerialnum(req.getSerialnum());
 		dto.setBookName(req.getBookName());
 		dto.setWriter(req.getWriter());

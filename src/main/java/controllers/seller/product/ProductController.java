@@ -1,7 +1,6 @@
 package controllers.seller.product;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,25 +36,15 @@ public class ProductController {
 		model.addAttribute("productRequest", productRequest);
 		model.addAttribute("user", user);
 		model.addAttribute("addCss", new String [] {"/product/adminProduct"});
+		model.addAttribute("addJs", new String [] {"/sellerProduct/product"});
 		
 		return "seller/sellerProduct";
 	}
 
 	@PostMapping("/productRequest")
-	public String productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
+	public void productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
 		
-		PrintWriter out;  
-		try {
-			out = response.getWriter();
-			saveService.save(request, session);
-			/**
-			 * 실행은 되는데 alert가 안뜸.
-			 */
-			out.print("<script>alert('요청이 완료 되었습니다.')</script>");
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
-		
-		return "redirect:/seller/sellerProduct";
+		saveService.save(request, session);
+
 	}
 }

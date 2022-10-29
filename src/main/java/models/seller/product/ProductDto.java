@@ -2,11 +2,13 @@ package models.seller.product;
 
 import models.common.BaseDto;
 import models.entity.ProductRequest;
+import models.entity.User;
+import models.user.UserDto;
 
 public class ProductDto extends BaseDto{
 
 	private Long num;
-	private String seller;
+	private UserDto seller;
 	private String serialnum;
 	private String bookName;
 	private String writer;
@@ -15,20 +17,20 @@ public class ProductDto extends BaseDto{
 	private String publisher;
 	private int count;
 	private Progress progress = Progress.Examine;
-
+	
 	public Long getNum() {
 		return num;
 	}
-
+	
 	public void setNum(Long num) {
 		this.num = num;
 	}
 
-	public String getSeller() {
+	public UserDto getSeller() {
 		return seller;
 	}
 
-	public void setSeller(String seller) {
+	public void setSeller(UserDto seller) {
 		this.seller = seller;
 	}
 
@@ -110,7 +112,7 @@ public class ProductDto extends BaseDto{
 		if(entity == null) return null;
 		
 		dto.setNum(entity.getNum());
-		dto.setSeller(entity.getSeller());
+		dto.setSeller(UserDto.toDto(entity.getSeller()));
 		dto.setSerialnum(entity.getSerialnum());
 		dto.setBookName(entity.getBookName());
 		dto.setWriter(entity.getWriter());
@@ -129,7 +131,7 @@ public class ProductDto extends BaseDto{
 		if(dto == null) return null;
 		
 		entity.setNum(dto.getNum());
-		entity.setSeller(dto.getSeller());
+		entity.setSeller(UserDto.toEntity(dto.getSeller()));
 		entity.setSerialnum(dto.getSerialnum());
 		entity.setBookName(dto.getBookName());
 		entity.setWriter(dto.getWriter());
