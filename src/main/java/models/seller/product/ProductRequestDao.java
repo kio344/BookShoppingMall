@@ -10,14 +10,14 @@ import models.entity.ProductRequest;
 import models.entity.User;
 
 @Component
-public class ProductDao {
+public class ProductRequestDao {
 		
 	@Autowired
 	private EntityManager em;
 	
-	public void save(ProductDto dto){
+	public void save(ProductRequestDto dto){
 		
-		ProductRequest entity = ProductDto.toEntity(dto);
+		ProductRequest entity = ProductRequestDto.toEntity(dto);
 		User user = em.find(User.class, dto.getSeller().getMemNo());
 		entity.setSeller(user);
 		
@@ -27,7 +27,7 @@ public class ProductDao {
 		
 	}
 	
-	public void argee(ProductDto dto) {
+	public void argee(ProductRequestDto dto) {
 		
 		ProductRequest entity = em.find(ProductRequest.class, dto.getNum());
 		

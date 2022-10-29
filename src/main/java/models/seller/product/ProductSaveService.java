@@ -12,14 +12,14 @@ import models.user.UserDto;
 public class ProductSaveService {
 	
 	@Autowired
-	private ProductDao productDao;
+	private ProductRequestDao productDao;
 	
 	
 	
 	public void save(ProductRequest req, HttpSession session) {
 		UserDto userSession = (UserDto)session.getAttribute("user");
 			
-		ProductDto dto = new ProductDto();
+		ProductRequestDto dto = new ProductRequestDto();
 		
 		dto.setSeller(userSession);
 		dto.setSerialnum(req.getSerialnum());

@@ -15,121 +15,118 @@ import javax.persistence.OneToMany;
 @Entity
 public class Product extends BaseEntity {
 
-   @Id
-   @GeneratedValue
-   private Long num;
-   
-   @JoinColumn(name = "seller")
-   @ManyToOne(fetch = FetchType.LAZY)
-   private User seller;
-   
-   @Column
-   private String serialnum;
-   
-   @Column(unique = true)
-   private String bookName;
-   
-   @Column
-   private String writer;
-   
-   @Column
-   private Long price;
-   
-   @Column
-   private String category;
-   
-   @Column
-   private String publisher;
-   
-   @Column
-   private int count;
+	@Id
+	@GeneratedValue
+	private Long num;
 
-   @Column
-   private Long salesRate;
-   
-   @JoinColumn(name = "review")
-   @OneToMany(fetch = FetchType.LAZY)
-   private List<ProductReview> review=new ArrayList<>();
-   
-   
+	@JoinColumn(name = "seller")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User seller;
 
-   public Long getNum() {
-      return num;
-   }
+	@Column
+	private String serialnum;
 
-   public void setNum(Long num) {
-      this.num = num;
-   }
+	@Column(unique = true)
+	private String bookName;
 
-   public User getSeller() {
-      return seller;
-   }
+	@Column
+	private String writer;
 
-   public void setSeller(User seller) {
-      this.seller = seller;
-   }
+	@Column
+	private Long price;
 
-   public String getSerialnum() {
-      return serialnum;
-   }
+	@Column
+	private String category;
 
-   public void setSerialnum(String serialnum) {
-      this.serialnum = serialnum;
-   }
+	@Column
+	private String publisher;
 
-   public String getBookName() {
-      return bookName;
-   }
+	@Column
+	private int count;
 
-   public void setBookName(String bookName) {
-      this.bookName = bookName;
-   }
+	@Column
+	private Long salesRate;
 
-   public String getWriter() {
-      return writer;
-   }
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
+	private List<ProductReview> review = new ArrayList<>();
 
-   public void setWriter(String writer) {
-      this.writer = writer;
-   }
+	public Long getNum() {
+		return num;
+	}
 
-   public Long getPrice() {
-      return price;
-   }
+	public void setNum(Long num) {
+		this.num = num;
+	}
 
-   public void setPrice(Long price) {
-      this.price = price;
-   }
+	public User getSeller() {
+		return seller;
+	}
 
-   public String getCategory() {
-      return category;
-   }
+	public void setSeller(User seller) {
+		this.seller = seller;
+	}
 
-   public void setCategory(String category) {
-      this.category = category;
-   }
+	public String getSerialnum() {
+		return serialnum;
+	}
 
-   public String getPublisher() {
-      return publisher;
-   }
+	public void setSerialnum(String serialnum) {
+		this.serialnum = serialnum;
+	}
 
-   public void setPublisher(String publisher) {
-      this.publisher = publisher;
-   }
+	public String getBookName() {
+		return bookName;
+	}
 
-   public int getCount() {
-      return count;
-   }
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
 
-   public void setCount(int count) {
-      this.count = count;
-   }
+	public String getWriter() {
+		return writer;
+	}
 
-   @Override
-   public String toString() {
-      return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
-            + ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-            + ", count=" + count + ", getRegDt()=" + getRegDt() + ", getModDt()=" + getModDt() + "]";
-   }
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
+				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
+				+ ", count=" + count + ", getRegDt()=" + getRegDt() + ", getModDt()=" + getModDt() + "]";
+	}
 
 }
