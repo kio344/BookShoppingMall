@@ -24,7 +24,8 @@ public class ShopRestController {
 		
 		UserDto user=(UserDto)session.getAttribute("user");
 		ProductDto param=new ProductDto();
-		param.setBookName("책이름");
+		param.setNum(180L);
+		param.setBookName("책이름122");
 		param.setCategory("카테고리");
 		param.setCount(13);
 		param.setPrice(13400L);
