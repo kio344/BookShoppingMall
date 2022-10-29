@@ -30,7 +30,7 @@ public class TestRestController {
 	@ResponseBody()
 	public String test2(ServletRequest req) {
 		String str = null;
-		req.getServletContext().get
+		
 		try {
 			str = new String("<script>alert('한글')</script>".getBytes(),"UTF-8");
 		} catch (UnsupportedEncodingException e) {
