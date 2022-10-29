@@ -16,7 +16,7 @@ public class ProductReview extends BaseEntity {
 	
 	@JoinColumn(name="product")
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Shop product;	//상품
+	private Product product;	//상품
 	
 	@JoinColumn(name = "user")
 	@ManyToOne(fetch = FetchType.LAZY)

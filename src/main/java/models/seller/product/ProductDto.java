@@ -16,11 +16,11 @@ public class ProductDto extends BaseDto{
 	private String publisher;
 	private int count;
 	private Progress progress = Progress.Examine;
-
+	
 	public Long getNum() {
 		return num;
 	}
-
+	
 	public void setNum(Long num) {
 		this.num = num;
 	}
