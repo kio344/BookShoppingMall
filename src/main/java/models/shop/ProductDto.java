@@ -3,54 +3,174 @@ package models.shop;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import models.common.BaseDto;
-import models.entity.ProductReview;
-import models.entity.User;
+import models.entity.Product;
+import models.user.UserDto;
 
-public class ProductDto extends BaseDto{
-	@Id
-	@GeneratedValue
+public class ProductDto extends BaseDto {
+
 	private Long num;
-	
-	@JoinColumn(name = "seller")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User seller;
-	
-	@Column
+
+	private UserDto seller;
+
 	private String serialnum;
-	
-	@Column(unique = true)
+
 	private String bookName;
-	
-	@Column
+
 	private String writer;
-	
-	@Column
+
 	private Long price;
-	
-	@Column
+
 	private String category;
-	
-	@Column
+
 	private String publisher;
-	
-	@Column
+
 	private int count;
 
-	@Column
 	private Long salesRate;
-	
-	@JoinColumn(name = "review")
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<ProductReview> review=new ArrayList<>();
-	
-	
+
+	private List<ProductReviewDto> review = new ArrayList<>();
+
+	public Long getNum() {
+		return num;
+	}
+
+	public void setNum(Long num) {
+		this.num = num;
+	}
+
+	public UserDto getSeller() {
+		return seller;
+	}
+
+	public void setSeller(UserDto seller) {
+		this.seller = seller;
+	}
+
+	public String getSerialnum() {
+		return serialnum;
+	}
+
+	public void setSerialnum(String serialnum) {
+		this.serialnum = serialnum;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public Long getSalesRate() {
+		return salesRate;
+	}
+
+	public void setSalesRate(Long salesRate) {
+		this.salesRate = salesRate;
+	}
+
+	public List<ProductReviewDto> getReview() {
+		return review;
+	}
+
+	public void setReview(List<ProductReviewDto> review) {
+		this.review = review;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
+				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
+				+ ", count=" + count + ", salesRate=" + salesRate + ", review=" + review + ", getRegDt()=" + getRegDt()
+				+ ", getModDt()=" + getModDt() + "]";
+	}
+
+	public static Product toEntity(ProductDto dto) {
+		if (dto == null) {
+			return null;
+		}
+
+		Product entity = new Product();
+		entity.setBookName(dto.getBookName());
+		entity.setCategory(dto.getCategory());
+		entity.setCount(dto.getCount());
+
+		entity.setPrice(dto.getPrice());
+		entity.setPublisher(dto.getPublisher());
+		entity.setSeller(UserDto.toEntity(dto.getSeller()));
+		entity.setSerialnum(dto.getSerialnum());
+		entity.setWriter(dto.getWriter());
+		
+		
+		return entity;
+
+	}
+
+	public static ProductDto toDto(Product entity) {
+		if (entity == null) {
+			return null;
+		}
+
+		ProductDto dto = new ProductDto();
+		dto.setBookName(entity.getBookName());
+		dto.setCategory(entity.getCategory());
+		dto.setCount(entity.getCount());
+		dto.setModDt(entity.getModDt());
+		dto.setRegDt(entity.getRegDt());
+		dto.setNum(entity.getNum());
+		dto.setPrice(entity.getPrice());
+		dto.setPublisher(entity.getPublisher());
+		dto.setSeller(UserDto.toDto(entity.getSeller()));
+		dto.setSerialnum(entity.getSerialnum());
+		dto.setWriter(entity.getWriter());
+		
+		
+		
+
+		return dto;
+
+	}
+
 }

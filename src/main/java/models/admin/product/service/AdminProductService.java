@@ -5,15 +5,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import models.seller.product.ProductDao;
-import models.seller.product.ProductDto;
+import models.seller.product.ProductRequestDao;
+import models.seller.product.ProductRequestDto;
 import models.seller.product.Progress;
 
 @Service
 public class AdminProductService {
 	
 	@Autowired
-	private ProductDao productDao;
+	private ProductRequestDao productDao;
 	
 	public void agree(HttpServletRequest request) {
 		/** 유효성 검사 S */
@@ -26,7 +26,7 @@ public class AdminProductService {
 		
 		/** 수정 시작 S */
 		for(String product : productIds) {
-			ProductDto dto = new ProductDto();
+			ProductRequestDto dto = new ProductRequestDto();
 			dto.setNum(Long.parseLong(product));
 			dto.setProgress(Progress.Agree);
 			productDao.argee(dto);
@@ -46,7 +46,7 @@ public class AdminProductService {
 		
 		/** 수정 시작 S */
 		for(String product : productIds) {
-			ProductDto dto = new ProductDto();
+			ProductRequestDto dto = new ProductRequestDto();
 			dto.setNum(Long.parseLong(product));
 			dto.setProgress(Progress.Rejected);
 			productDao.argee(dto);

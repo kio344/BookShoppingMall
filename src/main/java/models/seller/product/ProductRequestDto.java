@@ -5,7 +5,7 @@ import models.entity.ProductRequest;
 import models.entity.User;
 import models.user.UserDto;
 
-public class ProductDto extends BaseDto{
+public class ProductRequestDto extends BaseDto{
 
 	private Long num;
 	private UserDto seller;
@@ -106,8 +106,8 @@ public class ProductDto extends BaseDto{
 				+ getModDt() + "]";
 	}
 
-	public static ProductDto toDto(ProductRequest entity) {
-		ProductDto dto = new ProductDto();
+	public static ProductRequestDto toDto(ProductRequest entity) {
+		ProductRequestDto dto = new ProductRequestDto();
 		
 		if(entity == null) return null;
 		
@@ -125,7 +125,7 @@ public class ProductDto extends BaseDto{
 		return dto;
 	}
 	
-	public static ProductRequest toEntity(ProductDto dto) {
+	public static ProductRequest toEntity(ProductRequestDto dto) {
 		ProductRequest entity = new ProductRequest();
 		
 		if(dto == null) return null;
