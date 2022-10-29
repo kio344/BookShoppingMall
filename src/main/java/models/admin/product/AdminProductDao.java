@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
+import models.entity.ProductRequest;
 import models.seller.product.ProductDto;
 
 @Component
@@ -20,7 +20,7 @@ public class AdminProductDao {
 	
 	public List<ProductDto> getProducts() {
 		
-		TypedQuery<Product> entity = em.createQuery("SELECT p FROM Product p", Product.class);
+		TypedQuery<ProductRequest> entity = em.createQuery("SELECT p FROM Product p", ProductRequest.class);
 		
 		List<ProductDto> list = entity.getResultStream().map(ProductDto::toDto).toList();
 		

@@ -4,7 +4,7 @@
 	layout:decorate="~{layouts/seller/sellerLayout}">
 
 <main layout:fragment="main">
-	<form th:action="@{/seller/productRequest}" method="post" th:object="${productRequest}">
+	<form th:action="@{/seller/productRequest}" id="frm" method="post" th:object="${productRequest}" target="ifrm">
 		<h1>판매 신청 하기</h1>
 		
 		<div>
@@ -41,7 +41,9 @@
 		
 		이미지 파일 : <input type="file">
 
-		<button type="submit">신청하기</button>
+		<button type="button" id="product">신청하기</button>
 	</form>
+	
+	<iframe name="ifrm" class="ifrm dn"></iframe>
 </main>
 </html>
