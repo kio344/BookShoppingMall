@@ -1,57 +1,45 @@
 package models.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import models.seller.product.Progress;
 
 @Entity
-public class Shop extends BaseEntity {
+public class ProductRequest extends BaseEntity {
 
 	@Id
 	@GeneratedValue
 	private Long num;
 	
-	@JoinColumn(name = "seller")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller")
 	private User seller;
 	
 	@Column
 	private String serialnum;
-	
 	@Column(unique = true)
 	private String bookName;
-	
 	@Column
 	private String writer;
-	
 	@Column
 	private Long price;
-	
 	@Column
 	private String category;
-	
 	@Column
 	private String publisher;
-	
 	@Column
 	private int count;
-
 	@Column
-	private Long salesRate;
-	
-	@JoinColumn(name = "review")
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<ProductReview> review=new ArrayList<>();
-	
-	
+	@Enumerated(EnumType.STRING)
+	private Progress progress = Progress.Examine;
 
 	public Long getNum() {
 		return num;
@@ -125,11 +113,22 @@ public class Shop extends BaseEntity {
 		this.count = count;
 	}
 
+	public Progress getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Progress progress) {
+		this.progress = progress;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
 				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-				+ ", count=" + count + ", getRegDt()=" + getRegDt() + ", getModDt()=" + getModDt() + "]";
+				+ ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
+				+ getModDt() + "]";
 	}
+	
+	
 
 }

@@ -1,7 +1,7 @@
 package models.seller.product;
 
 import models.common.BaseDto;
-import models.entity.Product;
+import models.entity.ProductRequest;
 
 public class ProductDto extends BaseDto{
 
@@ -104,7 +104,7 @@ public class ProductDto extends BaseDto{
 				+ getModDt() + "]";
 	}
 
-	public static ProductDto toDto(Product entity) {
+	public static ProductDto toDto(ProductRequest entity) {
 		ProductDto dto = new ProductDto();
 		
 		if(entity == null) return null;
@@ -123,8 +123,8 @@ public class ProductDto extends BaseDto{
 		return dto;
 	}
 	
-	public static Product toEntity(ProductDto dto) {
-		Product entity = new Product();
+	public static ProductRequest toEntity(ProductDto dto) {
+		ProductRequest entity = new ProductRequest();
 		
 		if(dto == null) return null;
 		
