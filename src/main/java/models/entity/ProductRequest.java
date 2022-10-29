@@ -1,22 +1,27 @@
 package models.entity;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import models.seller.product.Progress;
 
 @Entity
-public class Product extends BaseEntity {
+public class ProductRequest extends BaseEntity {
 
 	@Id
 	@GeneratedValue
 	private Long num;
-	@Column
-	private String seller;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller")
+	private User seller;
 	@Column
 	private String serialnum;
 	@Column(unique = true)
@@ -43,11 +48,11 @@ public class Product extends BaseEntity {
 		this.num = num;
 	}
 
-	public String getSeller() {
+	public User getSeller() {
 		return seller;
 	}
 
-	public void setSeller(String seller) {
+	public void setSeller(User seller) {
 		this.seller = seller;
 	}
 

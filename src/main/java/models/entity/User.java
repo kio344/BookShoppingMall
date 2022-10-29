@@ -1,11 +1,17 @@
 package models.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import models.user.UserType;
 
@@ -15,7 +21,9 @@ public class User extends BaseEntity {
 	@Id
 	@GeneratedValue
 	private Long memNo;
-
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productRequest")
+	private List<ProductRequest> productRequest = new ArrayList<ProductRequest>();
 	@Column(length = 45, unique = true, nullable = false)
 	private String memId;
 	@Column(length = 60, unique = true, nullable = false)
@@ -120,6 +128,14 @@ public class User extends BaseEntity {
 
 	public UserType getUserType() {
 		return userType;
+	}
+	
+	public List<ProductRequest> getProductRequest() {
+		return productRequest;
+	}
+
+	public void setProductRequest(List<ProductRequest> productRequest) {
+		this.productRequest = productRequest;
 	}
 
 	public void setUserType(UserType userType) {
