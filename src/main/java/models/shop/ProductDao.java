@@ -25,8 +25,8 @@ public class ProductDao {
 
 		Product entity = new Product();
 		entity = ProductDto.toEntity(param);
-		
-		User user=em.find(User.class, param.getSeller().getMemNo());
+
+		User user = em.find(User.class, param.getSeller().getMemNo());
 		entity.setSeller(user);
 
 		em.persist(entity);
@@ -65,5 +65,7 @@ public class ProductDao {
 
 		return ProductDto.toDto(entity);
 	}
+
+	
 
 }

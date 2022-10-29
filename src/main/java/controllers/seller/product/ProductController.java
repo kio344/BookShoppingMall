@@ -45,6 +45,6 @@ public class ProductController {
 	public void productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
 		
 		saveService.save(request, session);
-
+		
 	}
 }
