@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import models.entity.Product;
+import models.entity.User;
 
 @Component
 public class ProductDao {
@@ -22,15 +23,20 @@ public class ProductDao {
 	 */
 	public ProductDto addProduct(ProductDto param) {
 
-		Product entity = new Product();
-		entity = ProductDto.toEntity(param);
+	      Product entity = new Product();
+	      entity = ProductDto.toEntity(param);
+	      
+	      User user = em.find(User.class, param.getSeller().getMemNo());
+	      entity.setSeller(user);
 
-		em.persist(entity);
+	      em.persist(entity);
 
-		em.flush();
+	      em.flush();
 
-		return get(entity.getNum());
-	}
+	      return get(entity.getNum());
+	   }
+	
+	
 
 	/**
 	 * primary 키로 가져오기 (단일값)
@@ -61,6 +67,8 @@ public class ProductDao {
 		
 		return ProductDto.toDto(entity);
 	}
+	
+	
 	
 
 	

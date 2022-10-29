@@ -3,6 +3,7 @@ package models.seller.product;
 import models.common.BaseDto;
 import models.entity.ProductRequest;
 import models.entity.User;
+import models.shop.ProductDto;
 import models.user.UserDto;
 
 public class ProductRequestDto extends BaseDto{
@@ -142,6 +143,27 @@ public class ProductRequestDto extends BaseDto{
 		entity.setProgress(dto.getProgress());
 		
 		return entity;
+	}
+	
+	public static ProductDto toRequest(ProductRequestDto dto) {
+		if (dto == null) return null;
+		
+		ProductDto req = new ProductDto();
+		
+		req.setBookName(dto.getBookName());
+		req.setCategory(dto.getCategory());
+		req.setCount(dto.getCount());
+		req.setModDt(dto.getModDt());
+		req.setRegDt(dto.getRegDt());
+		req.setNum(dto.getNum());
+		req.setPrice(dto.getPrice());
+		req.setPublisher(dto.getPublisher());
+		req.setSeller(dto.getSeller());
+		req.setSerialnum(dto.getSerialnum());
+		req.setWriter(dto.getWriter());
+		System.out.println(req);
+		
+		return req;
 	}
 	
 }

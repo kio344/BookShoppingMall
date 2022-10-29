@@ -20,7 +20,7 @@ public class AdminProductDao {
 	
 	public List<ProductRequestDto> getProducts() {
 		
-		TypedQuery<ProductRequest> entity = em.createQuery("SELECT p FROM Product p", ProductRequest.class);
+		TypedQuery<ProductRequest> entity = em.createQuery("SELECT r FROM ProductRequest r", ProductRequest.class);
 		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList();
 		

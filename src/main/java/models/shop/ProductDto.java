@@ -166,9 +166,6 @@ public class ProductDto extends BaseDto {
 		dto.setSerialnum(entity.getSerialnum());
 		dto.setWriter(entity.getWriter());
 		
-		
-		
-
 		return dto;
 
 	}
