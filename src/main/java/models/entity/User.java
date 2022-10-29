@@ -21,9 +21,7 @@ public class User extends BaseEntity {
 	@Id
 	@GeneratedValue
 	private Long memNo;
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "productRequest")
-	private List<ProductRequest> productRequest = new ArrayList<ProductRequest>();
+	
 	@Column(length = 45, unique = true, nullable = false)
 	private String memId;
 	@Column(length = 60, unique = true, nullable = false)
@@ -130,14 +128,6 @@ public class User extends BaseEntity {
 		return userType;
 	}
 	
-	public List<ProductRequest> getProductRequest() {
-		return productRequest;
-	}
-
-	public void setProductRequest(List<ProductRequest> productRequest) {
-		this.productRequest = productRequest;
-	}
-
 	public void setUserType(UserType userType) {
 		if(userType == null) userType = UserType.USER;
 		this.userType = userType;

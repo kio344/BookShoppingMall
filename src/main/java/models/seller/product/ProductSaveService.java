@@ -14,15 +14,14 @@ public class ProductSaveService {
 	@Autowired
 	private ProductDao productDao;
 	
-	@Autowired
-	private User user;
+	
 	
 	public void save(ProductRequest req, HttpSession session) {
 		UserDto userSession = (UserDto)session.getAttribute("user");
-		
+			
 		ProductDto dto = new ProductDto();
-
-		dto.setSeller(user);
+		
+		dto.setSeller(userSession);
 		dto.setSerialnum(req.getSerialnum());
 		dto.setBookName(req.getBookName());
 		dto.setWriter(req.getWriter());

@@ -42,20 +42,9 @@ public class ProductController {
 	}
 
 	@PostMapping("/productRequest")
-	public String productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
+	public void productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
 		
 		saveService.save(request, session);
-//		PrintWriter out;  
-//		try {
-//			out = response.getWriter();
-//			
-//			/** alert 테스트중 S*/
-//			return "redirect:/seller/productRequest/alert";
-//			/** alert 테스트중 E*/
-//		} catch (RuntimeException e) {
-//			e.printStackTrace();
-//		}
-		
-		return "";
+
 	}
 }
