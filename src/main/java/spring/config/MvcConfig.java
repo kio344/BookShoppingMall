@@ -28,12 +28,12 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import common.auth.BoardPrivateCheck;
 import common.auth.MemberCheck;
-import common.page.Pagination;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
 @Configuration
@@ -113,7 +113,12 @@ public class MvcConfig implements WebMvcConfigurer {
 		ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json()
 				.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(formatter)).build();
 		converters.add(0, new MappingJackson2HttpMessageConverter(objectMapper));
+		
+		
+		
 	}
+	
+
 	
 
 	@Override
