@@ -6,20 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import models.entity.User;
+import models.shop.ProductDao;
 import models.user.UserDto;
 
 @Service
 public class ProductSaveService {
 	
 	@Autowired
-	private ProductDao productDao;
-	
-	
+	private ProductRequestDao productRequestDao;
 	
 	public void save(ProductRequest req, HttpSession session) {
 		UserDto userSession = (UserDto)session.getAttribute("user");
 			
-		ProductDto dto = new ProductDto();
+		ProductRequestDto dto = new ProductRequestDto();
 		
 		dto.setSeller(userSession);
 		dto.setSerialnum(req.getSerialnum());
@@ -31,7 +30,7 @@ public class ProductSaveService {
 		dto.setCount(req.getCount());
 		dto.setProgress(req.getProgress());
 		
-		productDao.save(dto);
+		productRequestDao.save(dto);
 		
 	}
 }
