@@ -1,5 +1,7 @@
 package models.seller.product;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import models.common.BaseDto;
 import models.entity.ProductRequest;
 import models.entity.User;
@@ -17,8 +19,9 @@ public class ProductRequestDto extends BaseDto {
 	private String category;
 	private String publisher;
 	private int count;
+	private MultipartFile images;
 	private Progress progress = Progress.Examine;
-
+	
 	public Long getNum() {
 		return num;
 	}
@@ -89,6 +92,14 @@ public class ProductRequestDto extends BaseDto {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public MultipartFile getImages() {
+		return images;
+	}
+
+	public void setImages(MultipartFile images) {
+		this.images = images;
 	}
 
 	public Progress getProgress() {

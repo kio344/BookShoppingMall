@@ -1,8 +1,9 @@
 package controllers.seller.product;
 
+import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import models.seller.product.ProductRequest;
 import models.seller.product.ProductSaveService;
@@ -24,15 +26,12 @@ public class ProductController {
 	
 	@Autowired
 	private ProductSaveService saveService;
-	
-	@Autowired
-	private HttpServletResponse response;
 
 	@GetMapping("/sellerProduct")
 	public String product(Model model, HttpSession session) {
 		UserDto user = (UserDto)session.getAttribute("user");
-		
 		ProductRequest productRequest = new ProductRequest();
+		
 		model.addAttribute("productRequest", productRequest);
 		model.addAttribute("user", user);
 		model.addAttribute("addCss", new String [] {"/product/adminProduct"});
@@ -42,9 +41,9 @@ public class ProductController {
 	}
 
 	@PostMapping("/productRequest")
-	public void productRequest(@Valid ProductRequest request, Errors errors, Model model, HttpSession session) throws IOException{
+	public void productRequest(MultipartFile image, @Valid ProductRequest request, Errors errors, Model model) throws IOException{
 		
-		saveService.save(request, session);
+		saveService.save(request, image);
 		
 	}
 }

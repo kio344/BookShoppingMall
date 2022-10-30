@@ -24,7 +24,7 @@ public class ProductRequestDao {
 		return ProductRequestDto.toDto(entity);
 	}
 	
-	public void save(ProductRequestDto dto){
+	public ProductRequestDto save(ProductRequestDto dto){
 		
 		ProductRequest entity = ProductRequestDto.toEntity(dto);
 		User user = em.find(User.class, dto.getSeller().getMemNo());
@@ -34,6 +34,9 @@ public class ProductRequestDao {
 		
 		em.flush();
 		
+		dto.setNum(entity.getNum());
+		
+		return dto;
 	}
 	
 	public void argee(ProductRequestDto dto) {
