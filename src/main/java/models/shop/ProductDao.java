@@ -23,23 +23,22 @@ public class ProductDao {
 	 */
 	public ProductDto addProduct(ProductDto param) {
 
-	      Product entity = new Product();
-	      entity = ProductDto.toEntity(param);
-	      
-	      User user = em.find(User.class, param.getSeller().getMemNo());
-	      entity.setSeller(user);
+		Product entity = new Product();
+		entity = ProductDto.toEntity(param);
 
-	      em.persist(entity);
+		User user = em.find(User.class, param.getSeller().getMemNo());
+		entity.setSeller(user);
 
-	      em.flush();
+		em.persist(entity);
 
-	      return get(entity.getNum());
-	   }
-	
-	
+		em.flush();
+
+		return get(entity.getNum());
+	}
 
 	/**
 	 * primary 키로 가져오기 (단일값)
+	 * 
 	 * @param num
 	 * @return
 	 */
@@ -47,30 +46,26 @@ public class ProductDao {
 
 		Product entity = em.find(Product.class, num);
 
-		
-		
 		return ProductDto.toDto(entity);
 	}
-	
+
 	/**
 	 * 책이름 가져오기 (단일값)
+	 * 
 	 * @param num
 	 * @return
 	 */
 	public ProductDto get(String bookName) {
 
-		String sql="SELECT p FROM Product p WHERE bookName=:bookName ";
-		TypedQuery<Product> query=em.createQuery(sql,Product.class);
+		String sql = "SELECT p FROM Product p WHERE bookName=:bookName ";
+		TypedQuery<Product> query = em.createQuery(sql, Product.class);
 		query.setParameter("bookName", bookName);
-		
-		Product entity=query.getSingleResult();
-		
+
+		Product entity = query.getSingleResult();
+
 		return ProductDto.toDto(entity);
 	}
-	
-	
-	
 
 	
-	
+
 }

@@ -27,6 +27,8 @@ public class ProductDto extends BaseDto {
 
 	private int count;
 
+	private Long imageNum;
+	
 	private Long salesRate;
 
 	private List<ProductReviewDto> review = new ArrayList<>();
@@ -102,6 +104,16 @@ public class ProductDto extends BaseDto {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	
+
+	public Long getImageNum() {
+		return imageNum;
+	}
+
+	public void setImageNum(Long imageNum) {
+		this.imageNum = imageNum;
+	}
 
 	public Long getSalesRate() {
 		return salesRate;
@@ -142,7 +154,7 @@ public class ProductDto extends BaseDto {
 		entity.setSeller(UserDto.toEntity(dto.getSeller()));
 		entity.setSerialnum(dto.getSerialnum());
 		entity.setWriter(dto.getWriter());
-		
+		entity.setImageNum(dto.getImageNum());
 		
 		return entity;
 
@@ -165,6 +177,7 @@ public class ProductDto extends BaseDto {
 		dto.setSeller(UserDto.toDto(entity.getSeller()));
 		dto.setSerialnum(entity.getSerialnum());
 		dto.setWriter(entity.getWriter());
+		dto.setImageNum(entity.getImageNum());
 		
 		return dto;
 

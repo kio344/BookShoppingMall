@@ -43,11 +43,14 @@ public class Product extends BaseEntity {
 
 	@Column
 	private int count;
+	
+	@Column
+	private Long imageNum;
 
 	@Column
 	private Long salesRate;
 
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "product")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
 	private List<ProductReview> review = new ArrayList<>();
 
 	public Long getNum() {
@@ -121,12 +124,39 @@ public class Product extends BaseEntity {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	
+
+	public Long getImageNum() {
+		return imageNum;
+	}
+
+	public void setImageNum(Long imageNum) {
+		this.imageNum = imageNum;
+	}
+
+	public Long getSalesRate() {
+		return salesRate;
+	}
+
+	public void setSalesRate(Long salesRate) {
+		this.salesRate = salesRate;
+	}
+
+	public List<ProductReview> getReview() {
+		return review;
+	}
+
+	public void setReview(List<ProductReview> review) {
+		this.review = review;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
 				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-				+ ", count=" + count + ", getRegDt()=" + getRegDt() + ", getModDt()=" + getModDt() + "]";
+				+ ", count=" + count + ", imageNum=" + imageNum + ", salesRate=" + salesRate + ", review=" + review
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 }
