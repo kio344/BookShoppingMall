@@ -34,7 +34,6 @@ public class ShopRestController {
 		param.setSerialnum("시리얼 넘버");
 		param.setWriter("지은이");
 		
-		
 		dao.addProduct(param);
 		
 		
