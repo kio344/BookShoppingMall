@@ -1,9 +1,7 @@
 package controllers.seller.product;
 
-import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
