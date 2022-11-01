@@ -1,0 +1,17 @@
+.content_wrap {
+	padding-top: 50px;
+	width: 1200px;
+	margin: 0 auto;
+}
+.content_wrap .view_info {
+	border: 1px solid #d8d8d8;
+}
+.content_wrap .view_info .view_content {
+	padding-top: 50px;
+}
+
+.content_wrap .view_info .view_answer textarea {
+	margin-top: 20px;
+	width: 100%;
+	height: 100px;
+}
