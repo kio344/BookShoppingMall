@@ -4,7 +4,7 @@
 	layout:decorate="~{layouts/seller/sellerLayout}">
 
 <main layout:fragment="main">
-	<form th:action="@{/seller/productRequest}" id="frm" method="post" th:object="${productRequest}" target="ifrm" enctype="multipart/form-data">
+	<form th:action="@{/seller/productRequest}" id="frm" method="post" th:object="${productRequest}">
 		<h1>판매 신청 하기</h1>
 		
 		<div>
@@ -39,11 +39,13 @@
 			수량 : <input type="number" name="count" th:field="*{count}">
 		</div>
 		
-		이미지 파일 : <input name="image" type="file">
 
-		<button type="button" id="product">신청하기</button>
+		<button type="button" id="request">신청하기</button>
 	</form>
 	
-	<iframe name="ifrm" class="ifrm dn"></iframe>
+	<form id="frm2" th:action="@{/seller/productImage}" method="post" enctype="multipart/form-data">
+		이미지 파일 : <input name="image" type="file">
+	</form>
+	
 </main>
 </html>

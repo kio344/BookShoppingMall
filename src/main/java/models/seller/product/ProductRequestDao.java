@@ -6,10 +6,8 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
 import models.entity.ProductRequest;
 import models.entity.User;
-import models.shop.ProductDto;
 
 @Component(value = "productRequestDao")
 public class ProductRequestDao {
