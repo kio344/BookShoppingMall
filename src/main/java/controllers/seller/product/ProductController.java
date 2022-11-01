@@ -1,9 +1,8 @@
 package controllers.seller.product;
 
-import java.io.File;
+import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import ch.qos.logback.classic.Logger;
 import models.seller.product.ProductRequest;
 import models.seller.product.ProductSaveService;
 import models.user.UserDto;
@@ -41,9 +43,18 @@ public class ProductController {
 	}
 
 	@PostMapping("/productRequest")
-	public void productRequest(MultipartFile image, @Valid ProductRequest request, Errors errors, Model model) throws IOException{
+	public String productRequest(@Valid ProductRequest request, Errors errors, Model model) throws IOException{
 		
-		saveService.save(request, image);
+		saveService.save(request);
+		
+		return "redirect:/seller/sellerProduct";
+	}
+	
+	@PostMapping("/productImage")
+	public void file(MultipartFile image) {
+		
+		saveService.saveImage(image);
 		
 	}
+	
 }

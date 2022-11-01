@@ -8,6 +8,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 			const frm = document.getElementById("frm");
 			frm.submit();
+			location.reload();
 		}else{
 			alert("처리가 취소되었습니다.");
 		}
