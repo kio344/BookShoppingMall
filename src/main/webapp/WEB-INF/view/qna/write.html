@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+
+<main layout:fragment="main">
+	<div class="content_wrap">
+		<div class="write_info">
+			<form method="post" th:action="@{/QnA/write}" autocomplete="off"
+				th:object="${qnARequest}">
+				<div>
+					<button type="submit">
+						<i class="xi-pen xi-x">글쓰기</i>
+					</button>
+				</div>
+				<div class="write_content">
+					<div>
+						<span>제목</span> <input type="text" name="subject"
+							th:field="*{subject}">
+						<div th:each="err : ${#fields.errors('subject')}" th:text="${err}"
+							class="error"></div>
+					</div>
+					<div>
+						<span>작성자</span> 
+						<input type="text" name="poster" th:field="*{poster}">
+						<div th:each="err : ${#fields.errors('poster')}" th:text="${err}"
+							class="error"></div>
+					</div>
+					<div class="wrap_text">
+						<div th:each="err : ${#fields.errors('question')}"
+							th:text="${err}" class="error"></div>
+						<textarea id="text_content" name="question" class="text_content"
+							th:field="*{question}"></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</main>
+
+</html>
