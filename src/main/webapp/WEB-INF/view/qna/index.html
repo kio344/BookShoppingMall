@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main/main}">
+
+	<main layout:fragment="main">
+		<div class="content_wrap">
+			<div class="qna_info">
+				<h2>QnA 문의 센터</h2>
+				<table>
+					<thead>
+						<tr class="qna_header">
+							<th class="col1">번호</th>
+							<th class="col2">제목</th>
+							<th class="col3">작성자</th>
+							<th class="col4">작성일</th>
+							<th class="col5">답변 상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="qna_body" th:each="qna : ${qnas}" th:object="${qna}">
+							<td class="col1" th:text="*{id}">no</td>
+							<td class="col2">
+								<a th:href="@{/QnA/view/{id}(id=${qna.id})}" th:text="*{subject}"></a>
+							</td>
+							<td class="col3">
+								<span th:text="*{poster}"></span>
+							</td>
+							<td class="col4" th:text="${#temporals.format(qna.regDt, 'yyyy.MM.dd HH.mm')}">regDt</td>
+							<td class="col5">
+								<th:block th:if="${qna.isAnswered == true}">
+									답변완료
+								</th:block>
+								<th:block th:if="${qna.isAnswered == false}">
+									미답변
+								</th:block>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="write">
+					<a th:href="@{/QnA/write}"><i class="xi-pen xi-x">글쓰기</i></a>
+				</div>
+				<div class="page_wrap" th:object="${pagination}">
+					<th:block th:if="*{isFirstCnt == false}">
+						<a th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
+							<i class="xi-backward">이전</i>
+						</a>
+					</th:block>
+					<th:block th:each="page : ${pagination.pages}">
+							<a th:href="@{/board/{id}?page={page}(id=${boardId}, page=${page})}" th:text="${page}"></a>
+					</th:block>
+					<th:block th:if="*{isLastCnt == false}">
+						<a th:href="@{/board/{id}?page={next}(id=${boardId}, next=${pagination.next})}">
+							<i class="xi-forward">다음</i>
+						</a>
+					</th:block>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</html>

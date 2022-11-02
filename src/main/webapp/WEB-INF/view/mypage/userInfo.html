@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+	<form th:action="@{/mypage/changeInfo}" method="post" th:object="${user}">
+	
+		<input type="hidden" th:field="*{memNo}">
+		<input type="hidden" th:field="*{memNm}">
+		<input type="hidden" name="birthDay" th:value="${#strings.substring(user.birthDay, 2, 10)}">
+
+		<dl>
+			<dt>닉네임</dt>
+			<dd>
+				<input type="text" th:field="*{fakeName}">
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>이메일</dt>
+			<dd>
+				<input type="text" th:field="*{email}">
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>성별</dt>
+			<dd>
+				<input type="text" th:field="*{gender}">
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>주소</dt>
+			<dd>
+				<input type="text" th:field="*{adress}">
+			</dd>
+		</dl>
+
+		<dl>
+			<dt>휴대전화 번호</dt>
+			<dd>
+				<input type="text" th:field="*{mobile}">
+			</dd>
+		</dl>
+
+		<button type="submit">수정하기</button>
+	</form>
+</main>
+</html>

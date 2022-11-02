@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import models.admin.product.AdminProductDao;
 import models.admin.product.service.AdminProductService;
-import models.seller.product.ProductDto;
+import models.seller.product.ProductRequestDto;
 
 @Controller
 @RequestMapping("/admin")
 public class ProductManagerController {
 	
 	@Autowired
-	private AdminProductDao productDao;
+	private AdminProductDao productRequestDao;
 	
 	@Autowired
 	private AdminProductService productService;
@@ -30,10 +30,10 @@ public class ProductManagerController {
 	@GetMapping("/productManager")
 	public String productManager(Model model, HttpSession session) {
 		
-		List<ProductDto> dto = productDao.getProducts();
-		System.out.println(dto);
+		List<ProductRequestDto> dto = productRequestDao.getProducts();
 		model.addAttribute("product", dto);
-		model.addAttribute("addCss", new String[] {"/product/adminProduct.css"});
+		model.addAttribute("addCss", new String[] {"/product/adminProduct"});
+		model.addAttribute("addJs", new String [] {"/admin/productRequest"});
 		return "admin/product/adminProduct";
 	}
 	

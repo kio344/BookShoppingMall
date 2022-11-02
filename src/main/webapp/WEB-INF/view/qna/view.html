@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+
+<main layout:fragment="main">
+	<div class="content_wrap">
+		<div class="view_info">
+			<div class="view_content" th:object="${qnADto}">
+				<div>
+					<span>제목</span>
+					<h2 th:text="*{subject}"></h2>
+				</div>
+				<div>
+					<span>작성자</span>
+					<h2 th:text="*{poster}"></h2>
+				</div>
+				<div class="wrap_text" th:text="*{question}"></div>
+			</div>
+			<th:block th:if="${qnADto.isAnswered == false}">
+				<th:block th:if="${#strings.equals(session.user.userType, 'ADMIN')}">
+					<div class="view_answer">
+						<form method="post"
+							th:action="@{/QnA/comment/{id}(id=${qnADto.id})}">
+							<input type="text" th:field="${qnADto.adminName}">
+							<textarea name="answer" th:field="${qnADto.answer}"></textarea>
+							<button type="submit">
+								<i class="xi-pen xi-x">글쓰기</i>
+							</button>
+						</form>
+					</div>
+				</th:block>
+			</th:block>
+			<th:block th:if="${qnADto.isAnswered == true}">
+				<div>
+					<h1>└ 답변</h1>
+					<h2 th:text="${qnADto.adminName}"></h2>
+					<div th:text="${qnADto.answer}"></div>
+				</div>
+			</th:block>
+		</div>
+	</div>
+</main>
+
+</html>

@@ -1,0 +1,39 @@
+.content_wrap {
+	padding-top: 50px;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+table, th, td {
+	border-top: 1px solid #000;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+.content_wrap .qna_info {
+	padding: 20px;
+	border: 1px solid #d8d8d8;
+	text-align: center;
+}
+
+.content_wrap .qna_info table {
+	width: 100%;
+	border-top: 1px solid #141212;
+	border-bottom: 1px solid #141212;
+	margin-bottom: 10px;
+}
+
+.content_wrap .qna_info table .qna_header {
+	border-bottom: 2px solid #141212;
+	background-color: #678dab;
+}
+
+.write {
+	float: right;
+}
+.content_wrap .qna_info .page_wrap a {
+	border: 1px solid #aaffff;
+	background-color: #aaffff;
+	padding: 5px;
+	font-weight: 700;
+}

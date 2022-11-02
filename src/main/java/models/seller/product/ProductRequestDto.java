@@ -1,12 +1,17 @@
 package models.seller.product;
 
-import models.common.BaseDto;
-import models.entity.Product;
+import org.springframework.web.multipart.MultipartFile;
 
-public class ProductDto extends BaseDto{
+import models.common.BaseDto;
+import models.entity.ProductRequest;
+import models.entity.User;
+import models.shop.ProductDto;
+import models.user.UserDto;
+
+public class ProductRequestDto extends BaseDto {
 
 	private Long num;
-	private String seller;
+	private UserDto seller;
 	private String serialnum;
 	private String bookName;
 	private String writer;
@@ -14,8 +19,9 @@ public class ProductDto extends BaseDto{
 	private String category;
 	private String publisher;
 	private int count;
+	private MultipartFile images;
 	private Progress progress = Progress.Examine;
-
+	
 	public Long getNum() {
 		return num;
 	}
@@ -24,11 +30,11 @@ public class ProductDto extends BaseDto{
 		this.num = num;
 	}
 
-	public String getSeller() {
+	public UserDto getSeller() {
 		return seller;
 	}
 
-	public void setSeller(String seller) {
+	public void setSeller(UserDto seller) {
 		this.seller = seller;
 	}
 
@@ -87,6 +93,14 @@ public class ProductDto extends BaseDto{
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	public MultipartFile getImages() {
+		return images;
+	}
+
+	public void setImages(MultipartFile images) {
+		this.images = images;
+	}
 
 	public Progress getProgress() {
 		return progress;
@@ -104,13 +118,14 @@ public class ProductDto extends BaseDto{
 				+ getModDt() + "]";
 	}
 
-	public static ProductDto toDto(Product entity) {
-		ProductDto dto = new ProductDto();
-		
-		if(entity == null) return null;
-		
+	public static ProductRequestDto toDto(ProductRequest entity) {
+		ProductRequestDto dto = new ProductRequestDto();
+
+		if (entity == null)
+			return null;
+
 		dto.setNum(entity.getNum());
-		dto.setSeller(entity.getSeller());
+		dto.setSeller(UserDto.toDto(entity.getSeller()));
 		dto.setSerialnum(entity.getSerialnum());
 		dto.setBookName(entity.getBookName());
 		dto.setWriter(entity.getWriter());
@@ -119,17 +134,18 @@ public class ProductDto extends BaseDto{
 		dto.setPublisher(entity.getPublisher());
 		dto.setCount(entity.getCount());
 		dto.setProgress(entity.getProgress());
-		
+
 		return dto;
 	}
-	
-	public static Product toEntity(ProductDto dto) {
-		Product entity = new Product();
-		
-		if(dto == null) return null;
-		
+
+	public static ProductRequest toEntity(ProductRequestDto dto) {
+		ProductRequest entity = new ProductRequest();
+
+		if (dto == null)
+			return null;
+
 		entity.setNum(dto.getNum());
-		entity.setSeller(dto.getSeller());
+		entity.setSeller(UserDto.toEntity(dto.getSeller()));
 		entity.setSerialnum(dto.getSerialnum());
 		entity.setBookName(dto.getBookName());
 		entity.setWriter(dto.getWriter());
@@ -138,15 +154,39 @@ public class ProductDto extends BaseDto{
 		entity.setPublisher(dto.getPublisher());
 		entity.setCount(dto.getCount());
 		entity.setProgress(dto.getProgress());
-		
+
 		return entity;
 	}
-	
+
+	public static ProductDto toRequest(ProductRequestDto dto) {
+		if (dto == null)
+			return null;
+
+		ProductDto req = new ProductDto();
+
+		req.setBookName(dto.getBookName());
+		req.setCategory(dto.getCategory());
+		req.setCount(dto.getCount());
+		req.setModDt(dto.getModDt());
+		req.setRegDt(dto.getRegDt());
+		req.setNum(dto.getNum());
+		req.setPrice(dto.getPrice());
+		req.setPublisher(dto.getPublisher());
+		req.setSeller(dto.getSeller());
+		req.setSerialnum(dto.getSerialnum());
+		req.setWriter(dto.getWriter());
+		
+		/**
+		 * @author 5563a product imageNum 컬럼 추가로인한 변경점 추가 S
+		 */
+		req.setImageNum(dto.getNum());
+		/**
+		 * product imageNum 컬럼 추가로인한 변경점 추가 E
+		 */
+		
+		System.out.println(req);
+
+		return req;
+	}
+
 }
-
-
-
-
-
-
-
