@@ -56,8 +56,8 @@ public class UserDao {
 		entity.setAdress(req.getAdress());
 		entity.setBirthDay(req.getBirthDay());
 		entity.setMobile(req.getMobile());
-		
 		em.persist(entity);
+		
 		em.flush();
 		
 		return UserDto.toDto(entity);

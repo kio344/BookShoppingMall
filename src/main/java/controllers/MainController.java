@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class MainController {
 
+	
+	
 	@GetMapping
 	public String form() {
 		return "index";
