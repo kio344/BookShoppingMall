@@ -128,4 +128,13 @@ public class User extends BaseEntity {
 		this.userType = userType;
 	}
 
+	@Override
+	public String toString() {
+		return "User [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", fakeName="
+				+ fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress + ", birthDay=" + birthDay
+				+ ", gender=" + gender + ", userType=" + userType + "]";
+	}
+	
+	
+
 }
