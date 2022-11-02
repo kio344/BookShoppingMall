@@ -26,6 +26,7 @@ public class ProductRequestDao {
 		
 		ProductRequest entity = ProductRequestDto.toEntity(dto);
 		User user = em.find(User.class, dto.getSeller().getMemNo());
+		
 		entity.setSeller(user);
 		
 		em.persist(entity);
