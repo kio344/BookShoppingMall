@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main/main}">
+
+	<main layout:fragment="main">
+		<div class="content">
+			<ul class="mypage_list">
+				<li class="count">
+					<a th:href="@{/mypage/userInfo}">회원정보<i class="xi-angle-right"></i></a>
+				</li>
+				
+				<li class="count">
+					<a th:href="@{/mypage/changepass}">비밀번호변경<i class="xi-angle-right"></i></a>
+				</li>
+				
+				<li class="count">
+					<a th:href="@{/mypage/myboard}">내가 쓴글<i class="xi-angle-right"></i></a>
+				</li>
+				
+				<li class="count">
+					<a th:href="@{/mypage/myorder}">주문내역<i class="xi-angle-right"></i></a>
+				</li>
+				
+				<li class="count">
+					<a th:href="@{/mypage/myqna}">내 QnA<i class="xi-angle-right"></i></a>
+				</li>
+			</ul>
+		</div>
+	</main>
+
+</html>

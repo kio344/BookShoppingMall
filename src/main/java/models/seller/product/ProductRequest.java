@@ -3,7 +3,7 @@ package models.seller.product;
 
 public class ProductRequest{
 	
-	private Long num;
+	private Long num; // 이거 기준으로 폴더 나누기.
 	private String seller;
 	private String serialnum;
 	private String bookName;
@@ -96,9 +96,11 @@ public class ProductRequest{
 
 	@Override
 	public String toString() {
-		return "ProductRequest [seller=" + seller + ", serialnum=" + serialnum + ", bookName="
+		return "ProductRequest [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName="
 				+ bookName + ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher="
 				+ publisher + ", count=" + count + ", progress=" + progress + "]";
 	}
+
+	
 
 }

@@ -93,7 +93,7 @@ public class AdminBoardController {
 			} catch (RuntimeException e) {
 				out.println("<script>alert('" + e.getMessage() + "')</script>");
 				out.println("<script>parent.location.reload();</script>");
-
+				
 				return "admin/board/adminBoard";
 			}
 
