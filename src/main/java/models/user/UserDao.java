@@ -13,7 +13,6 @@ public class UserDao {
 
 	@Autowired
 	private EntityManager em;
-
 	
 	/**
 	 * ID로 회원 정보 찾기
@@ -61,6 +60,15 @@ public class UserDao {
 		em.flush();
 		
 		return UserDto.toDto(entity);
+	}
+	
+	public void password(UserDto dto) {
+		
+		User entity = em.find(User.class, dto.getMemNo());
+		entity.setMemPw(dto.getMemPw());
+		
+		em.persist(entity);
+		em.flush();
 		
 	}
 

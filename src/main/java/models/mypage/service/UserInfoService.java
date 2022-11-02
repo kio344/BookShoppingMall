@@ -1,4 +1,4 @@
-package models.user.service;
+package models.mypage.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

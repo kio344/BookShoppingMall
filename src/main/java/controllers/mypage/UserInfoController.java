@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import models.mypage.service.UserInfoService;
 import models.user.UserDto;
 import models.user.UserRequest;
-import models.user.service.UserInfoService;
 
 @Controller
 @RequestMapping("/mypage")
