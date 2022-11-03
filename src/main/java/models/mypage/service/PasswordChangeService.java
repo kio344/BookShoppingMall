@@ -6,7 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 
+import models.mypage.PasswordRequest;
+import models.mypage.exception.PasswordChangeReException;
+import models.mypage.exception.PasswordCheckException;
 import models.user.UserDao;
 import models.user.UserDto;
 
@@ -19,26 +23,33 @@ public class PasswordChangeService {
 	@Autowired
 	private HttpSession session;
 	
-	public void changePassword(HttpServletRequest req) {
+	public void changePassword(PasswordRequest req, Errors errors) {
+		
+		if(errors.hasErrors()) {
+			return;
+		}
+		
 		UserDto dto = (UserDto) session.getAttribute("user");
-		String passwordChange = req.getParameter("passwordChange");
-		String passwordChangeRe = req.getParameter("passwordChangeRe");
+		String passwordChange = req.getChangePassword();
+		String passwordChangeRe = req.getChangePasswordRe();
 		
 		dto = dao.check(dto.getMemId());
-		boolean password = BCrypt.checkpw(req.getParameter("password"), dto.getMemPw());
+		
+		boolean password = BCrypt.checkpw(req.getPassword(), dto.getMemPw());
+		
 		if(!password) {
-			return;
+			throw new PasswordCheckException();
 		}
 		
 		if(!(passwordChange.equals(passwordChangeRe))) {
-			return;
+			throw new PasswordChangeReException();
 		}
+		
 		
 		passwordChange = BCrypt.hashpw(passwordChange, BCrypt.gensalt(10));
 		dto.setMemPw(passwordChange);
 		
 		dao.password(dto);
-		
 		
 	}
 }

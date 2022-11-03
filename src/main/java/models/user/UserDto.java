@@ -4,7 +4,7 @@ import models.common.BaseDto;
 import models.entity.User;
 
 public class UserDto extends BaseDto {
-
+	
 	private Long memNo;
 	private String memId;
 	private String memPw;

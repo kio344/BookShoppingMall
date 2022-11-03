@@ -1,9 +1,14 @@
 package models.mypage;
 
-public class PasswordRequest {
+import org.hibernate.validator.constraints.NotBlank;
 
+public class PasswordRequest {
+	
+	@NotBlank(message = "비밀번호를 입력하세요.")
 	private String password;
+	@NotBlank(message = "변경하실 비밀번호를 입력해주세요.")
 	private String changePassword;
+	@NotBlank(message = "비밀번호를 확인해 주세요.")
 	private String changePasswordRe;
 
 	public String getPassword() {
