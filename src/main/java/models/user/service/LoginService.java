@@ -26,7 +26,7 @@ public class LoginService {
 		
 		String memId = loginRequest.getMemId();
 		UserDto user = userDao.check(memId);
-
+		
 		if (user == null) {
 			throw new UserNotFoundException();
 		}

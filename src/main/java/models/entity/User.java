@@ -1,12 +1,12 @@
 package models.entity;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
 
 import models.user.UserType;
 
@@ -16,7 +16,6 @@ public class User extends BaseEntity {
 	@Id
 	@GeneratedValue
 	private Long memNo;
-	
 	@Column(length = 45, unique = true, nullable = false)
 	private String memId;
 	@Column(length = 60, unique = true, nullable = false)
@@ -127,5 +126,14 @@ public class User extends BaseEntity {
 		if(userType == null) userType = UserType.USER;
 		this.userType = userType;
 	}
+
+	@Override
+	public String toString() {
+		return "User [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", fakeName="
+				+ fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress + ", birthDay=" + birthDay
+				+ ", gender=" + gender + ", userType=" + userType + "]";
+	}
+	
+	
 
 }

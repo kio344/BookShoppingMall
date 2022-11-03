@@ -1,4 +1,4 @@
-package models.user.service;
+package models.mypage.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,12 +24,11 @@ public class UserInfoService {
 	
 	public void change(UserRequest req) {
 		
-		req.setBirthDay(request.getParameter("birthDay"));
+//		req.setBirthDay(request.getParameter("birthDay"));
 		
 		UserDto dto = dao.update(req);
-		
+		session.removeAttribute("user");
 		session.setAttribute("user", dto);
-		
 	}
 	
 }
