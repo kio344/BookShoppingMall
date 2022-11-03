@@ -7,7 +7,7 @@
 	
 		<input type="hidden" th:field="*{memNo}">
 		<input type="hidden" th:field="*{memNm}">
-		<input type="hidden" name="birthDay" th:value="${#strings.substring(user.birthDay, 2, 10)}">
+		
 
 		<dl>
 			<dt>닉네임</dt>
@@ -34,6 +34,13 @@
 			<dt>주소</dt>
 			<dd>
 				<input type="text" th:field="*{adress}">
+			</dd>
+		</dl>
+		
+		<dl>
+			<dt>생일</dt>
+			<dd>
+				<input type="date" name="birthDay" th:field="*{birthDay}">
 			</dd>
 		</dl>
 

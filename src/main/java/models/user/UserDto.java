@@ -4,7 +4,7 @@ import models.common.BaseDto;
 import models.entity.User;
 
 public class UserDto extends BaseDto {
-
+	
 	private Long memNo;
 	private String memId;
 	private String memPw;
@@ -143,7 +143,6 @@ public class UserDto extends BaseDto {
 		}
 
 		UserDto user = new UserDto();
-
 		
 		user.setMemNo(entity.getMemNo());
 		user.setMemId(entity.getMemId());
