@@ -4,8 +4,7 @@
 	layout:decorate="~{layouts/admin/adminLayout}">
 
 <main layout:fragment="main">
-	<form th:action="@{/admin/board}" method="post"
-		th:object="${adminBoardRequest}">
+	<form th:action="@{/admin/board}" method="post" th:object="${adminBoardRequest}">
 		<div class="adminBoard">
 			<dl>
 				<dt>게시판 아이디</dt>
