@@ -2,28 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main/main}">
 <main layout:fragment="main">
 
-<div>
-	<h1 th:text="#{user.login}"></h1>
+<div class="content">
+
 	<form method="post" th:action="@{/user/login}" autocomplete="off" th:object="${loginRequest}">
-	
+		<div class="login">
 		<dl>
-			<dt th:text="#{user.memId}"></dt>
+			<dt th:text="#{user.memId}" class="text"></dt>
 			<dd>
-				<input type="text" name="memId" th:field="*{memId}">
+				<input class="width100" type="text" name="memId" th:field="*{memId}">
 			</dd>
 		</dl>
 
 		<dl>
-			<dt th:text="#{user.memPw}"></dt>
+			<dt th:text="#{user.memPw}" class="text"></dt>
 			<dd>
-				<input type="password" name="memPw" th:field="*{memPw}">
+				<input class="width100" type="password" name="memPw" th:field="*{memPw}">
 			</dd>
 		</dl>
 	
-		<div class="btn-grp">
+		<div class="btn-grp mt-40">
 			<button type="submit" th:text="#{user.login}"></button>
 		</div>
-	
+	</div>
 	</form>
 </div>
 

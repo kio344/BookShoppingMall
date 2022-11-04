@@ -25,12 +25,15 @@ public class UserJoinController {
 		
 		JoinRequest joinRequest = new JoinRequest();
 		model.addAttribute("joinRequest", joinRequest);
-		
+		model.addAttribute("addCss", new String[] { "/member/join" });
 		return "user/join";
 	}
 	
 	@PostMapping
-	public String process(@Valid JoinRequest joinRequest, Errors errors) {
+	public String process(@Valid JoinRequest joinRequest, Errors errors, Model model) {
+		
+		model.addAttribute("addCss", new String[] { "/member/join" });
+		
 		try {
 			service.join(joinRequest, errors);
 		} catch (CommonException e) {

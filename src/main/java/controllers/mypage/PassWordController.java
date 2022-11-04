@@ -33,12 +33,13 @@ public class PassWordController {
 		
 		model.addAttribute("user", dto);
 		model.addAttribute("passwordRequest", new PasswordRequest());
-		
+		model.addAttribute("addCss", new String[] { "/mypage/style" });
 		return "mypage/password";
 	}
 	
 	@PostMapping("/passwordChange")
-	public String changePassword(@Valid PasswordRequest req, Errors errors) {
+	public String changePassword(@Valid PasswordRequest req, Errors errors, Model model) {
+		model.addAttribute("addCss", new String[] { "/mypage/style" });
 		
 		try{
 		changeService.changePassword(req, errors);
