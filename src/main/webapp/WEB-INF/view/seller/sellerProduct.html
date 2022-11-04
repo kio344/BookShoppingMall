@@ -4,7 +4,9 @@
 	layout:decorate="~{layouts/seller/sellerLayout}">
 
 <main layout:fragment="main">
+	<div class="sellerProductRequest">
 	<form th:action="@{/seller/productRequest}" id="frm" method="post" th:object="${productRequest}">
+	
 		<h1>판매 신청 하기</h1>
 		
 		<div>
@@ -47,5 +49,6 @@
 		이미지 파일 : <input name="image" type="file">
 	</form>
 	
+	</div>
 </main>
 </html>

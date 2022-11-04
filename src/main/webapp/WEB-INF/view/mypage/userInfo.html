@@ -5,6 +5,7 @@
 <main layout:fragment="main">
 	<form th:action="@{/mypage/changeInfo}" method="post" th:object="${user}">
 	
+<div class="userInfo">
 		<input type="hidden" th:field="*{memNo}">
 		<input type="hidden" th:field="*{memNm}">
 		
@@ -50,8 +51,8 @@
 				<input type="text" th:field="*{mobile}">
 			</dd>
 		</dl>
-
 		<button type="submit">수정하기</button>
+</div>
 	</form>
 </main>
 </html>

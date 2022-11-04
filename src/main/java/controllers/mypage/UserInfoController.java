@@ -30,6 +30,7 @@ public class UserInfoController {
 		UserDto user = (UserDto) session.getAttribute("user");
 		
 		model.addAttribute("user", user);
+		model.addAttribute("addCss", new String[] {"/mypage/width"});
 		
 		return "mypage/userInfo";
 	}
