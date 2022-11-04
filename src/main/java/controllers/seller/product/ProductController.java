@@ -32,7 +32,7 @@ public class ProductController {
 		
 		model.addAttribute("productRequest", productRequest);
 		model.addAttribute("user", user);
-		model.addAttribute("addCss", new String [] {"/seller/product/sellerProduct"});
+		model.addAttribute("addCss", new String [] {"/seller/product/sellerProductRequest"});
 		model.addAttribute("addJs", new String [] {"/sellerProduct/product"});
 		
 		return "seller/sellerProduct";
@@ -44,13 +44,14 @@ public class ProductController {
 		saveService.save(request, errors);
 		
 		return "redirect:/seller/sellerProduct";
+		
 	}
 	
-	@PostMapping("/productImage")
-	public void file(MultipartFile image) {
-		
-		saveService.saveImage(image);
-		
-	}
+//	@PostMapping("/productImage")
+//	public void file(MultipartFile image) {
+//		
+//		saveService.saveImage(image);
+//		
+//	}
 	
 }

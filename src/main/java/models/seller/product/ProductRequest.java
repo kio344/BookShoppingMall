@@ -1,26 +1,17 @@
 package models.seller.product;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 public class ProductRequest{
 	
 	private Long num; // 이거 기준으로 폴더 나누기.
-	private String seller;
-	@NotBlank(message = "시리얼 번호를 입력해 주세요.")
-	private String serialnum;
-	@NotBlank(message = "책이름을 입력해 주세요.")
-	private String bookName;
-	@NotBlank(message = "글쓴이를 입력해 주세요.")
-	private String writer;
-	@NotBlank(message = "가격을 입력해 주세요.")
-	private Long price;
-	@NotBlank(message = "카테고리를 입력해 주세요.")
-	private String category;
-	@NotBlank(message = "출판사를 입력해 주세요.")
-	private String publisher;
-	@NotBlank(message = "수량을 입력해 주세요.")
-	private int count;
-	private Progress progress = Progress.Examine;
+	private String seller; // 판매자 memId
+	private String serialnum; // 시리얼 번호
+	private String bookName; // 책 이름
+	private String writer; // 글쓴이
+	private Long price; // 가격
+	private String category; // 카테고리
+	private String publisher; // 출판사
+	private int count; // 수량
+	private Progress progress = Progress.Examine; // 승인 상태
 
 	public Long getNum() {
 		return num;
