@@ -1,0 +1,6 @@
+.userInfo{
+	width: 1200px; margin: 0 auto; padding-top: 30px; text-align: center;
+}
+.userInfo input{
+  width: 500px; font-size:15px; border: 1px solid #000; margin: 10px;
+}

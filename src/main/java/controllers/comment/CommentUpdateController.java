@@ -20,8 +20,9 @@ public class CommentUpdateController {
 	public String process(@PathVariable(name = "id") Long id) {
 		
 		CommentDto comment = service.update(id);
-		
 		return "redirect:/board/view/" + comment.getBoard().getId();
 	}
 	
 }
+
+

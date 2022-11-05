@@ -32,6 +32,7 @@ public class PassWordController {
 		UserDto dto = (UserDto) session.getAttribute("user");
 		
 		model.addAttribute("user", dto);
+		model.addAttribute("addCss", new String[] {"/mypage/width"});
 		model.addAttribute("passwordRequest", new PasswordRequest());
 		model.addAttribute("addCss", new String[] { "/mypage/style" });
 		return "mypage/password";

@@ -32,7 +32,7 @@ public class ProductController {
 		
 		model.addAttribute("productRequest", productRequest);
 		model.addAttribute("user", user);
-		model.addAttribute("addCss", new String [] {"/product/adminProduct"});
+		model.addAttribute("addCss", new String [] {"/seller/product/sellerProductRequest"});
 		model.addAttribute("addJs", new String [] {"/sellerProduct/product"});
 		
 		return "seller/sellerProduct";
@@ -40,16 +40,18 @@ public class ProductController {
 
 	@PostMapping("/productRequest")
 	public String productRequest(@Valid ProductRequest request, Errors errors, Model model, MultipartFile image) throws IOException{
-		saveService.save(request);
+		
+		saveService.save(request, errors);
 		
 		return "redirect:/seller/sellerProduct";
+		
 	}
 	
-	@PostMapping("/productImage")
-	public void file(MultipartFile image) {
-		
-		saveService.saveImage(image);
-		
-	}
+//	@PostMapping("/productImage")
+//	public void file(MultipartFile image) {
+//		
+//		saveService.saveImage(image);
+//		
+//	}
 	
 }

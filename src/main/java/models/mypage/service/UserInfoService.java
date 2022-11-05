@@ -14,9 +14,6 @@ import models.user.UserRequest;
 public class UserInfoService {
 	
 	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
 	private UserDao dao;
 	
 	@Autowired

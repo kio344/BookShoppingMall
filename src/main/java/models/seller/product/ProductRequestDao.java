@@ -22,6 +22,13 @@ public class ProductRequestDao {
 		return ProductRequestDto.toDto(entity);
 	}
 	
+	public ProductRequestDto get(ProductRequestDto dto) {
+		
+		ProductRequest entity = em.find(ProductRequest.class, dto.getBookName());
+		
+		return ProductRequestDto.toDto(entity);
+	}
+	
 	public ProductRequestDto save(ProductRequestDto dto){
 		
 		ProductRequest entity = ProductRequestDto.toEntity(dto);

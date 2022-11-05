@@ -1,7 +1,6 @@
 package models.seller.product;
 
 import java.io.File;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -10,8 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
+import models.seller.product.excpetion.BookNameException;
 import models.user.UserDto;
 
 @Service
@@ -28,9 +29,11 @@ public class ProductSaveService {
 	
 	private static Long id;
 	
-	public void save(ProductRequest req) {
+	public void save(ProductRequest req, Errors errors) {
+		if(errors.hasErrors()) {
+			return;
+		}
 		UserDto userSession = (UserDto) session.getAttribute("user");
-
 		ProductRequestDto dto = new ProductRequestDto();
 		dto.setSeller(userSession);
 		dto.setSerialnum(req.getSerialnum());
@@ -41,6 +44,11 @@ public class ProductSaveService {
 		dto.setPublisher(req.getPublisher());
 		dto.setCount(req.getCount());
 		dto.setProgress(req.getProgress());
+		ProductRequestDto dtotest = productRequestDao.get(dto);
+		
+		if(dtotest == dto) {
+			throw new BookNameException();
+		}
 		
 		dto = productRequestDao.save(dto);
 		id = dto.getNum();
