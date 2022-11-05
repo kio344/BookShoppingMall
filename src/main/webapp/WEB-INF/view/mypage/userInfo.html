@@ -8,50 +8,54 @@
 		<input type="hidden" th:field="*{memNo}">
 		<input type="hidden" th:field="*{memNm}">
 		
-
+	<div class="content1">
+	<div class="mybasic">
 		<dl>
-			<dt>닉네임</dt>
+			<dt class="text">닉네임</dt>
 			<dd>
-				<input type="text" th:field="*{fakeName}">
+				<input class="width100" type="text" th:field="*{fakeName}">
 			</dd>
 		</dl>
 
 		<dl>
-			<dt>이메일</dt>
+			<dt class="text">이메일</dt>
 			<dd>
-				<input type="text" th:field="*{email}">
+				<input class="width100"  type="text" th:field="*{email}">
 			</dd>
 		</dl>
 
 		<dl>
-			<dt>성별</dt>
+			<dt class="text">성별</dt>
 			<dd>
-				<input type="text" th:field="*{gender}">
+				<input class="width100"  type="text" th:field="*{gender}">
 			</dd>
 		</dl>
 
 		<dl>
-			<dt>주소</dt>
+			<dt class="text">주소</dt>
 			<dd>
-				<input type="text" th:field="*{adress}">
+				<input class="width100"  type="text" th:field="*{adress}">
 			</dd>
 		</dl>
 		
 		<dl>
-			<dt>생일</dt>
+			<dt class="text">생일</dt>
 			<dd>
-				<input type="date" name="birthDay" th:field="*{birthDay}">
+				<input class="width100"  type="date" name="birthDay" th:field="*{birthDay}">
 			</dd>
 		</dl>
 
 		<dl>
-			<dt>휴대전화 번호</dt>
+			<dt class="text">휴대전화 번호</dt>
 			<dd>
-				<input type="text" th:field="*{mobile}">
+				<input class="width100"  type="text" th:field="*{mobile}">
 			</dd>
 		</dl>
-
-		<button type="submit">수정하기</button>
+		<div class="basicbox">
+			<button type="submit"  class="basicBtn">수정하기</button>
+		</div>
+	</div>
+		</div>
 	</form>
 </main>
 </html>

@@ -1,0 +1,65 @@
+.flex{display: flex;
+    justify-content: space-between;
+    border: 1px solid #d5d5d5;
+    height: 35px;
+    padding: 0 10px;
+    border-radius: 20px;}
+.pointer{cursor: pointer;}
+.mt-40{margin-top:40px;}
+.agreeflex{display:flex;
+justify-content: center;}
+.content{    padding: 100px 300px 100px 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+.join{padding: 45px 60px 60px 60px; border: 2px solid #6c6c6c; border-radius: 30px; width: 500px; margin: 0 auto;}
+.text{padding:20px 10px 10px 10px;}
+input{border-radius:10px; margin: 0 auto;}
+input .joinInput:hover{color:black;}
+.joinInput{width:100%;}
+select{padding: 10px;
+    border-radius: 20px;
+    width: 110px; cursor: pointer;}
+.gender{display:flex;     justify-content: space-evenly;}
+.manBtn{border: 1px solid rgb(132, 132, 132);
+    border-radius: 20px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;}
+.womanBtn{border: 1px solid rgb(132, 132, 132);
+    border-radius: 20px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;}
+.man{padding-left:10px;}
+.woman{padding-left:10px;}
+.joinBtn{    border: 1px solid;
+    padding: 15px;
+    border-radius: 20px;
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgoldenrodyellow;
+    cursor: pointer;}
+.agree{display: flex;
+    margin-top: 40px;
+    justify-content: center;}
+.agreebox{
+	    margin: 0px 10px 0px 0px;
+}
+.error{
+	color: #4a58bd;
+    margin: 10px;
+}
+
+.joinbox{width: 100%;
+    display: flex;
+    justify-content: center;}
+.joinbox:hover{color:black;}

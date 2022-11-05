@@ -29,13 +29,16 @@ public class UserLoginController {
 		LoginRequest loginRequest = new LoginRequest();
 		
 		model.addAttribute("loginRequest", loginRequest);
-		
+		model.addAttribute("addCss", new String[] { "/member/login" });
 		return "user/login";
 		
 	}
 	
 	@PostMapping
-	public String process(@Valid LoginRequest loginRequest, Errors errors, HttpSession session) {
+	public String process(@Valid LoginRequest loginRequest, Errors errors, HttpSession session, Model model) {
+		
+		model.addAttribute("addCss", new String[] { "/member/login" });
+		
 		try {
 			UserDto user = service.login(loginRequest, errors);
 			
