@@ -4,7 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import models.common.BaseDto;
 import models.entity.ProductRequest;
-import models.entity.User;
 import models.shop.ProductDto;
 import models.user.UserDto;
 

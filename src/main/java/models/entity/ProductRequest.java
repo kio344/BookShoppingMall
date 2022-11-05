@@ -25,19 +25,19 @@ public class ProductRequest extends BaseEntity {
    @JoinColumn(name = "seller")
    private User seller;
    
-   @Column
+   @Column(length = 65, nullable = false)
    private String serialnum;
-   @Column(unique = true)
+   @Column(unique = true, nullable = false, length = 60)
    private String bookName;
-   @Column
+   @Column(length = 45, nullable = false)
    private String writer;
-   @Column
+   @Column(length = 45, nullable = false)
    private Long price;
-   @Column
+   @Column(length = 45, nullable = false)
    private String category;
-   @Column
+   @Column(length = 45, nullable = false)
    private String publisher;
-   @Column
+   @Column(length = 45, nullable = false)
    private int count;
    @Column
    @Enumerated(EnumType.STRING)

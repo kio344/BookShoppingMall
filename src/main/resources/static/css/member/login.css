@@ -1,0 +1,23 @@
+.pointer{cursor: pointer;}
+.width100{width:100%;}
+.mt-40{margin-top:40px;}
+.content{    padding: 100px 300px 100px 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+.login{
+	padding: 45px 60px 60px 50px; border: 2px solid #6c6c6c; border-radius: 30px; width: 500px; margin: 0 auto;
+}
+.text{padding:20px 10px 10px 10px;}
+.loginbox{padding:20px 10px 10px 10px;}
+.loginBtn{    border: 1px solid;
+    padding: 15px;
+    border-radius: 20px;
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgoldenrodyellow;
+    cursor: pointer;}
