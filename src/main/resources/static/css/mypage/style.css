@@ -1,7 +1,13 @@
+.mt-40{margin-top: 40px;}
+.error{
+	color: #4a58bd;
+    margin: 10px;
+}
 .content {
 	width: 800px;
 	margin: 0 auto;
 	padding-top: 50px;
+	padding-bottom: 60px;
 }
 .content .mypage_list {
 	border: 1px solid #d3d3d3;
@@ -26,4 +32,97 @@
 .content .mypage_list .count a {
 	font-weight: 700px;
 	font-size: 16px;
+}
+
+
+.width100{
+	width:100%;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.content1 {
+	padding: 100px 300px 100px 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mybasic {
+	padding: 45px 60px 60px 60px;
+	border: 2px solid #6c6c6c;
+	border-radius: 30px;
+	width: 500px;
+	margin: 0 auto;
+}
+
+.text {
+	padding: 20px 10px 10px 10px;
+}
+.textLast{
+	padding: 20px 10px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lastCheck{
+	margin-right: 10px;
+}
+
+select {
+	padding: 10px;
+	border-radius: 20px;
+	width: 110px;
+	cursor: pointer;
+}
+
+.basicbox {
+	padding-top: 30px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.basicBtn {
+	border: 1px solid;
+	padding: 15px;
+	border-radius: 20px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:#e8fad2;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.basicBtn1 {
+	border: 1px solid;
+	padding: 15px;
+	border-radius: 20px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:#e8fad2;
+	cursor: pointer;
+}
+
+.wpcBtn {
+	border: 1px solid;
+	padding: 15px;
+	border-radius: 20px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:#d5d5d5;
+	cursor: pointer;
+	margin-left: 5px;
 }

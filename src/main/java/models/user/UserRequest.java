@@ -1,6 +1,7 @@
 package models.user;
 
 public class UserRequest {
+	
 	private Long memNo;
 	private String memNm;
 	private String fakeName;

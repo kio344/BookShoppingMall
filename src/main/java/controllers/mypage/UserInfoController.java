@@ -1,6 +1,7 @@
 package controllers.mypage;
 
 import javax.servlet.http.HttpSession;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,14 @@ public class UserInfoController {
 		UserDto user = (UserDto) session.getAttribute("user");
 		
 		model.addAttribute("user", user);
-		model.addAttribute("addCss", new String[] {"/mypage/width"});
 		
+		model.addAttribute("addCss", new String[] { "/mypage/style" });
 		return "mypage/userInfo";
 	}
 	
 	@PostMapping("/changeInfo")
 	public String ChangeInfo(@Valid UserRequest request, Errors errors) {
+		
 		
 		service.change(request);
 		
