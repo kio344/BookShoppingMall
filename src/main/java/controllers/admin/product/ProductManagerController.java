@@ -39,14 +39,15 @@ public class ProductManagerController {
 	
 	@PostMapping("/productManager")
 	public String product(@RequestParam(value = "mode", required = false) String mode, HttpServletRequest request) {
-		
+		System.out.println("진입됨?");
 		if(mode.equals("agree")) {
 			productService.agree(request);
 		}else {
 			productService.rejected(request);
 		}
 		
-		return "redirect:/admin/productManager";
+//		return "redirect:/admin/productManager";
+		return "redirect:/admin/product/adminProduct";
 	}
 	
 }
