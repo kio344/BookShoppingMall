@@ -56,14 +56,13 @@ public class AdminBoardController {
 	@PostMapping("/board")
 	public String adminBoardWrite(@Valid AdminBoardRequest adminBoardRequest, Errors errors, Model model) {
 		List<AdminBoardDto> list = adminBoardDao.gets();
-
+		
 		model.addAttribute("list", list);
 		model.addAttribute("addCss", new String[] { "/board/admin/adminBoard" });
 
 		if (errors.hasErrors()) {
 			return "admin/board/adminBoard";
 		}
-
 		adminBoardService.write(adminBoardRequest, errors);
 
 		if (errors.hasErrors()) {
