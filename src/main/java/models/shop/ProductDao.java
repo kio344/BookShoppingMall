@@ -1,5 +1,7 @@
 package models.shop;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -60,12 +62,42 @@ public class ProductDao {
 		String sql = "SELECT p FROM Product p WHERE bookName=:bookName ";
 		TypedQuery<Product> query = em.createQuery(sql, Product.class);
 		query.setParameter("bookName", bookName);
-
+		
 		Product entity = query.getSingleResult();
 
 		return ProductDto.toDto(entity);
 	}
+	
+	public List<ProductDto> gets(int start,int offset){
+		
+		List<ProductDto> result=null;
+		
+		TypedQuery<Product> query=em.createQuery("SELECT p FROM Product p order by p.num desc ",Product.class);
+		
+		query.setFirstResult(start);
+		query.setMaxResults(offset);
+	
+		
+		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+		
+		return result;
+	}
 
+	
+	public List<ProductDto> getbestSeller(int start,int offset){
+		List<ProductDto> result=null;
+		
+		String sql="SELECT p FROM Product p order by p.salesRate desc";
+		
+		TypedQuery<Product> query=em.createQuery(sql,Product.class);
+		
+		query.setFirstResult(start);
+		query.setMaxResults(offset);
+		
+		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+		
+		return result;
+	}
 	
 
 }
