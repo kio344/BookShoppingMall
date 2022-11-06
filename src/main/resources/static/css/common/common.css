@@ -3,7 +3,15 @@
 
 
 /** 테스트 */
-.join-menu { background-color: rgba(255,255,255,0.5); display:flex; justify-content: space-between; position: fixed; height: 50px; width: 100%; align-items: center; border-bottom:1px solid #d5d5d5;}
+.join-menu {    background-color: #fefaf0;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    border-bottom: 2px solid #313f76;
+    z-index: 99;}
 /**.layout_width { max-width: 1100px; width: 100%; margin: 0 auto; }*/
 /** 테스트 */
 
@@ -16,17 +24,15 @@ header .join-menu > div a { margin-left: 10px; }
 .logo{ text-align: center; padding-top: 50px; padding-bottom: 50px; font-size: 50px; border-top: solid 1px black; border-bottom: solid 1px black;}
 로고 */
 
-
 /** 푸터 */
-footer .footer{ text-align: center; border-top: solid 1px black; font-size: 25px; padding-top:50px; padding-bottom: 50px; font-size: 15px; }
+footer .footer{ background-color: #fefaf0; text-align: center; border-top: solid 2px  #313f76; font-size: 25px; padding-top:50px; padding-bottom: 50px; font-size: 15px; }
 /** 푸터 */
 
-nav { background-color:rgba(255,255,255);  width: 280px; height: 100%; top:0; left:-280px; transtion:0.5s;}
+nav { background-color: #fefaf0;;  width: 280px; height: 100%; top:0; left:-280px; transtion:0.5s;}
 nav > div { display: flex; width: 100%; justify-content: space-around; flex-direction: column;}
 nav a {  text-align: center; font-size: 1.5rem; padding: 15px 20px;  }
 .layout_width a:hover {
-	border:solid 1px black;
-	border-radius:20px;
+	border-bottom:1.5px solid #313f76;
 	padding:8px;
 }
 .layer{position:fixed; top:50px; left:-200px; width:100%; height:100%; background-color:rgba(0,0,0,0.5); display:none;  transition: all 1s;}
@@ -34,13 +40,21 @@ nav a {  text-align: center; font-size: 1.5rem; padding: 15px 20px;  }
 
 /** 버튼 */
 .btn-grp { display: flex; width: 330px; margin: 10px auto; }
-.btn-grp button { flex-grow: 1; height: 45px; background-color: #212121; color: #fff; font-size: 1.2rem; font-weight: bold; border: 1px solid #212121; cursor: pointer; }
-.btn-grp button:last-of-type { background-color: #fff; color: #212121; margin-left: 2px; }
+.btn-grp button {    flex-grow: 1;
+    height: 45px;
+    background-color: #313f76;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #313f76;
+    cursor: pointer;}
+.btn-grp button:last-of-type { background-color: #fff; color:  #313f76; margin-left: 2px; }
 .btn-grp button:first-of-type { margin-right: 2px; }
 
+/**
 main{
 	padding-top: 35px;
-}
+}*/
 
 .boardDn{
 	display: none !important;

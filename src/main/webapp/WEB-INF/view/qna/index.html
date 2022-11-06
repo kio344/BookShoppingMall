@@ -4,15 +4,15 @@
 	<main layout:fragment="main">
 		<div class="content_wrap">
 			<div class="qna_info">
-				<h2>QnA 문의 센터</h2>
+				<h2 class="blue pb-10">QnA 문의 센터</h2>
 				<table>
 					<thead>
 						<tr class="qna_header">
-							<th class="col1">번호</th>
-							<th class="col2">제목</th>
-							<th class="col3">작성자</th>
-							<th class="col4">작성일</th>
-							<th class="col5">답변 상태</th>
+							<th class="col1 white">번호</th>
+							<th class="col2 white">제목</th>
+							<th class="col3 white">작성자</th>
+							<th class="col4 white">작성일</th>
+							<th class="col5 white">답변 상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,10 +36,10 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="write">
-					<a th:href="@{/QnA/write}"><i class="xi-pen xi-x">글쓰기</i></a>
+				<div class="write pt-10">
+					<a th:href="@{/QnA/write}" ><i class="xi-pen xi-x">글쓰기</i></a>
 				</div>
-				<div class="page_wrap" th:object="${pagination}">
+				<div class="page_wrap pt-10" th:object="${pagination}">
 					<th:block th:if="*{isFirstCnt == false}">
 						<a th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
 							<i class="xi-backward">이전</i>

@@ -8,6 +8,8 @@
 	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 60px;
+	    background-color: #fefaf0;
+	    
 }
 .content .mypage_list {
 	border: 1px solid #d3d3d3;
@@ -53,11 +55,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+        background-color: #fefaf0;
 }
 
 .mybasic {
 	padding: 45px 60px 60px 60px;
-	border: 2px solid #6c6c6c;
+	border: 2px solid #313f76;
 	border-radius: 30px;
 	width: 500px;
 	margin: 0 auto;
@@ -97,9 +100,11 @@ select {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color:#e8fad2;
+background-color: #313f76;
+    color: #fefaf0;
 	cursor: pointer;
 	margin-left: 5px;
+	margin-top: 20px;
 }
 
 .basicBtn1 {

@@ -1,4 +1,21 @@
+/**상단바
+const menu = document.querySelector('#menu');
+const white = document.querySelector('#textWhite');
+const menuHeight = menu.getBoundingClientRect().height;
 
+document.addEventListener('scroll', () => {
+  if (window.scrollY < menuHeight) {
+    menu.classList.add('active');
+    white.classList.add('white');
+  } else {
+    menu.classList.remove('active');
+    white.classList.remove('white');
+  }
+});
+ */
+
+
+/**좌측바 */
 const sideMenuBtnEl2 = document.querySelector(".join-menu #btn");
 const sideMenuEl = document.querySelector(".layer");
 if (sideMenuBtnEl2 && sideMenuEl) {
