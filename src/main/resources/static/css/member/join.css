@@ -11,8 +11,13 @@ justify-content: center;}
 .content{    padding: 100px 300px 100px 300px;
     display: flex;
     align-items: center;
-    justify-content: center;}
-.join{padding: 45px 60px 60px 60px; border: 2px solid #6c6c6c; border-radius: 30px; width: 500px; margin: 0 auto;}
+    justify-content: center;
+        background-color: #fefaf0;}
+.join{    padding: 40px 60px 60px 60px;
+    border: 2px solid #313f76;
+    border-radius: 20px;
+    width: 500px;
+    margin: 0 auto;}
 .text{padding:20px 10px 10px 10px;}
 input{border-radius:10px; margin: 0 auto;}
 input .joinInput:hover{color:black;}

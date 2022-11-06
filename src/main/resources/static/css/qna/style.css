@@ -1,7 +1,17 @@
+.white{color: #fefaf0;}
+.blue{color: #313f76;}
+
+.pb-10{padding-bottom: 10px;}
+.pt-10{padding-top: 10px;}
+
 .content_wrap {
-	padding-top: 50px;
-	width: 1200px;
-	margin: 0 auto;
+padding-top: 90px;
+    background-color: #fefaf0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    height: 600px;
 }
 
 table, th, td {
@@ -14,6 +24,7 @@ table, th, td {
 	padding: 20px;
 	border: 1px solid #d8d8d8;
 	text-align: center;
+	width: 900px;
 }
 
 .content_wrap .qna_info table {
@@ -24,16 +35,20 @@ table, th, td {
 }
 
 .content_wrap .qna_info table .qna_header {
-	border-bottom: 2px solid #141212;
-	background-color: #678dab;
+border-bottom: 2px solid #678dab;
+    background-color: #678dab;
 }
 
 .write {
 	float: right;
 }
 .content_wrap .qna_info .page_wrap a {
-	border: 1px solid #aaffff;
-	background-color: #aaffff;
-	padding: 5px;
-	font-weight: 700;
+    border: 1.5px solid #678dab;
+    /* background-color: #678dab; */
+    padding: 5px 8px;
+    font-weight: 700;
+    border-radius: 50%;
 }
+
+.page_wrap{display: flex;
+    justify-content: center;}

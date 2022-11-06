@@ -4,9 +4,16 @@
 .content{    padding: 100px 300px 100px 300px;
     display: flex;
     align-items: center;
-    justify-content: center;}
+    justify-content: center;
+        background-color: #fefaf0;
+        height: 700px;}
 .login{
-	padding: 45px 60px 60px 50px; border: 2px solid #6c6c6c; border-radius: 30px; width: 500px; margin: 0 auto;
+    padding: 40px 60px 60px 60px;
+    border: 2px solid #313f76;
+    border-radius: 20px;
+    width: 500px;
+    margin: 0 auto;
+    
 }
 .text{padding:20px 10px 10px 10px;}
 .loginbox{padding:20px 10px 10px 10px;}
