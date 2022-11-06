@@ -1,40 +1,35 @@
 <!DOCTYPE html>
-<html
-	xmlns:th="http://www.thymeleaf.org"
-	
->
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<header th:fragment="header">
-	
-			<div class="join-menu" id="menu">
-				<div class="logo ml">
-					<button id="btn"><i class="xi-bars"></i></button>
-					<a href="">LOGO</a>
-				</div>
-				<div class="layout_width">
-					
-						<th:block th:if="${session.user == null}" >
-						<a th:href="@{/user/join}" >JOIN</a>
-						<a th:href="@{/user/login}" class="mr">LOGIN</a>
-						</th:block>
-						
-						<th:block th:unless="${session.user == null}">
-						<input type="text" disabled th:value="${session.user.fakeName}">
-						<a th:href="@{/mypage}">MYPAGE</a>
-						<a href="">LOGOUT</a>
-						</th:block>
-						
-						
-						
-						
-						
-							<a th:href="@{/admin}" target="_blank"  th:text="#{admin.page}"></a>
-						
-							<a th:href="@{/seller}" target="_blank"  th:text="#{seller.page}"></a>
-					
-				</div>
+
+		<div class="join-menu" id="menu">
+			<div class="logo ml">
+				<button id="btn">
+					<i class="xi-bars"></i>
+				</button>
+				<a href="">LOGO</a>
 			</div>
-	
+			<div class="layout_width">
+
+				<th:block th:if="${session.user == null}">
+					<a th:href="@{/user/join}">JOIN</a>
+					<a th:href="@{/user/login}" class="mr">LOGIN</a>
+				</th:block>
+
+				<th:block th:unless="${session.user == null}">
+					<input type="text" disabled th:value="${session.user.fakeName}">
+					<a th:href="@{/mypage}">MYPAGE</a>
+					<a href="">LOGOUT</a>
+				</th:block>
+
+			<th:block th:if="${session.user != null}"> <!-- UserType 이 ADMIN 일 경우 관리자 페이지 표출, SELLER 일 경우 판매자 페이지 표출 -->
+				<a th:if="${session.user.userType.toString().equals('ADMIN')}" th:href="@{/admin}"  target="_blank" th:text="#{admin.page}"></a>
+				<a th:if="${session.user.userType.toString().equals('SELLER')}" th:href="@{/seller}"  target="_blank" th:text="#{seller.page}"></a>
+			</th:block>
+			</div>
+		</div>
+
 	</header>
 </body>
 
