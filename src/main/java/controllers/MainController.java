@@ -11,7 +11,7 @@ public class MainController {
 
 	
 	
-	@GetMapping
+	@GetMapping("")
 	public String form(Model model) {
 		
 		model.addAttribute("addCss", new String[] {"/main/mainPage"});
