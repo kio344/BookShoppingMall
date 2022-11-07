@@ -114,12 +114,7 @@ public class MvcConfig implements WebMvcConfigurer {
 				.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(formatter)).build();
 		converters.add(0, new MappingJackson2HttpMessageConverter(objectMapper));
 		
-		
-		
 	}
-	
-
-	
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
