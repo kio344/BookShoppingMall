@@ -21,10 +21,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="product : ${product}" th:object="${product}">
-					
 						<td>
 							<div>
-								<input type="checkbox" name="product" th:value="*{num}">
+								<input type="checkbox" th:name="product" th:value="*{num}">
 							</div>
 						</td>
 							
@@ -84,8 +83,7 @@
 				<option value="rejected">거절</option>
 			</select>
 			합니다
-			</th:block>
-			<button type="button" id="product">처리하기</button>
+			<button type="button" id="product_btn">처리하기</button>
 		</form>
 	</div>
 </main>
