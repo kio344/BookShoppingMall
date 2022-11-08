@@ -33,6 +33,8 @@ public class AdminProductService {
 		for(String product : productIds) {
 			ProductRequestDto dto = new ProductRequestDto();
 			dto = productRequestDao.get(Long.parseLong(product)); 
+			dto.setProgress(Progress.Agree);
+			System.out.println("------------------------------" + product);
 			
 			productDao.addProduct(ProductRequestDto.toRequest(dto));
 			productRequestDao.remove(dto);
@@ -55,6 +57,7 @@ public class AdminProductService {
 			ProductRequestDto dto = new ProductRequestDto();
 			dto.setNum(Long.parseLong(product));
 			dto.setProgress(Progress.Rejected);
+			System.out.println("------------------------------" + product);
 			productRequestDao.argee(dto);
 			
 		}

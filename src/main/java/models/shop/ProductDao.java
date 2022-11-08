@@ -27,13 +27,13 @@ public class ProductDao {
 
 		Product entity = new Product();
 		entity = ProductDto.toEntity(param);
-
+		
 		User user = em.find(User.class, param.getSeller().getMemNo());
 		entity.setSeller(user);
-
+		
 		em.persist(entity);
-
-		em.flush();
+		
+		em.flush();	
 
 		return get(entity.getNum());
 	}
