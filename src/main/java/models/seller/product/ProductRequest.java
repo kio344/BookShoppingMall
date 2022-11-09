@@ -99,6 +99,8 @@ public class ProductRequest{
 				+ bookName + ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher="
 				+ publisher + ", count=" + count + ", progress=" + progress + "]";
 	}
+	
+	
 
 	
 

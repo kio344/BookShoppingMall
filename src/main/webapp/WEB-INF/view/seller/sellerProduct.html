@@ -5,7 +5,7 @@
 
 <main layout:fragment="main">
 	<div class="sellerProductRequest">
-	<form th:action="@{/seller/productRequest}" id="frm" method="post" th:object="${productRequest}">
+	<form th:action="@{/seller/requestProduct}" id="frm" method="post" enctype="multipart/form-data">
 	
 		<h1>판매 신청 하기</h1>
 		
@@ -14,39 +14,36 @@
 		</div>
 		
 		<div>
-			시리얼 넘버 : <input type="text" name="serialnum" th:field="*{serialnum}">
+			시리얼 넘버 : <input type="text" name="serialnum" >
 		</div>
 		
 		<div>
-			책 이름 : <input type="text" name="bookName" th:field="*{bookName}">
+			책 이름 : <input type="text" name="bookName" >
 		</div>
 
 		<div>
-			글쓴이 : <input type="text" name="writer" th:field="*{writer}">
+			글쓴이 : <input type="text" name="writer">
 		</div>
 
 		<div>
-			가격 : <input type="number" name="price" th:field="*{price}">
+			가격 : <input type="number" name="price">
 		</div>
 
 		<div>
-			카테고리 : <input type="text" name="category" th:field="*{category}">
+			카테고리 : <input type="text" name="category">
 		</div>
 
 		<div>
-			출판사 : <input type="text" name="publisher" th:field="*{publisher}">
+			출판사 : <input type="text" name="publisher">
 		</div>
 
 		<div>
-			수량 : <input type="number" name="count" th:field="*{count}">
+			수량 : <input type="number" name="count">
 		</div>
 		
-
+		이미지 파일 : <input name="file" type="file" >
+		
 		<button type="button" id="request">신청하기</button>
-	</form>
-	
-	<form id="frm2" th:action="@{/seller/productImage}" method="post" enctype="multipart/form-data">
-		이미지 파일 : <input name="image" type="file">
 	</form>
 	 
 	</div>

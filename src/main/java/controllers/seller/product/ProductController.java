@@ -3,16 +3,15 @@ package controllers.seller.product;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import models.seller.product.ProductRequest;
 import models.seller.product.ProductSaveService;
@@ -37,21 +36,15 @@ public class ProductController {
 		
 		return "seller/sellerProduct";
 	}
-
-	@PostMapping("/productRequest")
-	public String productRequest(@Valid ProductRequest request, Errors errors, Model model, MultipartFile image) throws IOException{
+	
+	@PostMapping("/requestProduct")
+	public String file(MultipartHttpServletRequest request, MultipartFile file)  throws IOException{
+		System.out.println("file??===============" + file);
+		saveService.save(request, file);
 		
-		saveService.save(request, errors);
-		
-		return "redirect:/seller/sellerProduct";
+		return "redirect:/";
 		
 	}
 	
-//	@PostMapping("/productImage")
-//	public void file(MultipartFile image) {
-//		
-//		saveService.saveImage(image);
-//		
-//	}
 	
 }
