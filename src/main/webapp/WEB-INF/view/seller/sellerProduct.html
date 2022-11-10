@@ -6,11 +6,11 @@
 <main layout:fragment="main">
 	<div class="sellerProductRequest">
 	<form th:action="@{/seller/requestProduct}" id="frm" method="post" enctype="multipart/form-data">
-	
+		
 		<h1>판매 신청 하기</h1>
 		
 		<div>
-			판매자 : <input type="text" disabled name="seller" th:value="${user.memId}">
+			판매자 : <input type="text" disabled name="seller" value="test"><!-- th:value="${user.memId}" -->
 		</div>
 		
 		<div>
@@ -20,7 +20,7 @@
 		<div>
 			책 이름 : <input type="text" name="bookName" >
 		</div>
-
+		
 		<div>
 			글쓴이 : <input type="text" name="writer">
 		</div>
@@ -30,7 +30,8 @@
 		</div>
 
 		<div>
-			카테고리 : <input type="text" name="category">
+			카테고리 : <input type="text" name="category" id="categoryInput">
+			<select th:replace="~{/seller/category.html :: select}"></select>
 		</div>
 
 		<div>

@@ -32,14 +32,14 @@ public class ProductController {
 		model.addAttribute("productRequest", productRequest);
 		model.addAttribute("user", user);
 		model.addAttribute("addCss", new String [] {"/seller/product/sellerProductRequest"});
-		model.addAttribute("addJs", new String [] {"/sellerProduct/product"});
+		model.addAttribute("addJs", new String [] {"/sellerProduct/product", "/sellerProduct/category"});
 		
 		return "seller/sellerProduct";
 	}
 	
 	@PostMapping("/requestProduct")
 	public String file(MultipartHttpServletRequest request, MultipartFile file)  throws IOException{
-		System.out.println("file??===============" + file);
+		
 		saveService.save(request, file);
 		
 		return "redirect:/";
