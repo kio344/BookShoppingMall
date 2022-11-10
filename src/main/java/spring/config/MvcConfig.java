@@ -17,6 +17,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -28,7 +30,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
@@ -147,6 +148,15 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Bean
 	public MemberCheck memberCheck() {
 		return new MemberCheck();
+	}
+	
+	@Bean
+	public MultipartResolver multipartResolver() {
+		CommonsMultipartResolver multi = new CommonsMultipartResolver();
+		multi.setMaxUploadSize(-1);
+		multi.setMaxUploadSizePerFile(-1);
+		
+		return multi;
 	}
 	
 }
