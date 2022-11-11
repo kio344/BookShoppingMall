@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/seller/sellerLayout}">
+	<div th:fragment="select">
+	
+	<select  name="country" id="country">
+		<option value="">====선택하세요====</option>
+		<option value="domestic">국내</option>
+		<option value="foreign">해외</option>
+	</select>
+	
+	<select name="genre" id="genre" class="genre">
+	<option value="">====선택하세요====</option>
+		<option value="current_not">총류</option><!-- current_not -->
+		<option value="philosophy">철학</option><!-- philosophy -->
+		<option value="religion">종교</option><!-- religion -->
+		<option value="social_science">사회과학</option><!-- social_science -->
+		<option value="natural_science">자연과학</option><!-- natural_science -->
+		<option value="technical_science">기술과학</option><!-- technical_science -->
+		<option value="art">예술</option><!-- art -->
+		<option value="language">언어</option><!-- language -->
+		<option value="literature">문학</option><!-- literature -->
+		<option value="history">역사</option><!-- history -->
+	</select>
+	
+	<!-- 0 ~ 99번라인 시작 -->
+	<select name="" id="current_not" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="도서학">도서학</option>
+		<option value="문헌정보학">문헌정보학</option>
+		<option value="백과사전">백과사전</option>
+        <option value="강연집">강연집</option>
+        <option value="일반연속간행물">일반연속간행물</option>
+        <option value="단체">단체</option>
+        <option value="신문">신문</option>
+        <option value="총서">총서</option>
+        <option value="향토자료">향토자료</option>
+	</select>
+	<!-- 0 ~ 99번라인 끝 -->
+	<!-- 100번라인 시작 -->	
+	<select name="" id="philosophy" class="dn subcategory">
+	<option value="">====선택하세요====</option>
+		<option value="철학">철학</option>
+        <option value="형이상학">형이상학</option>
+        <option value="인간학">인식론</option>
+        <option value="철학의_체계">철학의 체계</option>
+        <option value="경학">경학</option>
+        <option value="동양철학">동양철학</option>
+        <option value="서양철학">서양철학</option>
+        <option value="논리학">논리학</option>
+        <option value="심리학">심리학</option>
+        <option value="윤리학">윤리학</option>
+	</select>
+	<!-- 100번라인 끝 -->
+	<!-- 200번라인 시작 -->	
+	<select name="" id="religion" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="종교">종교</option>
+        <option value="비교종교">비교종교</option>
+        <option value="불교">불교</option>
+        <option value="기독교">기독교</option>
+        <option value="도교">도교</option>
+        <option value="천도교">천도교</option>
+        <option value="힌두교">힌두교</option>
+        <option value="이슬람교">이슬람교</option>
+        <option value="기타제종교">기타제종교</option>
+	</select>
+	<!-- 200번라인 끝 -->	
+	<!-- 300번라인 시작 -->	
+	<select name="" id="social_science" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+	 	<option value="사회과학">사회과학</option>
+        <option value="통계자료">통계자료</option>
+        <option value="경제학">경제학</option>
+        <option value="사회학">사회학</option>
+        <option value="정치학">정치학</option>
+        <option value="행정학">행정학</option>
+        <option value="법률">법률</option>
+        <option value="교육학">교육학</option>
+        <option value="풍속">풍속</option>
+        <option value="군사학">군사학</option>
+	</select>
+	<!-- 300번라인 끝 -->	
+	<!-- 400번라인 시작 -->	
+	<select name="" id="natural_science" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="자연과학">자연과학</option>
+        <option value="수학">수학</option>
+        <option value="물리학">물리학</option>
+        <option value="화학">화학</option>
+        <option value="천문학">천문학</option>
+        <option value="지학">지학</option>
+        <option value="광물학">광물학</option>
+        <option value="생명과학">생명과학</option>
+        <option value="식물학">식물학</option>
+        <option value="동물학">동물학</option>
+	</select>
+	<!-- 400번라인 끝 -->	
+	<!-- 500번라인 시작 -->	
+	<select name="" id="technical_science" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		 <option value="기술과학">기술과학</option>
+         <option value="의학">의학</option>
+         <option value="농업">농업</option>
+         <option value="공업일반">공업일반</option>
+         <option value="건축학">건축학</option>
+         <option value="기계공학">기계공학</option>
+         <option value="전기공학">전기공학</option>
+         <option value="화학공학">화학공학</option>
+         <option value="제조업">제조업</option>
+         <option value="생활과학">생활과학</option>
+	</select>
+	<!-- 500번라인 끝 -->	
+	<!-- 600번라인 시작 -->	
+	<select name="" id="art" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="예술">예술</option>
+        <option value="미사용">미사용</option>
+        <option value="조형미술">조형미술</option>
+        <option value="공예">공예</option>
+        <option value="서예">서예</option>
+        <option value="디자인">디자인</option>
+        <option value="사진예술">사진예술</option>
+        <option value="음악">음악</option>
+        <option value="공연예술">공연예술</option>
+        <option value="스포츠">스포츠</option>
+	</select>
+	<!-- 600번라인 끝 -->	
+	<!-- 700번라인 시작 -->	
+	<select name="" id="language" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="언어">언어</option>
+        <option value="한국어">한국어</option>
+        <option value="중국어">중국어</option>
+        <option value="일본어">일본어</option>
+        <option value="영어">영어</option>
+        <option value="독일어">독일어</option>
+        <option value="프랑스어">프랑스어</option>
+        <option value="스페인어">스페인어</option>
+        <option value="이탈리아어">이탈리아어</option>
+        <option value="기타_제어">기타 제어	</option>
+	</select>
+	<!-- 700번라인 끝 -->	
+	<!-- 800번라인 시작 -->	
+	<select name="" id="literature" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="문학">문학</option>
+        <option value="한국문학">한국문학</option>
+        <option value="중국문학">중국문학</option>
+        <option value="일본문학">일본문학</option>
+        <option value="영미문학">영미문학</option>
+        <option value="독일문학">독일문학</option>
+        <option value="프랑스문학">프랑스문학</option>
+        <option value="스페인">스페인</option>
+        <option value="이탈리아문학">이탈리아문학</option>
+        <option value="기타_제문학">기타 제문학</option>
+	</select>
+	<!-- 800번라인 끝 -->	
+	<!-- 900번라인 시작 -->	
+	<select name="" id="history" class="dn subcategory">
+		<option value="">====선택하세요====</option>
+		<option value="역사">역사</option>
+        <option value="아시아">아시아</option>
+        <option value="유럽">유럽</option>
+        <option value="아프리카">아프리카</option>
+        <option value="북아메리카">북아메리카</option>
+        <option value="남아메리카">남아메리카</option>
+        <option value="오세아니아">오세아니아</option>
+        <option value="지리">지리</option>
+        <option value="전기">전기</option>
+	</select>
+	<!-- 900번라인 끝 -->	
+	<button type="button" id="categoryBtn">적용하기</button>
+	</div>
+</html>

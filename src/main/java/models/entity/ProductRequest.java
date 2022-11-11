@@ -24,10 +24,9 @@ public class ProductRequest extends BaseEntity {
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "seller")
    private User seller;
-   
    @Column(length = 65, nullable = false)
    private String serialnum;
-   @Column(unique = true, nullable = false, length = 60)
+   @Column(length = 60, nullable = false)
    private String bookName;
    @Column(length = 45, nullable = false)
    private String writer;

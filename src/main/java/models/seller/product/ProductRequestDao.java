@@ -40,9 +40,7 @@ public class ProductRequestDao {
 		
 		em.flush();
 		
-		dto.setNum(entity.getNum());
-		
-		return dto;
+		return ProductRequestDto.toDto(entity);
 	}
 	
 	public void argee(ProductRequestDto dto) {

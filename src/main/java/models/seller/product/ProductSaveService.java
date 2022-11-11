@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import models.seller.product.excpetion.BookNameException;
 import models.user.UserDto;
@@ -29,21 +29,19 @@ public class ProductSaveService {
 	
 	private static Long id;
 	
-	public void save(ProductRequest req, Errors errors) {
-		if(errors.hasErrors()) {
-			return;
-		}
+	public void save(MultipartHttpServletRequest req, MultipartFile image) {
+		/** 상품 디비 저장 */
 		UserDto userSession = (UserDto) session.getAttribute("user");
 		ProductRequestDto dto = new ProductRequestDto();
 		dto.setSeller(userSession);
-		dto.setSerialnum(req.getSerialnum());
-		dto.setBookName(req.getBookName());
-		dto.setWriter(req.getWriter());
-		dto.setPrice(req.getPrice());
-		dto.setCategory(req.getCategory());
-		dto.setPublisher(req.getPublisher());
-		dto.setCount(req.getCount());
-		dto.setProgress(req.getProgress());
+		dto.setSerialnum(req.getParameter("seller"));
+		dto.setBookName(req.getParameter("bookName"));
+		dto.setWriter(req.getParameter("writer"));
+		dto.setPrice(Long.parseLong(req.getParameter("price")));
+		dto.setCategory(req.getParameter("category"));
+		dto.setPublisher(req.getParameter("publisher"));
+		dto.setCount(Integer.parseInt(req.getParameter("count")));
+		dto.setProgress(Progress.Examine);
 		ProductRequestDto dtotest = productRequestDao.get(dto);
 		
 		if(dtotest == dto) {
@@ -51,13 +49,11 @@ public class ProductSaveService {
 		}
 		
 		dto = productRequestDao.save(dto);
-		id = dto.getNum();
+		/** 상품 디비 저장 */
 		
-	}
-
-	public void saveImage(MultipartFile image) {
-		
-		ProductRequestDto dto = productRequestDao.get(id);
+		/** 파일 저장 시작 */
+		dto.setImages(dto.getNum());
+		id = dto.getImages();
 		
 		String uploadDir = request.getServletContext().getRealPath("");
 		uploadDir += "../resources/static/productImages";
@@ -70,7 +66,6 @@ public class ProductSaveService {
 		
 		long num = dto.getNum();
 			
-		System.out.println(num);
 			
 		String folder = String.valueOf(num % 10);
 
@@ -86,7 +81,6 @@ public class ProductSaveService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		/** 파일 저장 끝 */
 	}
-
 }
