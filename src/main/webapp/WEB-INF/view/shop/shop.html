@@ -12,7 +12,7 @@ layout:decorate="~{layouts/main/main}"
 			<li th:each="product :  ${newProductList}">
 				<a>
 					<div class="bookImg">
-						<img alt="" src="https://image.aladin.co.kr/product/2642/80/cover500/8956056536_1.jpg">
+						<img alt="" th:src="@{/productimage/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
 					</div>
 					
 					<div class="bookTitle" th:text="${product.bookName}">책이름</div>

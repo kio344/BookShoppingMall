@@ -135,8 +135,8 @@ public class ProductDto extends BaseDto {
 	public String toString() {
 		return "ProductDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
 				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-				+ ", count=" + count + ", salesRate=" + salesRate + ", review=" + review + ", getRegDt()=" + getRegDt()
-				+ ", getModDt()=" + getModDt() + "]";
+				+ ", count=" + count + ", imageNum=" + imageNum + ", salesRate=" + salesRate + ", review=" + review
+				+ "]";
 	}
 
 	public static Product toEntity(ProductDto dto) {
