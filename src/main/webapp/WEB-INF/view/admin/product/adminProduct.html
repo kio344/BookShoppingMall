@@ -21,68 +21,68 @@
 				</thead>
 				<tbody>
 					<tr th:each="product : ${product}" th:object="${product}">
-						<td>
-							<div>
-								<input type="checkbox" th:name="product" th:value="*{num}">
-							</div>
-						</td>
+						<th:block th:if="${@adminProductService.isAdminConfirmed(product.progress, 'Examine')}">
+							<td>
+								<div>
+									<input type="checkbox" th:name="product" th:value="*{num}">
+								</div>
+							</td>
 							
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{seller.getMemId()}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{serialnum}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{bookName}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{writer}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="number" disabled th:value="*{price}">
-							</div>
-						</td>
-
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{category}">
-							</div>
-						</td>
-						
-						<td>
-							<div>
-								<input type="text" disabled th:value="*{publisher}">
-							</div>
-						</td>
-						
-						<td>
-							<div>
-								<input type="number" disabled th:value="*{count}">
-							</div>
-						</td>
+							<td>
+								<div>
+									<input type="text" disabled th:value="*{seller.getMemId()}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="text" disabled th:value="*{serialnum}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="text" disabled th:value="*{bookName}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="text" disabled th:value="*{writer}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="number" disabled th:value="*{price}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="text" disabled th:value="*{category}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="text" disabled th:value="*{publisher}">
+								</div>
+							</td>
+							
+							<td>
+								<div>
+									<input type="number" disabled th:value="*{count}">
+								</div>
+							</td>
+						</th:block>
 					</tr>
 				</tbody>
 			</table>
-			상품을
-			<select th:name="mode">
+			상품을<select th:name="mode">
 				<option value="agree">수락</option>
 				<option value="rejected">거절</option>
-			</select>
-			합니다
+				</select>합니다
 			<button type="button" id="product_btn">처리하기</button>
 		</form>
 	</div>
