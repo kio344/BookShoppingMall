@@ -40,14 +40,6 @@ public class ShopController {
 		return "shop/shop";
 	}
 	
-	@ResponseBody
-	@GetMapping("/product/{productnum}")
-	public ProductDto product(@PathVariable(name = "productnum" )long productnum) {
-
-
-		return service.getProduct(productnum);
-	}
-	
 
 	
 	
