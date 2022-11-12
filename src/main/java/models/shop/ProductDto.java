@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.common.BaseDto;
 import models.entity.Product;
+import models.seller.product.Progress;
 import models.user.UserDto;
 
 public class ProductDto extends BaseDto {
@@ -32,6 +33,8 @@ public class ProductDto extends BaseDto {
 	private Long salesRate;
 
 	private List<ProductReviewDto> review = new ArrayList<>();
+	
+	private Progress progress = Progress.Examine; // testing
 
 	public Long getNum() {
 		return num;
@@ -129,6 +132,14 @@ public class ProductDto extends BaseDto {
 
 	public void setReview(List<ProductReviewDto> review) {
 		this.review = review;
+	}
+	
+	public Progress getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Progress progress) {
+		this.progress = progress;
 	}
 
 	@Override

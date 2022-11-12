@@ -106,7 +106,7 @@ public class ProductRequestDto extends BaseDto {
 	public void setProgress(Progress progress) {
 		this.progress = progress;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ProductDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
@@ -118,8 +118,7 @@ public class ProductRequestDto extends BaseDto {
 	public static ProductRequestDto toDto(ProductRequest entity) {
 		ProductRequestDto dto = new ProductRequestDto();
 
-		if (entity == null)
-			return null;
+		if (entity == null) return null;
 
 		dto.setNum(entity.getNum());
 		dto.setSeller(UserDto.toDto(entity.getSeller()));
@@ -138,8 +137,7 @@ public class ProductRequestDto extends BaseDto {
 	public static ProductRequest toEntity(ProductRequestDto dto) {
 		ProductRequest entity = new ProductRequest();
 
-		if (dto == null)
-			return null;
+		if (dto == null) return null;
 
 		entity.setNum(dto.getNum());
 		entity.setSeller(UserDto.toEntity(dto.getSeller()));
@@ -156,8 +154,7 @@ public class ProductRequestDto extends BaseDto {
 	}
 
 	public static ProductDto toRequest(ProductRequestDto dto) {
-		if (dto == null)
-			return null;
+		if (dto == null) return null;
 
 		ProductDto req = new ProductDto();
 
@@ -172,6 +169,7 @@ public class ProductRequestDto extends BaseDto {
 		req.setSeller(dto.getSeller());
 		req.setSerialnum(dto.getSerialnum());
 		req.setWriter(dto.getWriter());
+		req.setProgress(dto.getProgress());
 		
 		/**
 		 * @author 5563a product imageNum 컬럼 추가로인한 변경점 추가 S

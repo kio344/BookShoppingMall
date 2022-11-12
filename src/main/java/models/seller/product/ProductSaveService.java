@@ -33,8 +33,9 @@ public class ProductSaveService {
 		/** 상품 디비 저장 */
 		UserDto userSession = (UserDto) session.getAttribute("user");
 		ProductRequestDto dto = new ProductRequestDto();
+		
 		dto.setSeller(userSession);
-		dto.setSerialnum(req.getParameter("seller"));
+		dto.setSerialnum(req.getParameter("serialnum"));
 		dto.setBookName(req.getParameter("bookName"));
 		dto.setWriter(req.getParameter("writer"));
 		dto.setPrice(Long.parseLong(req.getParameter("price")));

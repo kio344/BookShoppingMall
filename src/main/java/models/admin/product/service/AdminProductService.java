@@ -34,10 +34,11 @@ public class AdminProductService {
 			ProductRequestDto dto = new ProductRequestDto();
 			dto = productRequestDao.get(Long.parseLong(product)); 
 			dto.setProgress(Progress.Agree);
-			System.out.println("------------------------------" + product);
 			
 			productDao.addProduct(ProductRequestDto.toRequest(dto));
-			productRequestDao.remove(dto);
+			
+			productRequestDao.save(dto);
+//			productRequestDao.remove(dto);
 		}
 		/** 수정 시작 E */
 	}
@@ -62,6 +63,17 @@ public class AdminProductService {
 			
 		}
 		/** 수정 시작 E */
+	}
+	
+	public boolean isAdminConfirmed(Progress progress, String type) {
+		
+		if (progress == null || type == null || type.isBlank()) {
+			return false;
+		}
+		
+		Progress compare = Progress.valueOf(type);
+		
+		return progress == compare;
 	}
 	
 }

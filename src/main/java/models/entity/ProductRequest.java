@@ -41,6 +41,7 @@ public class ProductRequest extends BaseEntity {
    @Column
    @Enumerated(EnumType.STRING)
    private Progress progress = Progress.Examine;
+   
 
    public Long getNum() {
       return num;
