@@ -34,7 +34,9 @@ public class ProductRequestDao {
 		ProductRequest entity = ProductRequestDto.toEntity(dto);
 		User user = em.find(User.class, dto.getSeller().getMemNo());
 		
+		entity.setNum(dto.getNum());
 		entity.setSeller(user);
+		entity.setProgress(Progress.Examine);
 		
 		em.persist(entity);
 		
@@ -44,6 +46,7 @@ public class ProductRequestDao {
 	}
 	
 	public void argee(ProductRequestDto dto) {
+		System.out.println(dto);
 		
 		ProductRequest entity = em.find(ProductRequest.class, dto.getNum());
 		
