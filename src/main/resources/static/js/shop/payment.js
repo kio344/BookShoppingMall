@@ -10,10 +10,21 @@ let roadAddress;
 let detailAddress;
 
 
-window.addEventListener("DOMContentLoaded",function(e){
-	 zip_code=document.getElementById('findAddress');
-	 roadAddress=document.getElementById('roadAddress');
-	 detailAddress=document.getElementById('detailAddress')
+window.addEventListener("DOMContentLoaded", function(e) {
+	zip_code = document.getElementById('findAddress');
+	roadAddress = document.getElementById('roadAddress');
+	detailAddress = document.getElementById('detailAddress')
+	let ifrm_back = document.getElementById('ifrm_back');
+	let button = document.getElementById('buy');
+	console.log(ifrm_back)
+	console.log(button)
+	button.addEventListener("click", function(e) {
+		console.log(ifrm_back)
+		ifrm_back.classList = "";
+		console.log(ifrm_back)
+	})
+
+	
 })
 
 
@@ -24,10 +35,13 @@ function sample4_execDaumPostcode() {
 			console.log(data);
 			console.log(zip_code)
 			console.log(roadAddress)
-			
-			zip_code.value=data.zonecode;
-			roadAddress.value=data.address;
-			
+
+			zip_code.value = data.zonecode;
+			roadAddress.value = data.address;
+
 		}
 	}).open();
 }
+
+
+
