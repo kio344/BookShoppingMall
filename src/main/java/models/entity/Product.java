@@ -26,7 +26,7 @@ public class Product extends BaseEntity {
 	@Column
 	private String serialnum;
 
-	@Column(unique = true)
+	@Column
 	private String bookName;
 
 	@Column

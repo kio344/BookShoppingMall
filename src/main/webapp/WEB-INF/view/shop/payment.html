@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+
+	<form method="post" th:action="@{/shop/payment/process}" class="outer">
+		<div class="productArea" th:object="${product}">
+			<div class="productImg">
+
+				<img alt=""
+					th:src="@{/productImages/}+*{imageNum%10}+${'/'}+*{imageNum}">
+
+			</div>
+
+			<div class="productInfo">
+
+				<dl id="title">
+
+					<dt th:text="*{bookName}"></dt>
+
+				</dl>
+
+
+				<dl id="writer">
+					<dt th:text="${'지은이'}"></dt>
+					<dd th:text="*{writer}"></dd>
+				</dl>
+
+				<dl id="price">
+					<dt th:text="${'가격'}"></dt>
+					<dd th:text="*{price}+${'원'}"></dd>
+				</dl>
+
+				<dl id="count">
+					<dt th:text="${'수량'}"></dt>
+					<dd>1</dd>
+				</dl>
+
+
+				<dl id="category">
+					<dt th:text="${'카테고리'}"></dt>
+					<dd th:text="*{category}"></dd>
+				</dl>
+
+
+
+
+
+			</div>
+
+		</div>
+
+		<div class="buyInfo">
+
+			<h1>주문/결제</h1>
+			
+			<div class="buyInfoArea">
+				<div>
+	
+					<h2>구매자 정보</h2>
+					
+					<dl>
+						<dt>이름</dt>
+						<dd>
+							<input disabled="disabled" th:value="${session.user.memNm}">
+						</dd>
+					</dl>
+					<dl>
+						<dt>이메일</dt>
+						<dd>
+							<input disabled="disabled" th:value="${session.user.email}">
+						</dd>
+					</dl>
+					<dl>
+						<dt>휴대폰 번호</dt>
+						<dd>
+							<input disabled="disabled" th:value="${session.user.mobile}">
+						</dd>
+					</dl>
+					<dl>
+						<dt>총 결제금액</dt>
+						<dd>
+							<input disabled="disabled" th:value="${#numbers.formatInteger(product.price,1)} * ${#numbers.formatInteger(param.count,1)}">
+						</dd>
+					</dl>
+	
+					<h2>받는사람 정보</h2>
+					<dl>
+						<dt>이름</dt>
+						<dd>
+							<input th:field="${request.recipient_name}" >
+						</dd>
+					</dl>
+					<dl>
+						<dt>휴대폰 번호</dt>
+						<dd>
+							<input th:field="${request.recipient_mobile}">
+						</dd>
+					</dl>
+					
+	
+	
+	
+				</div>
+				<div>
+					<h2>배송주소</h2>
+					<dl>
+						<dt>우편번호</dt>
+						<dd>
+							<input id="findAddress" th:field="${request.zipCode}" >
+							<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" >
+								찾기
+							</button>
+							
+						</dd>
+					</dl>
+				
+					<dl>
+						<dt>주소</dt>
+						<dd>
+							<input id="roadAddress" th:field="${request.roadAddress}">
+						</dd>
+					</dl>
+					<dl>
+						<dt>상세주소</dt>
+			 			<dd>
+							<input id="detailAddress" th:field="${request.detailAddress}">
+						</dd>
+					</dl>
+					<dl>
+						<dt>참고항목</dt>
+						<dd>
+							<input id="extraAddress" th:field="${request.reqAddress}">
+						</dd>
+					</dl>
+					
+				</div>
+			</div>
+
+			
+
+			<div class="btn_grup">
+				<button id="buy">결제하기</button>
+			</div>
+
+
+
+		</div>
+
+
+
+	</form>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</main>
+</html>

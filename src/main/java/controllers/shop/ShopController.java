@@ -35,15 +35,9 @@ public class ShopController {
 
 		List<ProductDto> bestSellerList=service.getBestSeller(0, 5);
 		model.addAttribute("bestSellerList",bestSellerList);
+		
+		System.out.println(newProductList);
 		return "shop/shop";
-	}
-	
-	@ResponseBody
-	@GetMapping("/product/{productnum}")
-	public ProductDto product(@PathVariable(name = "productnum" )long productnum) {
-
-
-		return service.getProduct(productnum);
 	}
 	
 

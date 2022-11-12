@@ -4,15 +4,18 @@ layout:decorate="~{layouts/main/main}"
 >
 	<main layout:fragment="main">
 	<h1>쇼핑몰 페이지</h1>
+	
 	<form class="searchfrm">
 		<input type="text"> <button>검색</button>
 	</form>
+	
+	
 	<h2>신간</h2>
 		<ul>
 			<li th:each="product :  ${newProductList}">
-				<a>
+				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
-						<img alt="" src="https://image.aladin.co.kr/product/2642/80/cover500/8956056536_1.jpg">
+						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
 					</div>
 					
 					<div class="bookTitle" th:text="${product.bookName}">책이름</div>
@@ -29,7 +32,7 @@ layout:decorate="~{layouts/main/main}"
 			<li th:each="product :  ${bestSellerList}">
 				<a>
 					<div class="bookImg">
-						<img alt="" src="https://image.aladin.co.kr/product/2642/80/cover500/8956056536_1.jpg">
+						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
 					</div>
 					
 					<div class="bookTitle" th:text="${product.bookName}">책이름</div>
