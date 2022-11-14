@@ -1,17 +1,91 @@
-.content_wrap {
-	padding-top: 50px;
-	width: 1200px;
-	margin: 0 auto;
+/**기본 설정*/
+.content{    padding: 50px 70px 50px 70px;}
+.flex{display:flex;
+align-items: center;}
+.displayNone{display:none;}
+.pt-50{padding-top:50px;}
+.backColor{background-color: #fefaf0;}
+
+/** 페이지네이션 */
+.pagination { text-align: center; padding: 15px 0; }
+.pagination  a { display: inline-block; padding: 5px 10px; border: 1px solid #212121; border-radius: 5px; }
+.pagination  a.on {background-color: #f6f2c3;
+    color: #212121;
+    border-radius: 50%;
+    border: 1.2px solid #212121;}
+
+.content1 {
+	padding-top: 25px;
+width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
 }
-.content_wrap .view_info {
-	border: 1px solid #d8d8d8;
-}
-.content_wrap .view_info .view_content {
-	padding-top: 50px;
+.content2 {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+        background-color: #45759bc7;
+    height: 400px;
+    padding-top: 30px;
 }
 
-.content_wrap .view_info .view_answer textarea {
-	margin-top: 20px;
-	width: 100%;
-	height: 100px;
-}
+
+/**QnA view*/
+.QnA{    width: 100px;
+    border-bottom: 2px solid #45759ba1;
+    padding-bottom: 10px;
+    text-align: center;}
+.Q{width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+    padding-bottom: 30px;}
+    
+.A{    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 0px 30px 30px 30px;
+    border: 1px solid #d5d5d5;
+    border-radius: 10px;}
+    
+.Qtext{margin-right: 12px;
+    font-size: 40px;
+    color: #45759bd9;}
+.Atext{margin-right: 12px;
+    font-size: 40px;
+   color: #45759b;}
+
+/**QnA write*/
+.writeContent{padding: 0px 200px 0px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgoldenrodyellow;}
+.write{display: flex;
+    flex-direction: column;}
+.white{background-color: white;
+    text-align: center;
+    padding: 20px 40px 20px 40px;
+    width: 100%;
+    height: 600px;}
+.writeBtn{border: 1px solid;
+    padding: 15px;
+    border-radius: 20px;
+    background-color:#e8fad2;
+    cursor: pointer;
+    margin: 10px;}
+.subjectInput{margin: 15px 10px 15px 10px;}
+.textarea{border-style: none;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    padding: 20px;
+    margin: 10px 15px;}

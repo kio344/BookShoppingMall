@@ -4,42 +4,54 @@
 	layout:decorate="~{layouts/main/main}">
 
 <main layout:fragment="main">
-	<div class="content_wrap">
-		<div class="view_info">
-			<div class="view_content" th:object="${qnADto}">
-				<div>
-					<span>제목</span>
-					<h2 th:text="*{subject}"></h2>
-				</div>
-				<div>
-					<span>작성자</span>
-					<h2 th:text="*{poster}"></h2>
-				</div>
-				<div class="wrap_text" th:text="*{question}"></div>
-			</div>
-			<th:block th:if="${qnADto.isAnswered == false}">
-				<th:block th:if="${#strings.equals(session.user.userType, 'ADMIN')}">
-					<div class="view_answer">
-						<form method="post"
-							th:action="@{/QnA/comment/{id}(id=${qnADto.id})}">
-							<input type="text" th:field="${qnADto.adminName}">
-							<textarea name="answer" th:field="${qnADto.answer}"></textarea>
-							<button type="submit">
-								<i class="xi-pen xi-x">글쓰기</i>
-							</button>
-						</form>
-					</div>
-				</th:block>
-			</th:block>
-			<th:block th:if="${qnADto.isAnswered == true}">
-				<div>
-					<h1>└ 답변</h1>
-					<h2 th:text="${qnADto.adminName}"></h2>
-					<div th:text="${qnADto.answer}"></div>
-				</div>
-			</th:block>
+<div class="backColor">
+	<div class="content1">
+		<div>
+			<h1 class="QnA">Q&A</h1>
 		</div>
 	</div>
+	<div class="Q">
+		<div th:object="${qnADto}">
+			<div class="flex">
+				<h1 class="Qtext">Q</h1>
+				<h2 th:text="*{subject}"></h2>
+			</div>
+			<h3 th:text="*{subject}"></h3>
+			<h4 th:text="*{poster}"></h4>
+		</div>
+		<div class="wrap_text" th:text="*{question}"></div>
+	</div>
+	</div>
+	<th:block th:if="${qnADto.isAnswered == false}">
+		<th:block th:if="${#strings.equals(session.user.userType, 'ADMIN')}">
+			<div class="view_answer">
+				<form method="post"
+					th:action="@{/QnA/comment/{id}(id=${qnADto.id})}">
+					<input type="text" th:field="${qnADto.adminName}">
+					<textarea name="answer" th:field="${qnADto.answer}"></textarea>
+					<button type="submit">
+						<i class="xi-pen xi-x">글쓰기</i>
+					</button>
+				</form>
+			</div>
+		</th:block>
+	</th:block>
+
+	<th:block th:if="${qnADto.isAnswered == true}">
+		<div class="content2">
+			<div>
+				<div class="A">
+					<div class="flex">
+						<h1 class="Atext">A</h1>
+						<h2>답변</h2>
+					</div>
+					<h2 th:text="${qnADto.adminName}"></h2>
+					<br>
+					<div th:text="${qnADto.answer}"></div>
+				</div>
+			</div>
+		</div>
+	</th:block>
 </main>
 
 </html>
