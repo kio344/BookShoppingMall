@@ -1,75 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleag/layout" layout:decorate="~{layouts/main/main}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleag/layout"
+	layout:decorate="~{layouts/main/main}">
 
-	<main layout:fragment="main">
-		<div class="content">
-			<div class="submenu">
-				<ul>
-					<li><a th:href="@{/board/notice}">공지사항</a></li>
-					<li><a th:href="@{/board/freetalk}">자유게시판</a></li>
-					<li><a th:href="@{/board/info}">정보공유</a></li>
-					<li><a th:href="@{/board/good}">추천게시판</a></li>
-				</ul>
+<main layout:fragment="main">
+	<div class="content">
+		<div class="submenu">
+			<ul>
+				<li><a th:href="@{/board/notice}">공지사항</a></li>
+				<li><a th:href="@{/board/freetalk}">자유게시판</a></li>
+				<li><a th:href="@{/board/info}">정보공유</a></li>
+				<li><a th:href="@{/board/good}">추천게시판</a></li>
+			</ul>
+		</div>
+		<div class="board_info">
+			<h2 th:text="${boardName}"></h2>
+			<div class="board_search">
+				<form method="post" th:action="@{/board/{id}(id=${boardId})}"
+					autocomplete="off">
+					<select class="select" name="select">
+						<option value="id">번호</option>
+						<option value="subject">제목</option>
+						<option value="poster">작성자</option>
+					</select> <input type="text" name="search" th:value="${search}">
+					<button type="submit">
+						<i class="xi-search xi-x"></i>
+					</button>
+				</form>
 			</div>
-			<div class="board_info">
-				<h2 th:text="${boardName}"></h2>
-				<div class="board_search">
-					<form method="post" th:action="@{/board/{id}(id=${boardId})}" autocomplete="off">
-						<select class="select" name="select">
-							<option value="id">번호</option>
-							<option value="subject">제목</option>
-							<option value="poster">작성자</option>
-						</select>
-						<input type="text" name="search" th:value="${search}">
-						<button type="submit"><i class="xi-search xi-x"></i></button>
-					</form>
-				</div>
-				<table>
-					<thead>
-						<tr class="info_header">
-							<th class="col1">번호</th>
-							<th class="col2">제목</th>
-							<th class="col3">작성자</th>
-							<th class="col4">작성일</th>
-							<th class="col5">조회수</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="info_body" th:each="board : ${boards}" th:object="${board}">
-							<td class="col1" th:text="*{id}">no</td>
-							<td class="col2">
-								<a th:href="@{/board/view/{id}(id=${board.id})}" th:text="*{subject}"></a>
-								<th:block th:if="*{private == true}"><i class="xi-lock"></i></th:block>
-							</td>
-							<td class="col3">
-								<span th:text="*{poster}"></span>
-								<span>(<th:block th:text="*{user.memId}"></th:block>)</span>
-							</td>
-							<td class="col4" th:text="${#temporals.format(board.regDt, 'yyyy.MM.dd HH.mm')}">regDt</td>
-							<td class="col5" th:text="*{hit}">count</td>
-						</tr>
-					</tbody>
-				</table>
+			<table>
+				<thead>
+					<tr class="info_header">
+						<th class="col1">번호</th>
+						<th class="col2">제목</th>
+						<th class="col3">작성자</th>
+						<th class="col4">작성일</th>
+						<th class="col5">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info_body" th:each="board : ${boards}"
+						th:object="${board}">
+						<td class="col1" th:text="*{id}">no</td>
+						<td class="col2"><a
+							th:href="@{/board/view/{id}(id=${board.id})}"
+							th:text="*{subject}"></a> <th:block th:if="*{private == true}">
+								<i class="xi-lock"></i>
+							</th:block></td>
+						<td class="col3"><span th:text="*{poster}"></span> <span>(<th:block
+									th:text="*{user.memId}"></th:block>)
+						</span></td>
+						<td class="col4"
+							th:text="${#temporals.format(board.regDt, 'yyyy.MM.dd HH.mm')}">regDt</td>
+						<td class="col5" th:text="*{hit}">count</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="bottom">
 				<div class="write">
-					<a th:href="@{/board/write/{id}(id=${boardId})}"><i class="xi-pen xi-x">글쓰기</i></a>
+					<a th:href="@{/board/write/{id}(id=${boardId})}"><i
+						class="xi-pen xi-x">글쓰기</i></a>
 				</div>
 				<div class="page_wrap" th:object="${pagination}">
 					<th:block th:if="*{isFirstCnt == false}">
-						<a th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
+						<a
+							th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
 							<i class="xi-backward">이전</i>
 						</a>
 					</th:block>
 					<th:block th:each="page : ${pagination.pages}">
-							<a th:href="@{/board/{id}?page={page}(id=${boardId}, page=${page})}" th:text="${page}"></a>
+						<a
+							th:href="@{/board/{id}?page={page}(id=${boardId}, page=${page})}"
+							th:text="${page}"></a>
 					</th:block>
 					<th:block th:if="*{isLastCnt == false}">
-						<a th:href="@{/board/{id}?page={next}(id=${boardId}, next=${pagination.next})}">
+						<a
+							th:href="@{/board/{id}?page={next}(id=${boardId}, next=${pagination.next})}">
 							<i class="xi-forward">다음</i>
 						</a>
 					</th:block>
 				</div>
 			</div>
 		</div>
-	</main>
+	</div>
+</main>
 
 </html>
