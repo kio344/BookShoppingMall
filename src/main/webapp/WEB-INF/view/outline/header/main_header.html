@@ -20,7 +20,7 @@
 				<th:block th:unless="${session.user == null}">
 					<input type="text" disabled th:value="${session.user.fakeName}">
 					<a th:href="@{/mypage}">MYPAGE</a>
-					<a href="">LOGOUT</a>
+					<a th:href="@{/user/logout}">LOGOUT</a>
 				</th:block>
 
 			<th:block th:if="${session.user != null}"> <!-- UserType 이 ADMIN 일 경우 관리자 페이지 표출, SELLER 일 경우 판매자 페이지 표출 -->
