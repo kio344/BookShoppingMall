@@ -1,7 +1,5 @@
 package common.auth;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,10 +23,8 @@ public class UserTypeCheck implements HandlerInterceptor{
 			}
 		}
 		
-		PrintWriter out = response.getWriter();
-		response.sendRedirect(request.getContextPath());
+		response.sendRedirect(request.getContextPath() + "/error");
 		
-		out.print("<script>alert('안돼');</script>");
 		
 		return false;
 	}
