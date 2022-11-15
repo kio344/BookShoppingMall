@@ -113,7 +113,6 @@ public class BoardDataDao {
 				entities.setParameter(select, search);
 			}
 		}
-		
 		entities.setFirstResult(offset);
 		entities.setMaxResults(limit);
 		
