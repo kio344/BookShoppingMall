@@ -37,10 +37,25 @@ public class AdminProductService {
 			
 			productDao.addProduct(ProductRequestDto.toRequest(dto));
 			
-			productRequestDao.save(dto);
+			productRequestDao.update(dto);
 //			productRequestDao.remove(dto);
 		}
 		/** 수정 시작 E */
+	}		
+	
+	public void remove(HttpServletRequest request) {
+		String[] productIds = request.getParameterValues("product");
+		if (productIds == null) {
+			throw new RuntimeException("상품을 선택 하세요.");
+		}
+		for(String product : productIds) {
+			
+		ProductRequestDto dto = new  ProductRequestDto();
+		dto = productRequestDao.get(Long.parseLong(product));
+		
+		productRequestDao.remove(dto);
+		
+		}
 	}
 	
 	public void rejected(HttpServletRequest request) {
@@ -75,5 +90,7 @@ public class AdminProductService {
 		
 		return progress == compare;
 	}
+
+	
 	
 }

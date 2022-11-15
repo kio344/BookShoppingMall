@@ -35,6 +35,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import common.auth.BoardPrivateCheck;
 import common.auth.MemberCheck;
+import common.auth.UserTypeCheck;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
 @Configuration
@@ -121,6 +122,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(boardPrivateCheck()).addPathPatterns("/board/view/**");
 		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**").excludePathPatterns("/board/view/**");
+		registry.addInterceptor(userTypeCheck()).addPathPatterns("/admin/**", "/seller/**");
 	}
 
 	@Bean
@@ -148,6 +150,11 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Bean
 	public MemberCheck memberCheck() {
 		return new MemberCheck();
+	}
+	
+	@Bean
+	public UserTypeCheck userTypeCheck() {
+		return new UserTypeCheck();
 	}
 	
 	@Bean

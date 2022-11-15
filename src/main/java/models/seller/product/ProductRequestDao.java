@@ -29,6 +29,18 @@ public class ProductRequestDao {
 		return ProductRequestDto.toDto(entity);
 	}
 	
+	public void update(ProductRequestDto dto){
+		
+		ProductRequest entity = em.find(ProductRequest.class, dto.getNum());
+		
+		entity.setProgress(Progress.Agree);
+		
+		em.persist(entity);
+		
+		em.flush();
+		
+	}
+	
 	public ProductRequestDto save(ProductRequestDto dto){
 		
 		ProductRequest entity = ProductRequestDto.toEntity(dto);
