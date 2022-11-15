@@ -4,7 +4,7 @@
 	layout:decorate="~{layouts/main/main}">
 <main layout:fragment="main">
 
-	<form method="post" th:action="@{/shop/payment/process}" class="outer">
+	<form target="ifrm"  method="post" th:action="@{/shop/payment/process}" class="outer">
 		<div class="productArea" th:object="${product}">
 			<div class="productImg">
 
@@ -134,6 +134,8 @@
 							<input id="extraAddress" th:field="${request.reqAddress}">
 						</dd>
 					</dl>
+					<input type="hidden" name="productNum" th:value="${product.num}" >
+					<input type="hidden" name="count" th:value="${param.count}">
 					
 				</div>
 			</div>
@@ -144,7 +146,7 @@
 				<button id="buy">결제하기</button>
 			</div>
 
-
+			
 
 		</div>
 
@@ -152,6 +154,10 @@
 
 	</form>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+	
+	<div id="ifrm_back" class="dn">
+		<iframe name="ifrm" id="ifrm" class=""></iframe>
+	
+	</div>
 </main>
 </html>
