@@ -1,5 +1,5 @@
 main {
-	background-color: rgb(247, 243, 243);
+	background-color: #fefaf0;
 }
 
 .content {
@@ -27,7 +27,7 @@ main {
 
 .content .board_info {
 	margin: 0 auto;
-	width: 1200px;
+	width: 1100px;
 	text-align: center;
 }
 
@@ -92,10 +92,13 @@ select::-ms-expand {
 	float: right;
 }
 
+.bottom{    margin-top: 25px;
+    padding-bottom: 30px;}
+
 /** 페이지 네이션 */
 .content .board_info .page_wrap a {
-	border: 1px solid #aaffff;
-	background-color: #aaffff;
-	padding: 5px;
-	font-weight: 700;
+	border: 1.5px solid #678dab;
+    padding: 5px 8px;
+    font-weight: 700;
+    border-radius: 50%;
 }

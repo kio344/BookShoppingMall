@@ -4,18 +4,15 @@
 >
 <body>
 <nav th:fragment="nav">
-			<div id="layer" class="layer">
-			<nav>
+			<nav id="slide_menu">
 				<div class="layout_width">
 					<a th:href="@{/admin/board}">게시판 관리</a>
 					<a th:href="@{/admin/productManager}">상품 관리</a>
-
 					<a th:href="@{/member}">유저 관리</a>
 					<a href="#">?</a>
-
 				</div>
 			</nav>
-			</div>
+			<div id="layer" class="dn"></div>
 	</nav>
 </body>
 </html>
