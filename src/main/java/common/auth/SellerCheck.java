@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import models.user.UserDto;
 import models.user.UserType;
 
-public class UserTypeCheck implements HandlerInterceptor{
+public class SellerCheck implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -18,7 +18,7 @@ public class UserTypeCheck implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		UserDto user = (UserDto)session.getAttribute("user");
 		if(user != null) {
-			if(user.getUserType() == UserType.ADMIN || user.getUserType() == UserType.SELLER) {
+			if(user.getUserType() == UserType.SELLER) {
 				return true;
 			}
 		}

@@ -35,7 +35,8 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import common.auth.BoardPrivateCheck;
 import common.auth.MemberCheck;
-import common.auth.UserTypeCheck;
+import common.auth.SellerCheck;
+import common.auth.AdminCheck;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
 @Configuration
@@ -122,7 +123,8 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(boardPrivateCheck()).addPathPatterns("/board/view/**");
 		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**").excludePathPatterns("/board/view/**");
-		registry.addInterceptor(userTypeCheck()).addPathPatterns("/admin/**", "/seller/**");
+		registry.addInterceptor(AdminCheck()).addPathPatterns("/admin/**");
+		registry.addInterceptor(sellerCheck()).addPathPatterns("/seller/**");
 	}
 
 	@Bean
@@ -130,7 +132,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.addBasenames("message.testFolder.test", "message.user.user", "message.errors.errors");
 		messageSource.setDefaultEncoding("UTF-8");
-
+ 
 		return messageSource;
 	}
 
@@ -153,8 +155,13 @@ public class MvcConfig implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public UserTypeCheck userTypeCheck() {
-		return new UserTypeCheck();
+	public AdminCheck AdminCheck() {
+		return new AdminCheck();
+	}
+	
+	@Bean
+	public SellerCheck sellerCheck() {
+		return new SellerCheck();
 	}
 	
 	@Bean
