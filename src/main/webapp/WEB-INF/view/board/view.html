@@ -15,7 +15,7 @@
 		</div>
 		<div class="board_view" th:object="${boardDataDto}">
 			<div class="view_header">
-				<span><strong>게시글</strong></span>
+				<h4 class="board">게시글</h4>
 				<th:block th:if="${session.user != null}">
 					<a th:if="${session.user.memId == boardDataDto.user.memId}"
 						th:href="@{/board/update/{id}(id=${boardDataDto.id})}"> <i
@@ -29,23 +29,21 @@
 			</div>
 			<div class="view_content">
 				<div th:if="${fileInfos != null}" class="file_wrap">
-					<button type="button" id="file_btn" class="file_btn">
-						<i class="xi-caret-down-square-o">파일목록</i>
-					</button>
 					<ul class="file_list" id="file_list">
 						<li th:each="file : ${fileInfos}" th:object="${file}"><a
 							th:href="@{/file/download/{id}(id=${file.id})}"
 							th:text="*{fileName}"></a></li>
 					</ul>
+					<button type="button" id="file_btn" class="file_btn">
+						<i class="xi-caret-down-square-o">파일목록</i>
+					</button>
 				</div>
 				<div>
-					<span>제목</span>
-					<h2 th:text="*{subject}"></h2>
+					<h1 class="subject" th:text="*{subject}"></h1>
 				</div>
-				<div>
-					<span>작성자</span> <span>(<th:block th:text="*{user.memId}"></th:block>)
-					</span>
-					<h2 th:text="*{poster}"></h2>
+				<div class="flex">
+					<h4 class="gray" th:text="*{poster}"></h4>
+					<span  class="gray pl-10" >(<th:block th:text="*{user.memId}"></th:block>)</span>
 				</div>
 				<div class="view_text" th:utext="*{contents}"></div>
 			</div>
@@ -55,11 +53,13 @@
 						<form method="post" th:action="@{/board/comment/write}"
 							autocomplete="off">
 							<input type="hidden" name="gid" th:value="${boardDataDto.gid}">
-							<h2 th:text="${session.user.fakeName}"></h2>
-							<textarea name="comments"></textarea>
+							<div class="submit">
+							<h4 class="fakeName" th:text="${session.user.fakeName}"></h4>
 							<button type="submit" class="comment_btn">
-								<i class="xi-comment xi-5x"></i>
+								<i class="xi-comment xi-5x icon"></i>
 							</button>
+							</div>
+							<textarea name="comments"></textarea>
 						</form>
 					</div>
 				</th:block>

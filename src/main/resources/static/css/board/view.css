@@ -1,12 +1,43 @@
 main {
-	background-color: rgb(247, 243, 243);
+	background-color: #b6d0e170;
 }
 
+.flex{    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 0.5px solid #8080806b;
+       padding-left: 10px;}
+
+.gray{    color: gray;
+    font-weight: 300;}
+.pl-10{padding-left: 5px;}
+.fakeName{    margin: 20px 10px 10px 10px;}
+.submit{display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    margin: 30px 20px 0px 20px;}
+
+.icon{    font-size: 2.5em;}
+
 .content {
-	padding-top: 50px;
-	margin: 0 auto;
-	position: relative;
+    margin: 0 auto;
+    position: relative;
 }
+
+.subject{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board{
+    margin: 0 auto;
+    color: gray;
+    font-weight: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
 
 .content .submenu {
 	float: left;
@@ -17,6 +48,7 @@ main {
 	background-color: #b6d0e1;
 }
 
+
 .content .submenu ul li {
 	margin: 10px;
 }
@@ -26,8 +58,10 @@ main {
 }
 
 .content .board_view {
-	margin: 0 auto;
-	width: 1200px;
+margin: 0 auto;
+    width: 900px;
+    background-color: white;
+    padding: 50px 30px;
 }
 
 .content .board_view .view_header span {
@@ -37,11 +71,6 @@ main {
 .content .board_view .view_header a {
 	float: right;
 	cursor: pointer;
-}
-
-.content .board_view .view_header {
-	border-bottom: 1px solid #000000;
-	padding-bottom: 5px;
 }
 
 .content .board_view .view_content {
@@ -70,20 +99,20 @@ main {
 	margin-bottom: 20px;
 }
 .content .board_view .view_content .view_text {
-	border: 1px solid #000;
-	min-height: 250px;
+    min-height: 300px;
+    border-bottom: 0.5px solid #8080806b;
+    padding-left: 10px;
 }
 .content .board_view .comment_wrap .write_comment textarea {
-	width: calc(100% - 200px);
-	height: 100px;
-	resize: none;
+    width: 820px;
+    height: 100px;
+    resize: none;
+    border: 1.5px solid #8080807d;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .content .board_view .comment_wrap .write_comment .comment_btn {
-	width: 180px;
-	height: 100px;
-	float: right;
-	text-align: center;
-	border: 1px solid #616161;
 	background-color: #fff;
 	cursor: pointer;
 }

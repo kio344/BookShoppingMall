@@ -17,7 +17,7 @@
 				<h1 class="blue">수많은 도서</h1>
 				<h3 class="blue">첫 달 무료 구독을 통해</h3>
 				<h3 class="blue">어떤 도서가 있는지 확인해보세요!</h3>
-				<img class="books" src="../image/books.png" />
+				<img class="books" th:src="@{/image/books.png}">
 			</div>
 			<hr class="hr">
 		</div>
@@ -33,9 +33,9 @@
 				</div>
 
 				<div class="phones lazy">
-					<img class="phone" src="<c:url value=' static/image/phone.png'/>"/>
-					<img class="phone" src="<c:url value=' static/image/phone.png'/>"/>
-					<img class="phone" src="<c:url value=' static/image/phone.png'/>"/>
+					<img class="phone" th:src="@{/image/phone.png}"/>
+					<img class="phone" th:src="@{/image/phone.png}"/>
+					<img class="phone3" th:src="@{/image/phone.png}"/>
 				</div>
 			</section>
 		</div>
