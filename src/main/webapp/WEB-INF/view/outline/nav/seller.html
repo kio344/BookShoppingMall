@@ -4,8 +4,7 @@
 >
 <body>
 <nav th:fragment="nav">
-			<div id="layer" class="layer">
-			<nav>
+			<nav id="slide_menu">
 				<div class="layout_width">
 					<a th:href="@{/seller/product/orderManager}">주문 관리</a>
 					<a th:href="@{/seller/sellerProduct}">상품 신청</a>
@@ -14,7 +13,7 @@
 					<a th:href="@{/seller/product/edit}">상품 수정 하기</a>
 				</div>
 			</nav>
-			</div>
+			<div id="layer" class="dn"></div>
 	</nav>
 </body>
 </html>
