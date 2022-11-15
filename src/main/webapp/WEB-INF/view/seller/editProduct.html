@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/seller/sellerLayout}">
-
+	
 <main layout:fragment="main">
 	<h1>상품 수정 페이지</h1>
-
+	
 	<form th:action="@{/seller/product/edit}" method="get">
 		<input type="text" th:name="search">
 			<select th:name="searchType">
@@ -14,8 +14,8 @@
 			</select>
 			<button>검색하기</button>
 	</form>
-
-	<form th:action="@{/seller/product/delete}" method="post">
+	
+	<form th:action="@{/seller/product/update}" method="post">
 		<table>
 			<thead>
 				<tr>
@@ -64,7 +64,7 @@
 
 					<td>
 						<div>
-							<input type="number" disabled th:value="*{price}">
+							<input type="number" th:value="*{price}" th:name="price + ${('_') + (list.num)}">
 						</div>
 					</td>
 
@@ -82,14 +82,18 @@
 
 					<td>
 						<div>
-							<input type="number" disabled th:value="*{count}">
+							<input type="number" th:value="*{count}" th:name="count + ${('_') + (list.num)}">
 						</div>
 					</td>
 					</th:block>
 				</tr>
 			</tbody>
 		</table>
-		<button name="">삭제하기</button>
+		상품을<select th:name="mode">
+				<option value="update">수정</option>
+				<option value="remove">삭제</option>
+				</select>합니다
+		<button>처리하기</button>
 	</form>
 </main>
 </html>

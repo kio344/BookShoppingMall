@@ -34,11 +34,21 @@ public class SearchDao {
 		if(searchType.equals("bookName")) {
 			entity.setParameter("bookName", search);
 		}else {
-			entity.setParameter("wrtier", search);
+			entity.setParameter("writer", search);
 		}
 		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList();
 		
 		return list;
 	}
+	
+	public List<ProductRequestDto> gets(){
+		
+		TypedQuery<ProductRequest> entity = em.createQuery("SELECT p FROM ProductRequest p", ProductRequest.class);
+		
+		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList(); 
+		
+		return list;
+	}
+	
 }	
