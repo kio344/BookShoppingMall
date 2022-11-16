@@ -1,19 +1,19 @@
 package controllers.shop;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,15 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import models.shop.PaymentRequest;
-import models.shop.ProductDto;
-import models.shop.TossData;
-import models.shop.TossResult;
+import models.shop.payment.PaymentDto;
+import models.shop.payment.PaymentProgress;
+import models.shop.payment.PaymentRequest;
+import models.shop.product.ProductDto;
 import models.shop.service.PaymentService;
 import models.shop.service.ShopService;
+import models.shop.toss.TossData;
+import models.shop.toss.TossPayment;
+import models.shop.toss.TossResult;
 import models.user.UserDto;
 import models.user.UserType;
 
@@ -44,16 +44,92 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 
+	
+
+	@GetMapping("/testpayment/faile")
+	@ResponseBody
+	public String testFaile() {
+
+		System.out.println("결제실패");
+
+		return "fail";
+	}
+
+	/** 구매하기 눌렀을때? 결제 페이지로 이동 */
 	@GetMapping("/payment/{productNum}")
 	public String payment(@PathVariable(required = false, name = "productNum") Long productNum,
-			@RequestParam(name = "count", required = false, defaultValue = "123") int count,
 			@RequestParam(name = "mode") String mode, Model model, HttpSession session) {
+
+		PaymentRequest request = new PaymentRequest();
+		request.setZipCode("10506");
+		request.setRoadAddress("경기 고양시 덕양구 호수로 6");
+		request.setDetailAddress("상세주소");
+		request.setReqAddress("참고항목");
+		model.addAttribute("paymentRequest", request);
+
+		return _payment(productNum, mode, model, session);
+
+	}
+
+	/**
+	 * @GetMapping("/payment/{productNum}") 쪽 메서드 : 결제 페이지로 이동, 결제 실패시(hasErrors) 다시
+	 * 결제페이지로 이동
+	 */
+	private String _payment(Long productNum, String mode, Model model, HttpSession session) {
 
 		ProductDto product = shopService.getProduct(productNum);
 
+		autoLogin(session);
+
+		switch (mode) {
+		case "buy":
+			System.out.println("구매");
+
+			model.addAttribute("addCss", new String[] { "/shop/payment" });
+			model.addAttribute("addJs", new String[] { "/shop/payment" });
+			model.addAttribute("product", product);
+
+			return "shop/payment";
+
+		case "addCart":
+			System.out.println("장바구니에 추가");
+			return "shop/shop";
+
+		default:
+			break;
+		}
+
+		return "shop/payment";
+	}
+
+	/** 결제 진행 */
+	@PostMapping("/payment/process")
+	@ResponseBody
+	public PaymentDto paymentPs2(@Valid PaymentRequest request, Errors error, HttpSession session,
+			HttpServletRequest httpServletRequest, Model model) {
+
+		System.out.println(request);
+
 		UserDto user = (UserDto) session.getAttribute("user");
 
-		PaymentRequest request = new PaymentRequest();
+		ProductDto productDto = shopService.getProduct(request.getProductNum());
+		request.setUserNum(user.getMemNo());
+		request.setAddress();
+		
+		
+
+		
+		return 	paymentService.paymentProcess(request);
+
+		
+	}
+
+
+
+	/** 자동로그인 */
+	private void autoLogin(HttpSession session) {
+		/** 로그인 귀찮을때 S */
+		UserDto user = (UserDto) session.getAttribute("user");
 
 		if (user == null) {
 			user = new UserDto();
@@ -67,109 +143,25 @@ public class PaymentController {
 
 			session.setAttribute("user", user);
 		}
-
-		switch (mode) {
-		case "buy":
-			System.out.println("구매");
-
-			model.addAttribute("addCss", new String[] { "/shop/payment" });
-			model.addAttribute("addJs", new String[] { "/shop/payment" });
-			model.addAttribute("request", request);
-			model.addAttribute("product", product);
-
-			return "shop/payment";
-
-		case "addCart":
-			System.out.println("판매");
-			return "shop/shop";
-
-		default:
-			break;
-		}
-
-		return "shop/payment";
+		/** 로그인 귀찮을때 E */
 
 	}
 
-	
-	@PostMapping("/payment/process")
-	public String paymentPs(PaymentRequest request, HttpSession session) {
+	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/sc")
+	public String processSc(String orderId,String paymentKey,Long amount) {
+		String paymentId=orderId.split("__")[1];
+		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET);
 
-		UserDto user = (UserDto) session.getAttribute("user");
+		return "shop/shop";
 
-		ProductDto productDto=shopService.getProduct(request.getProductNum());
-		request.setUserNum(user.getMemNo());
-
-		///////
-
-		URL url = null;
-		URLConnection connection = null;
-		StringBuilder responseBody = new StringBuilder();
-		try {
-			url = new URL("https://pay.toss.im/api/v2/payments");
-			connection = url.openConnection();
-			connection.addRequestProperty("Content-Type", "application/json");
-			connection.setDoOutput(true);
-			connection.setDoInput(true);
-
-			org.json.simple.JSONObject jsonBody = new JSONObject();
-			jsonBody.put("orderNo", System.currentTimeMillis());
-			jsonBody.put("amount", request.getCount()*productDto.getPrice());
-			jsonBody.put("amountTaxFree", 0);
-			jsonBody.put("productDesc",productDto.getBookName());
-			jsonBody.put("apiKey", "sk_test_w5lNQylNqa5lNQe013Nq");
-			jsonBody.put("autoExecute", false);
-			jsonBody.put("retUrl", "http://localhost:3000/BookShoppingMall/shop/payment/sucess");
-			jsonBody.put("retCancelUrl", "http://localhost:3000/BookShoppingMall/shop/payment/fail");
-
-			BufferedOutputStream bos = new BufferedOutputStream(connection.getOutputStream());
-			bos.write(jsonBody.toJSONString().getBytes(StandardCharsets.UTF_8));
-			bos.flush();
-			bos.close();
-
-			BufferedReader br = new BufferedReader(
-					new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				responseBody.append(line);
-			}
-			br.close();
-		} catch (Exception e) {
-			responseBody.append(e);
-		}
-		System.out.println(responseBody.toString());
-		///////
-		ObjectMapper objectMapper=new ObjectMapper();
-		TossData tossData=null;
-		try {
-			tossData=objectMapper.readValue(responseBody.toString(), TossData.class);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "redirect:"+tossData.getCheckoutPage();
 	}
-	
-	@ResponseBody
-	@PostMapping("/payment/result")
-	public TossResult processRs(@RequestBody TossResult resultCallback) {
+
+	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/fail")
+	public String processFail(String orderId,String paymentKey,Long amount) {
+		String paymentId=orderId.split("__")[1];
 		
+		paymentService.removePayment(Long.parseLong(paymentId));
 		
-		return resultCallback;
-		
-		
-	}
-	
-	@ResponseBody
-	@GetMapping(produces = "text/html;charset=utf-8",path = "/payment/sucess")
-	public String processSc() {
-		return "<script>alert('결제완료');parent.location.replace('http://localhost:3000/BookShoppingMall/shop/index')</script> ";
-		
-	}
-	
-	@ResponseBody
-	@GetMapping(produces = "text/html;charset=utf-8",path = "/payment/fail")
-	public String processFail() {
-		return "<script>alert('오류발생');parent.location.replace('http://localhost:3000/BookShoppingMall/shop/index')</script> ";
+		return "shop/shop";
 	}
 }

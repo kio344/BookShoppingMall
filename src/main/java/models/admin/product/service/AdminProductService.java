@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import models.seller.product.ProductRequestDao;
 import models.seller.product.ProductRequestDto;
 import models.seller.product.Progress;
-import models.shop.ProductDao;
+import models.shop.product.ProductDao;
 import models.user.UserDto;
 
 @Service

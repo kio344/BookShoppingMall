@@ -2,6 +2,7 @@ package controllers.shop;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import models.shop.ProductDto;
+import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
+import models.shop.userCategory.UserCategoryDto;
+import models.user.UserDto;
 
 @Controller
 @RequestMapping("/shop")
@@ -23,7 +26,7 @@ public class ShopController {
 	private ShopService service;
 	
 	@GetMapping("/index")
-	public String shop(Model model) {
+	public String shop(Model model,HttpSession session) {
 		String[] addJs=new String[] {"/shop/index"};
 		String[] addCss=new String[] {"/shop/index"};
 		model.addAttribute("addJs",addJs);
@@ -36,8 +39,14 @@ public class ShopController {
 		List<ProductDto> bestSellerList=service.getBestSeller(0, 5);
 		model.addAttribute("bestSellerList",bestSellerList);
 		
-		System.out.println(newProductList);
+		//
+		UserCategoryDto userCategoryDto=new UserCategoryDto();
+		
+		UserDto user=(UserDto)session.getAttribute("user");
+		
+		//
 		return "shop/shop";
+		
 	}
 	
 
