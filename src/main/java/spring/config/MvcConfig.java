@@ -33,9 +33,10 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import common.auth.AdminCheck;
 import common.auth.BoardPrivateCheck;
 import common.auth.MemberCheck;
-
+import common.auth.SellerCheck;
 import models.shop.MyCategoryRecode;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
@@ -116,19 +117,16 @@ public class MvcConfig implements WebMvcConfigurer {
 		ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json()
 				.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(formatter)).build();
 		converters.add(0, new MappingJackson2HttpMessageConverter(objectMapper));
-		
+
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(boardPrivateCheck()).addPathPatterns("/board/view/**");
-		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**").excludePathPatterns("/board/view/**");
-		//registry.addInterceptor(myCategoryRecode()).addPathPatterns("/shop/product/**");
-	}
-	
-	@Bean
-	public MyCategoryRecode myCategoryRecode() {
-		return new MyCategoryRecode();
+		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**", "/QnA/**")
+				.excludePathPatterns("/board/view/**");
+		registry.addInterceptor(AdminCheck()).addPathPatterns("/admin/**");
+		registry.addInterceptor(sellerCheck()).addPathPatterns("/seller/**");
 	}
 
 	@Bean
@@ -147,24 +145,34 @@ public class MvcConfig implements WebMvcConfigurer {
 
 		return configurer;
 	}
-	
+
 	@Bean
 	public BoardPrivateCheck boardPrivateCheck() {
 		return new BoardPrivateCheck();
 	}
-	
+
 	@Bean
 	public MemberCheck memberCheck() {
 		return new MemberCheck();
 	}
-	
+
+	@Bean
+	public AdminCheck AdminCheck() {
+		return new AdminCheck();
+	}
+
+	@Bean
+	public SellerCheck sellerCheck() {
+		return new SellerCheck();
+	}
+
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multi = new CommonsMultipartResolver();
 		multi.setMaxUploadSize(-1);
 		multi.setMaxUploadSizePerFile(-1);
-		
+
 		return multi;
 	}
-	
+
 }

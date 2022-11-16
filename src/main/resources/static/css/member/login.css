@@ -1,7 +1,7 @@
 .pointer{cursor: pointer;}
 .width100{width:100%;}
 .mt-40{margin-top:40px;}
-.content{    padding: 100px 300px 100px 300px;
+.content{    padding: 0px 300px 100px 300px;
     display: flex;
     align-items: center;
     justify-content: center;

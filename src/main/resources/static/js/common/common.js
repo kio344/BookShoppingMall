@@ -15,7 +15,7 @@ document.addEventListener('scroll', () => {
  */
 
 
-/**좌측바 */
+/**좌측바 
 const sideMenuBtnEl2 = document.querySelector(".join-menu #btn");
 const sideMenuEl = document.querySelector(".layer");
 if (sideMenuBtnEl2 && sideMenuEl) {
@@ -27,7 +27,64 @@ if (sideMenuBtnEl2 && sideMenuEl) {
 			classList.add("on");
 		}
 	});
-}
+}*/
+
+const slideMenu = {
+		// 슬라이드 메뉴 열기
+		open() {
+			const layer = document.getElementById("layer");
+			if (layer) {
+				layer.classList.remove("dn");
+			}
+			const el = document.getElementById("slide_menu");
+			if (el) {
+				el.classList.remove("on")
+				el.classList.add("on");
+			}
+		},
+		close() {
+			const el = document.getElementById("slide_menu");
+			if (el) {
+				el.classList.remove("on");
+			}
+			
+			const layer = document.getElementById("layer");
+			if (layer) {
+				setTimeout(function() {
+				layer.classList.remove("dn")
+				layer.classList.add("dn");
+				}, 1000);
+			}
+			
+		}
+};
+
+window.addEventListener("DOMContentLoaded", function() {
+	
+	const slideMenuEl = document.getElementById("btn");
+	if (slideMenuEl) {
+		// 슬라이드 메뉴 열기
+		slideMenuEl.addEventListener("click", function() {
+			const el = document.getElementById("slide_menu");
+			if (el.classList.contains("on")) {
+				slideMenu.close();
+			} else {
+				slideMenu.open();
+			}
+		});
+	 
+		
+		// 슬라이드 메뉴 닫기
+		const layerDimEl = document.getElementById("layer");
+		if (layerDimEl) {
+			layerDimEl.addEventListener("click", function() {
+				slideMenu.close();
+			});
+		}
+	}
+});
+
+
 /**글씨 올라가기 */
 window.addEventListener("DOMContentLoaded", function() {
 	/*

@@ -17,35 +17,44 @@
 			<form method="post" autocomplete="off" th:action="@{/board/write}"
 				th:object="${boardDataRequest}">
 				<div class="write_header">
-					<span><strong>게시판 글쓰기</strong></span> <label for="private">비밀글
-						적용</label> <input type="checkbox" id="private" name="isPrivate"
-						th:field="*{private}">
-					<button type="submit">
-						<i class="xi-pen xi-x">글쓰기</i>
-					</button>
+					<h1 class="community">
+						<strong>COMMUNITY</strong>
+					</h1>
+					<div class="flex">
+						<div>
+						 <input class="poster" type="text" name="poster" th:field="*{poster}">
+							<div th:each="err : ${#fields.errors('poster')}" th:text="${err}"
+								class="error"></div>
+						</div>
+						
+						<div class="flex1">
+						<label class="mr-5" for="private">비밀글 적용</label> <input
+							type="checkbox" id="private" name="isPrivate"
+							th:field="*{private}">
+						<button type="submit">
+							<i class="xi-pen xi-x">글쓰기</i>
+						</button>
+						</div>
+					</div>
 				</div>
 				<div class="password" id="pass">
 					<span>비밀글 전용 비밀번호</span> <input type="password"
 						name="privatePassword" th:field="*{privatePassword}">
 				</div>
-				<input type="hidden" name="gid" th:field="*{gid}"> 
-				<input type="hidden" name="boardId" th:field="*{boardId}"> 
-				<input type="hidden" name="id" th:if="${mode == 'update'}" th:field="*{id}">
+				<input type="hidden" name="gid" th:field="*{gid}"> <input
+					type="hidden" name="boardId" th:field="*{boardId}"> <input
+					type="hidden" name="id" th:if="${mode == 'update'}"
+					th:field="*{id}">
 				<div th:each="err : ${#fields.globalErrors()}" th:text="${err}"
 					class="error"></div>
 				<div class="write_content">
-					<div>
+					<div class="subject">
 						<span>제목</span> <input type="text" name="subject"
 							th:field="*{subject}">
 						<div th:each="err : ${#fields.errors('subject')}" th:text="${err}"
 							class="error"></div>
 					</div>
-					<div>
-						<span>작성자</span> <input type="text" name="poster"
-							th:field="*{poster}">
-						<div th:each="err : ${#fields.errors('poster')}" th:text="${err}"
-							class="error"></div>
-					</div>
+
 					<div id="wrap_file" class="wrap_file">
 						<i class="xi-file-add xi-x"></i> <input type="file" id="file"
 							multiple>
