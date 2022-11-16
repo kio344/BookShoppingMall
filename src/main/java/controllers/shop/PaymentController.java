@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.Session;
+
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
@@ -43,6 +45,9 @@ public class PaymentController {
 
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	private ShopController shopController;
 
 	
 
@@ -61,10 +66,7 @@ public class PaymentController {
 			@RequestParam(name = "mode") String mode, Model model, HttpSession session) {
 
 		PaymentRequest request = new PaymentRequest();
-		request.setZipCode("10506");
-		request.setRoadAddress("경기 고양시 덕양구 호수로 6");
-		request.setDetailAddress("상세주소");
-		request.setReqAddress("참고항목");
+
 		model.addAttribute("paymentRequest", request);
 
 		return _payment(productNum, mode, model, session);
@@ -79,7 +81,6 @@ public class PaymentController {
 
 		ProductDto product = shopService.getProduct(productNum);
 
-		autoLogin(session);
 
 		switch (mode) {
 		case "buy":
@@ -148,20 +149,19 @@ public class PaymentController {
 	}
 
 	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/sc")
-	public String processSc(String orderId,String paymentKey,Long amount) {
+	public String processSc(String orderId,String paymentKey,Long amount,Model model,HttpSession session) {
 		String paymentId=orderId.split("__")[1];
 		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET);
 
-		return "shop/shop";
-
+		return shopController.shop(model, session);
 	}
 
 	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/fail")
-	public String processFail(String orderId,String paymentKey,Long amount) {
+	public String processFail(String orderId,String paymentKey,Long amount,Model model,HttpSession session) {
 		String paymentId=orderId.split("__")[1];
 		
 		paymentService.removePayment(Long.parseLong(paymentId));
 		
-		return "shop/shop";
+		return shopController.shop(model, session);
 	}
 }
