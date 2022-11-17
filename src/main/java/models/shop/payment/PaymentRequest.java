@@ -11,6 +11,8 @@ public class PaymentRequest {
 	private Long productNum;
 
 	private Long userNum;
+	
+	private String userKey;
 
 	private Integer count;
 
@@ -44,6 +46,13 @@ public class PaymentRequest {
 
 	public Long getUserNum() {
 		return userNum;
+	}
+	
+	public void setUserKey(String userKey) {
+		this.userKey = userKey;
+	}
+	public String getUserKey() {
+		return userKey;
 	}
 
 	public void setUserNum(Long userNum) {
@@ -125,10 +134,10 @@ public class PaymentRequest {
 
 	@Override
 	public String toString() {
-		return "PaymentRequest [productNum=" + productNum + ", userNum=" + userNum + ", count=" + count
-				+ ", recipient_name=" + recipient_name + ", recipient_mobile=" + recipient_mobile + ", zipCode="
+		return "PaymentRequest [productNum=" + productNum + ", userNum=" + userNum + ", userKey=" + userKey + ", count="
+				+ count + ", recipient_name=" + recipient_name + ", recipient_mobile=" + recipient_mobile + ", zipCode="
 				+ zipCode + ", roadAddress=" + roadAddress + ", detailAddress=" + detailAddress + ", reqAddress="
-				+ reqAddress + ", address=" + address + ", toString()=" + super.toString() + "]";
+				+ reqAddress + ", address=" + address + "]";
 	}
 
 }
