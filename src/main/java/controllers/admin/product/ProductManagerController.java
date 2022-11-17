@@ -42,8 +42,10 @@ public class ProductManagerController {
 		
 		if(mode.equals("agree")) {
 			productService.agree(request);
-		}else {
+		}else if(mode.equals("rejected")) {
 			productService.rejected(request);
+		}else {
+			productService.remove(request);
 		}
 		
 		return "redirect:/admin/productManager";

@@ -1,4 +1,4 @@
-package models.shop;
+package models.shop.product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import models.common.BaseDto;
 import models.entity.Product;
 import models.seller.product.Progress;
+import models.shop.productReview.ProductReviewDto;
 import models.user.UserDto;
 
 public class ProductDto extends BaseDto {

@@ -1,4 +1,4 @@
-package models.shop;
+package models.shop.productReview;
 
 public class ProductReviewDao {
 

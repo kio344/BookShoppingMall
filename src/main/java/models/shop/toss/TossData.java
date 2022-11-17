@@ -1,4 +1,4 @@
-package models.shop;
+package models.shop.toss;
 
 public class TossData {
 	private String code;
