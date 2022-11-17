@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.client.reactive.ReactorResourceFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -158,5 +159,6 @@ public class MvcConfig implements WebMvcConfigurer {
 		
 		return multi;
 	}
+	
 	
 }
