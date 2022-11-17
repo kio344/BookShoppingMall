@@ -4,7 +4,7 @@
 	layout:decorate="~{layouts/main/main}">
 <main layout:fragment="main">
 
-	<form id="form" method="post" th:action="@{/shop/payment/process}" class="outer">
+	<form id="form" method="post" th:action="@{/shop/payment/processErr}" class="outer">
 		<div class="productArea" th:object="${product}">
 			<div class="productImg">
 
@@ -89,17 +89,23 @@
 					<dl>
 						<dt>이름</dt>
 						<dd>
-							<input th:field="${paymentRequest.recipient_name}" >
-							<span th:each="err : ${#fields.errors('paymentRequest.recipient_name')}" th:text="${err}"></span>
+							<input  th:field="${paymentRequest.recipient_name}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.recipient_name'))}" >	
 							
+							<input style="border-color: #FF5A5A" th:field="${paymentRequest.recipient_name}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.recipient_name'))}" >	
+							
+							
+							<span th:each="err : ${#fields.errors('paymentRequest.recipient_name')}" th:text="${err}"></span>
 						</dd>
 					</dl>
 					<dl>
 						<dt>휴대폰 번호</dt>
 						<dd>
-							<input th:field="${paymentRequest.recipient_mobile}">
-							<span th:each="err : ${#fields.errors('paymentRequest.recipient_mobile')}" th:text="${err}"></span>
+							<input  th:field="${paymentRequest.recipient_mobile}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.recipient_mobile'))}" >	
 							
+							<input style="border-color: #FF5A5A" th:field="${paymentRequest.recipient_mobile}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.recipient_mobile'))}" >	
+							
+							
+							<span th:each="err : ${#fields.errors('paymentRequest.recipient_mobile')}" th:text="${err}"></span>
 						</dd>
 					</dl>
 					
@@ -112,10 +118,17 @@
 					<dl>
 						<dt>우편번호</dt>
 						<dd>
-							<input id="findAddress" readonly="readonly" th:field="${paymentRequest.zipCode}"  >
-							<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" >
+							<input readonly="readonly" th:field="${paymentRequest.zipCode}"  >	
+							
+							
+							<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}" >
 								찾기
 							</button>
+							
+							<button style="border-color: #FF5A5A" type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}">
+								찾기
+							</button>
+							
 							<span th:each="err : ${#fields.errors('paymentRequest.zipCode')}" th:text="${err}"></span>
 
 							
@@ -125,7 +138,11 @@
 					<dl>
 						<dt>주소</dt>
 						<dd>
-							<input id="roadAddress" readonly="readonly" th:field="${paymentRequest.roadAddress}" >
+							<input readonly="readonly"  th:field="${paymentRequest.roadAddress}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.roadAddress'))}" >	
+							
+							<input style="border-color: #FF5A5A" th:field="${paymentRequest.roadAddress}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.roadAddress'))}" >	
+							
+							
 							<span th:each="err : ${#fields.errors('paymentRequest.roadAddress')}" th:text="${err}"></span>
 
 							
@@ -134,7 +151,11 @@
 					<dl>
 						<dt>상세주소</dt>
 			 			<dd>
-							<input id="detailAddress" th:field="${paymentRequest.detailAddress}" >
+							<input  th:field="${paymentRequest.detailAddress}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.detailAddress'))}" >	
+							
+							<input style="border-color: #FF5A5A" th:field="${paymentRequest.detailAddress}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.detailAddress'))}" >	
+							
+							
 							<span th:each="err : ${#fields.errors('paymentRequest.detailAddress')}" th:text="${err}"></span>
 							
 						</dd>
@@ -142,11 +163,18 @@
 					<dl>
 						<dt>참고항목</dt>
 						<dd>
-							<input id="extraAddress" th:field="${paymentRequest.reqAddress}"  >
+							<input  th:field="${paymentRequest.reqAddress}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.reqAddress'))}" >	
+							
+							<input style="border-color: #FF5A5A" th:field="${paymentRequest.reqAddress}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.reqAddress'))}" >	
+							
+							
 							<span th:each="err : ${#fields.errors('paymentRequest.reqAddress')}" th:text="${err}"></span>
 							
 						</dd>
 					</dl>
+					<input type="hidden"  th:field="${paymentRequest.userNum}">
+					<input type="hidden"  th:field="${paymentRequest.userKey}">
+					
 					<input type="hidden" name="productNum" readonly="readonly" th:value="${product.num}" >
 					<input type="hidden" name="count" readonly="readonly" th:value="${param.count}">
 					

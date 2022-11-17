@@ -17,12 +17,11 @@ let form;
 var clientKey = 'test_ck_ADpexMgkW36PDm5OyXMrGbR5ozO0'
 window.addEventListener("DOMContentLoaded", function(e) {
 	let ifrm_back = document.getElementById('ifrm_back');
+
 	let button = document.getElementById('buy');
-
 	let ifrm = document.getElementsByName('ifrm');
-
-
-	zip_code = document.getElementById('findAddress');
+	let findAddressBtn = document.getElementById('findAddressBtn');
+	zip_code = document.getElementById('zipCode');
 	roadAddress = document.getElementById('roadAddress');
 	detailAddress = document.getElementById('detailAddress')
 	recipient_name = document.getElementById('recipient_name')
@@ -32,80 +31,36 @@ window.addEventListener("DOMContentLoaded", function(e) {
 	ifrm = document.getElementById('ifrm');
 
 
-	ifrm.onload = function(e) {
-		console.log(e)
-	}
 
 
-	zip_code.addEventListener("click", function(e) {
-		e.preventDefault();
-	})
-	roadAddress.addEventListener("click", function(e) {
-		e.preventDefault();
-	})
 
 
 	button.addEventListener("click", function(e) {
-		ifrm_back.classList = "";
 
-		try {
-			if (recipient_name.value == "") {
-				throw ''
-			}
+		const xhr_valid = new XMLHttpRequest();
 
-			if (recipient_mobile.value == "") {
-				throw ''
-			}
-			if (zip_code.value == "") {
-				throw ''
-			}
-			if (detailAddress.value == "") {
-				throw ''
-			}
+		xhr_valid.responseType = "json";
+		xhr_valid.open("POST", "../payment/validProcess");
 
-			//form.target='ifrm';
-			var tossPayments = TossPayments(clientKey)
-			
-			let xhr = new XMLHttpRequest();
-			xhr.open("POST", "http://pc.bmserver.org:3000/BookShoppingMall/shop/payment/process");
-			xhr.responseType = "json"
-			xhr.addEventListener("readystatechange", function(e) {
-				
-				if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-					let response = xhr.response;
-					console.log(response);
+		xhr_valid.addEventListener("readystatechange", (valid) => validation(valid))
+
+		xhr_valid.send(new FormData(form));
 
 
-					tossPayments.requestPayment('카드', {
-						amount: response.product.price*response.count,
-						orderId: new Date().getTime()+'__'+response.num,
-						orderName: response.product.bookName,
-						customerName: response.user.memNm,
-						successUrl: 'http://localhost:3000/BookShoppingMall/shop/payment/result/sc',
-						failUrl: 'http://localhost:3000/BookShoppingMall/shop/payment/result/fail',
-					})
-
-				}
-
-			});
 
 
-			xhr.send(new FormData(form));
-
-		} catch (e) {
-			//필수데이터 검증x 시 처리
-		}
 
 
 	})
+
 
 	ifrm_back.addEventListener("click", function(e) {
 		ifrm_back.classList = "dn";
 	})
 
 
-})
 
+});
 
 function sample4_execDaumPostcode() {
 	new daum.Postcode({
@@ -119,5 +74,62 @@ function sample4_execDaumPostcode() {
 	}).open();
 }
 
+function tossProcess(e) {
+	ifrm_back.classList = "";
+
+	//form.target='ifrm';
+	var tossPayments = TossPayments(clientKey)
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "../payment/process");
+	xhr.responseType = "json"
+	xhr.addEventListener("readystatechange", function(e) {
+
+		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+			let response = xhr.response;
+			console.log(response);
 
 
+			tossPayments.requestPayment('카드', {
+				amount: response.product.price * response.count,
+				orderId: new Date().getTime() + '__' + response.num,
+				orderName: response.product.bookName,
+				customerName: response.user.memNm,
+				successUrl: 'http://localhost:3000/BookShoppingMall/shop/payment/result/sc',
+				failUrl: 'http://localhost:3000/BookShoppingMall/shop/payment/result/fail',
+			})
+
+
+		}
+
+	});
+
+
+	xhr.send(new FormData(form));
+
+
+
+
+}
+
+function validation(valid) {
+
+	if (valid.currentTarget.status == 200 && valid.currentTarget.readyState == XMLHttpRequest.DONE) {
+		console.log('로딩완료')
+		console.log(valid.currentTarget.response);
+
+		let response = valid.currentTarget.response
+
+		if (response.result) {	//데이터 검증 성공
+			console.log("데이터 검증 성공")
+
+			tossProcess();
+		} else {					//데이터 검증 실패
+			console.log('데이터 검증 실패')
+			form.submit();
+		}
+
+	}
+
+
+}

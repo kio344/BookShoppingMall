@@ -1,6 +1,8 @@
 package controllers.shop;
 
 import java.io.IOException;
+
+import static common.Util.JmsUtil.*;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.cj.Session;
 
+import common.Util.JsonData;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
@@ -45,123 +49,150 @@ public class PaymentController {
 
 	@Autowired
 	private PaymentService paymentService;
-	
+
 	@Autowired
 	private ShopController shopController;
 
-	
+	public String goPayment(Long productNum, Model model) {
 
-	@GetMapping("/testpayment/faile")
-	@ResponseBody
-	public String testFaile() {
-
-		System.out.println("결제실패");
-
-		return "fail";
-	}
-
-	/** 구매하기 눌렀을때? 결제 페이지로 이동 */
-	@GetMapping("/payment/{productNum}")
-	public String payment(@PathVariable(required = false, name = "productNum") Long productNum,
-			@RequestParam(name = "mode") String mode, Model model, HttpSession session) {
-
-		PaymentRequest request = new PaymentRequest();
-
-		model.addAttribute("paymentRequest", request);
-
-		return _payment(productNum, mode, model, session);
-
-	}
-
-	/**
-	 * @GetMapping("/payment/{productNum}") 쪽 메서드 : 결제 페이지로 이동, 결제 실패시(hasErrors) 다시
-	 * 결제페이지로 이동
-	 */
-	private String _payment(Long productNum, String mode, Model model, HttpSession session) {
+		PaymentRequest paymentRequest = paymentService.paymentSetting(productNum);
 
 		ProductDto product = shopService.getProduct(productNum);
 
+		model.addAttribute("paymentRequest", paymentRequest);
+		model.addAttribute("product", product);
 
-		switch (mode) {
-		case "buy":
-			System.out.println("구매");
-
-			model.addAttribute("addCss", new String[] { "/shop/payment" });
-			model.addAttribute("addJs", new String[] { "/shop/payment" });
-			model.addAttribute("product", product);
-
-			return "shop/payment";
-
-		case "addCart":
-			System.out.println("장바구니에 추가");
-			return "shop/shop";
-
-		default:
-			break;
-		}
-
+		model.addAttribute("addJs", "/shop/payment");
+		model.addAttribute("addCss", "/shop/payment");
+		
 		return "shop/payment";
 	}
 
-	/** 결제 진행 */
-	@PostMapping("/payment/process")
-	@ResponseBody
-	public PaymentDto paymentPs2(@Valid PaymentRequest request, Errors error, HttpSession session,
-			HttpServletRequest httpServletRequest, Model model) {
+	public String goPayment(PaymentRequest request, Model model) {
 
-		System.out.println(request);
+		ProductDto product = shopService.getProduct(request.getProductNum());
 
-		UserDto user = (UserDto) session.getAttribute("user");
+		model.addAttribute("paymentRequest", request);
+		model.addAttribute("product", product);
 
-		ProductDto productDto = shopService.getProduct(request.getProductNum());
-		request.setUserNum(user.getMemNo());
-		request.setAddress();
-		
-		
+		model.addAttribute("addJs", "/shop/payment");
+		model.addAttribute("addCss", "/shop/payment");
 
 		
-		return 	paymentService.paymentProcess(request);
-
-		
+		return "shop/payment";
 	}
 
+	/** 구매하기 or 장바구니 */
+	@GetMapping("/payment/{productNum}")
+	public String payment(@PathVariable(required = false, name = "productNum") Long productNum,
+			@RequestParam(name = "mode") String mode, Model model) {
+
+		switch (mode) {
+		case "buy":
 
 
-	/** 자동로그인 */
-	private void autoLogin(HttpSession session) {
-		/** 로그인 귀찮을때 S */
-		UserDto user = (UserDto) session.getAttribute("user");
+			return goPayment(productNum, model);
 
-		if (user == null) {
-			user = new UserDto();
-			user.setMemId("5563a");
-			user.setEmail("jmspon33@gmail.com");
-			user.setMemNo(30L);
-			user.setMobile("01075175563");
-			user.setMemNm("정민상");
-			user.setFakeName("KING");
-			user.setUserType(UserType.USER);
+		case "addCart":
 
-			session.setAttribute("user", user);
+			return "";
+
 		}
-		/** 로그인 귀찮을때 E */
+
+		return "";
 
 	}
+
+	@PostMapping("/payment/processErr")
+	public String payment(@Valid PaymentRequest paymentRequest, Errors error, Model model) {
+		PaymentRequest request = paymentRequest;
+		request.setAddress();
+	
+		return goPayment(request, model);
+	}
+
+	/** 결제 검증 진행 */
+	@PostMapping("/payment/validProcess")
+	@ResponseBody
+	public ResponseEntity<JsonData<PaymentRequest>> paymentPs(@Valid PaymentRequest paymentRequest, Errors error,
+			HttpSession session, HttpServletRequest httpServletRequest, Model model) {
+
+
+		JsonData<PaymentRequest> result = new JsonData<>();
+		result.setResult(true);
+
+		if (error.hasErrors()) {
+
+			result.setResult(false);
+			result.setMessage("오류 발생");
+
+			return ResponseEntity.ok(result);
+		}
+
+		result.setData(paymentRequest);
+
+		return ResponseEntity.ok(result);
+
+	}
+	
+	@ResponseBody
+	@PostMapping("/payment/process")
+	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
+		paymentRequest.setAddress();
+		System.out.println(paymentRequest);
+		
+		return paymentService.paymentProcess(paymentRequest);
+		
+		
+	}
+	
 
 	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/sc")
-	public String processSc(String orderId,String paymentKey,Long amount,Model model,HttpSession session) {
-		String paymentId=orderId.split("__")[1];
+	public String processSc(String orderId, String paymentKey, Long amount, Model model, HttpSession session) {
+		String paymentId = orderId.split("__")[1];
 		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET);
+
+		HttpRequest request = HttpRequest.newBuilder()
+				.uri(URI.create("https://api.tosspayments.com/v1/payments/confirm"))
+				.header("Authorization", "Basic dGVzdF9za19PNkJZcTdHV1BWdk5sNW9kRFFtVk5FNXZibzFkOg==")
+				.header("Content-Type", "application/json")
+				.method("POST", HttpRequest.BodyPublishers.ofString("{\"paymentKey\":\"" + paymentKey + "\",\"amount\":"
+						+ amount + ",\"orderId\":\"" + orderId + "\"}"))
+				.build();
+		HttpResponse<String> response = null;
+		try {
+			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+		} catch (IOException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(response.body());
 
 		return shopController.shop(model, session);
 	}
 
 	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/fail")
-	public String processFail(String orderId,String paymentKey,Long amount,Model model,HttpSession session) {
-		String paymentId=orderId.split("__")[1];
-		
+	public String processFail(String orderId, String paymentKey, Long amount, Model model, HttpSession session) {
+		String paymentId = orderId.split("__")[1];
+
 		paymentService.removePayment(Long.parseLong(paymentId));
-		
+
+		HttpRequest request = HttpRequest.newBuilder()
+				.uri(URI.create("https://api.tosspayments.com/v1/payments/confirm"))
+				.header("Authorization", "Basic dGVzdF9za19PNkJZcTdHV1BWdk5sNW9kRFFtVk5FNXZibzFkOg==")
+				.header("Content-Type", "application/json")
+				.method("POST", HttpRequest.BodyPublishers.ofString("{\"paymentKey\":\"" + paymentKey + "\",\"amount\":"
+						+ amount + ",\"orderId\":\"" + orderId + "\"}"))
+				.build();
+		HttpResponse<String> response = null;
+		try {
+			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+		} catch (IOException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(response.body());
+
 		return shopController.shop(model, session);
 	}
 }
