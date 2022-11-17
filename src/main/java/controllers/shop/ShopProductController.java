@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import models.shop.ProductDao;
-import models.shop.ProductDto;
+import models.shop.product.ProductDao;
+import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 
 @Controller

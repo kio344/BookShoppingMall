@@ -4,7 +4,7 @@
 	layout:decorate="~{layouts/main/main}">
 <main layout:fragment="main">
 
-	<form id="form" method="post" th:action="@{/shop/payment/process}" class="outer">
+	<form   method="post" th:action="@{/shop/payment/process}" class="outer">
 		<div class="productArea" th:object="${product}">
 			<div class="productImg">
 
@@ -89,16 +89,16 @@
 					<dl>
 						<dt>이름</dt>
 						<dd>
-							<input th:field="${paymentRequest.recipient_name}" >
-							<span th:each="err : ${#fields.errors('paymentRequest.recipient_name')}" th:text="${err}"></span>
+							<input th:field="${request.recipient_name}" >
+							<span th:text="${#fields.errors('request.recipient_name')}"></span>
 							
 						</dd>
 					</dl>
 					<dl>
 						<dt>휴대폰 번호</dt>
 						<dd>
-							<input th:field="${paymentRequest.recipient_mobile}">
-							<span th:each="err : ${#fields.errors('paymentRequest.recipient_mobile')}" th:text="${err}"></span>
+							<input th:field="${request.recipient_mobile}">
+							<span th:text="${#fields.errors('request.recipient_mobile')}"></span>
 							
 						</dd>
 					</dl>
@@ -112,12 +112,12 @@
 					<dl>
 						<dt>우편번호</dt>
 						<dd>
-							<input id="findAddress" readonly="readonly" th:field="${paymentRequest.zipCode}"  >
+							<input id="findAddress" readonly="readonly" th:field="${request.zipCode}" >
 							<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" >
 								찾기
 							</button>
-							<span th:each="err : ${#fields.errors('paymentRequest.zipCode')}" th:text="${err}"></span>
-
+							<span th:text="${#fields.errors('request.zipCode')}"></span>
+							
 							
 						</dd>
 					</dl>
@@ -125,25 +125,24 @@
 					<dl>
 						<dt>주소</dt>
 						<dd>
-							<input id="roadAddress" readonly="readonly" th:field="${paymentRequest.roadAddress}" >
-							<span th:each="err : ${#fields.errors('paymentRequest.roadAddress')}" th:text="${err}"></span>
-
+							<input id="roadAddress" readonly="readonly" th:field="${request.roadAddress}">
+							<span th:text="${#fields.errors('request.roadAddress')}"></span>
 							
 						</dd>
 					</dl>
 					<dl>
 						<dt>상세주소</dt>
 			 			<dd>
-							<input id="detailAddress" th:field="${paymentRequest.detailAddress}" >
-							<span th:each="err : ${#fields.errors('paymentRequest.detailAddress')}" th:text="${err}"></span>
+							<input id="detailAddress" th:field="${request.detailAddress}">
+							<span th:text="${#fields.errors('request.detailAddress')}"></span>
 							
 						</dd>
 					</dl>
 					<dl>
 						<dt>참고항목</dt>
 						<dd>
-							<input id="extraAddress" th:field="${paymentRequest.reqAddress}"  >
-							<span th:each="err : ${#fields.errors('paymentRequest.reqAddress')}" th:text="${err}"></span>
+							<input id="extraAddress" th:field="${request.reqAddress}">
+							<span th:text="${#fields.errors('request.reqAddress')}"></span>
 							
 						</dd>
 					</dl>
@@ -156,7 +155,7 @@
 			
 
 			<div class="btn_grup">
-				<button type="button" id="buy">결제하기</button>
+				<button id="buy">결제하기</button>
 			</div>
 
 			
@@ -166,8 +165,7 @@
 
 
 	</form>
-    <script src="https://js.tosspayments.com/v1/payment"></script>							<!-- 토스결제 api -->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	<!-- 카카오 우편주소 api -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<div id="ifrm_back" class="dn">
 		<iframe name="ifrm" id="ifrm" class=""></iframe>

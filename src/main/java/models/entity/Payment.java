@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import models.shop.PaymentProgress;
+import models.shop.payment.PaymentProgress;
 
 @Entity
 public class Payment extends BaseEntity{
