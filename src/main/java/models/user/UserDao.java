@@ -72,6 +72,7 @@ public class UserDao {
 		
 	}
 	
+
 	
 	/**
 	 * 유저 memNo 로 member 정보 가져오기
@@ -87,6 +88,30 @@ public class UserDao {
 		return UserDto.toDto(user);
 	}
 	
+
+
+	public UserDto kakaoMatching(Long kakaoId) {
+		
+		String sql = "SELECT u FROM User u WHERE kakaoId = :kakaoId";
+		
+		TypedQuery<User> tq = em.createQuery(sql, User.class);
+		tq.setParameter("kakaoId", kakaoId);
+		
+		User user = tq.getSingleResult();
+		
+		return user == null ? null : UserDto.toDto(user);
+	}
+	
+	public UserDto kakaoLink(UserDto user, Long kakaoId) {
+		
+		User entity = em.find(User.class, user.getMemNo());
+		entity.setKakaoId(kakaoId);
+		
+		em.persist(entity);
+		em.flush();
+		
+		return UserDto.toDto(entity);
+	}
 
 
 }

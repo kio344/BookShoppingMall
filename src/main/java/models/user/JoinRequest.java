@@ -32,6 +32,8 @@ public class JoinRequest {
 	private String birthDay;
 	@NotBlank
 	private String gender;
+
+	private Long kakaoId;
 	@AssertTrue
 	private boolean agreeTerms;
 
@@ -115,6 +117,14 @@ public class JoinRequest {
 		this.gender = gender;
 	}
 
+	public Long getKakaoId() {
+		return kakaoId;
+	}
+
+	public void setKakaoId(Long kakaoId) {
+		this.kakaoId = kakaoId;
+	}
+
 	public boolean isAgreeTerms() {
 		return agreeTerms;
 	}
@@ -127,7 +137,8 @@ public class JoinRequest {
 	public String toString() {
 		return "JoinRequest [memId=" + memId + ", memPw=" + memPw + ", memPwRe=" + memPwRe + ", memNm=" + memNm
 				+ ", fakeName=" + fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress
-				+ ", birthDay=" + birthDay + ", gender=" + gender + ", agreeTerms=" + agreeTerms + "]";
+				+ ", birthDay=" + birthDay + ", gender=" + gender + ", kakaoId=" + kakaoId + ", agreeTerms="
+				+ agreeTerms + "]";
 	}
 
 }

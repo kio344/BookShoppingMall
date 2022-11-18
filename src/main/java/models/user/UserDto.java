@@ -16,6 +16,7 @@ public class UserDto extends BaseDto {
 	private String birthDay;
 	private String gender;
 	private UserType userType;
+	private Long kakaoId;
 
 	public Long getMemNo() {
 		return memNo;
@@ -106,13 +107,22 @@ public class UserDto extends BaseDto {
 			userType = UserType.USER;
 		this.userType = userType;
 	}
+	
+	
+
+	public Long getKakaoId() {
+		return kakaoId;
+	}
+
+	public void setKakaoId(Long kakaoId) {
+		this.kakaoId = kakaoId;
+	}
 
 	@Override
 	public String toString() {
 		return "UserDto [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", fakeName="
 				+ fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress + ", birthDay=" + birthDay
-				+ ", gender=" + gender + ", userType=" + userType + ", getRegDt()=" + getRegDt() + ", getModDt()="
-				+ getModDt() + "]";
+				+ ", gender=" + gender + ", userType=" + userType + ", kakaoId=" + kakaoId + "]";
 	}
 
 	public static User toEntity(UserDto user) {
@@ -132,6 +142,7 @@ public class UserDto extends BaseDto {
 		entity.setBirthDay(user.getBirthDay());
 		entity.setGender(user.getGender());
 		entity.setUserType(user.getUserType());
+		entity.setKakaoId(user.getKakaoId());
 
 		return entity;
 
@@ -158,6 +169,7 @@ public class UserDto extends BaseDto {
 		user.setRegDt(entity.getRegDt());
 		user.setModDt(entity.getModDt());
 		user.setUserType(entity.getUserType());
+		user.setKakaoId(entity.getKakaoId());
 		
 		return user;
 

@@ -5,109 +5,137 @@
 <main layout:fragment="main">
 
 	<div class="content">
-		
-		<form method="post" th:action="@{/user/join}" autocomplete="off" th:object="${joinRequest}">
+		<form method="post" th:action="@{/user/join}" autocomplete="off"
+			th:object="${joinRequest}">
 			<div class="join">
-			<div th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error"></div>
-				
-			<dl>
-				<dt th:text="#{user.memId}"  class="text"></dt>
-				<dd>
-					<input class="joinInput" type="text" name="memId" th:field="*{memId}">
-					<div th:each="err : ${#fields.errors('memId')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt th:text="#{user.memPw}"  class="text"></dt>
-				<dd>
-					<input class="joinInput" type="password" name="memPw" th:field="*{memPw}">
-					<div th:each="err : ${#fields.errors('memPw')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt th:text="#{user.memPwRe}" class="text"></dt>
-				<dd>
-					<input class="joinInput" type="password" name="memPwRe" th:field="*{memPwRe}">
-					<div th:each="err : ${#fields.errors('memPwRe')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt th:text="#{user.memNm}" class="text"></dt>
-				<dd>
-					<input class="joinInput" type="text" name="memNm" th:field="*{memNm}">
-					<div th:each="err : ${#fields.errors('memNm')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
+				<div th:each="err : ${#fields.globalErrors()}" th:text="${err}"
+					class="error"></div>
+				<th:block th:if="${joinRequest.kakaoId != null}">
+					<h2>기존 회원이면 로그인 후 마이페이지에서 연동 부탁드립니다.</h2>
+				</th:block>
+				<input type="hidden" th:field=*{kakaoId} >
+				<dl>
+					<dt th:text="#{user.memId}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="text" name="memId"
+							th:field="*{memId}">
+						<div th:each="err : ${#fields.errors('memId')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
 
-			<dl>
-				<dt th:text="#{user.fakeName}" class="text"></dt>
-				<dd>
-					<input class="joinInput" type="text" name="fakeName" th:field="*{fakeName}">
-					<div th:each="err : ${#fields.errors('fakeName')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
+				<dl>
+					<dt th:text="#{user.memPw}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="password" name="memPw"
+							th:field="*{memPw}">
+						<div th:each="err : ${#fields.errors('memPw')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
 
-			<dl>
-				<dt th:text="#{user.mobile}" class="text"></dt>
-				<dd>
-					<input class="joinInput" type="text" name="mobile" th:field="*{mobile}">
-					<div th:each="err : ${#fields.errors('mobile')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt th:text="#{user.email}" class="text"></dt>
-				<dd>
-					<input class="joinInput" type="email" name="email" th:field="*{email}">
-					<div th:each="err : ${#fields.errors('email')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
+				<dl>
+					<dt th:text="#{user.memPwRe}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="password" name="memPwRe"
+							th:field="*{memPwRe}">
+						<div th:each="err : ${#fields.errors('memPwRe')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
 
-			<dl>
-				<dt th:text="#{user.adress}" class="text"></dt>
-				<dd>
-					<input class="joinInput" type="text" name="adress" th:field="*{adress}">
-					<div th:each="err : ${#fields.errors('adress')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt th:text="#{user.birthDay}" class="text"></dt>
-				<dd>
-					<input class="joinInput  flex" type="date" name="birthDay" th:field="*{birthDay}">
-					<div th:each="err : ${#fields.errors('birthDay')}" th:text="${err}" class='error'></div>
-				</dd>
-			</dl>
+				<dl>
+					<dt th:text="#{user.memNm}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="text" name="memNm"
+							th:field="*{memNm}">
+						<div th:each="err : ${#fields.errors('memNm')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
 
-			<dl>
-				<dt th:text="#{user.gender}" class="text"></dt>
-				<dd  class="gender joinInput">
-				<div class="manBtn">
-					<input class="pointer" type="radio" name="gender" id="gender" th:field="*{gender}" value="men">
-					<label for="gender" class="man">남자</label>
+				<dl>
+					<dt th:text="#{user.fakeName}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="text" name="fakeName"
+							th:field="*{fakeName}">
+						<div th:each="err : ${#fields.errors('fakeName')}"
+							th:text="${err}" class='error'></div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt th:text="#{user.mobile}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="text" name="mobile"
+							th:field="*{mobile}">
+						<div th:each="err : ${#fields.errors('mobile')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt th:text="#{user.email}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="email" name="email"
+							th:field="*{email}">
+						<div th:each="err : ${#fields.errors('email')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt th:text="#{user.adress}" class="text"></dt>
+					<dd>
+						<input class="joinInput" type="text" name="adress"
+							th:field="*{adress}">
+						<div th:each="err : ${#fields.errors('adress')}" th:text="${err}"
+							class='error'></div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt th:text="#{user.birthDay}" class="text"></dt>
+					<dd>
+						<input class="joinInput  flex" type="date" name="birthDay"
+							th:field="*{birthDay}">
+						<div th:each="err : ${#fields.errors('birthDay')}"
+							th:text="${err}" class='error'></div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt th:text="#{user.gender}" class="text"></dt>
+					<dd class="gender joinInput">
+						<div class="manBtn">
+							<input class="pointer" type="radio" name="gender" id="gender"
+								th:field="*{gender}" value="men"> <label for="gender"
+								class="man">남자</label>
+						</div>
+						<div class="manBtn">
+							<input class="pointer" type="radio" name="gender" id="gender"
+								th:field="*{gender}" value="women"> <label for="gender"
+								class="woman">여자</label>
+						</div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dd class="agree">
+						<input class="agreebox" type="checkbox" name="agreeTerms"
+							th:field="*{agreeTerms}" id="agreeTerms"> <label
+							for="agreeTerms" th:text="#{user.agreeTerms}"></label>
+					</dd>
+					<div class="agreeflex">
+						<div th:each="err : ${#fields.errors('agreeTerms')}"
+							th:text="${err}" class='error'></div>
 					</div>
-					<div class="manBtn">
-					<input class="pointer" type="radio" name="gender" id="gender" th:field="*{gender}" value="women">
-					<label for="gender" class="woman">여자</label>
-					</div>
-				</dd>
-			</dl>
+				</dl>
 
-			<dl>
-				<dd class="agree">
-					<input class="agreebox" type="checkbox" name="agreeTerms" th:field="*{agreeTerms}" id="agreeTerms"> 
-						<label for="agreeTerms" th:text="#{user.agreeTerms}"></label>
-				</dd>
-						<div class="agreeflex"><div th:each="err : ${#fields.errors('agreeTerms')}" th:text="${err}" class='error'></div></div>
-			</dl>
-
-			<div class="btn-grp mt-40">
-				<button type="submit" th:text="#{user.join}"></button>
-				<button type="reset" th:text="#{user.reset}"></button>
-			</div>
+				<div class="btn-grp mt-40">
+					<button type="submit" th:text="#{user.join}"></button>
+					<button type="reset" th:text="#{user.reset}"></button>
+				</div>
 
 			</div>
 		</form>

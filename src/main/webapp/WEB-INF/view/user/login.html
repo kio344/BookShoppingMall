@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main/main}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
 <main layout:fragment="main">
 
-<div class="content">
+	<div class="content">
 
-	<form method="post" th:action="@{/user/login}" autocomplete="off" th:object="${loginRequest}">
-		<div class="login">
-		<dl>
-			<dt th:text="#{user.memId}" class="text"></dt>
-			<dd>
-				<input class="width100" type="text" name="memId" th:field="*{memId}">
-			</dd>
-		</dl>
+		<form method="post" th:action="@{/user/login}" autocomplete="off"
+			th:object="${loginRequest}">
+			<div class="login">
+				<dl>
+					<dt th:text="#{user.memId}" class="text"></dt>
+					<dd>
+						<input class="width100" type="text" name="memId"
+							th:field="*{memId}">
+					</dd>
+				</dl>
 
-		<dl>
-			<dt th:text="#{user.memPw}" class="text"></dt>
-			<dd>
-				<input class="width100" type="password" name="memPw" th:field="*{memPw}">
-			</dd>
-		</dl>
-	
-		<div class="btn-grp mt-40">
-			<button type="submit" th:text="#{user.login}"></button>
-		</div>
+				<dl>
+					<dt th:text="#{user.memPw}" class="text"></dt>
+					<dd>
+						<input class="width100" type="password" name="memPw"
+							th:field="*{memPw}">
+					</dd>
+				</dl>
+
+				<div class="btn-grp mt-40">
+					<button type="submit" th:text="#{user.login}"></button>
+				</div>
+				<div>
+					<a class="kakaologin" th:href="@{/api/kakao/oauth}"></a>
+				</div>
+			</div>
+		</form>
 	</div>
-	</form>
-	<div>
-		<a th:href="@{/api/kakao/oauth}">카카오 로그인</a>
-	</div>
-</div>
 
 </main>
 </html>

@@ -2,9 +2,11 @@ package controllers.kakao;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import models.user.UserDao;
+import models.user.UserDto;
+
 @Controller
 @RequestMapping("/api/kakao")
 public class KakaoController {
+	
+	@Autowired
+	private UserDao userDao;
 
 	@GetMapping("/oauth")
 	public String kakaoConnect() {
@@ -25,19 +33,21 @@ public class KakaoController {
 		url.append("https://kauth.kakao.com/oauth/authorize?");
 		url.append("client_id=");
 		url.append("709858348209ad29c9ca0fe8f0f7acbc");
-		url.append("&redirect_uri=http://localhost:8080/bookShoppingMall/api/kakao/callback");
+		url.append("&redirect_uri=http://localhost:3000/bookShoppingMall/api/kakao/callback");
 		url.append("&response_type=code");
 		
 		return "redirect:" + url;
 	}
 	
 	@RequestMapping(value = "/callback", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
-	public void kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session, HttpServletRequest request) {
 		
 		String accessToken = getKakaoAccessToken(code);
 		session.setAttribute("access_token", accessToken);
 		
-		getKakaoUserInfo(accessToken);
+		String url = getKakaoUserInfo(accessToken, session);
+		
+		return url;
 	}
 	
 	private String getKakaoAccessToken(String code) {
@@ -53,14 +63,14 @@ public class KakaoController {
 						.path("/oauth/token")
 						.queryParam("grant_type", "authorization_code")
 						.queryParam("client_id", "709858348209ad29c9ca0fe8f0f7acbc")
-						.queryParam("redirect_uri", "http://localhost:8080/bookShoppingMall/api/kakao/callback")
+						.queryParam("redirect_uri", "http://localhost:3000/bookShoppingMall/api/kakao/callback")
 						.queryParam("code", code).build())
 				.retrieve().bodyToMono(JSONObject.class).block();
 		
 		return (String) response.get("access_token");
 	}
 	
-	private void getKakaoUserInfo(String accessToken) {
+	private String getKakaoUserInfo(String accessToken, HttpSession session) {
 		//카카오에 요청 보내기 및 응답 받기
 		WebClient webClient = WebClient.builder()
 				.baseUrl("https://kapi.kakao.com")
@@ -79,8 +89,29 @@ public class KakaoController {
 		Map<String, Object> map = (Map<String, Object>)response.get("kakao_account");
 		Map<String, Object> profile = (Map<String, Object>)map.get("profile");
 		String name = (String)profile.get("nickname");
-		System.out.println(name);
-		System.out.println(id);
+		String url = null;
+		
+		UserDto user = (UserDto)session.getAttribute("user");
+		if(user != null) {
+			UserDto dto = userDao.kakaoLink(user, id);
+			session.setAttribute("user", dto);
+			url = "redirect:/";
+		} else {
+			url = userMath(id, session);
+		}
+		
+		return url;
+	}
+	
+	private String userMath(Long id, HttpSession session) {
+		
+		UserDto user = userDao.kakaoMatching(id);
+		if(user == null) {
+			return "redirect:/user/join?kakaoId=" + id;
+		} else {
+			session.setAttribute("user", user);
+			return "redirect:/";
+		}
 		
 	}
 	
