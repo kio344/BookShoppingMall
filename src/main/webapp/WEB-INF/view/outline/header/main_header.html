@@ -12,7 +12,7 @@
 			</div>
 			<div class="layout_width">
 
-				<th:block th:if="${session.user == null && session.access_token == null}">
+				<th:block th:if="${session.user == null || session.access_token == null}">
 					<a th:href="@{/user/join}">JOIN</a>
 					<a th:href="@{/user/login}" class="mr">LOGIN</a>
 				</th:block>
@@ -22,10 +22,6 @@
 					<a th:href="@{/mypage}">MYPAGE</a>
 					<a th:href="@{/user/logout}">LOGOUT</a>
 				</th:block>
-				<th:block th:unless="${session.access_token == null}">
-					<a th:href="@{/user/logout}">LOGOUT</a>
-				</th:block>
-				
 
 			<th:block th:if="${session.user != null}"> <!-- UserType 이 ADMIN 일 경우 관리자 페이지 표출, SELLER 일 경우 판매자 페이지 표출 -->
 				<a th:if="${session.user.userType.toString().equals('ADMIN')}" th:href="@{/admin}"  target="_blank" th:text="#{admin.page}"></a>

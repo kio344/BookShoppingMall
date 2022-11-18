@@ -37,6 +37,8 @@ public class User extends BaseEntity {
 	@Column(length = 7)
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
+	
+	private Long kakaoId;
 
 	public Long getMemNo() {
 		return memNo;
@@ -126,12 +128,22 @@ public class User extends BaseEntity {
 		if(userType == null) userType = UserType.USER;
 		this.userType = userType;
 	}
+	
+	
+
+	public Long getKakaoId() {
+		return kakaoId;
+	}
+
+	public void setKakaoId(Long kakaoId) {
+		this.kakaoId = kakaoId;
+	}
 
 	@Override
 	public String toString() {
 		return "User [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", fakeName="
 				+ fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress + ", birthDay=" + birthDay
-				+ ", gender=" + gender + ", userType=" + userType + "]";
+				+ ", gender=" + gender + ", userType=" + userType + ", kakaoId=" + kakaoId + "]";
 	}
 	
 	
