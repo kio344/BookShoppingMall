@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import common.error.CommonException;
 import models.user.JoinRequest;
@@ -21,9 +22,10 @@ public class UserJoinController {
 	private JoinService service;
 	
 	@GetMapping
-	public String form(Model model) {
+	public String form(@RequestParam(name = "kakaoId", required = false) Long kakaoId, Model model) {
 		
 		JoinRequest joinRequest = new JoinRequest();
+		joinRequest.setKakaoId(kakaoId);
 		model.addAttribute("joinRequest", joinRequest);
 		model.addAttribute("addCss", new String[] { "/member/join" });
 		return "user/join";

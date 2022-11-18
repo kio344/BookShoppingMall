@@ -57,6 +57,9 @@ public class JoinService {
 		param.setAdress(joinRequest.getAdress());
 		param.setBirthDay(joinRequest.getBirthDay());
 		param.setGender(joinRequest.getGender());
+		if(joinRequest.getKakaoId() != null) {
+			param.setKakaoId(joinRequest.getKakaoId());
+		}
 		
 		userDao.check(param);
 	}
