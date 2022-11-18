@@ -35,8 +35,9 @@ public class PaymentService {
 
 	}
 
-	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress) {
-		return paymentDao.updateProgress(paymentNum, progress);
+	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress,String orderId) {
+		
+		return paymentDao.updateProgress(paymentNum, progress,Long.parseLong(orderId));
 	}
 
 	public PaymentDto removePayment(Long paymentNum) {
@@ -69,8 +70,9 @@ public class PaymentService {
 
 		request.setUserNum(user.getMemNo());
 
-		String userKey=user.getMemNo()+user.getMemId();
 		
+		String userKey=user.getMemNo()+user.getMemId();
+		System.out.println(userKey);
 		request.setUserKey(BCrypt.hashpw(userKey, BCrypt.gensalt(10)));
 		
 		

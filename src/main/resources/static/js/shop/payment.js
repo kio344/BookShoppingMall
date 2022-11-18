@@ -92,11 +92,11 @@ function tossProcess(e) {
 
 			tossPayments.requestPayment('카드', {
 				amount: response.product.price * response.count,
-				orderId: new Date().getTime() + '__' + response.num,
+				orderId:  new Date().getTime(),	//상품 판매자 userNo__paymentNum
 				orderName: response.product.bookName,
 				customerName: response.user.memNm,
-				successUrl: 'http://localhost:3000/BookShoppingMall/shop/payment/result/sc',
-				failUrl: 'http://localhost:3000/BookShoppingMall/shop/payment/result/fail',
+				successUrl: 'http://pc.bmserver.org:3000/BookShoppingMall/shop/payment/result/sc',
+				failUrl: 'http://pc.bmserver.org:3000/BookShoppingMall/shop/payment/result/fail',
 			})
 
 

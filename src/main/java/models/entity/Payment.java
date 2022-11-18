@@ -40,6 +40,8 @@ public class Payment extends BaseEntity{
 	
 	@Enumerated(EnumType.STRING)
 	private PaymentProgress progress;
+	
+	private Long tossOrderId;
 
 	public Long getNum() {
 		return num;
@@ -104,6 +106,16 @@ public class Payment extends BaseEntity{
 	public void setProgress(PaymentProgress progress) {
 		this.progress = progress;
 	}
+
+	public Long getTossOrderId() {
+		return tossOrderId;
+	}
+
+	public void setTossOrderId(Long tossOrderId) {
+		this.tossOrderId = tossOrderId;
+	}
+	
+	
 	
 	
 	

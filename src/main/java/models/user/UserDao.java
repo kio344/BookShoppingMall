@@ -71,5 +71,22 @@ public class UserDao {
 		em.flush();
 		
 	}
+	
+	
+	/**
+	 * 유저 memNo 로 member 정보 가져오기
+	 * @param memNo
+	 * @return
+	 */
+	public UserDto get(Long memNo) {
+		
+		User user=em.find(User.class, memNo);
+		
+		
+		
+		return UserDto.toDto(user);
+	}
+	
+
 
 }

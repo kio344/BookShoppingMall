@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,21 +29,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mysql.cj.Session;
 
 import common.Util.JsonData;
+import models.mypage.service.UserInfoService;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
 import models.shop.product.ProductDto;
 import models.shop.service.PaymentService;
+import models.shop.service.PaymentValidation;
 import models.shop.service.ShopService;
 import models.shop.toss.TossData;
 import models.shop.toss.TossPayment;
 import models.shop.toss.TossResult;
+import models.user.UserDao;
 import models.user.UserDto;
 import models.user.UserType;
+import models.user.service.LoginService;
 
 @Controller
 @RequestMapping("/shop")
 public class PaymentController {
+
+	@Autowired 
+	private PaymentValidation validation;
+	
+	@Autowired
+	private LoginService loginService;
 
 	@Autowired
 	private ShopService shopService;
@@ -64,7 +75,7 @@ public class PaymentController {
 
 		model.addAttribute("addJs", "/shop/payment");
 		model.addAttribute("addCss", "/shop/payment");
-		
+
 		return "shop/payment";
 	}
 
@@ -78,7 +89,6 @@ public class PaymentController {
 		model.addAttribute("addJs", "/shop/payment");
 		model.addAttribute("addCss", "/shop/payment");
 
-		
 		return "shop/payment";
 	}
 
@@ -89,7 +99,6 @@ public class PaymentController {
 
 		switch (mode) {
 		case "buy":
-
 
 			return goPayment(productNum, model);
 
@@ -107,7 +116,7 @@ public class PaymentController {
 	public String payment(@Valid PaymentRequest paymentRequest, Errors error, Model model) {
 		PaymentRequest request = paymentRequest;
 		request.setAddress();
-	
+
 		return goPayment(request, model);
 	}
 
@@ -117,40 +126,39 @@ public class PaymentController {
 	public ResponseEntity<JsonData<PaymentRequest>> paymentPs(@Valid PaymentRequest paymentRequest, Errors error,
 			HttpSession session, HttpServletRequest httpServletRequest, Model model) {
 
-
 		JsonData<PaymentRequest> result = new JsonData<>();
 		result.setResult(true);
 
-		if (error.hasErrors()) {
+		try {
+			
+			validation.validate(paymentRequest, error);
 
+			result.setData(paymentRequest);
+			
+		} catch (RuntimeException e) {
+			
 			result.setResult(false);
-			result.setMessage("오류 발생");
+			result.setMessage(e.getMessage());
 
 			return ResponseEntity.ok(result);
 		}
-
-		result.setData(paymentRequest);
-
 		return ResponseEntity.ok(result);
-
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/payment/process")
 	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
 		paymentRequest.setAddress();
 		System.out.println(paymentRequest);
-		
+
 		return paymentService.paymentProcess(paymentRequest);
-		
-		
+
 	}
-	
 
 	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/sc")
 	public String processSc(String orderId, String paymentKey, Long amount, Model model, HttpSession session) {
 		String paymentId = orderId.split("__")[1];
-		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET);
+		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET,orderId);
 
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://api.tosspayments.com/v1/payments/confirm"))

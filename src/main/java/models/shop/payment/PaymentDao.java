@@ -31,11 +31,12 @@ public class PaymentDao {
 		return get(entity.getNum());
 	}
 
-	public PaymentDto updateProgress(Long num, PaymentProgress progress) {
+	public PaymentDto updateProgress(Long num, PaymentProgress progress,Long orderId) {
 
 		Payment entity = em.find(Payment.class, num);
 
 		entity.setProgress(progress);
+		entity.setTossOrderId(orderId);
 
 		em.persist(entity);
 
