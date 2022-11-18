@@ -91,6 +91,12 @@
 	display: flex;
 	align-items: center;
 }
+dl dd span{
+	display:block;
+	position: absolute;
+	margin-left: 220px;
+	color: red;
+}
 
 
 .productInfo dl dt{
@@ -160,4 +166,7 @@
 #ifrm_back #ifrm{
 	width: 400px;
 	height: 800px;
+	border: 0px solid black;
 }
+
+

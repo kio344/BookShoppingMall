@@ -2,7 +2,7 @@ package models.seller.product;
 
 import models.common.BaseDto;
 import models.entity.ProductRequest;
-import models.shop.ProductDto;
+import models.shop.product.ProductDto;
 import models.user.UserDto;
 
 public class ProductRequestDto extends BaseDto {

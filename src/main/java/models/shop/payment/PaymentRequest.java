@@ -1,26 +1,39 @@
-package models.shop;
+package models.shop.payment;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import models.entity.Product;
 import models.entity.User;
 import models.user.UserDto;
 
 public class PaymentRequest {
-	
+
 	private Long productNum;
-	
+
 	private Long userNum;
 	
+	private String userKey;
+
 	private Integer count;
-	
+
+	@NotBlank(message = "값이 비어있습니다.")
 	private String recipient_name;
-	
+
+	@NotBlank(message = "휴대전화번호를 입력하세요.")
 	private String recipient_mobile;
-	
+
+	@NotBlank(message = "우편번호를 입력하세요.")
 	private String zipCode;
+
+	@NotBlank(message = "주소를 입력하세요.")
 	private String roadAddress;
+
+	@NotBlank(message = "상세 주소를 입력하세요.")
 	private String detailAddress;
+
+	@NotBlank(message = "참고항목을 입력하세요.")
 	private String reqAddress;
-	
+
 	private String address;
 
 	public Long getProductNum() {
@@ -33,6 +46,13 @@ public class PaymentRequest {
 
 	public Long getUserNum() {
 		return userNum;
+	}
+	
+	public void setUserKey(String userKey) {
+		this.userKey = userKey;
+	}
+	public String getUserKey() {
+		return userKey;
 	}
 
 	public void setUserNum(Long userNum) {
@@ -99,22 +119,25 @@ public class PaymentRequest {
 		return address;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress() {
+		if (roadAddress == null || zipCode == null || roadAddress == null) {
+			throw new RuntimeException("우편번호, 주소, 상세주소, 참고항목을 모두 채워주세요");
+		}
+
+		this.address = "(" + zipCode + ")" + roadAddress + " " + detailAddress;
+
+		if (reqAddress != null) {
+			this.address += "(" + reqAddress + ")";
+		}
+
 	}
 
 	@Override
 	public String toString() {
-		return "PaymentRequest [productNum=" + productNum + ", userNum=" + userNum + ", count=" + count
-				+ ", recipient_name=" + recipient_name + ", recipient_mobile=" + recipient_mobile + ", zipCode="
+		return "PaymentRequest [productNum=" + productNum + ", userNum=" + userNum + ", userKey=" + userKey + ", count="
+				+ count + ", recipient_name=" + recipient_name + ", recipient_mobile=" + recipient_mobile + ", zipCode="
 				+ zipCode + ", roadAddress=" + roadAddress + ", detailAddress=" + detailAddress + ", reqAddress="
-				+ reqAddress + ", address=" + address + ", toString()=" + super.toString() + "]";
+				+ reqAddress + ", address=" + address + "]";
 	}
-	
-	
-	
-
-	
-	
 
 }

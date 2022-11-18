@@ -1,6 +1,7 @@
-package models.shop;
+package models.shop.productReview;
 
 import models.common.BaseDto;
+import models.shop.product.ProductDto;
 import models.user.UserDto;
 
 public class ProductReviewDto extends BaseDto{
