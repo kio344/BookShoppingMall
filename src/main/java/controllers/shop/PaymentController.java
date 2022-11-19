@@ -104,7 +104,7 @@ public class PaymentController {
 
 		case "addCart":
 
-			return "";
+			return "shop/shop";
 
 		}
 

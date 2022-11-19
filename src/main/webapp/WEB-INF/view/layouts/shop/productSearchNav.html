@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head></head>
+	<body>
+		<th:block th:fragment="productSearchNav">
+			<form method="get" th:action="@{/shop/search}" class="searchfrm">
+			
+				<input name="searchValue" th:value="${param.searchValue}" type="text">
+				<select name="searchType">
+					<option value="bookName">책 제목</option>
+					<option value="writer">지은이</option>
+				</select>
+				
+				 <button>검색</button>
+			</form>
+		</th:block>
+	</body>
+
+</html>

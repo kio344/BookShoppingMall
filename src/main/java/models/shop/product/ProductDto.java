@@ -167,6 +167,7 @@ public class ProductDto extends BaseDto {
 		entity.setSerialnum(dto.getSerialnum());
 		entity.setWriter(dto.getWriter());
 		entity.setImageNum(dto.getImageNum());
+		entity.setSalesRate(dto.getSalesRate());
 		
 		return entity;
 
@@ -190,6 +191,7 @@ public class ProductDto extends BaseDto {
 		dto.setSerialnum(entity.getSerialnum());
 		dto.setWriter(entity.getWriter());
 		dto.setImageNum(entity.getImageNum());
+		dto.setSalesRate(entity.getSalesRate());
 		
 		return dto;
 

@@ -1,5 +1,6 @@
 package models.shop.product;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,6 +21,7 @@ public class ProductDao {
 	/**
 	 * 상품 추가
 	 * 
+	 * @author 5563a
 	 * @param param
 	 * @return
 	 */
@@ -27,13 +29,13 @@ public class ProductDao {
 
 		Product entity = new Product();
 		entity = ProductDto.toEntity(param);
-		
+
 		User user = em.find(User.class, param.getSeller().getMemNo());
 		entity.setSeller(user);
-		
+
 		em.persist(entity);
-		
-		em.flush();	
+
+		em.flush();
 
 		return get(entity.getNum());
 	}
@@ -41,6 +43,7 @@ public class ProductDao {
 	/**
 	 * primary 키로 가져오기 (단일값)
 	 * 
+	 * @author 5563a
 	 * @param num
 	 * @return
 	 */
@@ -54,6 +57,7 @@ public class ProductDao {
 	/**
 	 * 책이름 가져오기 (단일값)
 	 * 
+	 * @author 5563a
 	 * @param num
 	 * @return
 	 */
@@ -62,42 +66,83 @@ public class ProductDao {
 		String sql = "SELECT p FROM Product p WHERE bookName=:bookName ";
 		TypedQuery<Product> query = em.createQuery(sql, Product.class);
 		query.setParameter("bookName", bookName);
-		
+
 		Product entity = query.getSingleResult();
 
 		return ProductDto.toDto(entity);
 	}
-	
-	public List<ProductDto> gets(int start,int offset){
-		
-		List<ProductDto> result=null;
-		
-		TypedQuery<Product> query=em.createQuery("SELECT p FROM Product p order by p.num desc ",Product.class);
-		
+
+	/**
+	 * 최신 상품들 가져오기
+	 * 
+	 * @author 5563a
+	 * @param start  페이지네이션
+	 * @param offset 페이지네이션
+	 * @return
+	 */
+	public List<ProductDto> gets(int start, int offset) {
+
+		List<ProductDto> result = null;
+
+		TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p order by p.num desc ", Product.class);
+
 		query.setFirstResult(start);
 		query.setMaxResults(offset);
-	
-		
+
 		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
-		
+
 		return result;
 	}
 
-	
-	public List<ProductDto> getbestSeller(int start,int offset){
-		List<ProductDto> result=null;
-		
-		String sql="SELECT p FROM Product p order by p.salesRate desc";
-		
-		TypedQuery<Product> query=em.createQuery(sql,Product.class);
+	/**
+	 * 베스트셀러 가져오기
+	 * 
+	 * @author 5563a
+	 * @param start  페이지네이션
+	 * @param offset 페이지네이션
+	 * @return
+	 */
+	public List<ProductDto> getbestSeller(int start, int offset) {
+		List<ProductDto> result = null;
+
+		String sql = "SELECT p FROM Product p order by p.salesRate desc";
+
+		TypedQuery<Product> query = em.createQuery(sql, Product.class);
+
+		query.setFirstResult(start);
+		query.setMaxResults(offset);
+
+		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+
+		return result;
+	}
+
+	public List<ProductDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
+
+		String sql = "SELECT p FROM Product p WHERE p." + searchType + " like :searchValue order by p.num desc ";
+		TypedQuery<Product> query = em.createQuery(sql, Product.class);
+		query.setParameter("searchValue", "%"+searchValue+"%");
 		
 		query.setFirstResult(start);
 		query.setMaxResults(offset);
 		
-		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+		List<ProductDto> result = query.getResultStream().map(p -> ProductDto.toDto(p)).toList();
+
+		
 		
 		return result;
+
 	}
-	
+
+	public int getSearchProductCount(String searchValue, String searchType) {
+		
+		String sql = "SELECT COUNT(*) FROM Product p WHERE p." + searchType + " like '%"+searchValue+"%'";
+		
+		
+		String result = em.createNativeQuery(sql).getSingleResult().toString();
+		
+		
+		return Integer.parseInt(result);
+	}
 
 }

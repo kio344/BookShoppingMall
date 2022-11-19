@@ -150,6 +150,7 @@ public class Product extends BaseEntity {
 	public void setReview(List<ProductReview> review) {
 		this.review = review;
 	}
+	
 
 	@Override
 	public String toString() {

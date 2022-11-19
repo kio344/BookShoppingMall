@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+	<h1>상품 검색 페이지</h1>
+
+	<!-- 상품검색 창 -->
+	<th:block th:replace="layouts/shop/productSearchNav::productSearchNav"></th:block>
+
+
+
+
+
+		<ul class="searchResult">
+			<li th:each="product : ${searchResult}">
+			<a th:href="@{/shop/product/}+${product.num}">
+					<div class="bookImg">
+						<img alt=""
+							th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+					</div>
+
+					<div class="product_info">
+						<dl class="bookTitle" >
+							<dt th:text="${product.bookName}"></dt>
+							<dd th:text="${product.category}+'		(★★★★☆)'"></dd>
+							
+							
+						</dl>
+						<dl class="bookWriter" >
+							<dt>지은이</dt>
+							<dd th:text="${product.writer}" ></dd>
+						</dl>
+						<dl class="salesRate" >
+							<dt >판매량</dt>
+							<dd th:text="${product.salesRate}"  ></dd>
+						</dl>
+						
+						<dl class="bookCount" >
+							<dt >재고</dt>
+							<dd th:text="${product.count}"  ></dd>
+						</dl>
+						<dl class="bookPrice" >
+							
+							<dd th:text="${product.price}+' 원'" ></dd>
+						</dl>
+					
+
+					</div>
+					<div class="productBtn_grp" >
+						<button>구매하기</button>
+						<button>장바구니</button>
+						<button>위시리스트</button>
+					</div>
+
+			</a>
+			</li>
+		</ul>
+			<th:block th:replace="layouts/commons/pagination_v2::pagination_v2"></th:block>
+		
+</main>
+</html>

@@ -5,9 +5,10 @@ layout:decorate="~{layouts/main/main}"
 	<main layout:fragment="main">
 	<h1>쇼핑몰 페이지</h1>
 	
-	<form class="searchfrm">
-		<input type="text"> <button>검색</button>
-	</form>
+	<!-- 상품검색 창 -->
+	<th:block th:replace="layouts/shop/productSearchNav::productSearchNav">
+	
+	</th:block>
 	
 	
 	<h2>신간</h2>
