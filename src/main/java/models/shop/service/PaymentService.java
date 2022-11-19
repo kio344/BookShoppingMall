@@ -37,7 +37,7 @@ public class PaymentService {
 
 	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress,String orderId) {
 		
-		return paymentDao.updateProgress(paymentNum, progress,Long.parseLong(orderId));
+		return paymentDao.updateProgress(paymentNum, progress,orderId);
 	}
 
 	public PaymentDto removePayment(Long paymentNum) {

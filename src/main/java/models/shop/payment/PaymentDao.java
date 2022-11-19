@@ -31,7 +31,7 @@ public class PaymentDao {
 		return get(entity.getNum());
 	}
 
-	public PaymentDto updateProgress(Long num, PaymentProgress progress,Long orderId) {
+	public PaymentDto updateProgress(Long num, PaymentProgress progress,String orderId) {
 
 		Payment entity = em.find(Payment.class, num);
 
