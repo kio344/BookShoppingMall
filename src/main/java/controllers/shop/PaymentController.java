@@ -1,18 +1,9 @@
 package controllers.shop;
 
-import java.io.IOException;
-
-import static common.Util.JmsUtil.*;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,15 +12,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.cj.Session;
-
 import common.Util.JsonData;
-import models.mypage.service.UserInfoService;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
@@ -38,12 +25,6 @@ import models.shop.service.PaymentService;
 import models.shop.service.PaymentValidation;
 import models.shop.service.ShopService;
 import models.shop.service.TossService;
-import models.shop.toss.TossData;
-import models.shop.toss.TossPayment;
-import models.shop.toss.TossResult;
-import models.user.UserDao;
-import models.user.UserDto;
-import models.user.UserType;
 import models.user.service.LoginService;
 
 @Controller
