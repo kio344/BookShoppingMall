@@ -15,7 +15,7 @@ public class JmsUtil {
 		
 	}
 	
-	public void autoLogin(HttpSession session) {
+	public static void autoLogin(HttpSession session) {
 		/** 로그인 귀찮을때 S */
 		UserDto user = (UserDto) session.getAttribute("user");
 

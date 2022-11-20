@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import common.Util.JmsUtil;
 import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 import models.shop.userCategory.UserCategoryDto;
@@ -24,6 +25,9 @@ public class ShopController {
 
 	@GetMapping("/index")
 	public String shop(Model model, HttpSession session) {
+		
+		JmsUtil.autoLogin(session);
+		
 		String[] addJs = new String[] { "/shop/index" };
 		String[] addCss = new String[] { "/shop/index" };
 		model.addAttribute("addJs", addJs);

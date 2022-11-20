@@ -98,15 +98,15 @@ public class UserCategoryDto extends BaseDto{
 		entity.setNum(dto.getNum());
 		
 		ObjectMapper om=new ObjectMapper();
-		String myCategory=null;
+		String myCategoryToString=null;
 		try {
-			myCategory=om.writeValueAsString(dto.getMyCategory());
+			myCategoryToString=om.writeValueAsString(dto.getMyCategory());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		entity.setMyCategoryData(myCategory);
+		entity.setMyCategoryData(myCategoryToString);
 		
 		
 		return entity;
@@ -115,6 +115,10 @@ public class UserCategoryDto extends BaseDto{
 
 	public static UserCategoryDto toDto(UserCategory entity) {
 
+		if (entity==null) {
+			return null;
+		}
+		
 		UserCategoryDto dto = new UserCategoryDto();
 
 		dto.setNum(entity.getNum());

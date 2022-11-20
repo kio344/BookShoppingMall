@@ -18,6 +18,21 @@ public class UserCategoryService {
 
 		return userCategoryDao.updateCategory(userNo, addCategory);
 	}
+	
+	public UserCategoryDto register(Long userNo) {
+		
+
+		
+		return userCategoryDao.register(userNo);
+		
+	}
+	
+	public UserCategoryDto get(Long userNo) {
+		
+		return userCategoryDao.getCategory(userNo);
+	}
+	
+	
 
 
 
