@@ -12,7 +12,7 @@
 			</div>
 			<div class="layout_width">
 
-				<th:block th:if="${session.user == null || session.access_token == null}">
+				<th:block th:if="${session.user == null}">
 					<a th:href="@{/user/join}">JOIN</a>
 					<a th:href="@{/user/login}" class="mr">LOGIN</a>
 				</th:block>
