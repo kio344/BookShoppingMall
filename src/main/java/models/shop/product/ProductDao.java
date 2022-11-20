@@ -117,6 +117,15 @@ public class ProductDao {
 		return result;
 	}
 
+	/**
+	 * 상품 검색
+	 * 
+	 * @param start  페이지네이션
+	 * @param offset 페이지네이션
+	 * @param searchValue	검색값
+	 * @param searchType	bookName,writer
+	 * @return
+	 */
 	public List<ProductDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
 
 		String sql = "SELECT p FROM Product p WHERE p." + searchType + " like :searchValue order by p.num desc ";
@@ -134,6 +143,12 @@ public class ProductDao {
 
 	}
 
+	/**
+	 * 상품 검색시 항목 수 (페이지 네이션을 위한)
+	 * @param searchValue	검색값
+	 * @param searchType	bookName,writer
+	 * @return
+	 */
 	public int getSearchProductCount(String searchValue, String searchType) {
 		
 		String sql = "SELECT COUNT(*) FROM Product p WHERE p." + searchType + " like '%"+searchValue+"%'";
@@ -143,6 +158,29 @@ public class ProductDao {
 		
 		
 		return Integer.parseInt(result);
+	}
+	
+	
+	/**
+	 * 상품 구매 시
+	 * 판매량(Product.salesRate) ++
+	 * 재고(Product.count) 	--
+	 * 처리
+	 * @param num
+	 * @return
+	 */
+	public ProductDto buyProduct(Long num,int count) {
+		
+		Product entity = em.find(Product.class, num);
+		entity.setCount(entity.getCount()-count);
+		entity.setSalesRate(entity.getSalesRate()+count);
+		
+		em.persist(entity);
+		
+		em.flush();
+		
+		return ProductDto.toDto(entity);
+		
 	}
 
 }

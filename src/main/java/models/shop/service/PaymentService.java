@@ -11,6 +11,7 @@ import models.shop.payment.PaymentDao;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
+import models.shop.product.ProductDao;
 import models.shop.product.ProductDto;
 import models.user.UserDto;
 
@@ -24,20 +25,34 @@ public class PaymentService {
 	private ShopService shopService;
 
 	@Autowired
+	private ProductDao productDao;
+
+	@Autowired
 	private HttpSession session;
 
 	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
 
-		
 		PaymentDto paymentDto = PaymentDto.toDto(paymentRequest);
 
 		return paymentDao.AddPayment(paymentDto);
 
 	}
 
-	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress,String orderId) {
+	/**
+	 * 진행상태(Payment:progress) 업데이트, 제품 재고(Product:count) 판매량(Product:salesRate) 업데이트
+	 * 
+	 * @param paymentNum
+	 * @param progress
+	 * @param orderId
+	 * @return
+	 */
+	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress, String orderId) {
+
+		PaymentDto payment=paymentDao.updateProgress(paymentNum, progress, orderId);
 		
-		return paymentDao.updateProgress(paymentNum, progress,orderId);
+		productDao.buyProduct(payment.getProduct().getNum(), payment.getCount());
+		
+		return payment;
 	}
 
 	public PaymentDto removePayment(Long paymentNum) {
@@ -70,13 +85,22 @@ public class PaymentService {
 
 		request.setUserNum(user.getMemNo());
 
-		
-		String userKey=user.getMemNo()+user.getMemId();
+		String userKey = user.getMemNo() + user.getMemId();
 		System.out.println(userKey);
 		request.setUserKey(BCrypt.hashpw(userKey, BCrypt.gensalt(10)));
-		
-		
-		
+
 		return request;
+	}
+
+	/**
+	 * 상품 구매 시 판매량(Product.salesRate) ++ 재고(Product.count) -- 처리
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public ProductDto productBuyPs(Long num, int count) {
+
+		return productDao.buyProduct(num, count);
+
 	}
 }

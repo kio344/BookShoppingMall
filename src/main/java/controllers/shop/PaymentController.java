@@ -50,8 +50,8 @@ public class PaymentController {
 	private ShopController shopController;
 
 	/**
-	 * 상품 상세 페이지에서
-	 * 결제 페이지로 이동 
+	 * 상품 상세 페이지에서 결제 페이지로 이동
+	 * 
 	 * @param productNum
 	 * @param model
 	 * @return
@@ -72,8 +72,8 @@ public class PaymentController {
 	}
 
 	/**
-	 * 결제 필수 데이터 검증실패 시
-	 * 결제페이지로 이동
+	 * 결제 필수 데이터 검증실패 시 결제페이지로 이동
+	 * 
 	 * @param request
 	 * @param model
 	 * @return
@@ -113,6 +113,7 @@ public class PaymentController {
 
 	/**
 	 * 결제 검증 실패시 error 표출
+	 * 
 	 * @param paymentRequest
 	 * @param error
 	 * @param model
@@ -151,7 +152,13 @@ public class PaymentController {
 		return ResponseEntity.ok(result);
 	}
 
-	
+	/**
+	 * 결제하기 payment 추가 관련
+	 * 
+	 * 
+	 * @param paymentRequest
+	 * @return 이 기반으로 tossAPi 호출하여 결제 진행
+	 */
 	@ResponseBody
 	@PostMapping("/payment/process")
 	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
@@ -163,9 +170,8 @@ public class PaymentController {
 	}
 
 	/**
-	 * 토스 결제 성공 시
-	 * payment:prgoress 업데이트
-	 * tossCallBack 처리 
+	 * 토스 결제 성공 시 진행상태(Payment:progress) 업데이트, 제품 재고(Product:count)
+	 * 판매량(Product:salesRate) 업데이트 tossCallBack 처리
 	 * 
 	 * @param orderId
 	 * @param paymentKey
@@ -186,9 +192,8 @@ public class PaymentController {
 	}
 
 	/**
-	 * 토스 결제 실패 시
-	 * payment 삭제
-	 * tossCallBack 처리 
+	 * 토스 결제 실패 시 payment 삭제 tossCallBack 처리
+	 * 
 	 * @param orderId
 	 * @param paymentKey
 	 * @param amount
