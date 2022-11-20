@@ -1,0 +1,126 @@
+main{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.searchfrm{
+	width: 70%;
+	display: flex;
+	justify-content: center;
+}
+
+.searchfrm input{
+	width: 50%;
+	border-radius: 4px 0px 0px 4px;
+	border-right: 0px;
+}
+
+.searchfrm select{
+	border: 1px solid #d5d5d5;
+	border-right: 0px;
+	padding: 0px 10px 0px 10px;
+	
+	
+}
+.searchfrm button{
+	border: 1px solid #d5d5d5;
+	border-radius: 0px 4px 4px 0px;
+	padding: 0px 20px 0px 20px;
+}
+
+.searchResult {
+	width: 50%;
+	margin: 20px;
+}
+
+
+.searchResult li{
+	border-radius:5px;
+	margin: 10px;
+	background-color: #f1f1f1;
+	padding: 10px;
+	
+}
+
+.searchResult li a{
+	display: flex;
+}
+
+.searchResult li a > div{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 5px;
+}
+
+.searchResult li a div >dl{
+	display: flex;
+	flex-direction: row;
+	margin: 5px;
+}
+
+.searchResult li a div > .bookTitle{
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+}
+.searchResult li a div > .bookTitle dt{
+	font-size: 2rem;
+	margin-bottom: 10px;
+	width: 100%;
+}
+.searchResult li a div > .bookTitle dd:nth-of-type(2){
+	margin-top: 5px;
+}
+
+.searchResult li a div > dl dt{
+	margin-right: 10px;
+	width: 50px;
+}
+
+.searchResult li a div > .bookPrice{
+	font-size: 1.7rem;
+}
+
+
+.searchResult li a .product_info{
+	width: 100%;
+}
+.searchResult li a .productBtn_grp{
+	width: 150px;
+}
+.searchResult li a .productBtn_grp > button{
+	padding: 10px;
+}
+.searchResult li a .productBtn_grp > button:nth-of-type(1){
+	background-color: #ff8080;
+}
+.searchResult li a .productBtn_grp > button:nth-of-type(2){
+	background-color: #fe9718;
+}
+.searchResult li a .productBtn_grp > button:nth-of-type(3){
+	background-color: #188bfe;
+}
+
+.searchResult li a img{
+	max-width: 160px;	
+}
+
+.pagination{
+	display: flex;
+	flex-direction: row;
+}
+
+.pagination a{
+	display:flex;
+	border-radius:3px;
+	justify-content:center;
+	align-items:center;
+	width: 30px;
+	height: 30px;
+	background-color: #424242;
+	color: white;
+	margin: 10px;
+}

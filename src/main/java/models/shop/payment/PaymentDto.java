@@ -33,6 +33,8 @@ public class PaymentDto extends BaseDto {
 	private String address;
 
 	private PaymentProgress progress;
+	
+	private String tossOrderId;
 
 	public Long getNum() {
 		return num;
@@ -97,6 +99,13 @@ public class PaymentDto extends BaseDto {
 	public void setProgress(PaymentProgress progress) {
 		this.progress = progress;
 	}
+	
+	public String getTossOrderId() {
+		return tossOrderId;
+	}
+	public void setTossOrderId(String tossOrderId) {
+		this.tossOrderId = tossOrderId;
+	}
 
 	@Override
 	public String toString() {
@@ -113,6 +122,7 @@ public class PaymentDto extends BaseDto {
 		entity.setProgress(dto.getProgress());
 		entity.setRecipient_mobile(dto.getRecipient_mobile());
 		entity.setRecipient_name(dto.getRecipient_name());
+		entity.setTossOrderId(dto.getTossOrderId());
 
 		return entity;
 	}
@@ -129,7 +139,8 @@ public class PaymentDto extends BaseDto {
 		dto.setRecipient_mobile(entity.getRecipient_mobile());
 		dto.setRecipient_name(entity.getRecipient_name());
 		dto.setUser(UserDto.toDto(entity.getUser()));
-
+		dto.setTossOrderId(entity.getTossOrderId());
+		
 		return dto;
 	}
 

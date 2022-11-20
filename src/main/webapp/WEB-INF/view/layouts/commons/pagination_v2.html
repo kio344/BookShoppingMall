@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head></head>
+	<body>
+		<th:block th:fragment="pagination_v2">
+			
+			<div class="pagination" th:object="${pagination}">
+				<a th:unless="*{prev==0}" th:href="@{*{link}}+*{prev}" th:text="'<'">
+				
+				</a>
+				
+				<a th:each="page : *{pages}" th:href="@{*{link}}+${page}" th:text="${page}">
+				
+				</a>
+				<a th:unless="*{next==0}" th:href="@{*{link}}+*{next}" th:text="'>'">
+					
+				</a>
+				
+			</div>
+		</th:block>
+	</body>
+
+</html>

@@ -72,6 +72,24 @@ public class UserDao {
 		
 	}
 	
+
+	
+	/**
+	 * 유저 memNo 로 member 정보 가져오기
+	 * @param memNo
+	 * @return
+	 */
+	public UserDto get(Long memNo) {
+		
+		User user=em.find(User.class, memNo);
+		
+		
+		
+		return UserDto.toDto(user);
+	}
+	
+
+
 	public UserDto kakaoMatching(Long kakaoId) {
 		
 		String sql = "SELECT u FROM User u WHERE kakaoId = :kakaoId";
@@ -94,5 +112,6 @@ public class UserDao {
 		
 		return UserDto.toDto(entity);
 	}
+
 
 }
