@@ -13,7 +13,7 @@
     border-radius: 20px;
     width: 500px;
     margin: 0 auto;
-    
+    height: 400px; 
 }
 .text{padding:20px 10px 10px 10px;}
 .loginbox{padding:20px 10px 10px 10px;}
@@ -29,10 +29,10 @@
     background-color: lightgoldenrodyellow;
     cursor: pointer;}
 .kakaologin {
-	background: url("../../image/kakao_login.png") no-repeat
-	center;
-	position: absolute;
-	margin-left: 20px;
-	padding-top: 50px;
-	padding-left: 200px;
+background: url(../../image/kakao_login.png) no-repeat center;
+    position: absolute;
+    margin-left: 20px;
+    padding-top: 50px;
+    padding-left: 200px;
+    width: 330px;
 }

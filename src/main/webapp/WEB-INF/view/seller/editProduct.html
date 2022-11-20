@@ -2,98 +2,115 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/seller/sellerLayout}">
-	
+
 <main layout:fragment="main">
-	<h1>상품 수정 페이지</h1>
-	
-	<form th:action="@{/seller/product/edit}" method="get">
-		<input type="text" th:name="search">
-			<select th:name="searchType">
-				<option value="bookName">책 이름</option>
-				<option value="writer">글쓴이</option>
-			</select>
-			<button>검색하기</button>
-	</form>
-	
-	<form th:action="@{/seller/product/update}" method="post">
-		<table>
-			<thead>
-				<tr>
-					<th><input type="checkbox"></th>
-					<th>판매자</th>
-					<th>시리얼 넘버</th>
-					<th>책 이름</th>
-					<th>글쓴이</th>
-					<th>가격</th>
-					<th>카테고리</th>
-					<th>출판사</th>
-					<th>남은 수량</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="list : ${list}" th:object="${list}">
-					<td>
-						<div>
-							<input type="checkbox" th:name="product" th:value="*{num}">
-						</div>
-					</td>
+	<div class="sellerEdit">
+		<h1 class="text">상품 수정 페이지</h1>
 
-					<td>
-						<div>
-							<input type="text" disabled th:value="*{seller.getMemId()}">
-						</div>
-					</td>
+		<form th:action="@{/seller/product/edit}" method="get">
+			<div class="search">
+				<input class="searchInput" type="text" th:name="search"> <select
+					th:name="searchType">
+					<option value="bookName">책 이름</option>
+					<option value="writer">글쓴이</option>
+				</select>
+				<button>검색하기</button>
+			</div>
+		</form>
 
-					<td>
-						<div>
-							<input type="text" disabled th:value="*{serialnum}">
-						</div>
-					</td>
+		<form th:action="@{/seller/product/update}" method="post">
+			<div class="product">
+				<table>
+					<thead class="subject">
+						<tr>
+							<th><input type="checkbox"></th>
+							<th>판매자</th>
+							<th>시리얼 넘버</th>
+							<th>책 이름</th>
+							<th>글쓴이</th>
+							<th>가격</th>
+							<th>카테고리</th>
+							<th>출판사</th>
+							<th>남은 수량</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="list : ${list}" th:object="${list}">
+							<td>
+								<div>
+									<input type="checkbox" th:name="product" th:value="*{num}">
+								</div>
+							</td>
 
-					<td>
-						<div>
-							<input type="text" disabled th:value="*{bookName}">
-						</div>
-					</td>
+							<td>
+								<div>
+									<input class="productbox" type="text" disabled
+										th:value="*{seller.getMemId()}">
+								</div>
+							</td>
 
-					<td>
-						<div>
-							<input type="text" disabled th:value="*{writer}">
-						</div>
-					</td>
+							<td>
+								<div>
+									<input class="productbox" type="text" disabled
+										th:value="*{serialnum}">
+								</div>
+							</td>
 
-					<td>
-						<div>
-							<input type="number" th:value="*{price}" th:name="price + ${('_') + (list.num)}">
-						</div>
-					</td>
+							<td>
+								<div>
+									<input class="productbox" type="text" disabled
+										th:value="*{bookName}">
+								</div>
+							</td>
 
-					<td>
-						<div>
-							<input type="text" disabled th:value="*{category}">
-						</div>
-					</td>
+							<td>
+								<div>
+									<input class="productbox" type="text" disabled
+										th:value="*{writer}">
+								</div>
+							</td>
 
-					<td>
-						<div>
-							<input type="text" disabled th:value="*{publisher}">
-						</div>
-					</td>
+							<td>
+								<div>
+									<input class="productbox" type="number" th:value="*{price}"
+										th:name="price + ${('_') + (list.num)}">
+								</div>
+							</td>
 
-					<td>
-						<div>
-							<input type="number" th:value="*{count}" th:name="count + ${('_') + (list.num)}">
-						</div>
-					</td>
-					</th:block>
-				</tr>
-			</tbody>
-		</table>
-		상품을<select th:name="mode">
-				<option value="update">수정</option>
-				<option value="remove">삭제</option>
-				</select>합니다
-		<button>처리하기</button>
-	</form>
+							<td>
+								<div>
+									<input class="productbox" type="text" disabled
+										th:value="*{category}">
+								</div>
+							</td>
+
+							<td>
+								<div>
+									<input class="productbox" type="text" disabled
+										th:value="*{publisher}">
+								</div>
+							</td>
+
+							<td>
+								<div>
+									<input class="productbox" type="number" th:value="*{count}"
+										th:name="count + ${('_') + (list.num)}">
+								</div>
+							</td>
+							</th:block>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="last">
+					상품을<select th:name="mode">
+						<option value="update">수정</option>
+						<option value="remove">삭제</option>
+					</select>합니다
+					<button>처리하기</button>
+				</div>
+			</div>
+		</form>
+	</div>
 </main>
 </html>

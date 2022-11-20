@@ -1,7 +1,24 @@
 .sellerProductRequest{
-	width: 1200px; margin: 0 auto; padding-top: 30px; text-align: center;
+	width: 1200px; margin: 0 auto; padding-top: 30px; text-align: center;background-color: #fffdf8; height: 1000px;
 }
 
+.text{    margin: 20px;
+    padding-top: 60px;
+    padding-bottom: 20px;}
+.product{    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 0 auto;
+    align-items: center;}
+.inputText{margin: 5px 20px;
+    display: flex;}
 .sellerProductRequest input{
-  width: 500px; font-size:15px; border: 1px solid #000; margin: 10px;
+     width: 500px;
+    font-size: 15px;
+    border: 1px solid #000;
+    margin: 10px;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
 }
