@@ -37,6 +37,7 @@ import models.shop.product.ProductDto;
 import models.shop.service.PaymentService;
 import models.shop.service.PaymentValidation;
 import models.shop.service.ShopService;
+import models.shop.service.TossService;
 import models.shop.toss.TossData;
 import models.shop.toss.TossPayment;
 import models.shop.toss.TossResult;
@@ -49,6 +50,9 @@ import models.user.service.LoginService;
 @RequestMapping("/shop")
 public class PaymentController {
 
+	@Autowired
+	private TossService tossService;
+	
 	@Autowired 
 	private PaymentValidation validation;
 	
@@ -158,23 +162,13 @@ public class PaymentController {
 	@GetMapping(produces = "text/html;charset=utf-8", path = "/payment/result/sc")
 	public String processSc(String orderId, String paymentKey, Long amount, Model model, HttpSession session) {
 		String paymentId = orderId.split("__")[1];
+		
 		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET,orderId);
 
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create("https://api.tosspayments.com/v1/payments/confirm"))
-				.header("Authorization", "Basic dGVzdF9za19PNkJZcTdHV1BWdk5sNW9kRFFtVk5FNXZibzFkOg==")
-				.header("Content-Type", "application/json")
-				.method("POST", HttpRequest.BodyPublishers.ofString("{\"paymentKey\":\"" + paymentKey + "\",\"amount\":"
-						+ amount + ",\"orderId\":\"" + orderId + "\"}"))
-				.build();
-		HttpResponse<String> response = null;
-		try {
-			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-		} catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(response.body());
+
+		tossService.paymentCallBackSc(orderId, paymentKey, amount);
+		
+
 
 		return shopController.shop(model, session);
 	}
@@ -185,21 +179,7 @@ public class PaymentController {
 
 		paymentService.removePayment(Long.parseLong(paymentId));
 
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create("https://api.tosspayments.com/v1/payments/confirm"))
-				.header("Authorization", "Basic dGVzdF9za19PNkJZcTdHV1BWdk5sNW9kRFFtVk5FNXZibzFkOg==")
-				.header("Content-Type", "application/json")
-				.method("POST", HttpRequest.BodyPublishers.ofString("{\"paymentKey\":\"" + paymentKey + "\",\"amount\":"
-						+ amount + ",\"orderId\":\"" + orderId + "\"}"))
-				.build();
-		HttpResponse<String> response = null;
-		try {
-			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-		} catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(response.body());
+		tossService.paymentCallBackFail(orderId, paymentKey, amount);
 
 		return shopController.shop(model, session);
 	}
