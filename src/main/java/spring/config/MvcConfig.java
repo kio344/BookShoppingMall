@@ -38,7 +38,7 @@ import common.auth.AdminCheck;
 import common.auth.BoardPrivateCheck;
 import common.auth.MemberCheck;
 import common.auth.SellerCheck;
-import models.shop.MyCategoryRecode;
+import models.shop.userCategory.MyCategoryRecode;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 
 @Configuration

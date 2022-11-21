@@ -30,7 +30,6 @@ public class ShopController {
 	@GetMapping("/index")
 	public String shop(Model model, HttpSession session) {
 
-		JmsUtil.autoLogin(session);
 
 		String[] addJs = new String[] { "/shop/index" };
 		String[] addCss = new String[] { "/shop/index" };

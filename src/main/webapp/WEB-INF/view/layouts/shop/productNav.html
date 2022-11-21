@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<th:block th:fragment="productNav">
+		<link rel="styleSheet" th:href="@{/css/shop/productNav.css}">
+		<script th:src="@{/js/shop/productNav.js}"></script>
+		
+		<form id="productNavFrm" class="productNavStatus" target="ifrm" method="get" th:action="@{/shop/productNav}">
+			<input type="text"  id="cat1" name="cat1" readonly="readonly">/
+			<input type="text"  id="cat2" name="cat2" readonly="readonly">/
+			<input type="text"  id="cat3" name="cat3" readonly="readonly">
+		</form>
+		<div class="productNav">
+			<div class="category value_1">
+				<ul>
+					<li data-value=''>전체</li>
+					<li data-value='국내'>국내</li>
+					<li data-value='해외'>해외</li>
+				</ul>
+			</div>
+
+			<div class="category value_2">
+				<ul>
+					<li data-value="current_not">총류</li>
+					<li data-value="philosophy" >철학</li>
+					<li data-value="religion">종교</li>
+					<li data-value="social_science">사회과학</li>
+					<li data-value="natural_science">자연과학</li>
+					<li data-value="technical_science">기술과학</li>
+					<li data-value="art">예술</li>
+					<li data-value="language">언어</li>
+					<li data-value="literature">문학</li>
+					<li data-value="history">역사</li>
+				</ul>
+			</div>
+
+			<div class="category value_3">
+				
+				<ul id="current_not" >
+					<li value="도서학">도서학</li>
+					<li value="문헌정보학">문헌정보학</li>
+					<li value="백과사전">백과사전</li>
+					<li value="강연집">강연집</li>
+					<li value="일반연속간행물">일반연속간행물</li>
+					<li value="단체">단체</li>
+					<li value="신문">신문</li>
+					<li value="총서">총서</li>
+					<li value="향토자료">향토자료</li>
+				</ul>
+
+				<ul id="philosophy" class="dn">
+					<li value="철학">철학</li>
+					<li value="형이상학">형이상학</li>
+					<li value="인간학">인식론</li>
+					<li value="철학의_체계">철학의 체계</li>
+					<li value="경학">경학</li>
+					<li value="동양철학">동양철학</li>
+					<li value="서양철학">서양철학</li>
+					<li value="논리학">논리학</li>
+					<li value="심리학">심리학</li>
+					<li value="윤리학">윤리학</li>
+				</ul>
+				<ul id="religion" class="dn">
+					<li value="종교">종교</li>
+					<li value="비교종교">비교종교</li>
+					<li value="불교">불교</li>
+					<li value="기독교">기독교</li>
+					<li value="도교">도교</li>
+					<li value="천도교">천도교</li>
+					<li value="힌두교">힌두교</li>
+					<li value="이슬람교">이슬람교</li>
+					<li value="기타제종교">기타제종교</li>
+				</ul>
+				<ul id="social_science" class="dn">
+					<li value="사회과학">사회과학</li>
+					<li value="통계자료">통계자료</li>
+					<li value="경제학">경제학</li>
+					<li value="사회학">사회학</li>
+					<li value="정치학">정치학</li>
+					<li value="행정학">행정학</li>
+					<li value="법률">법률</li>
+					<li value="교육학">교육학</li>
+					<li value="풍속">풍속</li>
+					<li value="군사학">군사학</li>
+				</ul>
+
+				<ul id="natural_science" class="dn">
+					<li value="자연과학">자연과학</li>
+					<li value="수학">수학</li>
+					<li value="물리학">물리학</li>
+					<li value="화학">화학</li>
+					<li value="천문학">천문학</li>
+					<li value="지학">지학</li>
+					<li value="광물학">광물학</li>
+					<li value="생명과학">생명과학</li>
+					<li value="식물학">식물학</li>
+					<li value="동물학">동물학</li>
+				</ul>
+
+				<ul id="technical_science" class="dn">
+					<li value="기술과학">기술과학</li>
+					<li value="의학">의학</li>
+					<li value="농업">농업</li>
+					<li value="공업일반">공업일반</li>
+					<li value="건축학">건축학</li>
+					<li value="기계공학">기계공학</li>
+					<li value="전기공학">전기공학</li>
+					<li value="화학공학">화학공학</li>
+					<li value="제조업">제조업</li>
+					<li value="생활과학">생활과학</li>
+				</ul>
+
+				<ul id="art" class="dn">
+					<li value="예술">예술</li>
+					<li value="미사용">미사용</li>
+					<li value="조형미술">조형미술</li>
+					<li value="공예">공예</li>
+					<li value="서예">서예</li>
+					<li value="디자인">디자인</li>
+					<li value="사진예술">사진예술</li>
+					<li value="음악">음악</li>
+					<li value="공연예술">공연예술</li>
+					<li value="스포츠">스포츠</li>
+				</ul>
+				<ul id="language" class="dn">
+					<li value="언어">언어</li>
+					<li value="한국어">한국어</li>
+					<li value="중국어">중국어</li>
+					<li value="일본어">일본어</li>
+					<li value="영어">영어</li>
+					<li value="독일어">독일어</li>
+					<li value="프랑스어">프랑스어</li>
+					<li value="스페인어">스페인어</li>
+					<li value="이탈리아어">이탈리아어</li>
+					<li value="기타_제어">기타 제어</li>
+				</ul>
+				<ul id="literature" class="dn">
+					<li value="문학">문학</li>
+					<li value="한국문학">한국문학</li>
+					<li value="중국문학">중국문학</li>
+					<li value="일본문학">일본문학</li>
+					<li value="영미문학">영미문학</li>
+					<li value="독일문학">독일문학</li>
+					<li value="프랑스문학">프랑스문학</li>
+					<li value="스페인">스페인</li>
+					<li value="이탈리아문학">이탈리아문학</li>
+					<li value="기타_제문학">기타 제문학</li>
+				</ul>
+				<ul id="history" class="dn">
+					<li value="역사">역사</li>
+					<li value="아시아">아시아</li>
+					<li value="유럽">유럽</li>
+					<li value="아프리카">아프리카</li>
+					<li value="북아메리카">북아메리카</li>
+					<li value="남아메리카">남아메리카</li>
+					<li value="오세아니아">오세아니아</li>
+					<li value="지리">지리</li>
+					<li value="전기">전기</li>
+				</ul>
+
+
+
+			</div>
+
+			<div class="product">
+				<iframe name="ifrm" scrolling="yes"></iframe>				
+
+			</div>
+		</div>
+
+	</th:block>
+</body>
+
+</html>

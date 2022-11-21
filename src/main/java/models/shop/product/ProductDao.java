@@ -132,6 +132,8 @@ public class ProductDao {
 		TypedQuery<Product> query = em.createQuery(sql, Product.class);
 		query.setParameter("searchValue", "%"+searchValue+"%");
 		
+		System.out.println(searchValue);
+		
 		query.setFirstResult(start);
 		query.setMaxResults(offset);
 		

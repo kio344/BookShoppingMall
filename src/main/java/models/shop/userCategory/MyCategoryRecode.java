@@ -1,4 +1,4 @@
-package models.shop;
+package models.shop.userCategory;
 
 import java.util.Arrays;
 
@@ -23,8 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 import models.shop.service.UserCategoryService;
-import models.shop.userCategory.UserCategoryDao;
-import models.shop.userCategory.UserCategoryDto;
 import models.user.UserDto;
 
 public class MyCategoryRecode implements HandlerInterceptor {

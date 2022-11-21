@@ -3,16 +3,22 @@
 layout:decorate="~{layouts/main/main}"
 >
 	<main layout:fragment="main">
-	<h1>쇼핑몰 페이지</h1>
+	<h1>통합 검색</h1>
 	
 	<!-- 상품검색 창 -->
 	<th:block th:replace="layouts/shop/productSearchNav::productSearchNav">
 	
 	</th:block>
 	
+	<!-- 상품 네비 -->
+	<th:block th:replace="layouts/shop/productNav::productNav">
+	
+	</th:block>
+	
+	
 	
 	<h2>신간</h2>
-		<ul>
+		<ul class="product_list">
 			<li th:each="product :  ${newProductList}">
 				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
@@ -29,7 +35,7 @@ layout:decorate="~{layouts/main/main}"
 		</ul>
 		
 		<h2>많이 구매한 상품</h2>
-		<ul>
+		<ul class="product_list">
 			<li th:each="product :  ${bestSellerList}">
 				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
@@ -45,21 +51,24 @@ layout:decorate="~{layouts/main/main}"
 			</li>
 		</ul>
 		
-		<h2>나만의상점</h2>
-		<ul>
-			<li th:each="product :  ${myShopList}">
-				<a th:href="@{/shop/product/}+${product.num}">
-					<div class="bookImg">
-						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
-					</div>
-					
-					<div class="bookTitle" th:text="${product.bookName}">책이름</div>
-					
-					<div class="bookWriter" th:text="${product.writer}">저자</div>
-					
-					<div class="bookPrice" th:text="${product.price}">10000원</div>
-				</a>
-			</li>
-		</ul>
+		<th:block th:if="${session.user != null}">
+		
+			<h2>나만의상점</h2>
+			<ul class="product_list">
+				<li th:each="product :  ${myShopList}">
+					<a th:href="@{/shop/product/}+${product.num}">
+						<div class="bookImg">
+							<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+						</div>
+						
+						<div class="bookTitle" th:text="${product.bookName}">책이름</div>
+						
+						<div class="bookWriter" th:text="${product.writer}">저자</div>
+						
+						<div class="bookPrice" th:text="${product.price}">10000원</div>
+					</a>
+				</li>
+			</ul>
+		</th:block>
 	</main>
 </html>
