@@ -31,7 +31,7 @@ layout:decorate="~{layouts/main/main}"
 		<h2>많이 구매한 상품</h2>
 		<ul>
 			<li th:each="product :  ${bestSellerList}">
-				<a>
+				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
 						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
 					</div>
@@ -47,17 +47,17 @@ layout:decorate="~{layouts/main/main}"
 		
 		<h2>나만의상점</h2>
 		<ul>
-			<li th:each="test :  ${#numbers.sequence(1,5)}">
-				<a>
+			<li th:each="product :  ${myShopList}">
+				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
-						<img alt="" src="https://image.aladin.co.kr/product/2642/80/cover500/8956056536_1.jpg">
+						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
 					</div>
 					
-					<div class="bookTitle">책이름</div>
+					<div class="bookTitle" th:text="${product.bookName}">책이름</div>
 					
-					<div class="bookWriter">저자</div>
+					<div class="bookWriter" th:text="${product.writer}">저자</div>
 					
-					<div class="bookPrice">10000원</div>
+					<div class="bookPrice" th:text="${product.price}">10000원</div>
 				</a>
 			</li>
 		</ul>

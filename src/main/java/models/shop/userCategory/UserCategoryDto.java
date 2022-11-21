@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.hibernate.mapping.List;
 
@@ -27,7 +28,7 @@ public class UserCategoryDto extends BaseDto{
 
 	private UserDto user;
 
-	private ArrayList<HashMap<String, Integer>> myCategory = new ArrayList<HashMap<String, Integer>>();
+	private ArrayList<TreeMap<String, Integer>> myCategory = new ArrayList<TreeMap<String, Integer>>();
 
 	public UserCategoryDto() {
 	}
@@ -35,7 +36,7 @@ public class UserCategoryDto extends BaseDto{
 	public UserCategoryDto(int categoryCount, UserDto user) {
 		this.user=user;
 		for (int i = 0; i < categoryCount; i++) {
-			myCategory.add(new HashMap<String, Integer>());
+			myCategory.add(new TreeMap<String, Integer>());
 		}
 	}
 
@@ -48,7 +49,7 @@ public class UserCategoryDto extends BaseDto{
 
 	}
 
-	public void addMap(String value, HashMap<String, Integer> map) {
+	public void addMap(String value, TreeMap<String, Integer> map) {
 		if (map.containsKey(value)) {
 			map.put(value, map.get(value) + 1);
 		} else {
@@ -73,11 +74,11 @@ public class UserCategoryDto extends BaseDto{
 		this.user = user;
 	}
 
-	public ArrayList<HashMap<String, Integer>> getMyCategory() {
+	public ArrayList<TreeMap<String, Integer>> getMyCategory() {
 		return myCategory;
 	}
 
-	public void setMyCategory(ArrayList<HashMap<String, Integer>> myCategory) {
+	public void setMyCategory(ArrayList<TreeMap<String, Integer>> myCategory) {
 		this.myCategory = myCategory;
 	}
 
@@ -125,10 +126,10 @@ public class UserCategoryDto extends BaseDto{
 		dto.setUser(UserDto.toDto(entity.getUser()));
 		
 		ObjectMapper om=new ObjectMapper();
-		ArrayList<HashMap<String, Integer>> mycategory=null;
+		ArrayList<TreeMap<String, Integer>> mycategory=null;
 		
 		try {
-			mycategory =  om.readValue(entity.getMyCategoryData().getBytes(), new TypeReference<ArrayList<HashMap<String, Integer>>>() {});
+			mycategory =  om.readValue(entity.getMyCategoryData().getBytes(), new TypeReference<ArrayList<TreeMap<String, Integer>>>() {});
 			
 			dto.setMyCategory(mycategory);
 			
