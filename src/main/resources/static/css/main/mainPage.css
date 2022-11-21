@@ -9,7 +9,7 @@ dl, dt, dd {margin: 0; padding: 0;}
 button{border:none; background-color: rgba(255,255,255,0); cursor: pointer;}
 
 /**색깔*/
-.white{color:white;}
+.white{color:white;  text-shadow: 2px 3px 6px black;}
 .blue{color: #313f76;}
 
 /**hr 두께*/

@@ -7,44 +7,46 @@
 	<div class="sellerProductRequest">
 	<form th:action="@{/seller/requestProduct}" id="frm" method="post" enctype="multipart/form-data">
 		
-		<h1>판매 신청 하기</h1>
+		<h1 class="text">판매 신청 하기</h1>
 		
+		<div class="product">
 		<div>
-			판매자 : <input type="text" disabled name="seller" value="test"><!-- th:value="${user.memId}" -->
+			<div class="inputText">판매자</div> <input type="text" disabled name="seller" value="test"><!-- th:value="${user.memId}" -->
 		</div>
 		
 		<div>
-			시리얼 넘버 : <input type="text" name="serialnum" >
+			<div class="inputText">시리얼 넘버</div> <input type="text" name="serialnum" >
 		</div>
 		
 		<div>
-			책 이름 : <input type="text" name="bookName" >
+			<div class="inputText">책 이름</div> <input type="text" name="bookName" >
 		</div>
 		
 		<div>
-			글쓴이 : <input type="text" name="writer">
+			<div class="inputText">글쓴이</div> <input type="text" name="writer">
 		</div>
 
 		<div>
-			가격 : <input type="number" name="price">
+			<div class="inputText">가격</div> <input type="number" name="price">
 		</div>
 
 		<div>
-			카테고리 : <input type="text" name="category" id="categoryInput">
+			<div class="inputText">카테고리</div> <input type="text" name="category" id="categoryInput">
 			<select th:replace="~{/seller/category.html :: select}"></select>
 		</div>
 
 		<div>
-			출판사 : <input type="text" name="publisher">
+			<div class="inputText">출판사</div> <input type="text" name="publisher">
 		</div>
 
 		<div>
-			수량 : <input type="number" name="count">
+			<div class="inputText">수량</div> <input type="number" name="count">
 		</div>
 		
-		이미지 파일 : <input name="file" type="file" >
+		<div class="inputText">이미지 파일</div> <input name="file" type="file" >
 		
 		<button type="button" id="request">신청하기</button>
+		</div>
 	</form>
 	 
 	</div>

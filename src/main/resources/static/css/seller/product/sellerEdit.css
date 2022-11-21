@@ -1,0 +1,61 @@
+.sellerEdit{
+	width: 1200px;
+    margin: 0 auto;
+    padding-top: 60px;
+    text-align: center;
+    background-color: #fffdf8;
+}
+.text{    margin-top: 50px;}
+
+/**검색*/
+.search{    margin: 0 auto;
+    padding: 30px 10px 20px;
+    width: 650px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* border-bottom: 1px solid black; */
+    margin-bottom: 40px;}
+.searchInput{width: 450px;}
+
+/**상품*/
+.product{    width: 1100px;
+    margin: 0 auto;}
+.productbox{width: 130px;
+    background-color: white;}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  float: left;
+   margin: 0 0 2em;}
+table thead {
+    border-bottom: 0.5px solid black;}
+table thead th {
+padding: 0.35em 0 0.35em;
+    font-weight: 400;
+    /* text-align: left; */
+    font-size: 1.2em;
+    }
+
+ table tbody {
+    border-bottom: 0.5px solid black;}
+  tbody tr {
+     border-bottom: 0.5px solid #000000;}
+       
+   tbody td {
+        padding: .75em 0;}
+   tbody a {
+          color: black;
+          text-decoration: none;
+          display: inline-block;
+          margin: 0 .5em 0 0;
+        }
+    
+/**제출*/
+.last{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 230px;
+    margin: 0 auto;}

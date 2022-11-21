@@ -42,8 +42,10 @@ public class ProductEditController {
 	@GetMapping("/edit")
 	public String edit(@RequestParam(required = false, name = "searchType" , defaultValue = "") String searchType, @RequestParam(required = false, name = "search",defaultValue = "") String search, Model model) {
 			
+		
 		List<ProductRequestDto> list = dao.gets();
 			model.addAttribute("list", list);
+			model.addAttribute("addCss", new String [] {"/seller/product/sellerEdit"});
 			
 		if(!searchType.isBlank()) {
 			List<ProductRequestDto> item = searchService.search(searchType, search);
