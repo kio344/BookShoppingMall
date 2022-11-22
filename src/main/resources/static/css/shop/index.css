@@ -44,7 +44,6 @@ ul{
 .product_list li{
 	display:flex;
 	width: calc(100%/6);
-	height: 300px;
 	margin: 20px;
 	
 	
