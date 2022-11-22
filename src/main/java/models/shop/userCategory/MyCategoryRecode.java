@@ -1,4 +1,4 @@
-package models.shop;
+package models.shop.userCategory;
 
 import java.util.Arrays;
 
@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 import models.shop.service.UserCategoryService;
-import models.shop.userCategory.UserCategoryDao;
 import models.user.UserDto;
 
 public class MyCategoryRecode implements HandlerInterceptor {
@@ -53,7 +52,17 @@ public class MyCategoryRecode implements HandlerInterceptor {
 
 		String category = product.getCategory();
 		
-		UserDto user=(UserDto)session.getAttribute("user");
+		UserDto user=(UserDto)session.getAttribute("user"); 
+		
+		if (user==null) {
+			return true;
+		}
+		
+		UserCategoryDto myCategory=userCategoryService.get(user.getMemNo());
+		
+		if (myCategory==null) {
+			userCategoryService.register(user.getMemNo());
+		}
 
 		userCategoryService.userCategoryUpdate(user.getMemNo(), category);
 		
