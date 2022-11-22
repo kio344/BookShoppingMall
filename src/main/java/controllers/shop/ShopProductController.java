@@ -1,5 +1,7 @@
 package controllers.shop;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +26,13 @@ public class ShopProductController {
 
 		ProductDto product=shopService.getProduct(productnum);
 		
+		String[] category=product.getCategory().split("/");
+		
+		List<ProductDto> sameProduct=shopService.getSearchProducts(0, 5, category[1], "category");
+		
 		model.addAttribute("addCss", new String[] {"/shop/product"});
 		model.addAttribute("product",product);
+		model.addAttribute("sameProduct",sameProduct);
 		
 		return "shop/product";
 	}

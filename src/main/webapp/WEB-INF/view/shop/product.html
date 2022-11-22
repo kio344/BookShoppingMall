@@ -60,11 +60,30 @@ layout:decorate="~{layouts/main/main}"
 				
 			</form>
 			
-			<div class="productReview">
-				<h1>유사한 상품</h1>
-		
-			</div>
 
+
+		</div>
+		
+		<div class="selectEl">
+			<div>비슷한 상품</div>
+			<div>리뷰</div>
+		</div>
+		<div class="sameProduct">
+			<ul class="product_list">
+				<li th:each="product :  ${sameProduct}">
+					<a th:href="@{/shop/product/}+${product.num}">
+						<div class="bookImg">
+							<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+						</div>
+						
+						<div class="bookTitle" th:text="${product.bookName}">책이름</div>
+						
+						<div class="bookWriter" th:text="${product.writer}">저자</div>
+						
+					</a>
+				</li>
+		
+			</ul>
 		</div>
 	</main>
 </html>
