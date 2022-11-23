@@ -16,6 +16,7 @@ import models.admin.product.service.AdminProductService;
 import models.seller.edit.SearchDao;
 import models.seller.edit.SearchService;
 import models.seller.product.ProductRequestDto;
+import models.shop.product.ProductDto;
 
 @Controller
 @RequestMapping("/seller/product")
@@ -43,8 +44,10 @@ public class ProductEditController {
 	public String edit(@RequestParam(required = false, name = "searchType" , defaultValue = "") String searchType, @RequestParam(required = false, name = "search",defaultValue = "") String search, Model model) {
 			
 		
-		List<ProductRequestDto> list = dao.gets();
-			model.addAttribute("list", list);
+		List<ProductRequestDto> ProductRequestList = dao.gets();
+//		List<ProductDto> ProductList = dao.getsProduct();
+		
+			model.addAttribute("list", ProductRequestList);
 			model.addAttribute("addCss", new String [] {"/seller/product/sellerEdit"});
 			
 		if(!searchType.isBlank()) {
@@ -52,7 +55,7 @@ public class ProductEditController {
 			model.addAttribute("list", item);
 		}
 			
-		return "/seller/editProduct";
+		return "/seller/editAgreeProduct";
 	}
 	
 	@PostMapping("/update")
