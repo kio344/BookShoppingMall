@@ -12,10 +12,7 @@
 					<div class="productImgArea">
 						<img alt=""
 							th:src="@{/productImages/}+*{product.imageNum%10}+${'/'}+*{product.imageNum}">
-						<div class="btn_group">
-							<a>리뷰쓰기</a>
-							<a></a>
-						</div>
+						
 					</div>
 					
 					<div>
@@ -41,10 +38,24 @@
 							<dd th:text="${#numbers.formatInteger(payment.count,1)} * ${#numbers.formatInteger(payment.product.price,1)}+'원'"></dd>
 						</dl>
 						
-					
+						<div class="btn_group">
+							<button>리뷰쓰기</button>
+							<button class="xi-share-alt-o"></button>
+						</div>
 					
 					</div>
-					
+					<div class="reviewArea">
+						<textarea rows="" cols=""></textarea>
+						<select>
+							<option>☆☆☆☆☆</option>
+							<option>★☆☆☆☆</option>
+							<option>★★☆☆☆</option>
+							<option>★★★☆☆</option>
+							<option>★★★★☆</option>
+							<option>★★★★★</option>
+						</select>
+						<button>완료</button>
+					</div>
 					
 
 				</a>

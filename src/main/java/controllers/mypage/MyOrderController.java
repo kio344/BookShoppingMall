@@ -33,7 +33,7 @@ public class MyOrderController {
 
 		List<PaymentDto> result= paymentService.gets(user.getMemNo(), PaymentProgress.PAYMENT_COMPLET);
 		
-		model.addAttribute("addCss",new String[] {"/shop/myOrder"});
+		model.addAttribute("addCss",new String[] {"/mypage/myOrder"});
 		model.addAttribute("paymentList", result);
 		
 		return "mypage/myOrder";
