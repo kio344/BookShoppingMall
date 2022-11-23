@@ -31,17 +31,27 @@ public class PaymentDao {
 		return get(entity.getNum());
 	}
 
+	/**
+	 * 진행상태(Payment.progress) 업데이트, 제품 재고 판매량 업데이트
+	 * @param num
+	 * @param progress
+	 * @param orderId
+	 * @return
+	 */
 	public PaymentDto updateProgress(Long num, PaymentProgress progress,String orderId) {
 
 		Payment entity = em.find(Payment.class, num);
 
 		entity.setProgress(progress);
 		entity.setTossOrderId(orderId);
+		
 
 		em.persist(entity);
 
 		em.flush();
 
+
+		
 		return PaymentDto.toDto(entity);
 
 	}

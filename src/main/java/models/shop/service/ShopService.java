@@ -78,4 +78,17 @@ public class ShopService {
 				
 	}
 	
+	/**
+	 * 카테고리를 통해 상품 가져오기
+	 * 
+	 * @param myCategory
+	 * @return
+	 */
+	public List<ProductDto> getProductOfCategory(String category){
+		
+		
+		
+		return getSearchProducts(0, 5, category, "category");
+	}
+	
 }
