@@ -35,68 +35,70 @@
 						</tr>
 					</thead>
 					<tbody>
+
 						<tr th:each="list : ${list}" th:object="${list}">
-							<td>
-								<div>
-									<input type="checkbox" th:name="product" th:value="*{num}">
-								</div>
-							</td>
+							<th:block th:if="${session.user.memId == list.seller.getMemId()}">
+								<td>
+									<div>
+										<input type="checkbox" th:name="product" th:value="*{num}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{seller.getMemId()}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="text" disabled
+											th:value="*{seller.getMemId()}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{serialnum}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="text" disabled
+											th:value="*{serialnum}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{bookName}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="text" disabled
+											th:value="*{bookName}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{writer}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="text" disabled
+											th:value="*{writer}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="number" th:value="*{price}"
-										th:name="price + ${('_') + (list.num)}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="number" th:value="*{price}"
+											th:name="price + ${('_') + (list.num)}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{category}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="text" disabled
+											th:value="*{category}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{publisher}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="text" disabled
+											th:value="*{publisher}">
+									</div>
+								</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="number" th:value="*{count}"
-										th:name="count + ${('_') + (list.num)}">
-								</div>
-							</td>
+								<td>
+									<div>
+										<input class="productbox" type="number" th:value="*{count}"
+											th:name="count + ${('_') + (list.num)}">
+									</div>
+								</td>
 							</th:block>
 						</tr>
 					</tbody>
