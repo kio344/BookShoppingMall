@@ -1,7 +1,15 @@
 package models.user;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import models.common.BaseDto;
+import models.entity.Payment;
+import models.entity.Product;
 import models.entity.User;
+import models.shop.payment.PaymentDto;
+import models.shop.product.ProductDto;
 
 public class UserDto extends BaseDto {
 	
@@ -16,6 +24,7 @@ public class UserDto extends BaseDto {
 	private String birthDay;
 	private String gender;
 	private UserType userType;
+	private List<PaymentDto> paymentDatas=new ArrayList<>();
 	private Long kakaoId;
 
 	public Long getMemNo() {
@@ -107,7 +116,12 @@ public class UserDto extends BaseDto {
 			userType = UserType.USER;
 		this.userType = userType;
 	}
-	
+	public void setPaymentDatas(List<PaymentDto> paymentDatas) {
+		this.paymentDatas = paymentDatas;
+	}
+	public List<PaymentDto> getPaymentDatas() {
+		return paymentDatas;
+	}
 	
 
 	public Long getKakaoId() {
@@ -122,7 +136,8 @@ public class UserDto extends BaseDto {
 	public String toString() {
 		return "UserDto [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", fakeName="
 				+ fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress + ", birthDay=" + birthDay
-				+ ", gender=" + gender + ", userType=" + userType + ", kakaoId=" + kakaoId + "]";
+				+ ", gender=" + gender + ", userType=" + userType + ", paymentDatas=" + paymentDatas + ", kakaoId="
+				+ kakaoId + "]";
 	}
 
 	public static User toEntity(UserDto user) {
@@ -170,6 +185,7 @@ public class UserDto extends BaseDto {
 		user.setModDt(entity.getModDt());
 		user.setUserType(entity.getUserType());
 		user.setKakaoId(entity.getKakaoId());
+		
 		
 		return user;
 

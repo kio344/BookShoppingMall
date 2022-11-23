@@ -3,6 +3,8 @@ package models.shop.service;
 import javax.servlet.http.HttpSession;
 import static common.Util.JmsUtil.*;
 
+import java.util.List;
+
 import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,5 +104,18 @@ public class PaymentService {
 
 		return productDao.buyProduct(num, count);
 
+	}
+	
+	/**
+	 * 유저No 를 통해 구매 내역 가져오기 
+	 * @param userNo
+	 * @return
+	 */
+	public List<PaymentDto> gets(Long userNo,PaymentProgress progress){
+		
+		
+		
+		return paymentDao.getsUserPayment(userNo, progress);
+		
 	}
 }

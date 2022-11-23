@@ -18,11 +18,11 @@ public class Payment extends BaseEntity{
 	@Id @GeneratedValue
 	private Long num;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
 	private Product product;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
 	private User user;
 	

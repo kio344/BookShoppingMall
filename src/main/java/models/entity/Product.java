@@ -20,7 +20,7 @@ public class Product extends BaseEntity {
 	private Long num;
 
 	@JoinColumn(name = "seller")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User seller;
 
 	@Column
@@ -50,7 +50,7 @@ public class Product extends BaseEntity {
 	@Column
 	private Long salesRate;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
 	private List<ProductReview> review = new ArrayList<>();
 
 	public Long getNum() {

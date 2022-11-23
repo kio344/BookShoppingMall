@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+
+	<div style="margin-top: 70px;" class="productArea">
+		<h1 >주문한 상품</h1>
+		<ul class="ProductList">
+			<li th:each="payment : ${paymentList}" th:object="${payment}">
+				<a>
+					<div class="productImgArea">
+						<img alt=""
+							th:src="@{/productImages/}+*{product.imageNum%10}+${'/'}+*{product.imageNum}">
+						<div class="btn_group">
+							<a>리뷰쓰기</a>
+							<a></a>
+						</div>
+					</div>
+					
+					<div>
+						<dl>
+							<dt class="title" th:text="*{product.bookName}">
+							</dt>
+							<dd></dd>
+						</dl>
+						
+						<dl class="price">
+							<dt>가격</dt>
+							<dd th:text="*{product.price}+'원'"></dd>
+						</dl>
+						
+						<dl class="count">
+							<dt>수량</dt>
+							<dd th:text="*{count}+'개'"></dd>
+						</dl>
+						
+						
+						<dl class="totalprice">
+							<dt>결제금액</dt>
+							<dd th:text="${#numbers.formatInteger(payment.count,1)} * ${#numbers.formatInteger(payment.product.price,1)}+'원'"></dd>
+						</dl>
+						
+					
+					
+					</div>
+					
+					
+
+				</a>
+			</li>
+		</ul>
+	</div>
+
+
+</main>
+</html>

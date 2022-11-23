@@ -1,12 +1,17 @@
 package models.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import models.user.UserType;
 
@@ -37,8 +42,10 @@ public class User extends BaseEntity {
 	@Column(length = 7)
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
-	
+
 	private Long kakaoId;
+	
+	
 
 	public Long getMemNo() {
 		return memNo;
@@ -128,9 +135,17 @@ public class User extends BaseEntity {
 		if(userType == null) userType = UserType.USER;
 		this.userType = userType;
 	}
-	
-	
 
+	/**
+	public List<Payment> getPaymentDatas() {
+		return paymentDatas;
+	}
+
+	public void setPaymentDatas(List<Payment> paymentDatas) {
+		this.paymentDatas = paymentDatas;
+	}
+	*/
+	
 	public Long getKakaoId() {
 		return kakaoId;
 	}
@@ -139,12 +154,6 @@ public class User extends BaseEntity {
 		this.kakaoId = kakaoId;
 	}
 
-	@Override
-	public String toString() {
-		return "User [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", fakeName="
-				+ fakeName + ", mobile=" + mobile + ", email=" + email + ", adress=" + adress + ", birthDay=" + birthDay
-				+ ", gender=" + gender + ", userType=" + userType + ", kakaoId=" + kakaoId + "]";
-	}
 	
 	
 
