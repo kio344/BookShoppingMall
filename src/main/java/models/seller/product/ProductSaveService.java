@@ -17,13 +17,13 @@ import models.user.UserDto;
 
 @Service
 public class ProductSaveService {
-
+	
 	@Autowired
 	private HttpServletRequest request;
-
+	
 	@Autowired
 	private HttpSession session;
-
+	
 	@Autowired
 	private ProductRequestDao productRequestDao;
 	
@@ -43,6 +43,7 @@ public class ProductSaveService {
 		dto.setPublisher(req.getParameter("publisher"));
 		dto.setCount(Integer.parseInt(req.getParameter("count")));
 		dto.setProgress(Progress.Examine);
+		
 		ProductRequestDto dtotest = productRequestDao.get(dto);
 		
 		if(dtotest == dto) {
@@ -55,28 +56,28 @@ public class ProductSaveService {
 		/** 파일 저장 시작 */
 		dto.setImages(dto.getNum());
 		id = dto.getImages();
-		
+			
 		String uploadDir = request.getServletContext().getRealPath("");
+//		uploadDir += "../resources/static/productImages";
 		uploadDir += "../resources/static/productImages";
-		
+		System.out.println(uploadDir);
 		File _uploadDir = new File(uploadDir);
-		
+		System.out.println(_uploadDir);
 		if (!_uploadDir.isDirectory()) {
 			_uploadDir.mkdirs();
 		}
 		
-		long num = dto.getNum();
-			
-			
+		Long num = id;
+		
 		String folder = String.valueOf(num % 10);
-
+		
 		_uploadDir = new File(uploadDir + "/" + folder);
 		if (!_uploadDir.exists()) {
 			_uploadDir.mkdir();
 		}
 
 		String path = uploadDir + "/" + folder + "/" + num;
-
+		System.out.println(path);
 		try (FileOutputStream fos = new FileOutputStream(path)) {
 			fos.write(image.getBytes());
 		} catch (IOException e) {

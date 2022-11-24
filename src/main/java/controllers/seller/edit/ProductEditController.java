@@ -54,7 +54,6 @@ public class ProductEditController {
 			List<ProductRequestDto> item = searchService.search(searchType, search);
 			model.addAttribute("list", item);
 		}
-			
 		return "/seller/editAgreeProduct";
 	}
 	
