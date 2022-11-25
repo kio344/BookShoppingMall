@@ -43,10 +43,6 @@
 					<dd th:text="*{category}"></dd>
 				</dl>
 
-
-
-
-
 			</div>
 
 		</div>
@@ -108,9 +104,6 @@
 							<span th:each="err : ${#fields.errors('paymentRequest.recipient_mobile')}" th:text="${err}"></span>
 						</dd>
 					</dl>
-					
-	
-	
 	
 				</div>
 				<div>
@@ -119,7 +112,6 @@
 						<dt>우편번호</dt>
 						<dd>
 							<input readonly="readonly" th:field="${paymentRequest.zipCode}"  >	
-							
 							
 							<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}" >
 								찾기
@@ -130,7 +122,6 @@
 							</button>
 							
 							<span th:each="err : ${#fields.errors('paymentRequest.zipCode')}" th:text="${err}"></span>
-
 							
 						</dd>
 					</dl>
@@ -142,9 +133,7 @@
 							
 							<input style="border-color: #FF5A5A" th:field="${paymentRequest.roadAddress}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.roadAddress'))}" >	
 							
-							
 							<span th:each="err : ${#fields.errors('paymentRequest.roadAddress')}" th:text="${err}"></span>
-
 							
 						</dd>
 					</dl>
@@ -152,9 +141,7 @@
 						<dt>상세주소</dt>
 			 			<dd>
 							<input  th:field="${paymentRequest.detailAddress}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.detailAddress'))}" >	
-							
 							<input style="border-color: #FF5A5A" th:field="${paymentRequest.detailAddress}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.detailAddress'))}" >	
-							
 							
 							<span th:each="err : ${#fields.errors('paymentRequest.detailAddress')}" th:text="${err}"></span>
 							
@@ -164,9 +151,7 @@
 						<dt>참고항목</dt>
 						<dd>
 							<input  th:field="${paymentRequest.reqAddress}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.reqAddress'))}" >	
-							
 							<input style="border-color: #FF5A5A" th:field="${paymentRequest.reqAddress}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.reqAddress'))}" >	
-							
 							
 							<span th:each="err : ${#fields.errors('paymentRequest.reqAddress')}" th:text="${err}"></span>
 							
@@ -181,18 +166,10 @@
 				</div>
 			</div>
 
-			
-
 			<div class="btn_grup">
 				<button type="button" id="buy">결제하기</button>
 			</div>
-
-			
-
 		</div>
-
-
-
 	</form>
     <script src="https://js.tosspayments.com/v1/payment"></script>							<!-- 토스결제 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>	<!-- 카카오 우편주소 api -->

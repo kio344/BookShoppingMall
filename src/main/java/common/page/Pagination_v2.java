@@ -22,6 +22,7 @@ package common.page;
  * 
  * 
  */
+
 public class Pagination_v2 extends Pagination{
 	
 	/**
@@ -36,7 +37,7 @@ public class Pagination_v2 extends Pagination{
 		this.link=link;
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	public Pagination_v2(int page, int total,String link) {
 		super(page, total);
 		this.link=link;
@@ -46,6 +47,7 @@ public class Pagination_v2 extends Pagination{
 	public void setLink(String link) {
 		this.link = link;
 	}
+	
 	public String getLink() {
 		return link;
 	}
