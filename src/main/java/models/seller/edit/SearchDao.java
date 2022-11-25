@@ -8,8 +8,10 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import models.entity.Product;
 import models.entity.ProductRequest;
 import models.seller.product.ProductRequestDto;
+import models.shop.product.ProductDto;
 
 @Component
 public class SearchDao {
@@ -29,6 +31,8 @@ public class SearchDao {
 			sb.append("writer LIKE CONCAT('%', :writer, '%')");
 		}
 		
+		sb.append(" ORDER BY regDt DESC");
+		
 		TypedQuery<ProductRequest> entity = em.createQuery(sb.toString(), ProductRequest.class);
 		
 		if(searchType.equals("bookName")) {
@@ -37,16 +41,28 @@ public class SearchDao {
 			entity.setParameter("writer", search);
 		}
 		
+		entity.setFirstResult(5);
+		entity.setMaxResults(10);
+		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList();
 		
 		return list;
 	}
 	
 	public List<ProductRequestDto> gets(){
-		
 		TypedQuery<ProductRequest> entity = em.createQuery("SELECT p FROM ProductRequest p", ProductRequest.class);
 		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList(); 
+		
+		
+		return list;
+	}
+	
+	public List<ProductDto> getsProduct(){
+		
+		TypedQuery<Product> entity = em.createQuery("SELECT p FROM ProductRequest p", Product.class);
+		
+		List<ProductDto> list = entity.getResultStream().map(ProductDto::toDto).toList(); 
 		
 		return list;
 	}
