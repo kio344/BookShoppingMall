@@ -29,6 +29,15 @@ public class ProductSaveService {
 	
 	private static Long id;
 	
+	/**
+	 * @author kimminho
+	 * @param req
+	 * @param image
+	 * 
+	 * 상품 승인 신청 버튼을 누르면 상품이 디비에 저장이 되고, 파일은 resources 폴더에 productImages 폴더 안에 
+	 * 신청한 사람 PK를 /10 해서 0 ~ 9까지의 폴더를 생성 후 마지막 번호에 맞는 폴더로 저장 
+	 *	EX) 329 -> 29 -> 9 
+	 */
 	public void save(MultipartHttpServletRequest req, MultipartFile image) {
 		/** 상품 디비 저장 */
 		UserDto userSession = (UserDto) session.getAttribute("user");
@@ -58,7 +67,6 @@ public class ProductSaveService {
 		id = dto.getImages();
 			
 		String uploadDir = request.getServletContext().getRealPath("");
-//		uploadDir += "../resources/static/productImages";
 		uploadDir += "../resources/static/productImages";
 		System.out.println(uploadDir);
 		File _uploadDir = new File(uploadDir);
