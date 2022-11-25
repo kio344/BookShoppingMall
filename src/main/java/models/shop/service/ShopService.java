@@ -63,7 +63,6 @@ public class ShopService {
 		
 		return productDao.getSearchProduct(start, offset, searchValue, SearchType);
 				
-				
 	}
 	
 	/**
@@ -75,7 +74,6 @@ public class ShopService {
 	public int getSearchProductsCount(String searchValue,String SearchType){
 		
 		return productDao.getSearchProductCount(searchValue, SearchType);
-				
 				
 	}
 	
