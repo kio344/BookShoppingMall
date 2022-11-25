@@ -84,7 +84,6 @@ public class UserDao {
 		User user=em.find(User.class, memNo);
 		
 		
-		
 		return UserDto.toDto(user);
 	}
 	

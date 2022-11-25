@@ -8,10 +8,8 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
 import models.entity.ProductRequest;
 import models.seller.product.ProductRequestDto;
-import models.shop.product.ProductDto;
 
 @Component
 public class SearchDao {
@@ -57,23 +55,14 @@ public class SearchDao {
 		
 		return list;
 	}
-	
-	public List<ProductDto> getsProduct(){
-		
-		TypedQuery<Product> entity = em.createQuery("SELECT p FROM ProductRequest p", Product.class);
-		
-		List<ProductDto> list = entity.getResultStream().map(ProductDto::toDto).toList(); 
-		
-		return list;
-	}
 
 	public int getsearchProduct(String search, String searchType) {
 		
 		String sql = "SELECT COUNT(*) FROM ProductRequest p WHERE p." + searchType + " LIKE '%" + search + "%'"; 
-		System.out.println(sql);
+
 		String result = em.createNativeQuery(sql).getSingleResult().toString();
 		
 		return Integer.parseInt(result) == 0 ? 1 : Integer.parseInt(result);
 	}
-	
+
 }	

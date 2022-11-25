@@ -108,7 +108,6 @@ public class UserDto extends BaseDto {
 		this.userType = userType;
 	}
 	
-	
 
 	public Long getKakaoId() {
 		return kakaoId;
@@ -170,6 +169,7 @@ public class UserDto extends BaseDto {
 		user.setModDt(entity.getModDt());
 		user.setUserType(entity.getUserType());
 		user.setKakaoId(entity.getKakaoId());
+		
 		
 		return user;
 

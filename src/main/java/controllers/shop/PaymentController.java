@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.Util.JsonData;
+import models.seller.product.ProductRequestDto;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
@@ -60,7 +61,7 @@ public class PaymentController {
 
 		PaymentRequest paymentRequest = paymentService.paymentSetting(productNum);
 
-		ProductDto product = shopService.getProduct(productNum);
+		ProductRequestDto product = shopService.getProduct(productNum);
 
 		model.addAttribute("paymentRequest", paymentRequest);
 		model.addAttribute("product", product);
@@ -80,7 +81,7 @@ public class PaymentController {
 	 */
 	public String goPayment(PaymentRequest request, Model model) {
 
-		ProductDto product = shopService.getProduct(request.getProductNum());
+		ProductRequestDto product = shopService.getProduct(request.getProductNum());
 
 		model.addAttribute("paymentRequest", request);
 		model.addAttribute("product", product);

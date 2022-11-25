@@ -1,6 +1,5 @@
 package models.shop.product;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,174 +8,166 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
-import models.entity.User;
+import models.entity.ProductRequest;
+import models.seller.product.ProductRequestDto;
+import models.seller.product.Progress;
 
 @Component
 public class ProductDao {
 
-	@Autowired
-	private EntityManager em;
+   @Autowired
+   private EntityManager em;
 
-	/**
-	 * 상품 추가
-	 * 
-	 * @author 5563a
-	 * @param param
-	 * @return
-	 */
-	public ProductDto addProduct(ProductDto param) {
+   
 
-		Product entity = new Product();
-		entity = ProductDto.toEntity(param);
+   /**
+    * primary 키로 가져오기 (단일값)
+    * 
+    * @author 5563a
+    * @param num
+    * @return
+    */
+   public ProductRequestDto get(Long num) {
 
-		User user = em.find(User.class, param.getSeller().getMemNo());
-		entity.setSeller(user);
+      ProductRequest entity = em.find(ProductRequest.class, num);
 
-		em.persist(entity);
+      return ProductRequestDto.toDto(entity);
+   }
 
-		em.flush();
+   /**
+    * 책이름 가져오기 (단일값)
+    * 
+    * @author 5563a
+    * @param num
+    * @return
+    */
+   public ProductRequestDto get(String bookName) {
 
-		return get(entity.getNum());
-	}
+      String sql = "SELECT p FROM ProductRequest p WHERE bookName=:bookName AND progress=:progress ";
+      TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
+      query.setParameter("bookName", bookName);
+      query.setParameter("progress", Progress.Agree);
+      
+      ProductRequest entity = query.getSingleResult();
 
-	/**
-	 * primary 키로 가져오기 (단일값)
-	 * 
-	 * @author 5563a
-	 * @param num
-	 * @return
-	 */
-	public ProductDto get(Long num) {
+      return ProductRequestDto.toDto(entity);
+   }
 
-		Product entity = em.find(Product.class, num);
+   /**
+    * 최신 상품들 가져오기
+    * 
+    * @author 5563a
+    * @param start  페이지네이션
+    * @param offset 페이지네이션
+    * @return
+    */
+   public List<ProductRequestDto> gets(int start, int offset) {
 
-		return ProductDto.toDto(entity);
-	}
+      List<ProductRequestDto> result = null;
 
-	/**
-	 * 책이름 가져오기 (단일값)
-	 * 
-	 * @author 5563a
-	 * @param num
-	 * @return
-	 */
-	public ProductDto get(String bookName) {
+      TypedQuery<ProductRequest> query = em.createQuery("SELECT p FROM ProductRequest p WHERE p.progress=:progress order by p.num desc ", ProductRequest.class);
 
-		String sql = "SELECT p FROM Product p WHERE bookName=:bookName ";
-		TypedQuery<Product> query = em.createQuery(sql, Product.class);
-		query.setParameter("bookName", bookName);
+      query.setParameter("progress", Progress.Agree);
+      
+      query.setFirstResult(start);
+      query.setMaxResults(offset);
 
-		Product entity = query.getSingleResult();
+      result = query.getResultStream().map(t -> ProductRequestDto.toDto(t)).toList();
 
-		return ProductDto.toDto(entity);
-	}
+      return result;
+   }
 
-	/**
-	 * 최신 상품들 가져오기
-	 * 
-	 * @author 5563a
-	 * @param start  페이지네이션
-	 * @param offset 페이지네이션
-	 * @return
-	 */
-	public List<ProductDto> gets(int start, int offset) {
+   /**
+    * 베스트셀러 가져오기
+    * 
+    * @author 5563a
+    * @param start  페이지네이션
+    * @param offset 페이지네이션
+    * @return
+    */
+   public List<ProductRequestDto> getbestSeller(int start, int offset) {
+      List<ProductRequestDto> result = null;
 
-		List<ProductDto> result = null;
+      String sql = "SELECT p FROM ProductRequest p WHERE p.progress=:progress  order by p.salesRate desc";
 
-		TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p order by p.num desc ", Product.class);
+      TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
 
-		query.setFirstResult(start);
-		query.setMaxResults(offset);
+      query.setParameter("progress", Progress.Agree);
+      
+      query.setFirstResult(start);
+      query.setMaxResults(offset);
 
-		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+      result = query.getResultStream().map(t -> ProductRequestDto.toDto(t)).toList();
 
-		return result;
-	}
+      return result;
+   }
 
-	/**
-	 * 베스트셀러 가져오기
-	 * 
-	 * @author 5563a
-	 * @param start  페이지네이션
-	 * @param offset 페이지네이션
-	 * @return
-	 */
-	public List<ProductDto> getbestSeller(int start, int offset) {
-		List<ProductDto> result = null;
+   /**
+    * 상품 검색
+    * 
+    * @param start  페이지네이션
+    * @param offset 페이지네이션
+    * @param searchValue   검색값
+    * @param searchType   bookName,writer
+    * @return
+    */
+   public List<ProductRequestDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
 
-		String sql = "SELECT p FROM Product p order by p.salesRate desc";
+      String sql = "SELECT p FROM ProductRequest p WHERE p." + searchType + " like :searchValue order by p.num desc ";
+      TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
+      query.setParameter("searchValue", "%"+searchValue+"%");
+      
+      System.out.println(searchValue);
+      
+      query.setFirstResult(start);
+      query.setMaxResults(offset);
+      
+      List<ProductRequestDto> result = query.getResultStream().map(p -> ProductRequestDto.toDto(p)).toList();
 
-		TypedQuery<Product> query = em.createQuery(sql, Product.class);
+      
+      
+      return result;
 
-		query.setFirstResult(start);
-		query.setMaxResults(offset);
+   }
 
-		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
-
-		return result;
-	}
-
-	/**
-	 * 상품 검색
-	 * 
-	 * @param start       페이지네이션
-	 * @param offset      페이지네이션
-	 * @param searchValue 검색값
-	 * @param searchType  bookName,writer
-	 * @return
-	 */
-	public List<ProductDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
-
-		String sql = "SELECT p FROM Product p WHERE p." + searchType + " like :searchValue order by p.num desc ";
-		TypedQuery<Product> query = em.createQuery(sql, Product.class);
-		query.setParameter("searchValue", "%" + searchValue + "%");
-
-		System.out.println(searchValue);
-
-		query.setFirstResult(start);
-		query.setMaxResults(offset);
-
-		List<ProductDto> result = query.getResultStream().map(p -> ProductDto.toDto(p)).toList();
-
-		return result;
-
-	}
-
-	/**
-	 * 상품 검색시 항목 수 (페이지 네이션을 위한)
-	 * 
-	 * @param searchValue 검색값
-	 * @param searchType  bookName,writer
-	 * @return
-	 */
-	public int getSearchProductCount(String searchValue, String searchType) {
-
-		String sql = "SELECT COUNT(*) FROM Product p WHERE p." + searchType + " like '%" + searchValue + "%'";
-
-		String result = em.createNativeQuery(sql).getSingleResult().toString();
-
-		return Integer.parseInt(result);
-	}
-
-	/**
-	 * 상품 구매 시 판매량(Product.salesRate) ++ 재고(Product.count) -- 처리
-	 * 
-	 * @param num
-	 * @return
-	 */
-	public ProductDto buyProduct(Long num, int count) {
-
-		Product entity = em.find(Product.class, num);
-		entity.setCount(entity.getCount() - count);
-		entity.setSalesRate(entity.getSalesRate() + count);
-
-		em.persist(entity);
-
-		em.flush();
-
-		return ProductDto.toDto(entity);
-
-	}
+   /**
+    * 상품 검색시 항목 수 (페이지 네이션을 위한)
+    * @param searchValue   검색값
+    * @param searchType   bookName,writer
+    * @return
+    */
+   public int getSearchProductCount(String searchValue, String searchType) {
+      
+      String sql = "SELECT COUNT(*) FROM ProductRequest p WHERE p.progress='Agree' AND p." + searchType + " like '%"+searchValue+"%'";
+      
+            
+      String result = em.createNativeQuery(sql).getSingleResult().toString();
+      
+      
+      return Integer.parseInt(result);
+   }
+   
+   
+   /**
+    * 상품 구매 시
+    * 판매량(Product.salesRate) ++
+    * 재고(Product.count)    --
+    * 처리
+    * @param num
+    * @return
+    */
+   public ProductRequestDto buyProduct(Long num,int count) {
+      
+      ProductRequest entity = em.find(ProductRequest.class, num);
+      entity.setCount(entity.getCount()-count);
+      entity.setSalesRate(entity.getSalesRate()+count);
+      
+      em.persist(entity);
+      
+      em.flush();
+      
+      return ProductRequestDto.toDto(entity);
+      
+   }
 
 }

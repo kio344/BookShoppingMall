@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
 import models.shop.product.ProductDto;
 
@@ -20,7 +21,7 @@ public class ShopService {
 	 * @param offset	페이지네이션
 	 * @return
 	 */
-	public List<ProductDto> getProducts(int start,int offset){
+	public List<ProductRequestDto> getProducts(int start,int offset){
 		return productDao.gets(start, offset);
 				
 	}
@@ -32,7 +33,7 @@ public class ShopService {
 	 * @param offset	페이지네이션
 	 * @return
 	 */
-	public List<ProductDto> getBestSeller(int start,int offset){
+	public List<ProductRequestDto> getBestSeller(int start,int offset){
 		
 		return productDao.getbestSeller(start, offset);
 	}
@@ -43,7 +44,7 @@ public class ShopService {
 	 * @param num Product.num
 	 * @return
 	 */
-	public ProductDto getProduct(Long num) {
+	public ProductRequestDto getProduct(Long num) {
 		
 		return productDao.get(num);
 		
@@ -58,7 +59,7 @@ public class ShopService {
 	 * @param SearchType	검색종류 (책이름, 지은이)
 	 * @return List<ProductDto>
 	 */
-	public List<ProductDto> getSearchProducts(int start, int offset,String searchValue,String SearchType){
+	public List<ProductRequestDto> getSearchProducts(int start, int offset,String searchValue,String SearchType){
 		
 		return productDao.getSearchProduct(start, offset, searchValue, SearchType);
 				
@@ -82,7 +83,7 @@ public class ShopService {
 	 * @param myCategory
 	 * @return
 	 */
-	public List<ProductDto> getProductOfCategory(String category){
+	public List<ProductRequestDto> getProductOfCategory(String category){
 		
 		
 		

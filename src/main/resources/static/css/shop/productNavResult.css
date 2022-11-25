@@ -1,7 +1,9 @@
+body::-webkit-scrollbar {
+    display: none;
+}
 ul{
 	display: flex;
 	flex-wrap: wrap;
-	
 }
 
 li{

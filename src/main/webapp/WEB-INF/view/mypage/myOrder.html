@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main/main}">
+<main layout:fragment="main">
+
+	<div style="margin-top: 70px;" class="productArea">
+		<h1 >주문한 상품</h1>
+		<ul class="ProductList">
+			<li th:each="payment : ${paymentList}" th:object="${payment}">
+				<a>
+					<div class="productImgArea">
+						<img alt=""
+							th:src="@{/productImages/}+*{product.num%10}+${'/'}+*{product.num}">
+						
+					</div>
+					
+					<div>
+						<dl>
+							<dt class="title" th:text="*{product.bookName}">
+							</dt>
+							<dd></dd>
+						</dl>
+						
+						<dl class="price">
+							<dt>가격</dt>
+							<dd th:text="*{product.price}+'원'"></dd>
+						</dl>
+						
+						<dl class="count">
+							<dt>수량</dt>
+							<dd th:text="*{count}+'개'"></dd>
+						</dl>
+						
+						
+						<dl class="totalprice">
+							<dt>결제금액</dt>
+							<dd th:text="${#numbers.formatInteger(payment.count,1)} * ${#numbers.formatInteger(payment.product.price,1)}+'원'"></dd>
+						</dl>
+						
+						<div class="btn_group">
+							<button th:data-payment="*{num}" class="writeReview" >리뷰쓰기</button>
+							<button class="xi-share-alt-o"></button>
+						</div>
+					
+					</div>
+					
+				</a>
+				<form target="ifrm" class="reviewArea" method="post" th:id="'payment_'+*{num}">
+						<input type="hidden" name="payment" th:value="*{num}" >
+						<input type="hidden" name="product" th:value="*{product.num}">
+						<textarea class="reviewContext" th:id="'reviewContext_'+*{num}" th:field="${productReview.content}" ></textarea>
+						
+						<div>
+							<select th:field="${productReview.score}">
+								<option value="0">☆☆☆☆☆</option>
+								<option value="1">★☆☆☆☆</option>
+								<option value="2">★★☆☆☆</option>
+								<option value="3">★★★☆☆</option>
+								<option value="4">★★★★☆</option>
+								<option value="5">★★★★★</option>
+							</select>
+							<button>완료</button>
+						</div>
+						
+					</form>
+			</li>
+		</ul>
+	</div>
+			
+			<iframe name="ifrm"></iframe>
+
+
+</main>
+</html>

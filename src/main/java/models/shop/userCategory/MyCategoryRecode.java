@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 import models.shop.service.UserCategoryService;
@@ -48,7 +49,7 @@ public class MyCategoryRecode implements HandlerInterceptor {
 
 		System.out.println(Arrays.toString(path));
 
-		ProductDto product = shopService.getProduct(Long.parseLong(path[path.length - 1]));
+		ProductRequestDto product = shopService.getProduct(Long.parseLong(path[path.length - 1]));
 
 		String category = product.getCategory();
 		
