@@ -13,11 +13,17 @@ public class SearchService {
 	@Autowired
 	private SearchDao dao;
 	
-	public List<ProductRequestDto> search(String searchType, String search) {
+	public List<ProductRequestDto> search(String searchType, String search, int start, int offset) {
 		
-		List<ProductRequestDto> list = dao.searchToName(search, searchType);
+		List<ProductRequestDto> list = dao.searchToName(search, searchType, start, offset);
 		
 		return list;
+	}
+
+	public int total(String search, String searchType) {
+		
+		return dao.getsearchProduct(search, searchType);
+		
 	}
 	
 }

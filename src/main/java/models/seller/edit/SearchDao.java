@@ -19,7 +19,7 @@ public class SearchDao {
 	@Autowired
 	private EntityManager em;
 	
-	public List<ProductRequestDto> searchToName(String search, String searchType) {
+	public List<ProductRequestDto> searchToName(String search, String searchType, int start, int offset) {
 		
 		StringBuffer sb = new StringBuffer();
 		
@@ -41,8 +41,8 @@ public class SearchDao {
 			entity.setParameter("writer", search);
 		}
 		
-		entity.setFirstResult(5);
-		entity.setMaxResults(10);
+		entity.setFirstResult(start);
+		entity.setMaxResults(offset);
 		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList();
 		
@@ -65,6 +65,15 @@ public class SearchDao {
 		List<ProductDto> list = entity.getResultStream().map(ProductDto::toDto).toList(); 
 		
 		return list;
+	}
+
+	public int getsearchProduct(String search, String searchType) {
+		
+		String sql = "SELECT COUNT(*) FROM ProductRequest p WHERE p." + searchType + " LIKE '%" + search + "%'"; 
+		System.out.println(sql);
+		String result = em.createNativeQuery(sql).getSingleResult().toString();
+		
+		return Integer.parseInt(result) == 0 ? 1 : Integer.parseInt(result);
 	}
 	
 }	
