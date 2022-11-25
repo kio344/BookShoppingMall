@@ -50,8 +50,6 @@ public class Product extends BaseEntity {
 	@Column
 	private Long salesRate;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-	private List<ProductReview> review = new ArrayList<>();
 
 	public Long getNum() {
 		return num;
@@ -143,21 +141,14 @@ public class Product extends BaseEntity {
 		this.salesRate = salesRate;
 	}
 
-	public List<ProductReview> getReview() {
-		return review;
-	}
 
-	public void setReview(List<ProductReview> review) {
-		this.review = review;
-	}
 	
 
 	@Override
 	public String toString() {
 		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
 				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-				+ ", count=" + count + ", imageNum=" + imageNum + ", salesRate=" + salesRate + ", review=" + review
-				+ ", toString()=" + super.toString() + "]";
+				+ ", count=" + count + ", imageNum=" + imageNum + ", salesRate=" + salesRate + "]";
 	}
 
 }

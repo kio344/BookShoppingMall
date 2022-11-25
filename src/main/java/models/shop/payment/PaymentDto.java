@@ -12,8 +12,10 @@ import javax.persistence.ManyToOne;
 import models.common.BaseDto;
 import models.entity.Payment;
 import models.entity.Product;
+import models.entity.ProductReview;
 import models.entity.User;
 import models.shop.product.ProductDto;
+import models.shop.productReview.ProductReviewDto;
 import models.user.UserDto;
 
 public class PaymentDto extends BaseDto {
@@ -33,8 +35,9 @@ public class PaymentDto extends BaseDto {
 	private String address;
 
 	private PaymentProgress progress;
-	
+
 	private String tossOrderId;
+
 
 	public Long getNum() {
 		return num;
@@ -99,19 +102,23 @@ public class PaymentDto extends BaseDto {
 	public void setProgress(PaymentProgress progress) {
 		this.progress = progress;
 	}
-	
+
 	public String getTossOrderId() {
 		return tossOrderId;
 	}
+
 	public void setTossOrderId(String tossOrderId) {
 		this.tossOrderId = tossOrderId;
 	}
+
+
+
 
 	@Override
 	public String toString() {
 		return "PaymentDto [num=" + num + ", product=" + product + ", user=" + user + ", count=" + count
 				+ ", recipient_name=" + recipient_name + ", recipient_mobile=" + recipient_mobile + ", address="
-				+ address + ", progress=" + progress + "]";
+				+ address + ", progress=" + progress + ", tossOrderId=" + tossOrderId + "]";
 	}
 
 	public static Payment toEntity(PaymentDto dto) {
@@ -124,6 +131,7 @@ public class PaymentDto extends BaseDto {
 		entity.setRecipient_name(dto.getRecipient_name());
 		entity.setTossOrderId(dto.getTossOrderId());
 
+		
 		return entity;
 	}
 
@@ -140,6 +148,7 @@ public class PaymentDto extends BaseDto {
 		dto.setRecipient_name(entity.getRecipient_name());
 		dto.setUser(UserDto.toDto(entity.getUser()));
 		dto.setTossOrderId(entity.getTossOrderId());
+
 		
 		return dto;
 	}

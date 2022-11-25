@@ -39,29 +39,36 @@
 						</dl>
 						
 						<div class="btn_group">
-							<button>리뷰쓰기</button>
+							<button th:data-payment="*{num}" class="writeReview" >리뷰쓰기</button>
 							<button class="xi-share-alt-o"></button>
 						</div>
 					
 					</div>
-					<div class="reviewArea">
-						<textarea rows="" cols=""></textarea>
-						<select>
-							<option>☆☆☆☆☆</option>
-							<option>★☆☆☆☆</option>
-							<option>★★☆☆☆</option>
-							<option>★★★☆☆</option>
-							<option>★★★★☆</option>
-							<option>★★★★★</option>
-						</select>
-						<button>완료</button>
-					</div>
 					
-
 				</a>
+				<form target="ifrm" class="reviewArea" method="post" th:id="'payment_'+*{num}">
+						<input type="hidden" name="payment" th:value="*{num}" >
+						<input type="hidden" name="product" th:value="*{product.num}">
+						<textarea class="reviewContext" th:id="'reviewContext_'+*{num}" th:field="${productReview.content}" ></textarea>
+						
+						<div>
+							<select th:field="${productReview.score}">
+								<option value="0">☆☆☆☆☆</option>
+								<option value="1">★☆☆☆☆</option>
+								<option value="2">★★☆☆☆</option>
+								<option value="3">★★★☆☆</option>
+								<option value="4">★★★★☆</option>
+								<option value="5">★★★★★</option>
+							</select>
+							<button>완료</button>
+						</div>
+						
+					</form>
 			</li>
 		</ul>
 	</div>
+			
+			<iframe name="ifrm"></iframe>
 
 
 </main>

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProductReview extends BaseEntity {
@@ -14,60 +15,58 @@ public class ProductReview extends BaseEntity {
 	@Id @GeneratedValue
 	private Long num;
 	
-	@JoinColumn(name="product")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Product product;	//상품
+	@JoinColumn
+	@OneToOne
+	private Payment payment;
 	
-	@JoinColumn(name = "user")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;		//작성한 유저
+	@Column(nullable = false)
+	private Double score;
 	
+
 	@Column(length = 1000)
 	private String content;	//리뷰내용
-	
-	@Column
-	private double score;	//별점
-	
+
 
 	public Long getNum() {
 		return num;
 	}
 
+
 	public void setNum(Long num) {
 		this.num = num;
 	}
 
-	public Product getProduct() {
-		return product;
+
+	public Payment getPayment() {
+		return payment;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
-	public User getUser() {
-		return user;
+
+	public Double getScore() {
+		return score;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+
+	public void setScore(Double score) {
+		this.score = score;
 	}
+
 
 	public String getContent() {
 		return content;
 	}
 
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
-	}
 	
 	
 

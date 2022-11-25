@@ -90,8 +90,6 @@ public class PaymentDao {
 			query.setParameter("progress", progress);
 		}else {
 			query.setParameter("progress", "");
-			
-			
 		}
 		
 		

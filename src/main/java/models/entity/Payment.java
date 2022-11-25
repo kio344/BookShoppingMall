@@ -9,39 +9,42 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import models.shop.payment.PaymentProgress;
 
 @Entity
-public class Payment extends BaseEntity{
-	
-	@Id @GeneratedValue
+public class Payment extends BaseEntity {
+
+	@Id
+	@GeneratedValue
 	private Long num;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
 	private Product product;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
 	private User user;
-	
+
 	@Column(nullable = false)
 	private Integer count;
-	
-	@Column(nullable = false ,length = 100)
+
+	@Column(nullable = false, length = 100)
 	private String recipient_name;
-	
-	@Column(nullable = false,length = 11)
+
+	@Column(nullable = false, length = 11)
 	private String recipient_mobile;
-	
+
 	@Column(nullable = false)
 	private String address;
-	
+
 	@Enumerated(EnumType.STRING)
 	private PaymentProgress progress;
-	
+
 	private String tossOrderId;
+	
 
 	public Long getNum() {
 		return num;
@@ -114,9 +117,6 @@ public class Payment extends BaseEntity{
 	public void setTossOrderId(String tossOrderId) {
 		this.tossOrderId = tossOrderId;
 	}
-	
-	
-	
-	
-	
+
+
 }

@@ -46,7 +46,6 @@ public class User extends BaseEntity {
 	private Long kakaoId;
 	
 	
-
 	public Long getMemNo() {
 		return memNo;
 	}
