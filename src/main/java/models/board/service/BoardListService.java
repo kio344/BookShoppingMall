@@ -13,7 +13,6 @@ import models.admin.board.AdminBoardDao;
 import models.admin.board.AdminBoardDto;
 import models.board.BoardDataDao;
 import models.board.BoardDataDto;
-import models.board.SearchData;
 
 @Service
 public class BoardListService {
@@ -39,7 +38,12 @@ public class BoardListService {
 		int total = _total.intValue();
 		
 		Pagination pagination = new Pagination(page, total, 5, boardConfig.getPageCount());
-		
+		if(select == null || search == null) {
+			select = "";
+			search = "";
+		}
+		model.addAttribute("select", select);
+		model.addAttribute("search", search);
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("boardId", boardId);
 		model.addAttribute("boardName", boardConfig.getBoardName());

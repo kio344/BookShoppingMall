@@ -11,10 +11,11 @@
 				<li class="count">
 					<a th:href="@{/mypage/changePass}">비밀번호변경<i class="xi-angle-right"></i></a>
 				</li>
-				
-				<li class="count">
-					<a th:href="@{/api/kakao/oauth}">카카오 연동<i class="xi-angle-right"></i></a>
-				</li>
+				<th:block th:if="${session.user.kakaoId == null}">
+					<li class="count">
+						<a th:href="@{/api/kakao/oauth}">카카오 연동<i class="xi-angle-right"></i></a>
+					</li>
+				</th:block>
 				
 				<li class="count">
 					<a th:href="@{/mypage/myboard}">내가 쓴글<i class="xi-angle-right"></i></a>
