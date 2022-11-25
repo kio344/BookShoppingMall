@@ -7,7 +7,7 @@
 	<div class="sellerEdit">
 		<h1 class="text">상품 수정 페이지</h1>
 
-		<form th:action="@{/seller/product/edit}" method="get">
+		<form th:action="@{/seller/unapproved/edit}" method="get">
 			<div class="search">
 				<input class="searchInput" type="text" th:name="search"> <select
 					th:name="searchType">
@@ -18,7 +18,7 @@
 			</div>
 		</form>
 
-		<form th:action="@{/seller/product/update}" method="post">
+		<form th:action="@{/seller/unapproved/update}" method="post">
 			<div class="product">
 				<table>
 					<thead class="subject">
@@ -32,76 +32,94 @@
 							<th>카테고리</th>
 							<th>출판사</th>
 							<th>남은 수량</th>
+							<th>승인 상태</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="list : ${list}" th:object="${list}">
-							<td>
-								<div>
-									<input type="checkbox" th:name="product" th:value="*{num}">
-								</div>
-							</td>
+							<th:block th:if="${session.user.memId == list.seller.getMemId()}">
+							<!-- 관리자가 승인하지 않았거나, 관리자가 거절한 상품 출력 -->
+								<th:block th:unless="${@adminProductService.isAdminConfirmed(list.progress, 'Agree')}">
+									<td>
+										<div>
+											<input type="checkbox" th:name="product" th:value="*{num}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{seller.getMemId()}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="text" disabled
+												th:value="*{seller.getMemId()}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{serialnum}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="text" disabled
+												th:value="*{serialnum}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{bookName}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="text" disabled
+												th:value="*{bookName}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{writer}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="text" disabled
+												th:value="*{writer}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="number" th:value="*{price}"
-										th:name="price + ${('_') + (list.num)}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="number" th:value="*{price}"
+												th:name="price + ${('_') + (list.num)}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{category}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="text" disabled
+												th:value="*{category}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="text" disabled
-										th:value="*{publisher}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="text" disabled
+												th:value="*{publisher}">
+										</div>
+									</td>
 
-							<td>
-								<div>
-									<input class="productbox" type="number" th:value="*{count}"
-										th:name="count + ${('_') + (list.num)}">
-								</div>
-							</td>
+									<td>
+										<div>
+											<input class="productbox" type="number" th:value="*{count}"
+												th:name="count + ${('_') + (list.num)}">
+										</div>
+									</td>
+
+									<td>
+										<div>
+											<th:block
+												th:if="${@adminProductService.isAdminConfirmed(list.progress, 'Examine')}">
+												<input type="text" disabled value="미승인">
+											</th:block>
+
+											<th:block
+												th:if="${@adminProductService.isAdminConfirmed(list.progress, 'Rejected')}">
+												<input type="text" disabled value="거절됨">
+											</th:block>
+										</div>
+									</td>
+								</th:block>
 							</th:block>
 						</tr>
 					</tbody>
 				</table>
-
 				<div class="last">
 					상품을<select th:name="mode">
 						<option value="update">수정</option>

@@ -33,7 +33,6 @@ public class BoardListService {
 		String search = request.getParameter("search");
 		
 		
-		
 		List<BoardDataDto> boards = boardDataDao.gets(boardId, page, boardConfig.getPageCount(), select, search);
 		
 		Long _total = boardDataDao.total(boardId);

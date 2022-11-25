@@ -55,8 +55,4 @@ public class Pagination_v2 extends Pagination{
 		return "Pagination_v2 [link=" + link + ", toString()=" + super.toString() + "]";
 	}
 
-	
-
-	
-
 }

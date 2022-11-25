@@ -31,6 +31,8 @@ public class SearchDao {
 			sb.append("writer LIKE CONCAT('%', :writer, '%')");
 		}
 		
+		sb.append(" ORDER BY regDt DESC");
+		
 		TypedQuery<ProductRequest> entity = em.createQuery(sb.toString(), ProductRequest.class);
 		
 		if(searchType.equals("bookName")) {
@@ -39,16 +41,19 @@ public class SearchDao {
 			entity.setParameter("writer", search);
 		}
 		
+		entity.setFirstResult(5);
+		entity.setMaxResults(10);
+		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList();
 		
 		return list;
 	}
 	
 	public List<ProductRequestDto> gets(){
-		
 		TypedQuery<ProductRequest> entity = em.createQuery("SELECT p FROM ProductRequest p", ProductRequest.class);
 		
 		List<ProductRequestDto> list = entity.getResultStream().map(ProductRequestDto::toDto).toList(); 
+		
 		
 		return list;
 	}

@@ -36,7 +36,9 @@
 					</thead>
 					<tbody>
 						<tr th:each="list : ${list}" th:object="${list}">
+						<!-- 로그인 한 유저와 상품을 등록한 유저 아이디가 동일한 경우 그 상품 표출 -->
 							<th:block th:if="${session.user.memId == list.seller.getMemId()}">
+							<!-- 관리자가 승인한 상품 출력 -->
 								<th:block th:if="${@adminProductService.isAdminConfirmed(list.progress, 'Agree')}">
 									<td>
 										<div>
@@ -104,7 +106,6 @@
 						</tr>
 					</tbody>
 				</table>
-
 				<div class="last">
 					상품을<select th:name="mode">
 						<option value="update">수정</option>
