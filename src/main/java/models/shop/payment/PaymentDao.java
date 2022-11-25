@@ -9,12 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import models.entity.Payment;
-import models.entity.Product;
+import models.entity.ProductRequest;
 import models.entity.User;
-import models.seller.product.Progress;
-import models.shop.product.ProductDao;
-import models.shop.product.ProductDto;
-import models.user.UserDao;
 
 @Component
 public class PaymentDao {
@@ -24,7 +20,7 @@ public class PaymentDao {
 
 	public PaymentDto AddPayment(PaymentDto dto) {
 		Payment entity = PaymentDto.toEntity(dto);
-		entity.setProduct(em.find(Product.class, dto.getProduct().getNum()));
+		entity.setProduct(em.find(ProductRequest.class, dto.getProduct().getNum()));
 
 		entity.setUser(em.find(User.class, dto.getUser().getMemNo()));
 

@@ -22,7 +22,7 @@ public class Payment extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
-	private Product product;
+	private ProductRequest product;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
@@ -54,11 +54,11 @@ public class Payment extends BaseEntity {
 		this.num = num;
 	}
 
-	public Product getProduct() {
+	public ProductRequest getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public void setProduct(ProductRequest product) {
 		this.product = product;
 	}
 

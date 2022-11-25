@@ -1,15 +1,7 @@
 package models.user;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import models.common.BaseDto;
-import models.entity.Payment;
-import models.entity.Product;
 import models.entity.User;
-import models.shop.payment.PaymentDto;
-import models.shop.product.ProductDto;
 
 public class UserDto extends BaseDto {
 	

@@ -1,28 +1,15 @@
 package models.shop.payment;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import models.common.BaseDto;
 import models.entity.Payment;
-import models.entity.Product;
-import models.entity.ProductReview;
-import models.entity.User;
-import models.shop.product.ProductDto;
-import models.shop.productReview.ProductReviewDto;
+import models.seller.product.ProductRequestDto;
 import models.user.UserDto;
 
 public class PaymentDto extends BaseDto {
 
 	private Long num;
 
-	private ProductDto product;
+	private ProductRequestDto product;
 
 	private UserDto user;
 
@@ -47,11 +34,11 @@ public class PaymentDto extends BaseDto {
 		this.num = num;
 	}
 
-	public ProductDto getProduct() {
+	public ProductRequestDto getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductDto product) {
+	public void setProduct(ProductRequestDto product) {
 		this.product = product;
 	}
 
@@ -125,7 +112,7 @@ public class PaymentDto extends BaseDto {
 		Payment entity = new Payment();
 		entity.setAddress(dto.getAddress());
 		entity.setCount(dto.getCount());
-		entity.setProduct(ProductDto.toEntity(dto.getProduct()));
+		entity.setProduct(ProductRequestDto.toEntity(dto.getProduct()));
 		entity.setProgress(dto.getProgress());
 		entity.setRecipient_mobile(dto.getRecipient_mobile());
 		entity.setRecipient_name(dto.getRecipient_name());
@@ -142,7 +129,7 @@ public class PaymentDto extends BaseDto {
 		dto.setModDt(entity.getModDt());
 		dto.setAddress(entity.getAddress());
 		dto.setCount(entity.getCount());
-		dto.setProduct(ProductDto.toDto(entity.getProduct()));
+		dto.setProduct(ProductRequestDto.toDto(entity.getProduct()));
 		dto.setProgress(entity.getProgress());
 		dto.setRecipient_mobile(entity.getRecipient_mobile());
 		dto.setRecipient_name(entity.getRecipient_name());
@@ -158,7 +145,7 @@ public class PaymentDto extends BaseDto {
 		dto.setAddress(request.getAddress());
 		dto.setCount(request.getCount());
 
-		ProductDto productDto = new ProductDto();
+		ProductRequestDto productDto = new ProductRequestDto();
 		productDto.setNum(request.getProductNum());
 		dto.setProduct(productDto);
 

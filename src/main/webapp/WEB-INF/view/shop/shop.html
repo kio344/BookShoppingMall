@@ -26,7 +26,7 @@ layout:decorate="~{layouts/main/main}"
 			<li th:each="product :  ${newProductList}">
 				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
-						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+						<img alt="" th:src="@{/productImages/}+${product.num%10}+${'/'}+${product.num}">
 					</div>
 					
 					<div class="bookTitle" th:text="${product.bookName}">책이름</div>
@@ -43,7 +43,7 @@ layout:decorate="~{layouts/main/main}"
 			<li th:each="product :  ${bestSellerList}">
 				<a th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
-						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+						<img alt="" th:src="@{/productImages/}+${product.num%10}+${'/'}+${product.num}">
 					</div>
 					
 					<div class="bookTitle" th:text="${product.bookName}">책이름</div>
@@ -62,7 +62,7 @@ layout:decorate="~{layouts/main/main}"
 				<li th:each="product :  ${myShopList}">
 					<a th:href="@{/shop/product/}+${product.num}">
 						<div class="bookImg">
-							<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+						<img alt="" th:src="@{/productImages/}+${product.num%10}+${'/'}+${product.num}">
 						</div>
 						
 						<div class="bookTitle" th:text="${product.bookName}">책이름</div>

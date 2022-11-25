@@ -9,7 +9,7 @@
 			<li th:each=" product :${productList}">
 				<a target="parent" th:href="@{/shop/product/}+${product.num}">
 					<div class="bookImg">
-						<img alt="" th:src="@{/productImages/}+${product.imageNum%10}+${'/'}+${product.imageNum}">
+						<img alt="" th:src="@{/productImages/}+${product.num%10}+${'/'}+${product.num}">
 					</div>
 					
 				</a>

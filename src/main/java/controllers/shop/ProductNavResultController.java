@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
 import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
@@ -39,7 +40,7 @@ public class ProductNavResultController {
 			searchVal+="/"+cat3;
 		}
 		
-		List<ProductDto> productList = shopService.getSearchProducts(0, 9999, searchVal, "category");
+		List<ProductRequestDto> productList = shopService.getSearchProducts(0, 9999, searchVal, "category");
 		
 		model.addAttribute("productList",productList);
 		

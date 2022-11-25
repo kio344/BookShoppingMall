@@ -18,6 +18,7 @@ public class ProductRequestDto extends BaseDto {
 	private int count;
 	private Long images;
 	private Progress progress = Progress.Examine;
+	private Long SalesRate;
 	
 	public Long getNum() {
 		return num;
@@ -107,12 +108,20 @@ public class ProductRequestDto extends BaseDto {
 		this.progress = progress;
 	}
 	
+	public Long getSalesRate() {
+		return SalesRate;
+	}
+	
+	public void setSalesRate(Long salesRate) {
+		SalesRate = salesRate;
+	}
+	
 	@Override
 	public String toString() {
-		return "ProductDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
-				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-				+ ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
-				+ getModDt() + "]";
+		return "ProductRequestDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName="
+				+ bookName + ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher="
+				+ publisher + ", count=" + count + ", images=" + images + ", progress=" + progress + ", SalesRate="
+				+ SalesRate + "]";
 	}
 
 	public static ProductRequestDto toDto(ProductRequest entity) {
@@ -130,6 +139,7 @@ public class ProductRequestDto extends BaseDto {
 		dto.setPublisher(entity.getPublisher());
 		dto.setCount(entity.getCount());
 		dto.setProgress(entity.getProgress());
+		dto.setSalesRate(entity.getSalesRate());
 
 		return dto;
 	}
@@ -149,7 +159,8 @@ public class ProductRequestDto extends BaseDto {
 		entity.setPublisher(dto.getPublisher());
 		entity.setCount(dto.getCount());
 		entity.setProgress(dto.getProgress());
-
+		entity.setSalesRate(dto.getSalesRate());
+		
 		return entity;
 	}
 
@@ -171,13 +182,7 @@ public class ProductRequestDto extends BaseDto {
 		req.setWriter(dto.getWriter());
 		req.setProgress(dto.getProgress());
 		
-		/**
-		 * @author 5563a product imageNum 컬럼 추가로인한 변경점 추가 S
-		 */
-		req.setImageNum(dto.getNum());
-		/**
-		 * product imageNum 컬럼 추가로인한 변경점 추가 E
-		 */
+
 		
 		System.out.println(req);
 
