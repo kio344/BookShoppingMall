@@ -8,10 +8,8 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
 import models.entity.ProductRequest;
 import models.seller.product.ProductRequestDto;
-import models.shop.product.ProductDto;
 
 @Component
 public class SearchDao {
@@ -57,7 +55,7 @@ public class SearchDao {
 		
 		return list;
 	}
-	
+	/*	민호형 고치거나 지우세요
 	public List<ProductDto> getsProduct(){
 		
 		TypedQuery<Product> entity = em.createQuery("SELECT p FROM ProductRequest p", Product.class);
@@ -66,5 +64,6 @@ public class SearchDao {
 		
 		return list;
 	}
+	*/
 	
 }	

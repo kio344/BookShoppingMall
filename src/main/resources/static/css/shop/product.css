@@ -81,6 +81,10 @@
 	
 }
 
+.sameProduct h2{
+	border-bottom:1px solid black;
+	padding: 8px;
+}
 
 .productArea dl{
 	display: flex;
@@ -89,7 +93,75 @@
 .productInfo dl dt, dd{
 	padding: 5px;
 	display: flex;
-	align-items: center;
+
 }
 .productInfo dl dt{
 }
+
+
+.selectEl{
+	margin-top:70px;
+	display: flex;
+}
+.selectEl div:nth-of-type(1){
+	border-right:0px; 	
+	background-color: #dedede;
+	
+	
+}
+.selectEl div:nth-of-type(2){
+	background-color: #535353;
+	color: white;
+}
+
+.selectEl div{
+	position:relative;
+	left:25%;	
+	
+	border-bottom:0px;
+	padding:10px;
+	
+
+	font-size: 1.8rem;
+	
+	border-radius: 3px 3px 0px 0px;
+	
+	
+
+}
+.sameProduct{
+	padding: 20px 0px 20px 0px;
+	background-color: #dedede;
+}
+
+.sameProduct ul{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.sameProduct ul li .bookImg{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f1f1f1;
+	margin-bottom: 5px;
+}
+
+.sameProduct ul li{
+	margin: 5px;
+	padding: 10px;
+	width:180px;
+}
+
+
+.sameProduct ul li img{
+	max-width: 160px;
+	height: 220px;
+	padding: 5px;
+	
+}
+
+.sameProduct ul li .bookTitle{
+	font-size: 1.2rem;	
+}
+

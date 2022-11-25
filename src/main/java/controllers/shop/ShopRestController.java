@@ -19,25 +19,7 @@ public class ShopRestController {
 	@Autowired
 	ProductDao dao;
 	
-	@GetMapping("/test")
-	public void test(HttpSession session) {
-		
-		UserDto user=(UserDto)session.getAttribute("user");
-		ProductDto param=new ProductDto();
-		param.setNum(180L);
-		param.setBookName("책이름122");
-		param.setCategory("카테고리");
-		param.setCount(13);
-		param.setPrice(13400L);
-		param.setPublisher("출판사");
-		param.setSeller(user);
-		param.setSerialnum("시리얼 넘버");
-		param.setWriter("지은이");
-		
-		dao.addProduct(param);
-		
-		
-	}
+
 	
 	@GetMapping("/test2")
 	public void test2(HttpSession session) {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.common.BaseDto;
-import models.entity.Product;
 import models.seller.product.Progress;
 import models.shop.productReview.ProductReviewDto;
 import models.user.UserDto;
@@ -150,7 +149,7 @@ public class ProductDto extends BaseDto {
 				+ ", count=" + count + ", imageNum=" + imageNum + ", salesRate=" + salesRate + ", review=" + review
 				+ "]";
 	}
-
+	/*
 	public static Product toEntity(ProductDto dto) {
 		if (dto == null) {
 			return null;
@@ -196,5 +195,5 @@ public class ProductDto extends BaseDto {
 		return dto;
 
 	}
-
+	*/
 }

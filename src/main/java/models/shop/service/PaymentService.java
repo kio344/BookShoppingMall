@@ -3,10 +3,13 @@ package models.shop.service;
 import javax.servlet.http.HttpSession;
 import static common.Util.JmsUtil.*;
 
+import java.util.List;
+
 import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import models.seller.product.ProductRequestDto;
 import models.shop.payment.PaymentDao;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
@@ -69,7 +72,7 @@ public class PaymentService {
 
 		PaymentRequest request = new PaymentRequest();
 
-		ProductDto product = shopService.getProduct(productNum);
+		ProductRequestDto product = shopService.getProduct(productNum);
 
 		if (product == null) {
 			throw new RuntimeException("잘못된 접근 입니다.");
@@ -98,9 +101,22 @@ public class PaymentService {
 	 * @param num
 	 * @return
 	 */
-	public ProductDto productBuyPs(Long num, int count) {
+	public ProductRequestDto productBuyPs(Long num, int count) {
 
 		return productDao.buyProduct(num, count);
 
+	}
+	
+	/**
+	 * 유저No 를 통해 구매 내역 가져오기 
+	 * @param userNo
+	 * @return
+	 */
+	public List<PaymentDto> gets(Long userNo,PaymentProgress progress){
+		
+		
+		
+		return paymentDao.getsUserPayment(userNo, progress);
+		
 	}
 }

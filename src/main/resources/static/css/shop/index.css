@@ -6,6 +6,7 @@ main{
 }
 
 .searchfrm{
+	margin-top:20px;
 	width: 80%;
 	display: flex;
 	justify-content: center;
@@ -33,6 +34,32 @@ main{
 	width: 70px;
 }
 
+.ProductAdd{
+	border-radius:3px;
+	margin-top:50px;
+	width: 80%;
+	border: 1px solid black;
+	height:580px;
+	background-color: #3a3a3a;
+	padding: 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+	background-image: url("https://active.ridibooks.com/ridibooks_banner/1668764110610_MjIxMTE1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ProductAdd > div{
+	
+}
+
+.ProductAdd > div h1{
+
+	font-size:35px;
+	color: white;
+}
+
 
 ul{
 	width:80%;
@@ -44,7 +71,6 @@ ul{
 .product_list li{
 	display:flex;
 	width: calc(100%/6);
-	height: 300px;
 	margin: 20px;
 	
 	

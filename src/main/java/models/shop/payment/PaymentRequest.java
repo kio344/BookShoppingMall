@@ -2,10 +2,6 @@ package models.shop.payment;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import models.entity.Product;
-import models.entity.User;
-import models.user.UserDto;
-
 public class PaymentRequest {
 
 	private Long productNum;

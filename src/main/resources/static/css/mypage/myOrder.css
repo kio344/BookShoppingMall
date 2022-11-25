@@ -1,0 +1,125 @@
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+main>div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.productArea{
+	width: 60%;
+}
+
+.ProductList {
+	display: flex;
+	flex-direction: column;
+}
+
+.ProductList li {
+	border-bottom: 1px solid #444444;
+	padding: 15px;
+}
+.ProductList li a{
+	display: flex;
+	
+}
+
+.ProductList li a>div {
+	display: flex;
+	flex-direction:column;
+	justify-content: space-between;
+	margin: 5px;
+	
+	
+}
+.ProductList li a>div:nth-of-type(1){
+	margin-right: 10px;
+}
+.ProductList li a>div:nth-of-type(2){
+	width: 100%;
+}
+
+.productImgArea{
+	padding: 5px;
+	background-color: #dddddd;
+}
+
+
+.ProductList li a>div dl{
+	display: flex;
+	flex-direction: row;
+}
+
+.ProductList li a>div>img {
+	width: 150px;
+	height: 220px;
+}
+
+.ProductList li a>div>.btn_group{
+	display: flex;
+	justify-content: space-between;
+	
+}
+.ProductList li a>div>.btn_group > button{
+	padding: 5px;
+	background-color: #febf01;
+	
+}
+.ProductList li a>div>.btn_group > button:first-child{
+	width:80%;
+}
+.ProductList li a>div>.btn_group > button:last-child{
+	width: 50px;
+	height: 50px;
+}
+.title{
+	font-size: 1.8rem;
+}
+.price{
+	font-size: 1.4rem;
+}
+.totalprice{
+	font-size:1.6rem;
+}
+
+.reviewArea{
+	display: flex;
+	flex-direction: column;
+	margin-top:15px;
+	justify-content: space-between;
+}
+
+.reviewArea textarea{
+	width: 100%;
+	display: flex;
+	
+	flex-grow: 1;
+}
+.reviewArea > div{
+	display: flex;
+	margin:5px;
+}
+
+.reviewArea > div > select{
+	margin-top: 10px;
+	margin-bottom: 10px;
+		display: flex;
+	
+}
+
+.reviewArea > div > button{
+	background-color: #319dff;
+	border-radius:4px;
+	padding: 15px;
+	height: 50px;
+	display: flex;
+	flex-grow: 1;
+	justify-content:center;
+	
+	margin-left: 20px;
+}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import common.page.Pagination;
 import common.page.Pagination_v2;
+import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 
@@ -22,13 +23,14 @@ public class ShopSearchController {
 	private ShopService shopService;
 
 	@GetMapping("/search")
-	public String searchPs(String searchValue, @RequestParam(defaultValue = "", required = false) String searchType, @RequestParam(defaultValue = "1", required = false) int page, Model model) {
+	public String searchPs(String searchValue, @RequestParam(defaultValue = "", required = false) String searchType,
+			@RequestParam(defaultValue = "1", required = false) int page, Model model) {
 		System.out.println("페이지 : " + page);
 		int total = shopService.getSearchProductsCount(searchValue, searchType);
 		int limit = 10;
 		String link = "/shop/search?searchValue=" + searchValue + "&searchType=" + searchType + "&page=";
 		Pagination_v2 pagination = new Pagination_v2(page, total, 0, limit, link);
-		List<ProductDto> searchResult = shopService.getSearchProducts((page - 1) * limit, limit, searchValue,
+		List<ProductRequestDto> searchResult = shopService.getSearchProducts((page - 1) * limit, limit, searchValue,
 				searchType);
 
 		model.addAttribute("addCss", new String[] { "/shop/searchProduct" });

@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
 import models.shop.product.ProductDto;
 import models.shop.userCategory.UserCategoryDao;
@@ -42,13 +43,17 @@ public class UserCategoryService {
 		return userCategoryDao.getCategory(userNo);
 	}
 	
-	public List<ProductDto> getMyShopProduct(Long userNo){
+	public List<ProductRequestDto> getMyShopProduct(Long userNo){
 		
 		UserCategoryDto myCategoryDto=get(userNo);
 		
 		/**
 		 * 정렬 후 값 가져오기 S
 		 */
+		if (myCategoryDto==null) {
+			return null;
+		}
+		
 		TreeMap<String, Integer> map=myCategoryDto.getMyCategory().get(1);
 		
 		List<Entry<String, Integer>> list_Entry=new ArrayList<Entry<String,Integer>>(map.entrySet());
@@ -74,7 +79,7 @@ public class UserCategoryService {
 		 * 정렬 후 값 가져오기 E
 		 */
 		
-		List<ProductDto> result = productDao.getSearchProduct(0,5,searchVal, "category");
+		List<ProductRequestDto> result = productDao.getSearchProduct(0,5,searchVal, "category");
 		
 		return result;
 	}

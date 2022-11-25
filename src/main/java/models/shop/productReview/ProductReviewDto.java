@@ -1,6 +1,9 @@
 package models.shop.productReview;
 
 import models.common.BaseDto;
+import models.entity.Payment;
+import models.entity.ProductReview;
+import models.shop.payment.PaymentDto;
 import models.shop.product.ProductDto;
 import models.user.UserDto;
 
@@ -8,13 +11,13 @@ public class ProductReviewDto extends BaseDto{
 
 	private Long num;
 	
-	private ProductDto product;	//상품
 	
-	private UserDto user;		//작성한 유저
 	
 	private String content;		//리뷰내용
 	
 	private double score;		//별점
+	
+	private PaymentDto payment;
 
 	public Long getNum() {
 		return num;
@@ -24,20 +27,12 @@ public class ProductReviewDto extends BaseDto{
 		this.num = num;
 	}
 
-	public ProductDto getProduct() {
-		return product;
-	}
-
-	public void setProduct(ProductDto product) {
-		this.product = product;
-	}
-
-	public UserDto getUser() {
-		return user;
-	}
-
-	public void setUser(UserDto user) {
-		this.user = user;
+	
+	
+	@Override
+	public String toString() {
+		return "ProductReviewDto [num=" + num + ", content=" + content + ", score=" + score + ", payment=" + payment
+				+ "]";
 	}
 
 	public String getContent() {
@@ -56,10 +51,35 @@ public class ProductReviewDto extends BaseDto{
 		this.score = score;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductReviewDto [num=" + num + ", product=" + product + ", user=" + user + ", content=" + content
-				+ ", score=" + score + ", toString()=" + super.toString() + "]";
+	public PaymentDto getPayment() {
+		return payment;
+	}
+
+	public void setPayment(PaymentDto payment) {
+		this.payment = payment;
+	}
+
+	public static ProductReview toEntity(ProductReviewDto dto) {
+		ProductReview entity=new ProductReview();
+		entity.setContent(dto.getContent());
+		entity.setScore(dto.getScore());
+		
+		
+		return entity;
+	}
+	
+	public static ProductReviewDto toDto(ProductReview entity) {
+		if (entity==null) {
+			return null;
+		}
+		ProductReviewDto dto=new ProductReviewDto();
+		dto.setContent(entity.getContent());
+		dto.setScore(entity.getScore());
+		dto.setNum(entity.getNum());
+		dto.setModDt(entity.getModDt());
+		dto.setRegDt(entity.getRegDt());
+		
+		return dto;
 	}
 	
 

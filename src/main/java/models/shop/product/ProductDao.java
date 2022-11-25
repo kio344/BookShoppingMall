@@ -1,6 +1,5 @@
 package models.shop.product;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,8 +8,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import models.entity.Product;
-import models.entity.User;
+import models.entity.ProductRequest;
+import models.seller.product.ProductRequestDto;
+import models.seller.product.Progress;
 
 @Component
 public class ProductDao {
@@ -18,27 +18,7 @@ public class ProductDao {
 	@Autowired
 	private EntityManager em;
 
-	/**
-	 * 상품 추가
-	 * 
-	 * @author 5563a
-	 * @param param
-	 * @return
-	 */
-	public ProductDto addProduct(ProductDto param) {
-
-		Product entity = new Product();
-		entity = ProductDto.toEntity(param);
-
-		User user = em.find(User.class, param.getSeller().getMemNo());
-		entity.setSeller(user);
-
-		em.persist(entity);
-
-		em.flush();
-
-		return get(entity.getNum());
-	}
+	
 
 	/**
 	 * primary 키로 가져오기 (단일값)
@@ -47,11 +27,11 @@ public class ProductDao {
 	 * @param num
 	 * @return
 	 */
-	public ProductDto get(Long num) {
+	public ProductRequestDto get(Long num) {
 
-		Product entity = em.find(Product.class, num);
+		ProductRequest entity = em.find(ProductRequest.class, num);
 
-		return ProductDto.toDto(entity);
+		return ProductRequestDto.toDto(entity);
 	}
 
 	/**
@@ -61,15 +41,16 @@ public class ProductDao {
 	 * @param num
 	 * @return
 	 */
-	public ProductDto get(String bookName) {
+	public ProductRequestDto get(String bookName) {
 
-		String sql = "SELECT p FROM Product p WHERE bookName=:bookName ";
-		TypedQuery<Product> query = em.createQuery(sql, Product.class);
+		String sql = "SELECT p FROM ProductRequest p WHERE bookName=:bookName AND progress=:progress ";
+		TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
 		query.setParameter("bookName", bookName);
+		query.setParameter("progress", Progress.Agree);
+		
+		ProductRequest entity = query.getSingleResult();
 
-		Product entity = query.getSingleResult();
-
-		return ProductDto.toDto(entity);
+		return ProductRequestDto.toDto(entity);
 	}
 
 	/**
@@ -80,16 +61,18 @@ public class ProductDao {
 	 * @param offset 페이지네이션
 	 * @return
 	 */
-	public List<ProductDto> gets(int start, int offset) {
+	public List<ProductRequestDto> gets(int start, int offset) {
 
-		List<ProductDto> result = null;
+		List<ProductRequestDto> result = null;
 
-		TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p order by p.num desc ", Product.class);
+		TypedQuery<ProductRequest> query = em.createQuery("SELECT p FROM ProductRequest p WHERE p.progress=:progress order by p.num desc ", ProductRequest.class);
 
+		query.setParameter("progress", Progress.Agree);
+		
 		query.setFirstResult(start);
 		query.setMaxResults(offset);
 
-		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+		result = query.getResultStream().map(t -> ProductRequestDto.toDto(t)).toList();
 
 		return result;
 	}
@@ -102,17 +85,19 @@ public class ProductDao {
 	 * @param offset 페이지네이션
 	 * @return
 	 */
-	public List<ProductDto> getbestSeller(int start, int offset) {
-		List<ProductDto> result = null;
+	public List<ProductRequestDto> getbestSeller(int start, int offset) {
+		List<ProductRequestDto> result = null;
 
-		String sql = "SELECT p FROM Product p order by p.salesRate desc";
+		String sql = "SELECT p FROM ProductRequest p WHERE p.progress=:progress  order by p.salesRate desc";
 
-		TypedQuery<Product> query = em.createQuery(sql, Product.class);
+		TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
 
+		query.setParameter("progress", Progress.Agree);
+		
 		query.setFirstResult(start);
 		query.setMaxResults(offset);
 
-		result = query.getResultStream().map(t -> ProductDto.toDto(t)).toList();
+		result = query.getResultStream().map(t -> ProductRequestDto.toDto(t)).toList();
 
 		return result;
 	}
@@ -126,10 +111,10 @@ public class ProductDao {
 	 * @param searchType	bookName,writer
 	 * @return
 	 */
-	public List<ProductDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
+	public List<ProductRequestDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
 
-		String sql = "SELECT p FROM Product p WHERE p." + searchType + " like :searchValue order by p.num desc ";
-		TypedQuery<Product> query = em.createQuery(sql, Product.class);
+		String sql = "SELECT p FROM ProductRequest p WHERE p." + searchType + " like :searchValue order by p.num desc ";
+		TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
 		query.setParameter("searchValue", "%"+searchValue+"%");
 		
 		System.out.println(searchValue);
@@ -137,7 +122,7 @@ public class ProductDao {
 		query.setFirstResult(start);
 		query.setMaxResults(offset);
 		
-		List<ProductDto> result = query.getResultStream().map(p -> ProductDto.toDto(p)).toList();
+		List<ProductRequestDto> result = query.getResultStream().map(p -> ProductRequestDto.toDto(p)).toList();
 
 		
 		
@@ -153,9 +138,9 @@ public class ProductDao {
 	 */
 	public int getSearchProductCount(String searchValue, String searchType) {
 		
-		String sql = "SELECT COUNT(*) FROM Product p WHERE p." + searchType + " like '%"+searchValue+"%'";
+		String sql = "SELECT COUNT(*) FROM ProductRequest p WHERE p.progress='Agree' AND p." + searchType + " like '%"+searchValue+"%'";
 		
-		
+				
 		String result = em.createNativeQuery(sql).getSingleResult().toString();
 		
 		
@@ -171,9 +156,9 @@ public class ProductDao {
 	 * @param num
 	 * @return
 	 */
-	public ProductDto buyProduct(Long num,int count) {
+	public ProductRequestDto buyProduct(Long num,int count) {
 		
-		Product entity = em.find(Product.class, num);
+		ProductRequest entity = em.find(ProductRequest.class, num);
 		entity.setCount(entity.getCount()-count);
 		entity.setSalesRate(entity.getSalesRate()+count);
 		
@@ -181,7 +166,7 @@ public class ProductDao {
 		
 		em.flush();
 		
-		return ProductDto.toDto(entity);
+		return ProductRequestDto.toDto(entity);
 		
 	}
 

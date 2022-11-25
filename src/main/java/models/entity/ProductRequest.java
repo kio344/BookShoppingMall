@@ -17,120 +17,128 @@ import models.seller.product.Progress;
 @Entity
 public class ProductRequest extends BaseEntity {
 
-   @Id
-   @GeneratedValue
-   private Long num;
-   
-   @ManyToOne(fetch = FetchType.LAZY)
-   @JoinColumn(name = "seller")
-   private User seller;
-   @Column(length = 65, nullable = false)
-   private String serialnum;
-   @Column(length = 60, nullable = false)
-   private String bookName;
-   @Column(length = 45, nullable = false)
-   private String writer;
-   @Column(length = 45, nullable = false)
-   private Long price;
-   @Column(length = 45, nullable = false)
-   private String category;
-   @Column(length = 45, nullable = false)
-   private String publisher;
-   @Column(length = 45, nullable = false)
-   private int count;
-   @Column
-   @Enumerated(EnumType.STRING)
-   private Progress progress = Progress.Examine;
-   
+	@Id
+	@GeneratedValue
+	private Long num;
 
-   public Long getNum() {
-      return num;
-   }
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller")
+	private User seller;
+	@Column(length = 65, nullable = false)
+	private String serialnum;
+	@Column(length = 60, nullable = false)
+	private String bookName;
+	@Column(length = 45, nullable = false)
+	private String writer;
+	@Column(length = 45, nullable = false)
+	private Long price;
+	@Column(length = 45, nullable = false)
+	private String category;
+	@Column(length = 45, nullable = false)
+	private String publisher;
+	@Column(length = 45, nullable = false)
+	private int count;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private Progress progress = Progress.Examine;
 
-   public void setNum(Long num) {
-      this.num = num;
-   }
+	@Column
+	private Long salesRate;
 
-   public User getSeller() {
-      return seller;
-   }
+	public Long getNum() {
+		return num;
+	}
 
-   public void setSeller(User seller) {
-      this.seller = seller;
-   }
+	public void setNum(Long num) {
+		this.num = num;
+	}
 
-   public String getSerialnum() {
-      return serialnum;
-   }
+	public User getSeller() {
+		return seller;
+	}
 
-   public void setSerialnum(String serialnum) {
-      this.serialnum = serialnum;
-   }
+	public void setSeller(User seller) {
+		this.seller = seller;
+	}
 
-   public String getBookName() {
-      return bookName;
-   }
+	public String getSerialnum() {
+		return serialnum;
+	}
 
-   public void setBookName(String bookName) {
-      this.bookName = bookName;
-   }
+	public void setSerialnum(String serialnum) {
+		this.serialnum = serialnum;
+	}
 
-   public String getWriter() {
-      return writer;
-   }
+	public String getBookName() {
+		return bookName;
+	}
 
-   public void setWriter(String writer) {
-      this.writer = writer;
-   }
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
 
-   public Long getPrice() {
-      return price;
-   }
+	public String getWriter() {
+		return writer;
+	}
 
-   public void setPrice(Long price) {
-      this.price = price;
-   }
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 
-   public String getCategory() {
-      return category;
-   }
+	public Long getPrice() {
+		return price;
+	}
 
-   public void setCategory(String category) {
-      this.category = category;
-   }
+	public void setPrice(Long price) {
+		this.price = price;
+	}
 
-   public String getPublisher() {
-      return publisher;
-   }
+	public String getCategory() {
+		return category;
+	}
 
-   public void setPublisher(String publisher) {
-      this.publisher = publisher;
-   }
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
-   public int getCount() {
-      return count;
-   }
+	public String getPublisher() {
+		return publisher;
+	}
 
-   public void setCount(int count) {
-      this.count = count;
-   }
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 
-   public Progress getProgress() {
-      return progress;
-   }
+	public int getCount() {
+		return count;
+	}
 
-   public void setProgress(Progress progress) {
-      this.progress = progress;
-   }
+	public void setCount(int count) {
+		this.count = count;
+	}
 
-   @Override
-   public String toString() {
-      return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
-            + ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
-            + ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
-            + getModDt() + "]";
-   }
-   
-   
+	public Progress getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Progress progress) {
+		this.progress = progress;
+	}
+
+	public void setSalesRate(Long salesRate) {
+		this.salesRate = salesRate;
+	}
+
+	public Long getSalesRate() {
+		return salesRate;
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName=" + bookName
+				+ ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher=" + publisher
+				+ ", count=" + count + ", progress=" + progress + ", getRegDt()=" + getRegDt() + ", getModDt()="
+				+ getModDt() + "]";
+	}
 
 }
