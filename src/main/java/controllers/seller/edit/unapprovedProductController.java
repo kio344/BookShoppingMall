@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import common.page.Pagination;
 import models.admin.product.service.AdminProductService;
 import models.seller.edit.SearchDao;
 import models.seller.edit.SearchService;
 import models.seller.product.ProductRequestDto;
 
 @Controller
-@RequestMapping("/seller/product")
-public class ProductEditController {
+@RequestMapping("/seller/unapproved")
+public class unapprovedProductController {
 
 	@Autowired
 	private SearchService searchService;
@@ -30,24 +29,23 @@ public class ProductEditController {
 
 	@Autowired
 	private SearchDao dao;
-
+	
 	@GetMapping("/edit")
-	public String edit(@RequestParam(required = false, name = "searchType", defaultValue = "") String searchType,
+	public String unapprovedEdit(@RequestParam(required = false, name = "searchType", defaultValue = "") String searchType,
 			@RequestParam(required = false, name = "search", defaultValue = "") String search, Model model) {
 
 		List<ProductRequestDto> ProductRequestList = dao.gets();
-		
+
 		model.addAttribute("list", ProductRequestList);
 		model.addAttribute("addCss", new String[] { "/seller/product/sellerEdit" });
-
 
 		if (!searchType.isBlank()) {
 			List<ProductRequestDto> item = searchService.search(searchType, search);
 			model.addAttribute("list", item);
 		}
-		return "/seller/editAgreeProduct";
+		return "/seller/editProduct";
 	}
-
+	
 	@PostMapping("/update")
 	public String remove(@RequestParam(required = false, name = "mode") String mode, HttpServletRequest request) {
 
@@ -57,9 +55,7 @@ public class ProductEditController {
 			productService.remove(request);
 		}
 
-		return "redirect:/seller/product/edit";
+		return "redirect:/seller/unapproved/edit";
 	}
-
 	
-
 }

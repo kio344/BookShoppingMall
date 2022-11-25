@@ -1,6 +1,5 @@
 package models.seller.product;
 
-
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class ProductRequestDao {
 	
 	public ProductRequestDto get(ProductRequestDto dto) {
 		
-		ProductRequest entity = em.find(ProductRequest.class, dto.getBookName());
+		ProductRequest entity = em.find(ProductRequest.class, dto.getNum());
 		
 		return ProductRequestDto.toDto(entity);
 	}

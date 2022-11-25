@@ -1,10 +1,14 @@
 package models.admin.product.service;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import models.entity.FileInfo;
+import models.file.FileInfoDto;
 import models.seller.product.ProductRequestDao;
 import models.seller.product.ProductRequestDto;
 import models.seller.product.Progress;
@@ -57,7 +61,6 @@ public class AdminProductService {
 			productDao.addProduct(ProductRequestDto.toRequest(dto));
 			
 			productRequestDao.updateAdmin(dto);
-//			productRequestDao.remove(dto);
 		}
 		/** 수정 시작 E */
 	}		
@@ -73,6 +76,16 @@ public class AdminProductService {
 		dto = productRequestDao.get(Long.parseLong(product));
 		
 		productRequestDao.remove(dto);
+		
+		Long images = Long.parseLong(product);
+		
+		String dir = request.getServletContext().getRealPath("");
+		String folder = String.valueOf(images % 10);
+		dir += "/../resources/static/productImages" + "/" + folder + "/" + images;
+		
+		File remove = new File(dir);
+		remove.delete();
+		
 		
 		}
 	}
@@ -92,7 +105,6 @@ public class AdminProductService {
 			ProductRequestDto dto = new ProductRequestDto();
 			dto.setNum(Long.parseLong(product));
 			dto.setProgress(Progress.Rejected);
-			System.out.println("------------------------------" + product);
 			productRequestDao.argee(dto);
 			
 		}

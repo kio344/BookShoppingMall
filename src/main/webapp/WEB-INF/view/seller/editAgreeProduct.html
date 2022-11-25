@@ -5,9 +5,9 @@
 
 <main layout:fragment="main">
 	<div class="sellerEdit">
-		<h1 class="text">상품 수정 페이지</h1>
+		<h1 class="text">승인된 상품 수정 페이지</h1>
 
-		<form th:action="@{/seller/unapproved/edit}" method="get">
+		<form th:action="@{/seller/product/edit}" method="get">
 			<div class="search">
 				<input class="searchInput" type="text" th:name="search"> <select
 					th:name="searchType">
@@ -18,7 +18,7 @@
 			</div>
 		</form>
 
-		<form th:action="@{/seller/unapproved/update}" method="post">
+		<form th:action="@{/seller/product/update}" method="post">
 			<div class="product">
 				<table>
 					<thead class="subject">
@@ -32,14 +32,14 @@
 							<th>카테고리</th>
 							<th>출판사</th>
 							<th>남은 수량</th>
-							<th>승인 상태</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="list : ${list}" th:object="${list}">
+						<!-- 로그인 한 유저와 상품을 등록한 유저 아이디가 동일한 경우 그 상품 표출 -->
 							<th:block th:if="${session.user.memId == list.seller.getMemId()}">
-							<!-- 관리자가 승인하지 않았거나, 관리자가 거절한 상품 출력 -->
-								<th:block th:unless="${@adminProductService.isAdminConfirmed(list.progress, 'Agree')}">
+							<!-- 관리자가 승인한 상품 출력 -->
+								<th:block th:if="${@adminProductService.isAdminConfirmed(list.progress, 'Agree')}">
 									<td>
 										<div>
 											<input type="checkbox" th:name="product" th:value="*{num}">
@@ -99,20 +99,6 @@
 										<div>
 											<input class="productbox" type="number" th:value="*{count}"
 												th:name="count + ${('_') + (list.num)}">
-										</div>
-									</td>
-
-									<td>
-										<div>
-											<th:block
-												th:if="${@adminProductService.isAdminConfirmed(list.progress, 'Examine')}">
-												<input type="text" disabled value="미승인">
-											</th:block>
-
-											<th:block
-												th:if="${@adminProductService.isAdminConfirmed(list.progress, 'Rejected')}">
-												<input type="text" disabled value="거절됨">
-											</th:block>
 										</div>
 									</td>
 								</th:block>

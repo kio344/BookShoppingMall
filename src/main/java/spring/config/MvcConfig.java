@@ -172,14 +172,12 @@ public class MvcConfig implements WebMvcConfigurer {
 	public MyCategoryRecode myCategoryRecode() {
 		return new MyCategoryRecode();
 	}
-	
-	
 
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multi = new CommonsMultipartResolver();
-		multi.setMaxUploadSize(-1);
-		multi.setMaxUploadSizePerFile(-1);
+		multi.setMaxUploadSize(10485760);
+		multi.setMaxUploadSizePerFile(10485760);
 
 		return multi;
 	}
