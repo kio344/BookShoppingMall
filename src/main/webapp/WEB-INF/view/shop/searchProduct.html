@@ -8,10 +8,6 @@
 	<!-- 상품검색 창 -->
 	<th:block th:replace="layouts/shop/productSearchNav::productSearchNav"></th:block>
 
-
-
-
-
 		<ul class="searchResult">
 			<li th:each="product : ${searchResult}">
 			<a th:href="@{/shop/product/}+${product.num}">
@@ -44,8 +40,6 @@
 							
 							<dd th:text="${product.price}+' 원'" ></dd>
 						</dl>
-					
-
 					</div>
 					<div class="productBtn_grp" >
 						<button>구매하기</button>

@@ -57,8 +57,7 @@ public class AdminProductService {
 			ProductRequestDto dto = new ProductRequestDto();
 			dto = productRequestDao.get(Long.parseLong(product)); 
 			dto.setProgress(Progress.Agree);
-			
-			productDao.addProduct(ProductRequestDto.toRequest(dto));
+//			productDao.addProduct(ProductRequestDto.toRequest(dto));
 			
 			productRequestDao.updateAdmin(dto);
 		}
@@ -85,7 +84,6 @@ public class AdminProductService {
 		
 		File remove = new File(dir);
 		remove.delete();
-		
 		
 		}
 	}

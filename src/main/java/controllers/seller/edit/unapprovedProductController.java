@@ -20,25 +20,25 @@ import models.seller.product.ProductRequestDto;
 @Controller
 @RequestMapping("/seller/unapproved")
 public class unapprovedProductController {
-
+	
 	@Autowired
 	private SearchService searchService;
-
+	
 	@Autowired
 	private AdminProductService productService;
-
+	
 	@Autowired
 	private SearchDao dao;
 	
 	@GetMapping("/edit")
 	public String unapprovedEdit(@RequestParam(required = false, name = "searchType", defaultValue = "") String searchType,
 			@RequestParam(required = false, name = "search", defaultValue = "") String search, Model model) {
-
+		
 		List<ProductRequestDto> ProductRequestList = dao.gets();
-
+		
 		model.addAttribute("list", ProductRequestList);
 		model.addAttribute("addCss", new String[] { "/seller/product/sellerEdit" });
-
+		
 		if (!searchType.isBlank()) {
 			List<ProductRequestDto> item = searchService.search(searchType, search);
 			model.addAttribute("list", item);
@@ -48,13 +48,12 @@ public class unapprovedProductController {
 	
 	@PostMapping("/update")
 	public String remove(@RequestParam(required = false, name = "mode") String mode, HttpServletRequest request) {
-
+		
 		if (mode.equals("update")) {
 			productService.update(request);
 		} else {
 			productService.remove(request);
 		}
-
 		return "redirect:/seller/unapproved/edit";
 	}
 	
