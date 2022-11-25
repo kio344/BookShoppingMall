@@ -49,6 +49,10 @@ public class UserCategoryService {
 		/**
 		 * 정렬 후 값 가져오기 S
 		 */
+		if (myCategoryDto==null) {
+			return null;
+		}
+		
 		TreeMap<String, Integer> map=myCategoryDto.getMyCategory().get(1);
 		
 		List<Entry<String, Integer>> list_Entry=new ArrayList<Entry<String,Integer>>(map.entrySet());
