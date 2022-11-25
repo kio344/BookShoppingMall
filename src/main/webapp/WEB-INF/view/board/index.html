@@ -65,18 +65,18 @@
 				<div class="page_wrap" th:object="${pagination}">
 					<th:block th:if="*{isFirstCnt == false}">
 						<a
-							th:href="@{/board/{id}?page={prev}(id=${boardId}, prev=${pagination.prev})}">
+							th:href="@{/board/{id}?page={prev}&select={select1}&search={search1}(id=${boardId}, prev=${pagination.prev}, select1=${param.select}, search1=${param.search})}">
 							<i class="xi-backward">이전</i>
 						</a>
 					</th:block>
 					<th:block th:each="page : ${pagination.pages}">
 						<a
-							th:href="@{/board/{id}?page={page}(id=${boardId}, page=${page})}"
+							th:href="@{/board/{id}?page={page}&select={select1}&search={search1}(id=${boardId}, page=${page}, select1=${param.select}, search1=${param.search})}"
 							th:text="${page}"></a>
 					</th:block>
 					<th:block th:if="*{isLastCnt == false}">
 						<a
-							th:href="@{/board/{id}?page={next}(id=${boardId}, next=${pagination.next})}">
+							th:href="@{/board/{id}?page={next}&select={select1}&search={search1}(id=${boardId}, next=${pagination.next}, select1=${param.select}, search1=${param.search})}">
 							<i class="xi-forward">다음</i>
 						</a>
 					</th:block>
