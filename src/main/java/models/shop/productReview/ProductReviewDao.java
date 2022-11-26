@@ -1,6 +1,7 @@
 package models.shop.productReview;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,33 +24,65 @@ public class ProductReviewDao {
 		return ProductReviewDto.toDto(entity);
 	}
 
-	public ProductReviewDto insert(ProductReviewDto reviewDto) {
-		
-		ProductReview entity = ProductReviewDto.toEntity(reviewDto);
+	public ProductReviewDto insertOrUpdate(ProductReviewDto reviewDto) {
 
-		Payment payment=em.find(Payment.class, reviewDto.getPayment().getNum());
+		Payment payment=null;
 		
-		entity.setPayment(payment);
-		
-		em.persist(entity);
+		try {
+			String sql = "SELECT pr FROM ProductReview pr WHERE pr.payment=:payment";
 
-		em.flush();
+			payment = em.find(Payment.class, reviewDto.getPayment().getNum());
 
-		return ProductReviewDto.toDto(entity);
+			TypedQuery<ProductReview> query = em.createQuery(sql, ProductReview.class);
+
+			query.setParameter("payment", payment);
+
+			ProductReview entity = query.getSingleResult();
+
+			entity.setContent(reviewDto.getContent());
+			entity.setScore(reviewDto.getScore());
+
+			em.persist(entity);
+
+			em.flush();
+
+			return ProductReviewDto.toDto(entity);
+
+		} catch (NoResultException e) {
+
+			ProductReview productReview = new ProductReview();
+
+			productReview.setPayment(payment);
+
+			productReview.setScore(reviewDto.getScore());
+
+			productReview.setContent(reviewDto.getContent());
+
+			em.persist(productReview);
+
+			em.flush();
+
+			return ProductReviewDto.toDto(productReview);
+
+		}
+
+
+
 	}
-	
-	public ProductReviewDto getForPayment(Long payment) {
-		
-		String sql="SELECT pr FROM ProductReview pr WHERE pr.payment=:payment";
-				
-		
-		TypedQuery<ProductReview> query=em.createQuery(sql,ProductReview.class);
-		
+
+	public ProductReviewDto getForPayment(Long paymentNum) {
+
+		String sql = "SELECT pr FROM ProductReview pr WHERE pr.payment=:payment";
+
+		Payment payment = em.find(Payment.class, paymentNum);
+
+		TypedQuery<ProductReview> query = em.createQuery(sql, ProductReview.class);
+
 		query.setParameter("payment", payment);
-		
-		ProductReviewDto reviewDto=ProductReviewDto.toDto(query.getSingleResult());
-		
+
+		ProductReviewDto reviewDto = ProductReviewDto.toDto(query.getSingleResult());
+
 		return reviewDto;
-		
+
 	}
 }

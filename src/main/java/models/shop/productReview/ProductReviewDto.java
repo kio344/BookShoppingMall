@@ -73,6 +73,7 @@ public class ProductReviewDto extends BaseDto{
 			return null;
 		}
 		ProductReviewDto dto=new ProductReviewDto();
+		dto.setPayment(PaymentDto.toDto(entity.getPayment()));
 		dto.setContent(entity.getContent());
 		dto.setScore(entity.getScore());
 		dto.setNum(entity.getNum());
