@@ -7,53 +7,23 @@
 	<main layout:fragment="main">
 		<h1>리뷰 확인 페이지</h1>
 
-		<!-- 오브젝트로 리스트 불러와서 상품 출력 주소 여기서부터 씨팔 -->
+		<th:block th:each="product : ${list}" th:object="${product}">
+			<th:block th:if="${session.user.memId == product.seller.getMemId()}">
+		<ul>
+			<li>
+				<a th:name="productNum"
+					th:href="@{/seller/review/} + ${product.num}">
+					<div class="reviewProductImages">
+						<img
+							th:src="@{/productImages/} + ${product.num % 10} + '/' + ${product.num}">
+					</div>
 
-
-		<table>
-			<thead class="subject">
-				<tr>
-					<br>
-					<th>사진</th>
-					<th>글쓴이</th>
-					<th>판매자</th>
-					<th>가격</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="product : ${list}" th:object="${product}">
-					<th:block th:if="${session.user.memId == product.seller.getMemId()}">
-						<th>
-							<a th:name="productNum" th:href="@{/seller/review/} + ${product.num}">
-								<div>
-									<img th:src="@{/productImages/} + ${product.num % 10} + '/' + ${product.num}">
-								</div>
-							</a>
-						</th>
-
-						<th>
-							<div>
-								<input type="text" disabled="disabled" th:value="*{writer}">
-							</div>
-						</th>
-
-						<th>
-							<div>
-								<input type="text" disabled="disabled" th:value="*{publisher}">
-							</div>
-						</th>
-
-						<th>
-							<div>
-								<input type="text" disabled="disabled" th:value="*{price}">
-							</div>
-						</th>
-					</th:block>
-				</tr>
-			</tbody>
-
-
-		</table>
+					<div class="writer" th:text="*{writer}">글쓴이</div>
+					<div class="publisher" th:text="*{publisher}">출판사</div>
+					<div class="price" th:text="*{price}">가격</div>
+				</a>
+			</li>
+		</ul>
 	</main>
 </form>
 </html>

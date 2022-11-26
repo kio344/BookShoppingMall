@@ -1,0 +1,27 @@
+.reviewProductImages img {
+  max-width: 170px;
+  height: auto;
+  display: block;
+  max-height: 235px;
+  margin-bottom: 5px;
+  display: inline-block; 
+}
+
+.writer{
+	font-size: 15px;
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+
+.publisher{
+	font-size: 15px;
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+
+.price{
+	font-size: 15px;
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+

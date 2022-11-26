@@ -1,5 +1,6 @@
 package models.shop.productReview;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,10 +10,10 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import groovyjarjarantlr4.v4.parse.ANTLRParser.ebnf_return;
 import models.entity.Payment;
 import models.entity.ProductRequest;
 import models.entity.ProductReview;
+import models.shop.payment.PaymentDto;
 
 @Component
 public class ProductReviewDao {
@@ -100,6 +101,26 @@ public class ProductReviewDao {
 
 		return reviewDto;
 
+	}
+	
+	public List<ProductReviewDto> getProductReview(List<PaymentDto> list) {
+		PaymentDto dto = null;
+		
+		List<ProductReviewDto> productList = new ArrayList<>();
+		
+		for (int i = 0; i < list.size(); i++) {
+			dto = list.get(i);
+		String sql = "SELECT r FROM ProductReview r WHERE r.payment=:payment_num";
+		
+		TypedQuery<ProductReview> query = em.createQuery(sql, ProductReview.class);
+		Payment entity = em.find(Payment.class, dto.getNum());
+		
+		query.setParameter("payment_num", entity);
+		
+		productList.add(ProductReviewDto.toDto(query.getSingleResult()));
+		
+		}
+		return productList;
 	}
 	
 	public List<ProductReviewDto> getsForProduct(Long productNum) {

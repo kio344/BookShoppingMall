@@ -64,5 +64,12 @@ public class SearchDao {
 		
 		return Integer.parseInt(result) == 0 ? 1 : Integer.parseInt(result);
 	}
+	
+	public ProductRequestDto getProduct(Long productNum){
+		
+		ProductRequest entity = em.find(ProductRequest.class, productNum);
+		
+		return ProductRequestDto.toDto(entity);
+	}
 
 }	
