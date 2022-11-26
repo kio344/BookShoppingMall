@@ -110,7 +110,6 @@ public class AdminProductService {
 	}
 	
 	public boolean isAdminConfirmed(Progress progress, String type) {
-		
 		if (progress == null || type == null || type.isBlank()) {
 			return false;
 		}
