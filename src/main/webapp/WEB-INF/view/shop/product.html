@@ -65,10 +65,10 @@ layout:decorate="~{layouts/main/main}"
 		</div>
 		
 		<div class="selectEl">
-			<div>비슷한 상품</div>
-			<div>리뷰</div>
+			<div id="showSameProduct">비슷한 상품</div>
+			<div id="showReview">리뷰</div>
 		</div>
-		<div class="sameProduct">
+		<div class="sameProduct" id="sameProduct">
 			<ul class="product_list">
 				<li th:each="product :  ${sameProduct}">
 					<a th:href="@{/shop/product/}+${product.num}">
@@ -83,6 +83,36 @@ layout:decorate="~{layouts/main/main}"
 					</a>
 				</li>
 		
+			</ul>
+		</div>
+		<div class="productReview dn" id="productReview">
+			<ul class="productReview_list">
+			
+			
+				
+					<li th:if="${!#lists.isEmpty(productReview)}" th:each="review : ${productReview}" th:object="${review}">
+						
+						<div class="reviewInfo">
+							<span th:text="*{payment.user.memNm}"></span>
+							<span th:text="*{modDt}"></span>
+						</div>
+						<div class="reviewData">
+						
+							<p class="review_content" th:utext="*{content}"></p>
+							
+						</div>
+					</li>
+					<li th:if="${#lists.isEmpty(productReview)}">
+						
+						<div class="reviewData">
+						
+							<p class="review_content">
+								작성된 리뷰가 없습니다.
+							</p>
+							
+						</div>
+					</li>
+				
 			</ul>
 		</div>
 	</main>

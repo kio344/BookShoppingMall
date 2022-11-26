@@ -1,5 +1,7 @@
 package models.shop.productReview;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import groovyjarjarantlr4.v4.parse.ANTLRParser.ebnf_return;
 import models.entity.Payment;
+import models.entity.ProductRequest;
 import models.entity.ProductReview;
 
 @Component
@@ -99,5 +102,20 @@ public class ProductReviewDao {
 
 	}
 	
-	public ProductReview getsForProduct(Long )
+	public List<ProductReviewDto> getsForProduct(Long productNum) {
+		
+		ProductRequest product=em.find(ProductRequest.class, productNum);
+		
+		String sql = "SELECT pr FROM ProductReview pr WHERE pr.payment.product=:product ";
+		
+		TypedQuery<ProductReview> query=em.createQuery(sql,ProductReview.class);
+		
+		query.setParameter("product", product);
+		
+		List<ProductReviewDto> result=query.getResultStream().map(t -> ProductReviewDto.toDto(t) ).toList();
+		
+		
+		
+		return result;
+	}
 }
