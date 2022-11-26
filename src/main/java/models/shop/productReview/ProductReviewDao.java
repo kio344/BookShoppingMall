@@ -24,6 +24,13 @@ public class ProductReviewDao {
 		return ProductReviewDto.toDto(entity);
 	}
 
+	
+	/**
+	 * 상품 리뷰 쓰기 이미 존재한다면 업데이트
+	 * @author 5563a
+	 * @param reviewDto
+	 * @return
+	 */
 	public ProductReviewDto insertOrUpdate(ProductReviewDto reviewDto) {
 
 		Payment payment=null;
@@ -70,6 +77,12 @@ public class ProductReviewDao {
 
 	}
 
+	/**
+	 * 결제정보로 리뷰 가져오기
+	 * @author 5563a
+	 * @param paymentNum
+	 * @return
+	 */
 	public ProductReviewDto getForPayment(Long paymentNum) {
 
 		String sql = "SELECT pr FROM ProductReview pr WHERE pr.payment=:payment";
@@ -85,4 +98,6 @@ public class ProductReviewDao {
 		return reviewDto;
 
 	}
+	
+	public ProductReview getsForProduct(Long )
 }
