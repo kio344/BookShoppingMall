@@ -1,15 +1,97 @@
+.main{
+    height: 300px;
+    width: 100%;
+    padding-top: 50px;}
+
 .adminBoard{
-	width: 1200px; margin: 0 auto; padding-top: 50px;
+	width: 1200px; margin: 0 auto; padding-top: 20px;
 }
+
+.board{    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 30px;}
+
+.adminBoard .board dt{font-family: ui-rounded;
+    font-weight: 540;
+    font-size: 17px;}
+
+.adminBoard .board dd input{border: 0px;
+    border-bottom: 1px solid black;
+    border-radius: 0px;}
+
+.admin{display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 700px;}
+    
+.adminBoard .admin dt{display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    font-weight: 600;
+    font-family: sans-serif;}
+    
+.adminBoard .admin dd{display: flex;
+    align-items: center;
+    align-content: center;}
+
+.btn{    display: flex;
+    justify-content: space-evenly;
+    width: 170px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.btn1{border: 1px solid;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;}
+
+.btn2{border: 1px solid black;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: black;
+    color: white;}
+    
+.btn3{border: 1px solid;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    margin-left: 10px;}
+
 .adminBoardTable{
-	
-	width: 1400px;
+	width: 1100px;
 	margin: 0 auto;
+	padding-bottom: 40px;
 }
+
+.boardTable{display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 30px;}
+
 table { border-spacing: 0; padding: 0; width: 100%; }
-table td input { width: 100%; }
-.adminBoardTable tr, .adminBoardTable th, .adminBoardTable td{
-	border : 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+
+table td input { width: 100%; border: 0px;}
+.adminBoardTable th{border-bottom: 1px solid black;
+    /* margin-bottom: 10px; */
+    padding-bottom: 10px;}
+.adminBoardTable td{
+border-bottom: 1px solid #bbbbbb;
+    border-collapse: collapse;
+    text-align: center;
 }
+
+.last{display: flex;
+    justify-content: flex-end;
+    margin-top: 13px;
+    align-items: center;
+    align-content: center;}
+
+.lastSelect{margin: 0px 7px;}

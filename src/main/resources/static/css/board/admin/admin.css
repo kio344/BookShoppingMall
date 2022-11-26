@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+* { box-sizing: border-box; font-family: 'Nanum Gothic', sans-serif; outline: none; color: #212121; }
+
+html {font-size: 13px;}
+body {margin: 0;}
+a {text-decoration: none;}
+ul, ol {list-style: none; margin: 0; padding: 0;}
+dl, dt, dd {margin: 0; padding: 0;}
+button{border:none; background-color: rgba(255,255,255,0); cursor: pointer;}
+
+/**색깔*/
+.white{color:white;  text-shadow: 2px 3px 6px black;}
+.blue{color: #313f76;}
+
+/**hr 두께*/
+.hr{height: 3px;
+    background-color: #313f76;
+        margin: 0 auto;}
+
+/**padding*/
+.pb-30{padding-bottom:30px;}
+.pt-30{padding-top:30px;}
+
+/**margin*/
+.ml-18{margin-left:18px;}
+.mt-10{margint-top:10px;}
+/**상단바*/
+#menu {
+  transition: all 300ms ease;
+}
+#menu.active {
+  background: transparent;
+  background-color: #00000029;
+}
+#textWhite.white{
+	color:white;
+}
+
+
+
+/**메인콘텐츠*/
+.bg_image{background-image: url(../../image/library1.jpg);
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+        z-index: -1;}
+.mainFont{
+	font-size: 35px;
+    margin: 15px;
+}
+.main_text{height: 610px;
+    padding: 90px;
+    display: flex;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../../image/library2.jpg);
+    flex-direction: column;
+    justify-content: center;
+}

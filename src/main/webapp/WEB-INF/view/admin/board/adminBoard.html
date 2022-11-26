@@ -5,31 +5,34 @@
 
 <main layout:fragment="main">
 	<form th:action="@{/admin/board}" method="post" th:object="${adminBoardRequest}">
+	<img class="main" th:src="@{/image/library2.jpg}"/>
 		<div class="adminBoard">
+			<div class="board">
 			<dl>
-				<dt>게시판 아이디</dt>
+				<dt>ID</dt>
 				<dd>
 					<input type="text" th:field="*{boardId}"> <span
-						th:each="err : ${#fields.errors('boardId')}" th:text="${err}"></span>
+						th:each="err : ${#fields.errors('boardId')}" th:text="${err}">게시판 아이디를 입력해주세요.</span>
 				</dd>
 			</dl>
 
 			<dl>
-				<dt>게시판 이름</dt>
+				<dt>NAME</dt>
 				<dd>
 					<input type="text" th:field="*{boardName}"> <span
-						th:each="err : ${#fields.errors('boardName')}" th:text="${err}"></span>
+						th:each="err : ${#fields.errors('boardName')}" th:text="${err}">게시판 이름을 입력해주세요.</span>
 				</dd>
 			</dl>
 
 			<dl>
-				<dt>1페이지당 게시판 수</dt>
+				<dt>COUNT</dt>
 				<dd>
 					<input type="text" th:field="*{pageCount}"> <span
-						th:each="err : ${#fields.errors('pageCount')}" th:text="${err}"></span>
+						th:each="err : ${#fields.errors('pageCount')}" th:text="${err}">페이지당 게시판 수를 선택해주세요.</span>
 				</dd>
 			</dl>
-
+	</div>
+	<div class="admin">
 			<dl>
 				<dt>게시판 사용 여부</dt>
 				<dd>
@@ -59,17 +62,17 @@
 					<label for="commentUse_0">미 사용</label>
 				</dd>
 			</dl>
-
+</div>
 			<div class="btn">
-				<button type="reset">다시쓰기</button>
-				<button type="submit">추가하기</button>
+				<button class="btn1" type="reset">다시쓰기</button>
+				<button  class="btn2" type="submit">추가하기</button>
 			</div>
 		</div>
 	</form>
 	<br>
 	<form th:action="@{/admin/list}" method="post" target="ifrm">
 		<div class="adminBoardTable">
-		<h1>게시판 수정 / 삭제</h1>
+		<h1 class="boardTable">게시판 수정 / 삭제</h1>
 			<table>
 				<thead>
 					<tr>
@@ -141,13 +144,16 @@
 					</tr>
 				</tbody>
 			</table>
+			
+			<div class="last">
 			게시판을
-			<select th:name="mode">
+			<select class="lastSelect" th:name="mode">
 				<option value="update">수정</option>
 				<option value="delete">삭제</option>
 			</select>
 			합니다
-			<button th:onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
+			<button class="btn3" th:onclick="return confirm('정말로 처리하시겠습니까?');">처리하기</button>
+			</div>
 		</div>
 	</form>
 	<iframe name="ifrm" class="boardDn"></iframe>
