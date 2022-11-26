@@ -117,6 +117,8 @@ public class Payment extends BaseEntity {
 	public void setTossOrderId(String tossOrderId) {
 		this.tossOrderId = tossOrderId;
 	}
+	
+	
 
 
 }

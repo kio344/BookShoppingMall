@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import models.entity.Payment;
 import models.entity.ProductRequest;
 import models.entity.User;
+import models.seller.product.ProductRequestDto;
+import models.seller.product.Progress;
 
 @Component
 public class PaymentDao {
@@ -72,13 +74,13 @@ public class PaymentDao {
 
 	}
 	
-	public List<PaymentDto> getsUserPayment(Long num,PaymentProgress progress) {
+	public List<PaymentDto> getsUserPayment(Long num, PaymentProgress progress) {
 
 		User user=em.find(User.class, num);
 		
 		String sql="SELECT p FROM Payment p WHERE p.user=:user AND p.progress=:progress";
 		
-		TypedQuery<Payment> query=em.createQuery(sql, Payment.class);
+		TypedQuery<Payment> query = em.createQuery(sql, Payment.class);
 		query.setParameter("user", user);
 		
 		
@@ -93,5 +95,43 @@ public class PaymentDao {
 		
 		return result;
 		
+	}
+	
+	/**
+	 * @author kimminho
+	 * @param req
+	 * @return
+	 * 상품 Dto를 entity로 변환시켜서 결제된 상품번호 가져오기.
+	 */
+	public List<PaymentDto> getPaymentNum(ProductRequestDto req) {
+		ProductRequest entity = ProductRequestDto.toEntity(req);
+		
+		String sql = "SELECT p FROM Payment p WHERE p.product=:product_num";
+		
+		TypedQuery<Payment> query = em.createQuery(sql, Payment.class);
+		
+		query.setParameter("product_num", entity);
+
+		List<PaymentDto> list = query.getResultStream().map(PaymentDto::toDto).toList();
+		
+		return list;
+	}
+	
+	/**
+	 * @author kimminho
+	 * @return
+	 * 결제 완료된 상품 가져오기
+	 */
+	public List<PaymentDto> getCompleted() {
+		
+		String sql = "SELECT p FROM Payment p WHERE p.progress=:progress";
+		
+		TypedQuery<Payment> query = em.createQuery(sql, Payment.class);
+		
+		query.setParameter("progress", PaymentProgress.PAYMENT_COMPLET);
+		
+		List<PaymentDto> list = query.getResultStream().map(PaymentDto::toDto).toList();
+		
+		return list;
 	}
 }

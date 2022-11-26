@@ -1,0 +1,35 @@
+.payment_address{
+	font-size: 17px;
+	display: inline-block;
+	border: 1px solid black;
+}
+
+.payment_count{
+	
+}
+
+.payment_mobile{
+	
+}
+
+.payment_name{
+	
+}
+
+.payment_bookName{
+	
+}
+
+.payment_images{
+	width: 270px;
+	height: 170px;
+	display: flex;
+}
+.payment{
+	display: inline-block;
+}
+
+.payment_iamges img{
+	width: 100%;
+	height: 100%;
+}

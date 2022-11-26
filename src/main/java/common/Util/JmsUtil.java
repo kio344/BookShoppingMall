@@ -32,7 +32,25 @@ public class JmsUtil {
 			session.setAttribute("user", user);
 		}
 		/** 로그인 귀찮을때 E */
-
+	}
+	
+	public static void autoLoginMinho(HttpSession session) {
+		/** 로그인 귀찮을때 S */
+		UserDto user = (UserDto) session.getAttribute("user");
+		
+		if (user == null) {
+			user = new UserDto();
+			user.setMemId("kimm3654");
+			user.setEmail("kimm3654@naver.com");
+			user.setMemNo(25L);
+			user.setMobile("01085526202");
+			user.setMemNm("김민호");
+			user.setFakeName("키오");
+			user.setUserType(UserType.SELLER);
+			
+			session.setAttribute("user", user);
+		}
+		/** 로그인 귀찮을때 E */
 	}
 
 	

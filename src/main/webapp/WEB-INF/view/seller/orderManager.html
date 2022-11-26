@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/seller/sellerLayout}">
-	  
-	  <form th:action="@{/seller/product/orderManager}" method="post">
-	  <main layout:fragment="main">
-	  <h1> 주문 관리 페이지</h1>
-	  
-	  </main>
-	  </form>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/seller/sellerLayout}">
+
+<form th:action="@{/seller/product/orderManager}" method="post">
+	<main layout:fragment="main">
+		<h1>배송 관리 페이지</h1>
+		<!-- 주소, 수량, 핸드폰 번호, 이름, 토스ID(히든) -->
+		<ul>
+			<li th:each="payment : ${list}" th:object="${payment}">
+			<div class="">
+				<div class="payment_images">
+					<img th:src="@{/productImages/} + ${payment.product.num % 10} + '/' + ${payment.product.num}">
+				</div>
+				<div class="payment_address payment" th:text="${'받는 사람 주소 : '} + *{address}"></div>
+				<div class="payment_count payment" th:text="${'수량 : '} + *{count} + ${'개'}"></div>
+				<div class="payment_mobile payment" th:text="${'전화번호 : '} + *{recipient_mobile}"></div>
+				<div class="payment_name payment" th:text="${'이름 : '} + *{recipient_name}"></div>
+				<div class="payment_bookName payment" th:text="${'책 이름 : '} + *{product.bookName}"></div>
+				<div th:text="*{tossOrderId}" hidden></div>
+			</div>
+			</li>
+		</ul>
+	</main>
+</form>
 </html>
