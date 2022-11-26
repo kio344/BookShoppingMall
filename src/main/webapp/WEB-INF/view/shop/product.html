@@ -95,6 +95,15 @@ layout:decorate="~{layouts/main/main}"
 						<div class="reviewInfo">
 							<span th:text="*{payment.user.memNm}"></span>
 							<span th:text="*{modDt}"></span>
+							<p>
+								<th:block th:if="*{score!=0}" th:each="num : *{#numbers.sequence(0,score)}">
+									★
+								</th:block>
+								<th:block th:each="num : *{#numbers.sequence(1,5-score)}">
+									☆
+								</th:block>
+								<span th:text="'( '+*{score}+' )'"></span>
+							</p>
 						</div>
 						<div class="reviewData">
 						
