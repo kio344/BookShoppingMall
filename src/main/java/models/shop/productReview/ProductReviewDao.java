@@ -1,5 +1,7 @@
 package models.shop.productReview;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import groovyjarjarantlr4.v4.parse.ANTLRParser.ebnf_return;
 import models.entity.Payment;
+import models.entity.ProductRequest;
 import models.entity.ProductReview;
 
 @Component
@@ -24,6 +27,13 @@ public class ProductReviewDao {
 		return ProductReviewDto.toDto(entity);
 	}
 
+	
+	/**
+	 * 상품 리뷰 쓰기 이미 존재한다면 업데이트
+	 * @author 5563a
+	 * @param reviewDto
+	 * @return
+	 */
 	public ProductReviewDto insertOrUpdate(ProductReviewDto reviewDto) {
 
 		Payment payment=null;
@@ -70,6 +80,12 @@ public class ProductReviewDao {
 
 	}
 
+	/**
+	 * 결제정보로 리뷰 가져오기
+	 * @author 5563a
+	 * @param paymentNum
+	 * @return
+	 */
 	public ProductReviewDto getForPayment(Long paymentNum) {
 
 		String sql = "SELECT pr FROM ProductReview pr WHERE pr.payment=:payment";
@@ -84,5 +100,22 @@ public class ProductReviewDao {
 
 		return reviewDto;
 
+	}
+	
+	public List<ProductReviewDto> getsForProduct(Long productNum) {
+		
+		ProductRequest product=em.find(ProductRequest.class, productNum);
+		
+		String sql = "SELECT pr FROM ProductReview pr WHERE pr.payment.product=:product ";
+		
+		TypedQuery<ProductReview> query=em.createQuery(sql,ProductReview.class);
+		
+		query.setParameter("product", product);
+		
+		List<ProductReviewDto> result=query.getResultStream().map(t -> ProductReviewDto.toDto(t) ).toList();
+		
+		
+		
+		return result;
 	}
 }

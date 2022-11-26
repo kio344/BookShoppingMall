@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
 import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
 import models.shop.product.ProductDto;
+import models.shop.productReview.ProductReviewDao;
+import models.shop.productReview.ProductReviewDto;
 
 @Service
 public class ShopService {
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private ProductReviewDao productReviewDao;
 	
 	/**
 	 * 최신 상품들 가져오기
@@ -88,6 +93,16 @@ public class ShopService {
 		
 		
 		return getSearchProducts(0, 5, category, "category");
+	}
+	
+	/**
+	 * 상품의 리뷰 가져오기
+	 * @param productNum
+	 * @return
+	 */
+	public List<ProductReviewDto> getProductReview(Long productNum){
+		
+		return productReviewDao.getsForProduct(productNum);
 	}
 	
 }
