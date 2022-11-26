@@ -23,18 +23,15 @@ public class ProductReviewService {
 	
 	public ProductReviewDto writeReview(ProductReviewRequest request) {
 		
-		
-		
 		ProductReviewDto dto=new ProductReviewDto();
 		
 		PaymentDto paymentDto=new PaymentDto();
+		
 		paymentDto.setNum(request.getPayment());
 				
 		dto.setPayment(paymentDto);
 		dto.setScore(request.getScore());
 		dto.setContent(request.getContent());
-		
-		
 		
 		return productReviewDao.insertOrUpdate(dto);
 	}
