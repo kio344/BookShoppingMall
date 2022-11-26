@@ -46,7 +46,7 @@
 					</div>
 					
 				</a>
-				<form target="ifrm" class="reviewArea" method="post" th:id="'payment_'+*{num}">
+				<form target="ifrm" class="reviewArea dn" method="post" th:id="'payment_'+*{num}">
 						<input type="hidden" name="payment" th:value="*{num}" >
 						<input type="hidden" name="product" th:value="*{product.num}">
 						<textarea class="reviewContext" th:id="'reviewContext_'+*{num}" th:field="${productReview.content}" ></textarea>
@@ -60,7 +60,7 @@
 								<option value="4">★★★★☆</option>
 								<option value="5">★★★★★</option>
 							</select>
-							<button>완료</button>
+							<button class="doneBtn" >완료</button>
 						</div>
 						
 					</form>
@@ -68,7 +68,7 @@
 		</ul>
 	</div>
 			
-			<iframe name="ifrm"></iframe>
+			<iframe class="dn" name="ifrm"></iframe>
 
 
 </main>

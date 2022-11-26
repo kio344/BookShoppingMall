@@ -30,54 +30,47 @@ public class MyOrderController {
 
 	@Autowired
 	private PaymentService paymentService;
-	
+
 	@Autowired
 	private ProductReviewService productReviewService;
 
-	
-	
 	@GetMapping
 	public String myOrder(HttpSession session, Model model) {
 
 		JmsUtil.autoLogin(session);
-		
+
 		UserDto user = JmsUtil.getLoginUser(session);
 
-		List<PaymentDto> result= paymentService.gets(user.getMemNo(), PaymentProgress.PAYMENT_COMPLET);
-		ProductReviewRequest productReviewRequest=new ProductReviewRequest();
-		
+		List<PaymentDto> result = paymentService.gets(user.getMemNo(), PaymentProgress.PAYMENT_COMPLET);
+		ProductReviewRequest productReviewRequest = new ProductReviewRequest();
+
 		model.addAttribute("productReview", productReviewRequest);
-		
+
 		System.out.println(result.get(0));
-		
-		model.addAttribute("addCss",new String[] {"/mypage/myOrder"});
-		model.addAttribute("addJs",new String[] {"/mypage/ckeditor/ckeditor","/mypage/myOrder"});
+
+		model.addAttribute("addCss", new String[] { "/mypage/myOrder" });
+		model.addAttribute("addJs", new String[] { "/mypage/ckeditor/ckeditor", "/mypage/myOrder" });
 		model.addAttribute("paymentList", result);
-		
+
 		return "mypage/myOrder";
 	}
-	
+
 	@PostMapping
 	public String myOrderPs(ProductReviewRequest request) {
-		
-		System.out.println(request);
-		
-		System.out.println(productReviewService.writeReview(request));
-		
-		
+
+		ProductReviewDto review = productReviewService.writeReview(request);
+
 		return "mypage/myOrder";
 	}
-	
+
 	@PostMapping("/getreview")
 	@ResponseBody
 	public ProductReviewDto getReview(Long paymentnum) {
-		
+
 		System.out.println(paymentnum);
-		
+
 		ProductReviewDto review = productReviewService.getReivewForPayment(paymentnum);
-		
-		
-		
+
 		return review;
 	}
 

@@ -1,3 +1,7 @@
+.dn{
+	display: none;	
+}
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -12,20 +16,24 @@ main>div {
 	align-items: center;
 }
 .productArea{
-	width: 60%;
+	width: 50%;
 }
 
 .ProductList {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .ProductList li {
 	border-bottom: 1px solid #444444;
 	padding: 15px;
+		width: 100%;
+	
 }
-.ProductList li a{
+.ProductList li > a{
 	display: flex;
+		width: 100%;
 	
 }
 
@@ -69,9 +77,14 @@ main>div {
 	padding: 5px;
 	background-color: #febf01;
 	
+	
 }
 .ProductList li a>div>.btn_group > button:first-child{
-	width:80%;
+	display: flex;
+	flex-grow: 1;
+	justify-content:center;
+	align-items:center;
+	margin-right: 15px;
 }
 .ProductList li a>div>.btn_group > button:last-child{
 	width: 50px;

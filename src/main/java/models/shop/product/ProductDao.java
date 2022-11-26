@@ -113,11 +113,11 @@ public class ProductDao {
     */
    public List<ProductRequestDto> getSearchProduct(int start, int offset, String searchValue, String searchType) {
 
-      String sql = "SELECT p FROM ProductRequest p WHERE p." + searchType + " like :searchValue order by p.num desc ";
+      String sql = "SELECT p FROM ProductRequest p WHERE p.progress=:progress AND p." + searchType + " like :searchValue order by p.num desc ";
       TypedQuery<ProductRequest> query = em.createQuery(sql, ProductRequest.class);
       query.setParameter("searchValue", "%"+searchValue+"%");
       
-      System.out.println(searchValue);
+      query.setParameter("progress", Progress.Agree);
       
       query.setFirstResult(start);
       query.setMaxResults(offset);
