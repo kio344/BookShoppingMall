@@ -3,8 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/admin/adminLayout}">
 <main layout:fragment="main">
-	<div class="adminProduct">
 		<form th:action="@{/admin/productManager}" id="frm" method="post">
+	<div class="adminProduct">
 			<table>
 				<thead>
 					<tr>
@@ -85,7 +85,7 @@
 				<option value="remove">삭제</option>
 				</select>합니다
 			<button type="button" id="product_btn">처리하기</button>
-		</form>
 	</div>
+		</form>
 </main>
 </html>

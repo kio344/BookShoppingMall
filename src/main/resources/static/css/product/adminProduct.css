@@ -1,6 +1,8 @@
 .adminProduct{
-	width: 1200px; margin: 0 auto; padding-top: 50px;
+	width: 1200px; margin: 0 auto; padding-top: 100px;
 }
 .ifrm dn{
 	display: none !important;
 }
+
+table{}
