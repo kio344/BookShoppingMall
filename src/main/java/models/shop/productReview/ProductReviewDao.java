@@ -24,8 +24,6 @@ public class ProductReviewDao {
 	}
 
 	public ProductReviewDto insert(ProductReviewDto reviewDto) {
-
-
 		
 		ProductReview entity = ProductReviewDto.toEntity(reviewDto);
 
