@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import models.seller.product.ProductRequestDao;
 import models.shop.payment.PaymentDao;
@@ -24,7 +25,6 @@ public class OrderManagerController {
 	private PaymentDao paymentDao;
 	
 	@GetMapping("/orderManager")
-	
 	public String productManager(Model model) {
 		
 		List<PaymentDto> list = paymentDao.getCompleted();
@@ -35,9 +35,13 @@ public class OrderManagerController {
 	}
 	
 	@PostMapping
-	public String test() {
+	public String productProcessing(@RequestParam(name = "mode")String mode) {
 		
-		
+		if(mode.equals("ship")) {
+			
+		}else {
+			
+		}
 		
 		return "";
 	}

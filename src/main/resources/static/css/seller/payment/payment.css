@@ -1,32 +1,30 @@
 .payment_address{
 	font-size: 17px;
-	display: inline-block;
-	border: 1px solid black;
+}
+.table{
+	width: 100%;
+	border: 1px solid #444444;
+
 }
 
-.payment_count{
-	
-}
+.table th, td{
+	border: 1px solid #444444;
+	text-align: center;
+}	
 
-.payment_mobile{
-	
+.payment_product{
+	display: flex;
 }
-
-.payment_name{
-	
-}
-
-.payment_bookName{
-	
+.payment_text{
+	display: flex;
+	flex-direction: column;
 }
 
 .payment_images{
-	width: 270px;
-	height: 170px;
+	width: 170px;
+	height: 270px;
 	display: flex;
-}
-.payment{
-	display: inline-block;
+	margin: 0;
 }
 
 .payment_iamges img{
