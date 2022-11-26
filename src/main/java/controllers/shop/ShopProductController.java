@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import models.entity.ProductRequest;
+import models.entity.ProductReview;
 import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
 import models.shop.product.ProductDto;
+import models.shop.productReview.ProductReviewDto;
 import models.shop.service.ShopService;
 
 @Controller
@@ -31,10 +33,15 @@ public class ShopProductController {
 		String[] category=product.getCategory().split("/");
 		
 		List<ProductRequestDto> sameProduct=shopService.getSearchProducts(0, 5, category[1], "category");
+		List<ProductReviewDto> productReview=shopService.getProductReview(productnum);
+		
+		System.out.println(productReview);
 		
 		model.addAttribute("addCss", new String[] {"/shop/product"});
+		model.addAttribute("addJs",new String[] {"/shop/product"});
 		model.addAttribute("product",product);
 		model.addAttribute("sameProduct",sameProduct);
+		model.addAttribute("productReview", productReview);
 		
 		return "shop/product";
 	}
