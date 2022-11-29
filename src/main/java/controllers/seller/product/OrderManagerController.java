@@ -24,6 +24,8 @@ public class OrderManagerController {
 	@Autowired
 	private PaymentDao paymentDao;
 	
+	
+	
 	@GetMapping("/orderManager")
 	public String productManager(Model model) {
 		
@@ -38,7 +40,9 @@ public class OrderManagerController {
 	public String productProcessing(@RequestParam(name = "mode")String mode) {
 		
 		if(mode.equals("ship")) {
-			
+			/**
+			 * payment SHIPPING 으로 변경 후, 현재 고른 상품 수량 -1, 
+			 */
 		}else {
 			
 		}
