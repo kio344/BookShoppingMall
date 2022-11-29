@@ -46,11 +46,9 @@ public class PaymentDao {
 		entity.setProgress(progress);
 		entity.setTossOrderId(orderId);
 		
-
 		em.persist(entity);
 
 		em.flush();
-
 
 		
 		return PaymentDto.toDto(entity);

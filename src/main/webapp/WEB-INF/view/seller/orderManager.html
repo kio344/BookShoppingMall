@@ -6,8 +6,8 @@
 <main layout:fragment="main">
 	<h1>배송 관리 페이지</h1>
 	<!-- 주소, 수량, 핸드폰 번호, 이름, 토스ID(히든) -->
-	<form  th:action="@{/seller/product/orderManager}" method="post">
-		<table class="table" >
+	<form th:action="@{/seller/product/order}" method="post">
+		<table class="table">
 			<thead class="subject">
 				<tr>
 					<th><input type="checkbox"></th>
@@ -22,66 +22,53 @@
 				<tr th:each="payment : ${list}" th:object="${payment}">
 					<td>
 						<div>
-							<input type="checkbox" th:name="*{num}">							
+							<input type="checkbox" name="payment_num" th:value="*{num}">
 						</div>
 					</td>
-					
+
 					<td>
 						<div>
-							<p class="payment_address payment" th:text="${'받는 사람 주소 : '} + *{address}"></p>	
+							<p class="payment_address payment"
+								th:text="${'받는 사람 주소 : '} + *{address}"></p>
 						</div>
 					</td>
-					
+
 					<td>
 						<div>
-							<p class="payment_bookName payment" th:text="${'책 이름 : '} + *{product.bookName}"></p>
+							<p class="payment_bookName payment"
+								th:text="${'책 이름 : '} + *{product.bookName}"></p>
 						</div>
 					</td>
-					
+
 					<td>
 						<div>
-							<p class="payment_count payment" th:text="${'수량 : '} + *{count} + ${'개'}"></p>
+							<p class="payment_count payment"
+								th:text="${'수량 : '} + *{count} + ${'개'}"></p>
 						</div>
 					</td>
-					
+
 					<td>
 						<div>
-							<p class="payment_mobile payment" th:text="${'전화번호 : '} + *{recipient_mobile}"></p>
+							<p class="payment_mobile payment"
+								th:text="${'전화번호 : '} + *{recipient_mobile}"></p>
 						</div>
 					</td>
-					
+
 					<td>
 						<div>
-							<p class="payment_name payment" th:text="${'이름 : '} + *{recipient_name}"></p>
+							<p class="payment_name payment"
+								th:text="${'이름 : '} + *{recipient_name}"></p>
 						</div>
 					</td>
-					
+
 				</tr>
 			</tbody>
 		</table>
-				상품을<select name="mode">
-					<option value="ship">배송</option>
-					<option value="cencel">취소</option>
-				</select>
-				<button type="submit">처리 하기</button>
+		상품을<select name="mode">
+			<option value="ship">배송</option>
+			<option value="cencel">취소</option>
+		</select>
+		<button type="submit">처리 하기</button>
 	</form>
-	<!-- <ul>
-			<li th:each="payment : ${list}" th:object="${payment}">
-				<div class="payment_product">
-					<div class="payment_images">
-						<img th:src="@{/productImages/} + ${payment.product.num % 10} + '/' + ${payment.product.num}">
-					</div>
-					<div class="payment_text">
-						<div class="payment_address payment" th:text="${'받는 사람 주소 : '} + *{address}"></div>
-						<div class="payment_count payment" th:text="${'수량 : '} + *{count} + ${'개'}"></div>
-						<div class="payment_mobile payment" th:text="${'전화번호 : '} + *{recipient_mobile}"></div>
-						<div class="payment_name payment" th:text="${'이름 : '} + *{recipient_name}"></div>
- 					<div class="payment_bookName payment" th:text="${'책 이름 : '} + *{product.bookName}"></div> 
-						<div th:text="*{tossOrderId}" hidden></div>
-					</div>
-				</div>
-			</li>
-		</ul>
- 					-->
 </main>
 </html>

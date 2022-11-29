@@ -5,6 +5,7 @@
 
 <form th:action="@{/seller/review}">
 	<main layout:fragment="main">
+	<div class="review">
 		<h1>리뷰 확인 페이지</h1>
 
 		<th:block th:each="product : ${list}" th:object="${product}">
@@ -24,6 +25,7 @@
 				</a>
 			</li>
 		</ul>
+		</div>
 	</main>
 </form>
 </html>
