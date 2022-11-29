@@ -16,6 +16,7 @@ import models.seller.order.SellerOrderService;
 import models.seller.product.ProductRequestDao;
 import models.shop.payment.PaymentDao;
 import models.shop.payment.PaymentDto;
+import models.shop.payment.PaymentProgress;
 
 @Controller
 @RequestMapping("/seller/product")
@@ -48,11 +49,15 @@ public class OrderManagerController {
 			 * payment SHIPPING 으로 변경 후, 현재 고른 상품 수량 -1, 
 			 */
 			service.shipping(request);
-		}else {
 			
+		}else {
+			/**
+			 * payment CENCEL 으로 변경.
+			 */
+			service.cencel(request);
 		}
 		
-		return "redirect:/seller/orderManager";
+		return "redirect:/seller/product/orderManager";
 	}
 	
 }

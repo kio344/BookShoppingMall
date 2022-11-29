@@ -38,5 +38,19 @@ public class SellerOrderService {
 		/** 제품 배송 E*/
 		
 	}
+	public void cencel(HttpServletRequest request) {
+		/** 유효성 검사*/
+		String [] nums = request.getParameterValues("payment_num");
+		if(nums == null) {
+			throw new RuntimeException("제품을 선택해 주세요.");
+		}
+		/** 유효성 검사 E*/
+		
+		for(String num : nums) {
+			PaymentDto dto = paymentDao.get(Long.parseLong(num));
+			requestDao.cencel(dto, Long.parseLong(num));
+		}
+		
+	}
 
 }
