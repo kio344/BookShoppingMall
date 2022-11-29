@@ -15,7 +15,6 @@ public class AdminBoardDeleteService {
 	
 	public void delete(HttpServletRequest request) {
 		
-		
 		/** 유효성 검사 S */
 		String[] boardIds = request.getParameterValues("boardId");
 		if (boardIds == null) {
