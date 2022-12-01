@@ -16,7 +16,6 @@ import models.seller.order.SellerOrderService;
 import models.seller.product.ProductRequestDao;
 import models.shop.payment.PaymentDao;
 import models.shop.payment.PaymentDto;
-import models.shop.payment.PaymentProgress;
 
 @Controller
 @RequestMapping("/seller/product")
