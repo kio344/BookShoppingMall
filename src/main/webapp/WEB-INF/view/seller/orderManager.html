@@ -4,7 +4,8 @@
 	layout:decorate="~{layouts/seller/sellerLayout}">
 
 <main layout:fragment="main">
-	<h1>배송 관리 페이지</h1>
+	<!--  <img class="mainImg" th:src="@{/image/order.jpg}"/>-->
+	<h1 class="main">배송 관리 페이지</h1>
 	<!-- 주소, 수량, 핸드폰 번호, 이름, 토스ID(히든) -->
 	<form th:action="@{/seller/product/order}" method="post">
 		<table class="table">
@@ -64,11 +65,13 @@
 				</tr>
 			</tbody>
 		</table>
-		상품을<select name="mode">
+		<div class="last">
+		상품을<select class="lastSelect" name="mode">
 			<option value="ship">배송</option>
 			<option value="cencel">취소</option>
-		</select>
-		<button type="submit">처리 하기</button>
+		</select>합니다
+		<button class="btn3" type="submit">처리 하기</button>
+		</div>
 	</form>
 </main>
 </html>

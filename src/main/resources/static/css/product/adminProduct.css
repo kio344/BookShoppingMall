@@ -1,8 +1,42 @@
+.main{
+    height: 300px;
+    width: 100%;
+    padding-top: 50px;}
+
 .adminProduct{
-	width: 1200px; margin: 0 auto; padding-top: 100px;
+	width: 1200px; margin: 0 auto; padding-top: 40px;
 }
 .ifrm dn{
 	display: none !important;
 }
 
-table{}
+table{    margin: 0 auto;}
+.adminProduct th {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;}
+.adminProduct td {
+    border-bottom: 1px solid #bbbbbb;
+    border-collapse: collapse;}
+table input[type="text"]{width: 130px;
+    text-align: center;
+    border: 0px;
+    background-color: white;}
+table input[type="number"]{
+	    width: 100px;
+    text-align: center;
+    border: 0px;
+    background-color: white;
+}
+.last{
+	width: 1100px;
+	display: flex;
+    justify-content: flex-end;
+    margin-top: 13px;
+    align-items: center;
+    align-content: center;}
+.lastSelect{margin: 0px 7px;}
+.btn3{border: 1px solid;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    margin-left: 10px;}
