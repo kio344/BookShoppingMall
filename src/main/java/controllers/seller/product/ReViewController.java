@@ -37,7 +37,7 @@ public class ReViewController {
 	public String reviewPage(@PathVariable(name = "productNum")Long productNum, Model model) {
 		
 		List<ProductReviewDto> list = searchService.getReview(productNum);
-		
+		model.addAttribute("addCss", new String[] {"/seller/product/review"});
 		model.addAttribute("req", list);
 		
 		return "/seller/reviewProduct";
