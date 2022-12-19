@@ -4,6 +4,7 @@
 	layout:decorate="~{layouts/admin/adminLayout}">
 <main layout:fragment="main">
 		<form th:action="@{/admin/productManager}" id="frm" method="post">
+		<img class="main" th:src="@{/image/oldbooks.jpg}"/>
 	<div class="adminProduct">
 			<table>
 				<thead>
@@ -79,12 +80,15 @@
 					</tr>
 				</tbody>
 			</table>
-			상품을<select th:name="mode">
+			
+			<div class="last">
+			상품을<select class="lastSelect" th:name="mode">
 				<option value="agree">수락</option>
 				<option value="rejected">거절</option>
 				<option value="remove">삭제</option>
 				</select>합니다
-			<button type="button" id="product_btn">처리하기</button>
+			<button class="btn3" type="button" id="product_btn">처리하기</button>
+			</div>
 	</div>
 		</form>
 </main>

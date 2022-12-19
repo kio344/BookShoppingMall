@@ -78,7 +78,13 @@
 
 table { border-spacing: 0; padding: 0; width: 100%; }
 
-table td input { width: 100%; border: 0px;}
+table td input { width: 100%; border: 0px; text-align: center;}
+
+table input[type="text"], input[type="number"]{
+	border: 0px;
+    text-align: center;
+}
+
 .adminBoardTable th{border-bottom: 1px solid black;
     /* margin-bottom: 10px; */
     padding-bottom: 10px;}

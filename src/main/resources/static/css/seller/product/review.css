@@ -1,3 +1,7 @@
+.review{padding-top: 50px;
+    margin: 0 auto;
+    width: 1000px;}
+
 .reviewProductImages img {
   max-width: 170px;
   height: auto;

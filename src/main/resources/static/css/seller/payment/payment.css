@@ -1,35 +1,74 @@
+.mainImg{
+    height: 300px;
+    width: 100%;
+    padding-top: 50px;}
+.main{padding-top: 70px;
+    margin: 0 auto;
+    width: 700px;
+    display: flex;
+    justify-content: center;}
+    
+
+.seller{padding-top: 50px;
+    width: 1000px;
+    margin: 0 auto;}
+
 .payment_address{
-	font-size: 17px;
-	display: inline-block;
-	border: 1px solid black;
+	font-size: 14px;
 }
-
-.payment_count{
-	
+table input[type="text"]{width: 130px;
+    text-align: center;
+    border: 0px;
+    background-color: white;}
+table input[type="number"]{
+	    width: 100px;
+    text-align: center;
+    border: 0px;
+    background-color: white;
 }
-
-.payment_mobile{
-	
+.table{
+	margin: 0 auto;
+    width: 1000px;
+    padding-top: 40px;
 }
-
-.payment_name{
-	
+.table th {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+        text-align: center;}
+.table td {
+    border-bottom: 1px solid #bbbbbb;
+    border-collapse: collapse;
+        text-align: center;}
+    
+.payment_product{
+	display: flex;
 }
-
-.payment_bookName{
-	
+.payment_text{
+	display: flex;
+	flex-direction: column;
 }
 
 .payment_images{
-	width: 270px;
-	height: 170px;
+	width: 170px;
+	height: 270px;
 	display: flex;
-}
-.payment{
-	display: inline-block;
+	margin: 0;
 }
 
 .payment_iamges img{
 	width: 100%;
 	height: 100%;
 }
+.last{
+	width: 1100px;
+	display: flex;
+    justify-content: flex-end;
+    margin-top: 13px;
+    align-items: center;
+    align-content: center;}
+.lastSelect{margin: 0px 7px;}
+.btn3{border: 1px solid;
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    margin-left: 10px;}

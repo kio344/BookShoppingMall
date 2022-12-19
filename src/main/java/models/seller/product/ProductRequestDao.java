@@ -5,8 +5,11 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import models.entity.Payment;
 import models.entity.ProductRequest;
 import models.entity.User;
+import models.shop.payment.PaymentDto;
+import models.shop.payment.PaymentProgress;
 
 @Component(value = "productRequestDao")
 public class ProductRequestDao {
@@ -77,6 +80,38 @@ public class ProductRequestDao {
 		
 		em.persist(entity);
 		
+		em.flush();
+		
+	}
+		
+	/**
+	 * @author kimminho
+	 * @param dto
+	 * @param num
+	 * payment DB에 상품상태 배송중으로 변경 후, count -1 하기.
+	 */
+	public void updatePayment(PaymentDto dto, Long num) {
+		Payment entity = em.find(Payment.class, num);
+		
+		entity.setProgress(PaymentProgress.SHIPPING);
+		entity.setCount(dto.getCount() - 1);
+		
+		em.persist(entity);
+		em.flush();
+	}
+	
+	/**
+	 * @author kimminho
+	 * @param dto
+	 * @param num
+	 * payment DB에 상품 취소 처리.
+	 */
+	public void cencel(PaymentDto dto, Long num) {
+		Payment entity = em.find(Payment.class, num);
+		
+		entity.setProgress(PaymentProgress.CANCEL);
+		
+		em.persist(entity);
 		em.flush();
 		
 	}
