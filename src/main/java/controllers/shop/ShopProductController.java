@@ -37,7 +37,7 @@ public class ShopProductController {
 		List<ProductRequestDto> sameProduct=shopService.getSearchProducts(0, 5, category[1], "category");
 		List<ProductReviewDto> productReview=shopService.getProductReview(productnum);
 		
-		System.out.println(productReview);
+		System.out.println(product);
 		
 		model.addAttribute("addCss", new String[] {"/shop/product"});
 		model.addAttribute("addJs",new String[] {"/shop/product"});

@@ -75,6 +75,12 @@ public class MyOrderController {
 		return review;
 	}
 	
+	
+	/**
+	 * 수취 완료
+	 * @param paymentNum
+	 * @return
+	 */
 	@PostMapping("/paymentcomplete")
 	public ResponseEntity<JsonData<PaymentDto>> paymentCompletePs(Long paymentNum) {
 		
