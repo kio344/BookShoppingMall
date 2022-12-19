@@ -61,7 +61,15 @@
 							</th:block>
 							
 							
-							<button class="xi-share-alt-o"></button>
+							<button  class="shareBtn"
+								th:data-booknum='*{product.num}'
+								th:data-writer='*{product.writer}'
+								th:data-price='*{product.price}'
+								th:data-bookname='*{product.bookName}'
+								th:data-publisher='*{product.publisher}'>
+							
+								<i class="xi-share-alt-o"></i>
+							</button>
 						</div>
 					
 					</div>

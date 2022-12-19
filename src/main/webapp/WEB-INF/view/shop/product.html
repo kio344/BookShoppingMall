@@ -12,7 +12,15 @@ layout:decorate="~{layouts/main/main}"
 
 				</div>
 				
-				<div class="productInfo">
+				<div class="productInfo" 
+						
+						th:data-booknum='*{num}'
+						th:data-writer='*{writer}'
+						th:data-price='*{price}'
+						th:data-bookname='*{bookName}'
+						th:data-publisher='*{publisher}'
+						
+						>
 				
 					<dl id="title" >
 						
@@ -55,7 +63,7 @@ layout:decorate="~{layouts/main/main}"
 					<dl id="count" >
 						<dt th:text="${'수량'}"></dt>
 						<dd>
-							<input type="number" name="count" min="1" value="1" >
+							<input type="number" name="count" min="1" th:max="*{count}" value="1" >
 						</dd>
 					</dl>
 					
@@ -70,7 +78,7 @@ layout:decorate="~{layouts/main/main}"
 						<button id="buy" name="mode" value="buy" th:if="*{count>0}" >구매하기</button>
 						<button type="button" style="background-color: #d6d6d6;" id="buy" name="mode" value="buy" th:if="*{count==0}" >재고없음</button>
 						
-						<button id="addCart" name="mode" value="addCart">장바구니</button>
+						<button type="button" id="addCart" name="mode" value="addCart"  >공유하기</button>
 					</div>					
 
 				

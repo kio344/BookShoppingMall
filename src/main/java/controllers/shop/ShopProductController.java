@@ -40,7 +40,7 @@ public class ShopProductController {
 		System.out.println(product);
 		
 		model.addAttribute("addCss", new String[] {"/shop/product"});
-		model.addAttribute("addJs",new String[] {"/shop/product"});
+		model.addAttribute("addJs",new String[] {"/shop/product","/common/kakaoShare"});
 		model.addAttribute("product",product);
 		model.addAttribute("sameProduct",sameProduct);
 		model.addAttribute("productReview", productReview);

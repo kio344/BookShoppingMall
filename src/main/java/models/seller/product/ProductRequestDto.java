@@ -129,7 +129,7 @@ public class ProductRequestDto extends BaseDto {
 		return "ProductRequestDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName="
 				+ bookName + ", writer=" + writer + ", price=" + price + ", category=" + category + ", publisher="
 				+ publisher + ", count=" + count + ", images=" + images + ", progress=" + progress + ", SalesRate="
-				+ SalesRate + "]";
+				+ SalesRate + ", score=" + score + "]";
 	}
 
 	public static ProductRequestDto toDto(ProductRequest entity) {

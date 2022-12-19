@@ -50,7 +50,7 @@ public class MyOrderController {
 
 
 		model.addAttribute("addCss", new String[] { "/mypage/myOrder" });
-		model.addAttribute("addJs", new String[] { "/mypage/ckeditor/ckeditor", "/mypage/myOrder" });
+		model.addAttribute("addJs", new String[] { "/common/kakaoShare","/mypage/ckeditor/ckeditor", "/mypage/myOrder" });
 		model.addAttribute("paymentList", result);
 
 		return "mypage/myOrder";
