@@ -18,8 +18,24 @@ layout:decorate="~{layouts/main/main}"
 						
 						<dt th:text="*{bookName}"></dt>
 						<dd>
-							<span>★★★★☆</span>
-							<span>4점</span>
+						
+							<span>
+								<th:block th:if="*{score!= 0}">
+							
+								<th:block  th:each="num : *{#numbers.sequence(1,score)}">
+									★
+								</th:block>
+								
+							</th:block>
+							
+							<th:block th:if="*{5-score!= 0}">
+								<th:block th:each="num : *{#numbers.sequence(1,5-score)}">
+									☆
+								</th:block>
+							</th:block>
+
+							</span>
+							<span class="score" th:text="'( '+*{score}+' )'"></span>
 						</dd>						
 					</dl>
 					
@@ -93,16 +109,24 @@ layout:decorate="~{layouts/main/main}"
 					<li th:if="${!#lists.isEmpty(productReview)}" th:each="review : ${productReview}" th:object="${review}">
 						
 						<div class="reviewInfo">
-							<span th:text="*{payment.user.memNm}"></span>
-							<span th:text="*{modDt}"></span>
 							<p>
-								<th:block th:if="*{score!=0}" th:each="num : *{#numbers.sequence(0,score)}">
+								<span th:text="*{payment.user.memNm}"></span>
+								<span th:text="*{#temporals.format(modDt, 'yyyy-MM-dd')}"></span>
+							</p>
+							
+							<p class="score">
+							<th:block th:if="*{score!= 0}">
+							
+								<th:block  th:each="num : *{#numbers.sequence(1,score)}">
 									★
 								</th:block>
+								
+							</th:block>
+							
 								<th:block th:each="num : *{#numbers.sequence(1,5-score)}">
 									☆
 								</th:block>
-								<span th:text="'( '+*{score}+' )'"></span>
+								<span class="score" th:text="'( '+*{score}+' )'"></span>
 							</p>
 						</div>
 						<div class="reviewData">

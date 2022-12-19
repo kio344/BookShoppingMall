@@ -19,6 +19,7 @@ public class ProductRequestDto extends BaseDto {
 	private Long images;
 	private Progress progress = Progress.Examine;
 	private Long SalesRate;
+	private Double score;
 	
 	public Long getNum() {
 		return num;
@@ -116,6 +117,13 @@ public class ProductRequestDto extends BaseDto {
 		SalesRate = salesRate;
 	}
 	
+	public void setScore(double score) {
+		this.score = score;
+	}
+	public double getScore() {
+		return score;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProductRequestDto [num=" + num + ", seller=" + seller + ", serialnum=" + serialnum + ", bookName="
@@ -140,7 +148,15 @@ public class ProductRequestDto extends BaseDto {
 		dto.setCount(entity.getCount());
 		dto.setProgress(entity.getProgress());
 		dto.setSalesRate(entity.getSalesRate());
-
+		
+		if (entity.getScore()==null) {
+			dto.setScore(5);
+		}else {
+			dto.setScore(entity.getScore());
+		}
+		
+		
+		
 		return dto;
 	}
 
@@ -160,6 +176,7 @@ public class ProductRequestDto extends BaseDto {
 		entity.setCount(dto.getCount());
 		entity.setProgress(dto.getProgress());
 		entity.setSalesRate(dto.getSalesRate());
+		entity.setScore(dto.getScore());
 		
 		return entity;
 	}

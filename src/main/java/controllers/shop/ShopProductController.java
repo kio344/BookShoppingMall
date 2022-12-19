@@ -30,6 +30,8 @@ public class ShopProductController {
 
 		ProductRequestDto product=shopService.getProduct(productnum);
 		
+		product.setScore(Math.round(product.getScore()));
+		
 		String[] category=product.getCategory().split("/");
 		
 		List<ProductRequestDto> sameProduct=shopService.getSearchProducts(0, 5, category[1], "category");
