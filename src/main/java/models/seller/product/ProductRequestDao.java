@@ -94,7 +94,6 @@ public class ProductRequestDao {
 		Payment entity = em.find(Payment.class, num);
 		
 		entity.setProgress(PaymentProgress.SHIPPING);
-		entity.setCount(dto.getCount() - 1);
 		
 		em.persist(entity);
 		em.flush();
