@@ -44,6 +44,9 @@ public class ProductRequest extends BaseEntity {
 
 	@Column
 	private Long salesRate;
+	
+	@Column
+	private Double score=5D;
 
 	public Long getNum() {
 		return num;
@@ -131,6 +134,13 @@ public class ProductRequest extends BaseEntity {
 
 	public Long getSalesRate() {
 		return salesRate;
+	}
+	
+	public void setScore(Double score) {
+		this.score = score;
+	}
+	public Double getScore() {
+		return score;
 	}
 	
 	@Override

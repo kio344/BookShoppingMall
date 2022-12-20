@@ -141,23 +141,23 @@ public class PaymentDto extends BaseDto {
 	}
 
 	public static PaymentDto toDto(PaymentRequest request) {
-		PaymentDto dto = new PaymentDto();
-		dto.setAddress(request.getAddress());
-		dto.setCount(request.getCount());
+		PaymentDto paymentDto = new PaymentDto();
+		paymentDto.setAddress(request.getAddress());
+		paymentDto.setCount(request.getCount());
 
 		ProductRequestDto productDto = new ProductRequestDto();
 		productDto.setNum(request.getProductNum());
-		dto.setProduct(productDto);
+		paymentDto.setProduct(productDto);
 
 		UserDto userDto = new UserDto();
 		userDto.setMemNo(request.getUserNum());
-		dto.setUser(userDto);
+		paymentDto.setUser(userDto);
 
-		dto.setProgress(PaymentProgress.PAYMENT_BEFORE); // 기본값 PAYMENT_BEFORE
-		dto.setRecipient_mobile(request.getRecipient_mobile());
-		dto.setRecipient_name(request.getRecipient_name());
+		paymentDto.setProgress(PaymentProgress.PAYMENT_BEFORE); // 기본값 PAYMENT_BEFORE
+		paymentDto.setRecipient_mobile(request.getRecipient_mobile());
+		paymentDto.setRecipient_name(request.getRecipient_name());
 
-		return dto;
+		return paymentDto;
 	}
 
 }
