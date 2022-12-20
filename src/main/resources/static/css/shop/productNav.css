@@ -1,4 +1,18 @@
-
+@media (max-width: 600px) {
+  .productNav{
+  flex-direction: column;
+  height: auto !important;
+  }
+  
+  .category{
+  	width: auto !important;
+  	height: 156px !important;
+  }
+  .productNav .product{
+  	height: 300px;
+  }
+ 
+}
 .productNavStatus{
 	margin-top: 50px;
 	width: 80%;

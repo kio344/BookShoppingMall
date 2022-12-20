@@ -1,3 +1,45 @@
+@media (max-width: 600px) {
+	.searchResult {
+		width: 70% !important;
+	
+	}
+	.searchResult li .productBtn_grp{
+		width: auto !important;
+	}
+	.bookImg{
+		justify-content: center;
+		align-items: center;
+	}
+  .searchResult li{
+	border-radius:5px;
+	margin: 10px;
+	background-color: #f1f1f1;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	}
+	
+	.searchResult li > a{
+	display: flex;
+	flex-grow: 0;
+	flex-direction: column;
+	}
+	.searchResult li  .productBtn_grp{
+		width: 100%;
+	}
+	
+	.searchResult li  .productBtn_grp > a{
+	padding: 10px;
+	text-align: center;
+	
+	margin: 5px;
+	
+	
+	}
+}
+
 main{
 	display: flex;
 	flex-direction: column;

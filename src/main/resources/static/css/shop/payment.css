@@ -1,4 +1,25 @@
 @charset "utf-8";
+@media (max-width: 600px) {
+  .outer{
+	width: 100%;
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content: center;
+	}
+	
+	.productArea{
+		border-right: none !important;
+	
+	}
+	
+	.buyInfoArea{
+	flex-direction: column;
+	
+	}
+	
+}
+
 .outer{
 	width: 100%;
 	display: flex;
@@ -74,6 +95,7 @@
 	padding:15px;
 	border-radius:3px;
 	margin: 5px;
+	margin-bottom:20px;
 	font-size: 1.5rem;
 }
 .btn_grup #buy{
@@ -115,7 +137,6 @@ dl dd span{
 }
 .buyInfoArea{
 	display: flex;
-	flex-direction: row;
 }
 .buyInfoArea > div{
 	margin: 10px;
