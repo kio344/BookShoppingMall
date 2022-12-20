@@ -62,6 +62,7 @@
 							
 							
 							<button  class="shareBtn"
+								th:data-bookimg="@{/productImages/}+*{product.num%10}+${'/'}+*{product.num}"
 								th:data-booknum='*{product.num}'
 								th:data-writer='*{product.writer}'
 								th:data-price='*{product.price}'

@@ -41,11 +41,13 @@ main{
 	margin: 10px;
 	background-color: #f1f1f1;
 	padding: 10px;
+	display: flex;
 	
 }
 
-.searchResult li a{
+.searchResult li > a{
 	display: flex;
+	flex-grow: 1;
 }
 
 .searchResult li a > div{
@@ -85,22 +87,30 @@ main{
 }
 
 
-.searchResult li a .product_info{
+.searchResult li  .product_info{
 	width: 100%;
+	display: flex;
+	flex-grow: 1;
 }
-.searchResult li a .productBtn_grp{
+.searchResult li  .productBtn_grp{
 	width: 150px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	
+	
 }
-.searchResult li a .productBtn_grp > button{
+.searchResult li  .productBtn_grp > a{
 	padding: 10px;
+	text-align: center;
 }
-.searchResult li a .productBtn_grp > button:nth-of-type(1){
+.searchResult li .productBtn_grp > a:nth-of-type(1){
 	background-color: #ff8080;
 }
-.searchResult li a .productBtn_grp > button:nth-of-type(2){
+.searchResult li  .productBtn_grp > a:nth-of-type(2){
 	background-color: #fe9718;
 }
-.searchResult li a .productBtn_grp > button:nth-of-type(3){
+.searchResult li  .productBtn_grp > a:nth-of-type(3){
 	background-color: #188bfe;
 }
 

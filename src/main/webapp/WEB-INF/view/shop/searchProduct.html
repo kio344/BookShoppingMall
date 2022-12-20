@@ -9,8 +9,8 @@
 	<th:block th:replace="layouts/shop/productSearchNav::productSearchNav"></th:block>
 
 	<ul class="searchResult">
-		<li th:each="product : ${searchResult}"><a
-			>
+		<li th:each="product : ${searchResult}">
+			<a >
 				<div class="bookImg">
 					<img alt=""
 						th:src="@{/productImages/}+${product.num%10}+${'/'}+${product.num}">
@@ -41,20 +41,24 @@
 						<dd th:text="${product.price}+' 원'"></dd>
 					</dl>
 				</div>
+				</a>
 				<div class="productBtn_grp">
-					<button>구매하기</button>
-					
-					<button class="shareBtn"
+				
+					<a th:href="@{'/shop/product/'+${product.num}}">
+						구매하기
+					</a>
+					<a class="shareBtn"
+						th:data-bookimg="@{/productImages/}+${product.num%10}+${'/'}+${product.num}"
 						th:data-booknum='${product.num}'
 						th:data-writer='${product.writer}'
 						th:data-price='${product.price}'
 						th:data-bookname='${product.bookName}'
 						th:data-publisher='${product.publisher}'>
 						공유하기
-					</button>
+					</a>
 				</div>
 
-		</a></li>
+		</li>
 	</ul>
 	<th:block th:replace="layouts/commons/pagination_v2::pagination_v2"></th:block>
 
