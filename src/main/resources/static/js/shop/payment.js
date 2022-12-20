@@ -95,8 +95,8 @@ function tossProcess(e) {
 				orderId:  new Date().getTime()+'__'+response.num,	//상품 판매자 userNo__paymentNum
 				orderName: response.product.bookName,
 				customerName: response.user.memNm,
-				successUrl: 'http://localhost:3000/bookShoppingMall/shop/payment/result/sc',
-				failUrl: 'http://localhost:3000/bookShoppingMall/shop/payment/result/fail',
+				successUrl: location.origin+'/bookShoppingMall/shop/payment/result/sc',
+				failUrl: location.origin+'/bookShoppingMall/shop/payment/result/fail',
 			})
 
 		}
