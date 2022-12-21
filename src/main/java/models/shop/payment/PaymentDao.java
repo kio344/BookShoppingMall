@@ -12,14 +12,25 @@ import models.entity.Payment;
 import models.entity.ProductRequest;
 import models.entity.User;
 import models.seller.product.ProductRequestDto;
-import models.seller.product.Progress;
 
+/**
+ * 결제관련 DB
+ * 
+ * @author 5563a
+ *
+ */
 @Component
 public class PaymentDao {
 	@Autowired
 	private EntityManager em;
 	
 
+	/**
+	 * 결제 정보 추가
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public PaymentDto AddPayment(PaymentDto dto) {
 		
 		ProductRequest product=em.find(ProductRequest.class, dto.getProduct().getNum());
@@ -142,7 +153,12 @@ public class PaymentDao {
 		return result;
 	}
 	
-	
+	/**
+	 * 유저의 결제 정보 가져오기 
+	 * @param num
+	 * @param progress
+	 * @return
+	 */
 	public List<PaymentDto> getsUserPayment(Long num, PaymentProgress progress) {
 
 		User user=em.find(User.class, num);

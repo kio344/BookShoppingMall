@@ -5,6 +5,12 @@ import models.entity.Payment;
 import models.seller.product.ProductRequestDto;
 import models.user.UserDto;
 
+/**
+ * 결제 DTO
+ * 
+ * @author 5563a
+ *
+ */
 public class PaymentDto extends BaseDto {
 
 	private Long num;
@@ -140,7 +146,7 @@ public class PaymentDto extends BaseDto {
 		return dto;
 	}
 
-	public static PaymentDto toDto(PaymentRequest request) {
+	public static PaymentDto toDto(PaymentRequest request, Long userNum) {
 		PaymentDto paymentDto = new PaymentDto();
 		paymentDto.setAddress(request.getAddress());
 		paymentDto.setCount(request.getCount());
@@ -150,7 +156,7 @@ public class PaymentDto extends BaseDto {
 		paymentDto.setProduct(productDto);
 
 		UserDto userDto = new UserDto();
-		userDto.setMemNo(request.getUserNum());
+		userDto.setMemNo(userNum);
 		paymentDto.setUser(userDto);
 
 		paymentDto.setProgress(PaymentProgress.PAYMENT_BEFORE); // 기본값 PAYMENT_BEFORE

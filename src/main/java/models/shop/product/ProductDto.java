@@ -7,7 +7,11 @@ import models.common.BaseDto;
 import models.seller.product.Progress;
 import models.shop.productReview.ProductReviewDto;
 import models.user.UserDto;
-
+/**
+ * 상품 DTO
+ * @author 5563a
+ *
+ */
 public class ProductDto extends BaseDto {
 
 	private Long num;

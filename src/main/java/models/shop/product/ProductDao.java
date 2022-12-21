@@ -12,6 +12,11 @@ import models.entity.ProductRequest;
 import models.seller.product.ProductRequestDto;
 import models.seller.product.Progress;
 
+/**
+ * 상품 DB
+ * @author 5563a
+ *
+ */
 @Component
 public class ProductDao {
 

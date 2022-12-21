@@ -1,26 +1,33 @@
 package models.shop.service;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import common.Util.JmsUtil;
 import models.shop.payment.PaymentDto;
 import models.shop.productReview.ProductReviewDao;
 import models.shop.productReview.ProductReviewDto;
 import models.shop.productReview.ProductReviewRequest;
-import models.user.UserDto;
 
+/**
+ * 상품 리뷰 관련 서비스
+ * @author 5563a
+ *
+ */
 @Service
 public class ProductReviewService {
 
 	@Autowired
 	private ProductReviewDao productReviewDao;
 	
-	@Autowired
-	private HttpSession session;
+
 	
+	/**
+	 * 리뷰 작성, 업데이트
+	 * 리뷰가 존재하면 업데이트, 존재하지 않으면 작성
+	 * 
+	 * @param request
+	 * @return
+	 */
 	public ProductReviewDto writeReview(ProductReviewRequest request) {
 		
 		ProductReviewDto dto=new ProductReviewDto();
@@ -35,7 +42,11 @@ public class ProductReviewService {
 		
 		return productReviewDao.insertOrUpdate(dto);
 	}
-	
+	/**
+	 * 리뷰 불러오기
+	 * @param payment
+	 * @return
+	 */
 	public ProductReviewDto getReivewForPayment(Long payment) {
 		
 		return productReviewDao.getForPayment(payment);
