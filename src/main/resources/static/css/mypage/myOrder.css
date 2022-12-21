@@ -156,3 +156,20 @@ main>div {
 	
 	margin-left: 20px;
 }
+
+.pagination{
+	display: flex;
+	flex-direction: row;
+}
+
+.pagination a{
+	display:flex;
+	border-radius:3px;
+	justify-content:center;
+	align-items:center;
+	width: 30px;
+	height: 30px;
+	background-color: #424242;
+	color: white;
+	margin: 10px;
+}

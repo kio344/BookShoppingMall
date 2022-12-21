@@ -51,17 +51,17 @@ public class PaymentService {
 	 */
 	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress, String orderId) {
 
-		PaymentDto payment=paymentDao.updateProgress(paymentNum, progress, orderId);
-		
+		PaymentDto payment = paymentDao.updateProgress(paymentNum, progress, orderId);
+
 		productDao.buyProduct(payment.getProduct().getNum(), payment.getCount());
-		
+
 		return payment;
 	}
-	
+
 	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress) {
 
-		PaymentDto payment=paymentDao.updateProgress(paymentNum, progress);
-				
+		PaymentDto payment = paymentDao.updateProgress(paymentNum, progress);
+
 		return payment;
 	}
 
@@ -113,26 +113,35 @@ public class PaymentService {
 		return productDao.buyProduct(num, count);
 
 	}
-	
+
 	/**
-	 * 유저No 를 통해 구매 내역 가져오기 
+	 * 유저No 를 통해 구매 내역 가져오기
+	 * 
 	 * @param userNo
 	 * @return
 	 */
-	public List<PaymentDto> gets(Long userNo,PaymentProgress progress){
-		
-		
-		
+	public List<PaymentDto> gets(Long userNo, PaymentProgress progress) {
+
 		return paymentDao.getsUserPayment(userNo, progress);
-		
+
 	}
-	
-	public List<PaymentDto> gets(Long userNo){
-		
-		
-		
+
+	public List<PaymentDto> gets(Long userNo) {
+
 		return paymentDao.getsUserPayment(userNo);
-		
+
 	}
-	
+
+	public List<PaymentDto> gets(Long userNo, int start, int offset) {
+
+		return paymentDao.getsUserPayment(userNo, start, offset);
+
+	}
+
+	public long getsC(Long userNo) {
+
+		return paymentDao.getsUserPaymentC(userNo);
+
+	}
+
 }
