@@ -38,6 +38,12 @@ public class SellerOrderService {
 		/** 제품 배송 E*/
 		
 	}
+	
+	/**
+	 * 상품 취소 메서드
+	 * @author kimminho
+	 * @param request
+	 */
 	public void cencel(HttpServletRequest request) {
 		/** 유효성 검사*/
 		String [] nums = request.getParameterValues("payment_num");

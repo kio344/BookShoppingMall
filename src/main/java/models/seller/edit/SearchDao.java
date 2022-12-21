@@ -17,6 +17,15 @@ public class SearchDao {
 	@Autowired
 	private EntityManager em;
 	
+	/**
+	 * 상품 이름으로 검색 또는 글쓴이로 검색 기능
+	 * @author kimminho
+	 * @param search
+	 * @param searchType
+	 * @param start
+	 * @param offset
+	 * @return
+	 */
 	public List<ProductRequestDto> searchToName(String search, String searchType, int start, int offset) {
 		
 		StringBuffer sb = new StringBuffer();
@@ -47,6 +56,11 @@ public class SearchDao {
 		return list;
 	}
 	
+	/**
+	 * 모든 상품 가져오기
+	 * @author kimminho
+	 * @return
+	 */
 	public List<ProductRequestDto> gets(){
 		TypedQuery<ProductRequest> entity = em.createQuery("SELECT p FROM ProductRequest p", ProductRequest.class);
 		
@@ -55,7 +69,14 @@ public class SearchDao {
 		
 		return list;
 	}
-
+	
+	/**
+	 * 상품정보를 숫자로 가져와서 페이지네이션으로 사용
+	 * @author kimminho
+	 * @param search
+	 * @param searchType
+	 * @return
+	 */
 	public int getsearchProduct(String search, String searchType) {
 		
 		String sql = "SELECT COUNT(*) FROM ProductRequest p WHERE p." + searchType + " LIKE '%" + search + "%'"; 

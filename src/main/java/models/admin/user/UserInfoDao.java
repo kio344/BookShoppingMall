@@ -17,6 +17,10 @@ public class UserInfoDao {
 	@Autowired
 	private EntityManager em;
 		
+	/**
+	 * DB에 있는 모든 회원 정보 가져오기
+	 * @return
+	 */
 	public List<UserDto> gets() {
 		TypedQuery<User> entites = em.createQuery("SELECT u FROM User u ", User.class);
 		

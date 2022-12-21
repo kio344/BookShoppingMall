@@ -23,6 +23,15 @@ public class SearchService {
 	@Autowired
 	private ProductReviewDao productReviewDao;
 	
+	/**
+	 * 상품 검색 기능
+	 * @author kimminho
+	 * @param searchType
+	 * @param search
+	 * @param start
+	 * @param offset
+	 * @return
+	 */
 	public List<ProductRequestDto> search(String searchType, String search, int start, int offset) {
 		
 		List<ProductRequestDto> list = searchDao.searchToName(search, searchType, start, offset);
@@ -35,7 +44,12 @@ public class SearchService {
 		return searchDao.getsearchProduct(search, searchType);
 		
 	}
-	
+	/**
+	 * 리뷰 정보를 가져오기
+	 * @author kimminho
+	 * @param productNum
+	 * @return
+	 */
 	public List<ProductReviewDto> getReview(Long productNum){
 		
 		ProductRequestDto productRequestDto = searchDao.getProduct(productNum);

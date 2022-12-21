@@ -25,6 +25,11 @@ public class AdminBoardDao {
 		return AdminBoardDto.toDto(entity);
 	}
 	
+	/**
+	 * 게시판 정보 가져오기
+	 * @author kimminho
+	 * @return
+	 */
 	public List<AdminBoardDto> gets() {
 		
 		TypedQuery<BoardConfig> entity = em.createQuery("SELECT b FROM BoardConfig b", BoardConfig.class);
@@ -33,7 +38,12 @@ public class AdminBoardDao {
 		
 		return list;
 	}
-
+	
+	/**
+	 * 게시판 정보 DB에 저장
+	 * @param dto
+	 * @return
+	 */
 	public AdminBoardDto save(AdminBoardDto dto) {
 
 		BoardConfig entity = AdminBoardDto.toEntity(dto);
@@ -45,6 +55,11 @@ public class AdminBoardDao {
 		return searchToId(dto.getBoardId());
 	}
 	
+	/**
+	 * DB에 게시판 정보 수정 업데이트
+	 * @author kimminho
+	 * @param dto
+	 */
 	public void updateBoard(AdminBoardDto dto) {
 		
 		BoardConfig entity = em.find(BoardConfig.class, dto.getBoardId());
@@ -60,6 +75,11 @@ public class AdminBoardDao {
 		em.flush();
 	}
 	
+	/**
+	 * 게시판 정보 삭제
+	 * @author kimminho
+	 * @param boardId
+	 */
 	public void deleteBoard(String boardId){
 		
 		BoardConfig entity = em.find(BoardConfig.class, boardId);
