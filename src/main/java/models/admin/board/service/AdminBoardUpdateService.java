@@ -14,7 +14,12 @@ public class AdminBoardUpdateService {
 	
 	@Autowired
 	private AdminBoardDao adminBoardDao;
-
+	
+	/**
+	 * 게시판 수정 후 정보 업데이트
+	 * @author kimminho
+	 * @param request
+	 */
 	public void update(HttpServletRequest request) {
 		
 		/** 유효성 검사 S */

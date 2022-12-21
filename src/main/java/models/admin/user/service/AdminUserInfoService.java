@@ -15,8 +15,12 @@ public class AdminUserInfoService {
 	@Autowired
 	private UserDao userDao;
 	
+	/**
+	 * 회원 정보 수정 후 DB에 저장
+	 * @author kimminho
+	 * @param request
+	 */
 	public void edit(HttpServletRequest request) {
-		
 		String [] userInfos = request.getParameterValues("memNo");
 		UserDto dto = new UserDto();
 		if(userInfos == null) {
@@ -41,6 +45,11 @@ public class AdminUserInfoService {
 		
 	}
 
+	/**
+	 * 회원 정보 삭제
+	 * @author kimminho
+	 * @param request
+	 */
 	public void remove(HttpServletRequest request) {
 
 		String [] userInfos = request.getParameterValues("memNo");

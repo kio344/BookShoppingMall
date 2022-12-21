@@ -24,6 +24,11 @@ public class AdminProductService {
 	@Autowired
 	private ProductDao productDao;
 	
+	/**
+	 * 상품 정보 수정 후 DB에 업데이트 해주는 기능
+	 * @author kimminho
+	 * @param request
+	 */
 	public void update(HttpServletRequest request) {
 		/** 유효성 검사 S */
 		String[] productIds = request.getParameterValues("product");
@@ -43,6 +48,11 @@ public class AdminProductService {
 		}
 	}
 	
+	/**
+	 * 관리자가 상품 수락하면 상품이 판매 페이지에 등록이 되고 Progress가 Agree로 바뀐다
+	 * @author kimminho
+	 * @param request
+	 */
 	public void agree(HttpServletRequest request) {
 		/** 유효성 검사 S */
 		String[] productIds = request.getParameterValues("product");
@@ -57,13 +67,17 @@ public class AdminProductService {
 			ProductRequestDto dto = new ProductRequestDto();
 			dto = productRequestDao.get(Long.parseLong(product)); 
 			dto.setProgress(Progress.Agree);
-//			productDao.addProduct(ProductRequestDto.toRequest(dto));
 			
 			productRequestDao.updateAdmin(dto);
 		}
 		/** 수정 시작 E */
 	}		
 	
+	/**
+	 * 상품 삭제 기능
+	 * @author kimminho
+	 * @param request
+	 */
 	public void remove(HttpServletRequest request) {
 		String[] productIds = request.getParameterValues("product");
 		if (productIds == null) {
@@ -88,6 +102,11 @@ public class AdminProductService {
 		}
 	}
 	
+	/**
+	 * 관리자가 상품 거절을 하면 Rejected로 변경 후 거절됨 표시
+	 * @author kimminho
+	 * @param request
+	 */
 	public void rejected(HttpServletRequest request) {
 		
 		/** 유효성 검사 S */
@@ -109,6 +128,13 @@ public class AdminProductService {
 		/** 수정 시작 E */
 	}
 	
+	/**
+	 * 관리자가 컨펌을 한 상품만 출력 Agree 상품
+	 * @author kimminho
+	 * @param progress
+	 * @param type
+	 * @return
+	 */
 	public boolean isAdminConfirmed(Progress progress, String type) {
 		if (progress == null || type == null || type.isBlank()) {
 			return false;

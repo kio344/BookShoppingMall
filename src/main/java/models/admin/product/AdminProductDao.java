@@ -18,6 +18,11 @@ public class AdminProductDao {
 	@Autowired
 	private EntityManager em;
 	
+	/**
+	 * 모든 상품 가져오기
+	 * @author kimminho
+	 * @return List<ProductRequestDto>
+	 */
 	public List<ProductRequestDto> getProducts() {
 		
 		TypedQuery<ProductRequest> entity = em.createQuery("SELECT r FROM ProductRequest r", ProductRequest.class);
