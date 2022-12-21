@@ -1,9 +1,6 @@
 package models.admin.user;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,14 +14,10 @@ public class UserInfoDao {
 	@Autowired
 	private EntityManager em;
 		
-	public List<UserDto> gets() {
-		TypedQuery<User> entites = em.createQuery("SELECT u FROM User u ", User.class);
+	public UserDto gets() {
+		User entity = em.find(User.class, em);
 		
-		List<UserDto> list = entites.getResultStream().map(UserDto::toDto).toList();
-		
-		return list;
+		return UserDto.toDto(entity);
 	}
-	
-	
 	
 }

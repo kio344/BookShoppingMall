@@ -1,3 +1,7 @@
+@media (max-width: 600px) {
+
+}
+
 main{
 	display: flex;
 	flex-direction: column;
@@ -31,7 +35,7 @@ main{
 	border: 1px solid #d5d5d5;
 	border-radius: 0px 4px 4px 0px;
 	padding: 0px 20px 0px 20px;
-	width: 70px;
+	width: 100px;
 }
 
 .ProductAdd{
@@ -64,13 +68,13 @@ main{
 ul{
 	width:80%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	flex-wrap: wrap;
+	
 }
 
 .product_list li{
 	display:flex;
-	width: calc(100%/6);
 	margin: 20px;
 	
 	

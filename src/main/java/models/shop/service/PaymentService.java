@@ -57,6 +57,13 @@ public class PaymentService {
 		
 		return payment;
 	}
+	
+	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress) {
+
+		PaymentDto payment=paymentDao.updateProgress(paymentNum, progress);
+				
+		return payment;
+	}
 
 	public PaymentDto removePayment(Long paymentNum) {
 		return paymentDao.remove(paymentNum);
@@ -119,4 +126,13 @@ public class PaymentService {
 		return paymentDao.getsUserPayment(userNo, progress);
 		
 	}
+	
+	public List<PaymentDto> gets(Long userNo){
+		
+		
+		
+		return paymentDao.getsUserPayment(userNo);
+		
+	}
+	
 }

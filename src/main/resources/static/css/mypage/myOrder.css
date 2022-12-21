@@ -1,3 +1,21 @@
+@media (max-width: 600px) {
+	.productImgArea{
+		justify-content: center;
+		align-items: center;
+	}
+	.ProductList li > a{
+		flex-direction: column;
+		margin: 5px;
+	}
+	
+	.ProductList li a>div>.btn_group{
+		margin-top: 20px;
+	}
+	.ProductList li a>div dl{
+		margin-top: 10px;
+	}
+}
+
 .dn{
 	display: none;	
 }
@@ -52,7 +70,7 @@ main>div {
 	width: 100%;
 }
 
-.productImgArea{
+.productImgArea > img{
 	padding: 5px;
 	background-color: #dddddd;
 }
@@ -79,7 +97,7 @@ main>div {
 	
 	
 }
-.ProductList li a>div>.btn_group > button:first-child{
+.ProductList li a>div>.btn_group > button{
 	display: flex;
 	flex-grow: 1;
 	justify-content:center;
@@ -89,6 +107,8 @@ main>div {
 .ProductList li a>div>.btn_group > button:last-child{
 	width: 50px;
 	height: 50px;
+	flex-grow: 0;
+	
 }
 .title{
 	font-size: 1.8rem;

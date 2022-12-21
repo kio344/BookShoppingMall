@@ -21,6 +21,11 @@ public class PaymentDao {
 	
 
 	public PaymentDto AddPayment(PaymentDto dto) {
+		
+		ProductRequest product=em.find(ProductRequest.class, dto.getProduct().getNum());
+		
+		dto.setProduct(ProductRequestDto.toDto(product));
+		
 		Payment entity = PaymentDto.toEntity(dto);
 		entity.setProduct(em.find(ProductRequest.class, dto.getProduct().getNum()));
 
@@ -54,6 +59,25 @@ public class PaymentDao {
 		return PaymentDto.toDto(entity);
 
 	}
+	
+	public PaymentDto updateProgress(Long num, PaymentProgress progress) {
+
+		Payment entity = em.find(Payment.class, num);
+
+		entity.setProgress(progress);
+		
+
+		em.persist(entity);
+
+		em.flush();
+
+
+		
+		return PaymentDto.toDto(entity);
+
+	}
+	
+	
 
 	public PaymentDto remove(Long num) {
 		Payment entity = em.find(Payment.class, num);
@@ -72,11 +96,26 @@ public class PaymentDao {
 
 	}
 	
+	public List<PaymentDto> getsUserPayment(Long num){
+
+		User user=em.find(User.class, num);
+		
+		String sql="SELECT p FROM Payment p WHERE p.user=:user order by p.num desc";
+		
+		TypedQuery<Payment> query = em.createQuery(sql, Payment.class);
+		query.setParameter("user", user);
+		
+		
+		List<PaymentDto> result=query.getResultList().stream().map(t -> PaymentDto.toDto(t)).toList();
+		
+		return result;
+	}
+	
 	public List<PaymentDto> getsUserPayment(Long num, PaymentProgress progress) {
 
 		User user=em.find(User.class, num);
 		
-		String sql="SELECT p FROM Payment p WHERE p.user=:user AND p.progress=:progress";
+		String sql="SELECT p FROM Payment p WHERE p.user=:user AND p.progress=:progress order by p.num desc";
 		
 		TypedQuery<Payment> query = em.createQuery(sql, Payment.class);
 		query.setParameter("user", user);
@@ -85,7 +124,7 @@ public class PaymentDao {
 		if (progress != null) {
 			query.setParameter("progress", progress);
 		}else {
-			query.setParameter("progress", "");
+			query.setParameter("progress", progress);
 		}
 		
 		

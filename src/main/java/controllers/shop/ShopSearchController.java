@@ -34,6 +34,8 @@ public class ShopSearchController {
 				searchType);
 
 		model.addAttribute("addCss", new String[] { "/shop/searchProduct" });
+		model.addAttribute("addJs", new String[] { "/shop/searchProduct","/common/kakaoShare" });
+
 		model.addAttribute("searchResult", searchResult);
 		model.addAttribute("pagination", pagination);
 

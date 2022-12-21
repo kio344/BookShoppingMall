@@ -1,3 +1,12 @@
+const productData={
+	bookimg:'',
+    writer:'',
+    price:'',
+    bookname:'',
+    publisher:'',
+    link:''
+}
+
 
 function replaceCKEDITOR() {
 	let reviewContexts = document.getElementsByClassName('reviewContext');
@@ -38,6 +47,59 @@ function donBtnEvent(){
 	}
 }
 
+function payment_complete(){
+	
+	let btns=document.getElementsByClassName('payment_complete');
+	console.log(btns)
+	
+	for(let i = 0;i<btns.length;i++){
+		btns[i].addEventListener('click',function(e){
+			console.log(e.target.dataset.payment)
+			let paymentNum=e.target.dataset.payment
+			
+			let formdata=new FormData();
+			formdata.append('paymentNum',paymentNum);
+			
+			let xhr=new XMLHttpRequest;
+			xhr.open("post","myorder/paymentcomplete");
+			xhr.responseType='json'
+			xhr.addEventListener("readystatechange", function(getreviewE) {
+
+			if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+				let response = xhr.response;
+				if(response.result){
+					alert('처리 되었습니다.')
+					location.reload();
+				}else{
+					alert(response.message)
+				}
+				
+			}
+
+		})
+			
+			xhr.send(formdata)
+			
+		})
+	}
+
+	
+}
+
+function shareEvent(e){
+	let bookinfo=e.target.dataset;
+	let num=bookinfo.booknum
+	productData.bookimg=location.origin+bookinfo.bookimg
+	productData.bookname=bookinfo.bookname
+	productData.link=`shop/product/${num}`
+	productData.price=bookinfo.price
+	productData.publisher=bookinfo.publisher
+	productData.writer=bookinfo.writer
+	shareBtnEl=document.getElementById('addCart')
+	Share(productData.bookimg,productData.bookname,productData.writer,productData.publisher,productData.price,productData.link)
+
+	
+}
 
 
 window.addEventListener('DOMContentLoaded', function(e) {
@@ -45,6 +107,16 @@ window.addEventListener('DOMContentLoaded', function(e) {
 	replaceCKEDITOR();
 	
 	donBtnEvent();
+	
+	let shareBtnsEl=document.getElementsByClassName('shareBtn')
+	
+	for(let i=0;i<shareBtnsEl.length;i++){
+		shareBtnsEl[i].addEventListener("click",function(e){
+			shareEvent(e);
+		})
+	}
+	
+	
 
 	let writeReviewBtns = document.getElementsByClassName('writeReview');
 
@@ -92,6 +164,8 @@ window.addEventListener('DOMContentLoaded', function(e) {
 			
 		})
 	}
+	
+	payment_complete();
 
 
 

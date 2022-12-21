@@ -38,9 +38,39 @@
 							<dd th:text="${#numbers.formatInteger(payment.count,1)} * ${#numbers.formatInteger(payment.product.price,1)}+'원'"></dd>
 						</dl>
 						
+
+						
 						<div class="btn_group">
-							<button th:data-payment="*{num}" class="writeReview" >리뷰쓰기</button>
-							<button class="xi-share-alt-o"></button>
+							<th:block th:if="*{#strings.equals(progress, 'PAYMENT_COMPLET')}">
+							
+								<button th:data-payment="*{num}" >결제완료</button>
+							
+							</th:block>
+							
+							<th:block th:if="*{#strings.equals(progress, 'SHIPPING')}">
+							
+								<button th:data-payment="*{num}"  >배송중</button>
+								<button th:data-payment="*{num}" class="payment_complete">수취 완료</button>
+							
+							</th:block>
+							
+							<th:block th:if="*{#strings.equals(progress, 'COMPLETED')}">
+							
+								<button th:data-payment="*{num}" class="writeReview" >리뷰쓰기</button>
+							
+							</th:block>
+							
+							
+							<button  class="shareBtn"
+								th:data-bookimg="@{/productImages/}+*{product.num%10}+${'/'}+*{product.num}"
+								th:data-booknum='*{product.num}'
+								th:data-writer='*{product.writer}'
+								th:data-price='*{product.price}'
+								th:data-bookname='*{product.bookName}'
+								th:data-publisher='*{product.publisher}'>
+							
+								<i class="xi-share-alt-o"></i>
+							</button>
 						</div>
 					
 					</div>
@@ -60,7 +90,7 @@
 								<option value="4">★★★★☆</option>
 								<option value="5">★★★★★</option>
 							</select>
-							<button class="doneBtn" >완료</button>
+							<button class="doneBtn" onclick="confirm('리뷰를 등록하시겠습니까?')" >완료</button>
 						</div>
 						
 					</form>

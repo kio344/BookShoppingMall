@@ -2,16 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/admin/adminLayout}">
+
 <main layout:fragment="main">
-	
+
 	<h1>테스트중</h1>
-	<h1>테스트중</h1>
-	
-	<form th:action="@{/admin/user}" method="post">
-	<th:block th:each="list : ${userInfo}" th:object="${userInfo}">
-	<input type="text" value="*{fakeName}">
-	
+	<form th:action="@{/admin/user}" method="get">
+		<div class="search">
+			<input class="searchInput" type="text" th:name="search">
+			<select th:name="searchType">
+				<option value="fakeName">닉네임</option>
+				<option value="memNm">이름</option>
+			</select>
+			<button>검색하기</button>
+		</div>
 	</form>
 	
+	<form th:action="@{/admin/user/userEdit}" method="post">
+		<table>
+			<thead>
+				<tr>
+					<th><input type="checkbox"></th>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>닉네임</th>
+					<th>전화번호</th>
+					<th>유저타입</th>
+					<th>주소</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${userInfo}" th:object="${list}">
+					<td><input type="checkbox" th:name="memNo" th:value="*{memNo}">
+					</td>
+
+					<td><input type="text" disabled
+						th:name="memId + ${('_') + (list.memNo)}" th:value="*{memId}">
+					</td>
+
+					<td><input type="text"
+						th:name="memNm + ${('_') + (list.memNo)}" th:value="*{memNm}">
+					</td>
+
+					<td><input type="text"
+						th:name="fakeName + ${('_') + (list.memNo)}"
+						th:value="*{fakeName}"></td>
+
+					<td><input type="text" disabled
+						th:name="mobile + ${('_') + (list.memNo)}" th:value="*{mobile}">
+					</td>
+
+					<td>
+					<select th:name="userType + ${('_') + (list.memNo)}" th:value="*{userType}">
+							<option value="ADMIN">관리자</option>
+							<option value="SELLER">판매자</option>
+							<option value="USER">회원</option>
+					</select>
+					</td>
+
+					<td><input type="text"
+						th:name="adress + ${('_') + (list.memNo)}" th:value="*{adress}">
+					</td>
+					</th:block>
+				</tr>
+			</tbody>
+		</table>
+		해당 유저의 정보를 <select th:name="mode">
+			<option value="edit">수정</option>
+			<option value="remove">삭제</option>
+		</select> 합니다
+		<button type="submit">처리하기</button>
+	</form>
+
 </main>
 </html>

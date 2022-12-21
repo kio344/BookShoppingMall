@@ -124,7 +124,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(boardPrivateCheck()).addPathPatterns("/board/view/**");
-		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**", "/QnA/**","/shop/payment/**")
+		registry.addInterceptor(memberCheck()).addPathPatterns("/board/**", "/QnA/**","/shop/payment/**","/mypage/**")
 				.excludePathPatterns("/board/view/**");
 		registry.addInterceptor(AdminCheck()).addPathPatterns("/admin/**");
 		registry.addInterceptor(sellerCheck()).addPathPatterns("/seller/**");

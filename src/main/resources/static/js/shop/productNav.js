@@ -15,6 +15,8 @@ window.addEventListener("DOMContentLoaded",function(){
 	for(let i =0;i<cate_1.length;i++){
 		cate_1[i].addEventListener("click",function(e){
 			cat1.value=e.target.dataset.value
+			cat2.value=""
+			cat3.value=""
 
 			form.submit();
 		})
