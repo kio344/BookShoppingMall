@@ -14,7 +14,7 @@ public class UserManagementController {
 	
 	@GetMapping("user")
 	public String userManager(Model model) {
-		
+		model.addAttribute("addCss", new String[] {"/board/admin/adminUser"});
 		
 		
 		return "admin/user/user";
