@@ -13,6 +13,11 @@ public class AdminBoardDeleteService {
 	@Autowired
 	private AdminBoardDao adminBoardDao; 
 	
+	/**
+	 * 게시판 삭제 기능
+	 * @author kimminho
+	 * @param request
+	 */
 	public void delete(HttpServletRequest request) {
 		
 		/** 유효성 검사 S */

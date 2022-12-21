@@ -14,9 +14,16 @@ public class AdminBoardService {
 
 	@Autowired
 	private AdminBoardDao adminBoardDao;
-
-	/** 게시판 등록 S */
+	
+	/**
+	 * 게시판 등록
+	 * @author kimminho
+	 * @param adminBoardRequest
+	 * @param errors
+	 * @return
+	 */
 	public String write(AdminBoardRequest adminBoardRequest, Errors errors) {
+		/** 게시판 등록 S */
 
 		AdminBoardDto dto = adminBoardDao.searchToId(adminBoardRequest.getBoardId());
 		
@@ -27,16 +34,10 @@ public class AdminBoardService {
 			return "";
 		}
 		
-		/**
-			if((dto = adminBoardDao.searchToName(adminBoardRequest.getBoardName())) != null) {
-				errors.rejectValue("boardName", "AdminBoard.board", "값을 찾을 수 없습니다.");
-			}
-		 */
-		
 		adminBoardDao.save(dto);
 		
 		return "";
+		/** 게시판 등록 E */
 	}
-	/** 게시판 등록 E */
 	
 }
