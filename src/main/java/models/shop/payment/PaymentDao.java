@@ -111,6 +111,38 @@ public class PaymentDao {
 		return result;
 	}
 	
+	public List<PaymentDto> getsUserPayment(Long num,int start, int offset){
+
+		User user=em.find(User.class, num);
+		
+		String sql="SELECT p FROM Payment p WHERE p.user=:user order by p.num desc";
+		
+		TypedQuery<Payment> query = em.createQuery(sql, Payment.class);
+		query.setParameter("user", user);
+		
+		query.setFirstResult(start);
+		query.setMaxResults(offset);
+		
+		List<PaymentDto> result=query.getResultList().stream().map(t -> PaymentDto.toDto(t)).toList();
+		
+		return result;
+	}
+	
+	public Long getsUserPaymentC(Long num){
+
+		User user=em.find(User.class, num);
+		
+		String sql="SELECT COUNT(*) FROM Payment p WHERE p.user=:user";
+		
+		TypedQuery<Long> query = em.createQuery(sql,Long.class);
+		query.setParameter("user", user);
+
+		Long result=query.getSingleResult();
+		
+		return result;
+	}
+	
+	
 	public List<PaymentDto> getsUserPayment(Long num, PaymentProgress progress) {
 
 		User user=em.find(User.class, num);
