@@ -33,7 +33,7 @@ public class KakaoController {
 		url.append("https://kauth.kakao.com/oauth/authorize?");
 		url.append("client_id=");
 		url.append("709858348209ad29c9ca0fe8f0f7acbc");
-		url.append("&redirect_uri=http://localhost:3000" + request.getContextPath() + "/api/kakao/callback");
+		url.append("&redirect_uri="+request.getRequestURL().substring(0, request.getRequestURL().indexOf("/", 8)) + request.getContextPath() + "/api/kakao/callback");
 		url.append("&response_type=code");
 		
 		return "redirect:" + url;
@@ -63,7 +63,7 @@ public class KakaoController {
 						.path("/oauth/token")
 						.queryParam("grant_type", "authorization_code")
 						.queryParam("client_id", "709858348209ad29c9ca0fe8f0f7acbc")
-						.queryParam("redirect_uri", "http://localhost:3000" + request.getContextPath() + "/api/kakao/callback")
+						.queryParam("redirect_uri", request.getRequestURL().substring(0, request.getRequestURL().indexOf("/", 8)) + request.getContextPath() + "/api/kakao/callback")
 						.queryParam("code", code).build())
 				.retrieve().bodyToMono(JSONObject.class).block();
 		

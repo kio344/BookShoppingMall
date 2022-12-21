@@ -15,6 +15,7 @@ layout:decorate="~{layouts/main/main}"
 				<div class="productInfo" 
 						
 						th:data-booknum='*{num}'
+						th:data-bookimg='@{/productImages/}+${product.num%10}+${"/"}+${product.num}'
 						th:data-writer='*{writer}'
 						th:data-price='*{price}'
 						th:data-bookname='*{bookName}'

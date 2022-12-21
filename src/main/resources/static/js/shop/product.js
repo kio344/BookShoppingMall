@@ -21,7 +21,7 @@ function init(){
 	
 	let bookinfo=document.getElementsByClassName('productInfo')[0].dataset;
 	let num=bookinfo.booknum
-	productData.bookimg=`productImages/${num%10}/${num}`
+	productData.bookimg=location.origin+bookinfo.bookimg
 	productData.bookname=bookinfo.bookname
 	productData.link=`shop/product/${num}`
 	productData.price=bookinfo.price

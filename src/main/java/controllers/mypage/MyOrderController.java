@@ -39,7 +39,6 @@ public class MyOrderController {
 	@GetMapping
 	public String myOrder(HttpSession session, Model model) {
 
-		JmsUtil.autoLogin(session);
 
 		UserDto user = JmsUtil.getLoginUser(session);
 
