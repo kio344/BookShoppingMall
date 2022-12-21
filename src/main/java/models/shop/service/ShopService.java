@@ -7,10 +7,15 @@ import org.springframework.stereotype.Service;
 
 import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
-import models.shop.product.ProductDto;
 import models.shop.productReview.ProductReviewDao;
 import models.shop.productReview.ProductReviewDto;
 
+/**
+ * 쇼핑몰 서비스
+ * 
+ * @author 5563a
+ *
+ */
 @Service
 public class ShopService {
 	@Autowired

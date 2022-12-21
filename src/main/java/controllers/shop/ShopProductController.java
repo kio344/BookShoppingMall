@@ -8,16 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import models.entity.ProductRequest;
-import models.entity.ProductReview;
 import models.seller.product.ProductRequestDto;
-import models.shop.product.ProductDao;
-import models.shop.product.ProductDto;
 import models.shop.productReview.ProductReviewDto;
 import models.shop.service.ShopService;
 
+/**
+ * 쇼핑몰 상품페이지
+ * @author 5563a
+ *
+ */
 @Controller
 @RequestMapping("/shop")
 public class ShopProductController {

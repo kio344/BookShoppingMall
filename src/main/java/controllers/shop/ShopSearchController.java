@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import common.page.Pagination;
 import common.page.Pagination_v2;
 import models.seller.product.ProductRequestDto;
-import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 
+/**
+ * 쇼핑몰 상품 검색
+ * 
+ * @author 5563a
+ *
+ */
 @Controller
 @RequestMapping("/shop")
 public class ShopSearchController {

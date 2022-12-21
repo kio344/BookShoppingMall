@@ -15,6 +15,11 @@ import models.entity.ProductRequest;
 import models.entity.ProductReview;
 import models.shop.payment.PaymentDto;
 
+/**
+ * 상품리뷰 DB
+ * @author 5563a
+ *
+ */
 @Component
 public class ProductReviewDao {
 
@@ -107,7 +112,12 @@ public class ProductReviewDao {
 		return reviewDto;
 
 	}
-	
+	/**
+	 * 
+	 * @author kimminho
+	 * @param list
+	 * @return
+	 */
 	public List<ProductReviewDto> getProductReview(List<PaymentDto> list) {
 		PaymentDto dto = null;
 		

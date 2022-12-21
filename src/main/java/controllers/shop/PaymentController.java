@@ -16,19 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import common.Util.JmsUtil;
 import common.Util.JsonData;
 import models.seller.product.ProductRequestDto;
 import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
-import models.shop.product.ProductDto;
 import models.shop.service.PaymentService;
 import models.shop.service.PaymentValidation;
 import models.shop.service.ShopService;
 import models.shop.service.TossService;
-import models.user.service.LoginService;
 
+/**
+ * 상품 결제 
+ * 
+ * @author 5563a
+ *
+ */
 @Controller
 @RequestMapping("/shop")
 public class PaymentController {
@@ -38,9 +41,6 @@ public class PaymentController {
 
 	@Autowired
 	private PaymentValidation validation;
-
-	@Autowired
-	private LoginService loginService;
 
 	@Autowired
 	private ShopService shopService;
@@ -60,10 +60,10 @@ public class PaymentController {
 	 */
 	public String goPayment(Long productNum, Model model) {
 
-		//결제 정보 관련 설정
+		// 결제 정보 관련 설정
 		PaymentRequest paymentRequest = paymentService.paymentSetting(productNum);
 
-		//결제할 상품정보 가져오기
+		// 결제할 상품정보 가져오기
 		ProductRequestDto product = shopService.getProduct(productNum);
 
 		model.addAttribute("paymentRequest", paymentRequest);
@@ -98,8 +98,8 @@ public class PaymentController {
 	/**
 	 * 상품 구매 페이지 이동
 	 * 
-	 * @param productNum 
-	 * @param mode	결제 또는 다른기능
+	 * @param productNum
+	 * @param mode       결제 또는 다른기능
 	 * @param model
 	 * @return
 	 */
@@ -114,9 +114,8 @@ public class PaymentController {
 
 		default:
 			return goPayment(productNum, model);
-			
-		}
 
+		}
 
 	}
 
@@ -130,8 +129,8 @@ public class PaymentController {
 	 */
 	@PostMapping("/payment/processErr")
 	public String payment(@Valid PaymentRequest paymentRequest, Errors error, Model model) {
-		
-		//paymentRequest.setAddress();
+
+		// paymentRequest.setAddress();
 
 		return goPayment(paymentRequest, model);
 	}
@@ -151,8 +150,6 @@ public class PaymentController {
 	public ResponseEntity<JsonData<PaymentRequest>> paymentPs(@Valid PaymentRequest paymentRequest, Errors error,
 			HttpSession session, HttpServletRequest httpServletRequest, Model model) {
 
-	
-		
 		JsonData<PaymentRequest> result = new JsonData<>();
 		result.setResult(true);
 
@@ -161,7 +158,7 @@ public class PaymentController {
 			validation.validate(paymentRequest, error);
 
 			result.setData(paymentRequest);
-			
+
 			return ResponseEntity.ok(result);
 			// 토스 결제 진행
 		} catch (RuntimeException e) {
@@ -184,7 +181,7 @@ public class PaymentController {
 	@ResponseBody
 	@PostMapping("/payment/process")
 	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
-		
+
 		paymentRequest.setAddress();
 
 		return paymentService.paymentProcess(paymentRequest);
@@ -206,10 +203,10 @@ public class PaymentController {
 	public String processSc(String orderId, String paymentKey, Long amount, Model model, HttpSession session) {
 		String paymentId = orderId.split("__")[1];
 
-		//DB 결제 항목 Progress 결제 완료로 업데이트
+		// DB 결제 항목 Progress 결제 완료로 업데이트
 		paymentService.updateProgress(Long.parseLong(paymentId), PaymentProgress.PAYMENT_COMPLET, orderId);
 
-		//토스 api 관련 콜백
+		// 토스 api 관련 콜백
 		tossService.paymentCallBackSc(orderId, paymentKey, amount);
 
 		return shopController.shop(model, session);
@@ -229,14 +226,14 @@ public class PaymentController {
 	public String processFail(String orderId, String paymentKey, Long amount, Model model, HttpSession session) {
 		String paymentId = orderId.split("__")[1];
 
-		//DB 결제 항목 제거
+		// DB 결제 항목 제거
 		paymentService.removePayment(Long.parseLong(paymentId));
-		
-		//토스 api 관련 콜백
+
+		// 토스 api 관련 콜백
 		tossService.paymentCallBackFail(orderId, paymentKey, amount);
 
-		//쇼핑몰 메인페이지로 이동
+		// 쇼핑몰 메인페이지로 이동
 		return shopController.shop(model, session);
-		
+
 	}
 }

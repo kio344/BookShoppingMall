@@ -8,6 +8,12 @@ import java.net.http.HttpResponse;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * 토스 api 콜백처리
+ * 
+ * @author 5563a
+ *
+ */
 @Service
 public class TossService {
 

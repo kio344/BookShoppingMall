@@ -1,7 +1,11 @@
 package models.shop.payment;
 
 import org.hibernate.validator.constraints.NotBlank;
-
+/**
+ * 결제 요청
+ * @author 5563a
+ *
+ */
 public class PaymentRequest {
 
 	private Long productNum;

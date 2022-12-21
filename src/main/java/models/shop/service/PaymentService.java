@@ -1,11 +1,11 @@
 package models.shop.service;
 
-import javax.servlet.http.HttpSession;
-import static common.Util.JmsUtil.*;
+import static common.Util.JmsUtil.getLoginUser;
 
 import java.util.List;
 
-import org.mindrot.bcrypt.BCrypt;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,13 @@ import models.shop.payment.PaymentDto;
 import models.shop.payment.PaymentProgress;
 import models.shop.payment.PaymentRequest;
 import models.shop.product.ProductDao;
-import models.shop.product.ProductDto;
 import models.user.UserDto;
 
+/**
+ * 결제 서비스
+ * @author 5563a
+ *
+ */
 @Service
 public class PaymentService {
 

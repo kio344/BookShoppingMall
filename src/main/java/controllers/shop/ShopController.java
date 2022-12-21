@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import common.Util.JmsUtil;
 import models.seller.product.ProductRequestDto;
-import models.shop.product.ProductDto;
 import models.shop.service.ShopService;
 import models.shop.service.UserCategoryService;
-import models.shop.userCategory.UserCategoryDto;
 import models.user.UserDto;
 
+/**
+ * 쇼핑몰 메인
+ * @author 5563a
+ *
+ */
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
@@ -30,6 +33,7 @@ public class ShopController {
 
 	/**
 	 * 쇼핑몰 메인페이지
+	 * 
 	 * @param model
 	 * @param session
 	 * @return
@@ -37,13 +41,12 @@ public class ShopController {
 	@GetMapping("/index")
 	public String shop(Model model, HttpSession session) {
 
-
 		String[] addJs = new String[] { "/shop/index" };
 		String[] addCss = new String[] { "/shop/index" };
 		model.addAttribute("addJs", addJs);
 		model.addAttribute("addCss", addCss);
 
-		//상품 세팅
+		// 상품 세팅
 		ProductSetting(model, session);
 
 		return "shop/shop";
@@ -53,9 +56,7 @@ public class ShopController {
 	/**
 	 * 진열된 상품 세팅
 	 * 
-	 * 입고된 상품
-	 * 베스트셀러
-	 * 추천 도서(로그인)
+	 * 입고된 상품 베스트셀러 추천 도서(로그인)
 	 * 
 	 * @param model
 	 * @param session

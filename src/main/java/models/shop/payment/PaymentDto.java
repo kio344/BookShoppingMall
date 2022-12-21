@@ -5,6 +5,12 @@ import models.entity.Payment;
 import models.seller.product.ProductRequestDto;
 import models.user.UserDto;
 
+/**
+ * 결제 DTO
+ * 
+ * @author 5563a
+ *
+ */
 public class PaymentDto extends BaseDto {
 
 	private Long num;

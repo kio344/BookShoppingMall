@@ -1,5 +1,11 @@
 package models.shop.productReview;
 
+/**
+ * 리뷰등록 요청
+ * 
+ * @author 5563a
+ *
+ */
 public class ProductReviewRequest {
 	private Long product;
 	private String content;

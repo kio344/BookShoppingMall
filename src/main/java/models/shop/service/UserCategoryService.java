@@ -6,17 +6,20 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import models.seller.product.ProductRequestDto;
 import models.shop.product.ProductDao;
-import models.shop.product.ProductDto;
 import models.shop.userCategory.UserCategoryDao;
 import models.shop.userCategory.UserCategoryDto;
-
+/**
+ * 사용자가 본 상품 카테고리 관련 서비스
+ * 
+ * @author 5563a
+ *
+ */
 @Service
 public class UserCategoryService {
 
@@ -37,6 +40,11 @@ public class UserCategoryService {
 		return userCategoryDao.updateCategory(userNo, addCategory);
 	}
 
+	/**
+	 * 기존 카테고리 기록이 없을경우 추가
+	 * @param userNo
+	 * @return
+	 */
 	public UserCategoryDto register(Long userNo) {
 
 		return userCategoryDao.register(userNo);

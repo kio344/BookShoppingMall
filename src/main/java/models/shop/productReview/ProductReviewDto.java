@@ -1,12 +1,13 @@
 package models.shop.productReview;
 
 import models.common.BaseDto;
-import models.entity.Payment;
 import models.entity.ProductReview;
 import models.shop.payment.PaymentDto;
-import models.shop.product.ProductDto;
-import models.user.UserDto;
-
+/**
+ * 상품리뷰 DTO
+ * @author 5563a
+ *
+ */
 public class ProductReviewDto extends BaseDto{
 
 	private Long num;
