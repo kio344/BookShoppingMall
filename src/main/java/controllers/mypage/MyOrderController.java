@@ -36,31 +36,46 @@ public class MyOrderController {
 	@Autowired
 	private ProductReviewService productReviewService;
 
+	
+	/**
+	 * 주문한상품 페이지 
+	 * @param session
+	 * @param model
+	 * @param page
+	 * @return
+	 */
 	@GetMapping
 	public String myOrder(HttpSession session, Model model,@RequestParam(defaultValue = "1")int page) {
 
-		System.out.println(page);
 		
 		UserDto user = JmsUtil.getLoginUser(session);
 
-		List<PaymentDto> result = paymentService.gets(user.getMemNo(),page,offset);
+		List<PaymentDto> result = paymentService.gets(user.getMemNo(),(page-1)*offset,offset);
 		
 		int paymentC=(int) paymentService.getsC(user.getMemNo());
+		
+		
+		Pagination_v2 pagination=new Pagination_v2(page,paymentC,paymentC/offset,offset,"?page="); 
 		
 		ProductReviewRequest productReviewRequest = new ProductReviewRequest();
 
 		model.addAttribute("productReview", productReviewRequest);
-		
-		Pagination_v2 pagination=new Pagination_v2(page,paymentC,paymentC/offset,offset,"?page="); 
 		model.addAttribute("pagination", pagination);
-		
+		model.addAttribute("paymentList", result);
 		model.addAttribute("addCss", new String[] { "/mypage/myOrder" });
 		model.addAttribute("addJs", new String[] { "/common/kakaoShare","/mypage/ckeditor/ckeditor", "/mypage/myOrder" });
-		model.addAttribute("paymentList", result);
+
 
 		return "mypage/myOrder";
 	}
 
+	
+	/**
+	 * 리뷰 작성, 업데이트처리
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@PostMapping
 	public String myOrderPs(ProductReviewRequest request) {
 
@@ -69,11 +84,16 @@ public class MyOrderController {
 		return "mypage/myOrder";
 	}
 
+	/**
+	 * 리뷰 불러오기
+	 * 리뷰 작성하기 버튼 누르면 해당 내용 요청받아서 ckeditor 로 뿌려줌
+	 * @param paymentnum
+	 * @return
+	 */
 	@PostMapping("/getreview")
 	@ResponseBody
 	public ProductReviewDto getReview(Long paymentnum) {
 
-		System.out.println(paymentnum);
 
 		ProductReviewDto review = productReviewService.getReivewForPayment(paymentnum);
 
@@ -82,7 +102,7 @@ public class MyOrderController {
 	
 	
 	/**
-	 * 수취 완료
+	 * 수취 완료 처리
 	 * @param paymentNum
 	 * @return
 	 */

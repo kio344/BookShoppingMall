@@ -97,8 +97,9 @@ public class ShopService {
 	
 	/**
 	 * 상품의 리뷰 가져오기
+	 * 
 	 * @param productNum
-	 * @return
+	 * @return 상품의 리뷰
 	 */
 	public List<ProductReviewDto> getProductReview(Long productNum){
 		

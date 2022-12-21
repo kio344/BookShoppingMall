@@ -21,6 +21,11 @@ public class ProductReviewDao {
 	@Autowired
 	private EntityManager em;
 
+	/**
+	 * 리뷰 가져오기
+	 * @param reviewNum
+	 * @return
+	 */
 	public ProductReviewDto get(Long reviewNum) {
 
 		ProductReview entity = em.find(ProductReview.class, reviewNum);
@@ -123,6 +128,12 @@ public class ProductReviewDao {
 		return productList;
 	}
 	
+	/**
+	 * 해당 제품의 리뷰
+	 * 
+	 * @param productNum
+	 * @return 해당 제품의 리뷰
+	 */
 	public List<ProductReviewDto> getsForProduct(Long productNum) {
 		
 		ProductRequest product=em.find(ProductRequest.class, productNum);

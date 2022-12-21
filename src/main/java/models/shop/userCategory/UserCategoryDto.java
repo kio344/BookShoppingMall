@@ -22,13 +22,31 @@ import models.entity.User;
 import models.entity.UserCategory;
 import models.user.UserDto;
 
+/**
+ * DB에 저장된 UserCategory 데이터를 파싱해서 가져오는 클래스
+ * 
+ * 
+ *
+ */
 public class UserCategoryDto extends BaseDto{
 
 	private Long num;
 
 	private UserDto user;
 
-	private ArrayList<TreeMap<String, Integer>> myCategory = new ArrayList<TreeMap<String, Integer>>();
+	/**
+	 * 
+	 * 카테고리 기록
+	 * 0번째 맵 국내 해외 분류
+	 * 1번째 맵 총류, 철학, 종교 분류
+	 * 2번째 맵 세부 분류 
+	 * 
+	 * 각 맵의 key값 해당 카테고리에 해당하는 책을 본 횟수
+	 * 
+	 * {{해외:2, 국내:4 }{총류:1, 철학:5, 종교:3 , ....}{도서학:4, 문헌정보학:12 , ....}}
+	 * 
+	 */
+	private ArrayList<HashMap<String, Integer>> myCategory = new ArrayList<HashMap<String, Integer>>();
 
 	public UserCategoryDto() {
 	}
@@ -36,10 +54,14 @@ public class UserCategoryDto extends BaseDto{
 	public UserCategoryDto(int categoryCount, UserDto user) {
 		this.user=user;
 		for (int i = 0; i < categoryCount; i++) {
-			myCategory.add(new TreeMap<String, Integer>());
+			myCategory.add(new HashMap<String, Integer>());
 		}
 	}
 
+	/**
+	 * 기존 카테고리 데이터에 추가
+	 * @param categorys
+	 */
 	public void addProductCategory(String categorys) {
 		String[] category = categorys.split("/");
 
@@ -49,7 +71,12 @@ public class UserCategoryDto extends BaseDto{
 
 	}
 
-	public void addMap(String value, TreeMap<String, Integer> map) {
+	/**
+	 * 기존에 데이터가 있으면 증감, 없으면 추가
+	 * @param value
+	 * @param map
+	 */
+	public void addMap(String value, HashMap<String, Integer> map) {
 		if (map.containsKey(value)) {
 			map.put(value, map.get(value) + 1);
 		} else {
@@ -74,11 +101,16 @@ public class UserCategoryDto extends BaseDto{
 		this.user = user;
 	}
 
-	public ArrayList<TreeMap<String, Integer>> getMyCategory() {
+	
+	/**
+	 * 
+	 * 
+	 */
+	public ArrayList<HashMap<String, Integer>> getMyCategory() {
 		return myCategory;
 	}
 
-	public void setMyCategory(ArrayList<TreeMap<String, Integer>> myCategory) {
+	public void setMyCategory(ArrayList<HashMap<String, Integer>> myCategory) {
 		this.myCategory = myCategory;
 	}
 
@@ -126,10 +158,10 @@ public class UserCategoryDto extends BaseDto{
 		dto.setUser(UserDto.toDto(entity.getUser()));
 		
 		ObjectMapper om=new ObjectMapper();
-		ArrayList<TreeMap<String, Integer>> mycategory=null;
+		ArrayList<HashMap<String, Integer>> mycategory=null;
 		
 		try {
-			mycategory =  om.readValue(entity.getMyCategoryData().getBytes(), new TypeReference<ArrayList<TreeMap<String, Integer>>>() {});
+			mycategory =  om.readValue(entity.getMyCategoryData().getBytes(), new TypeReference<ArrayList<HashMap<String, Integer>>>() {});
 			
 			dto.setMyCategory(mycategory);
 			

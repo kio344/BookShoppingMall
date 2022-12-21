@@ -5,10 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class PaymentRequest {
 
 	private Long productNum;
-
-	private Long userNum;
 	
-	private String userKey;
 
 	private Integer count;
 
@@ -40,20 +37,7 @@ public class PaymentRequest {
 		this.productNum = productNum;
 	}
 
-	public Long getUserNum() {
-		return userNum;
-	}
 	
-	public void setUserKey(String userKey) {
-		this.userKey = userKey;
-	}
-	public String getUserKey() {
-		return userKey;
-	}
-
-	public void setUserNum(Long userNum) {
-		this.userNum = userNum;
-	}
 
 	public Integer getCount() {
 		return count;
@@ -115,6 +99,11 @@ public class PaymentRequest {
 		return address;
 	}
 
+	/**
+	 * 배송지 주소 세팅
+	 * 
+	 * 주소관련 roadAddress zipCode roadAddress 모두 채워놓기
+	 */
 	public void setAddress() {
 		if (roadAddress == null || zipCode == null || roadAddress == null) {
 			throw new RuntimeException("우편번호, 주소, 상세주소, 참고항목을 모두 채워주세요");
@@ -130,7 +119,7 @@ public class PaymentRequest {
 
 	@Override
 	public String toString() {
-		return "PaymentRequest [productNum=" + productNum + ", userNum=" + userNum + ", userKey=" + userKey + ", count="
+		return "PaymentRequest [productNum=" + productNum +  ", count="
 				+ count + ", recipient_name=" + recipient_name + ", recipient_mobile=" + recipient_mobile + ", zipCode="
 				+ zipCode + ", roadAddress=" + roadAddress + ", detailAddress=" + detailAddress + ", reqAddress="
 				+ reqAddress + ", address=" + address + "]";

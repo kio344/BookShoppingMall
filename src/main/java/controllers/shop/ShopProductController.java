@@ -25,19 +25,31 @@ public class ShopProductController {
 	@Autowired
 	private ShopService shopService;
 	
+	/**
+	 * 제품 페이지
+	 * @param productnum
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/product/{productnum}")
 	public String product(@PathVariable(name = "productnum") long productnum,Model model) {
-
+		
+		//제품 가져오기
 		ProductRequestDto product=shopService.getProduct(productnum);
 		
 		product.setScore(Math.round(product.getScore()));
 		
+		/** 비슷한 도서검색 S */
+		
+		//카테고리 값 파싱 하여 1번째 인덱스 값으로 검색
 		String[] category=product.getCategory().split("/");
 		
 		List<ProductRequestDto> sameProduct=shopService.getSearchProducts(0, 5, category[1], "category");
+		/** 비슷한 도서검색 E */
+		
+		// 해당 제품의 리뷰 가져오기
 		List<ProductReviewDto> productReview=shopService.getProductReview(productnum);
 		
-		System.out.println(product);
 		
 		model.addAttribute("addCss", new String[] {"/shop/product"});
 		model.addAttribute("addJs",new String[] {"/shop/product","/common/kakaoShare"});

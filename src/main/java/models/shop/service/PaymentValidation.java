@@ -10,6 +10,12 @@ import models.shop.payment.PaymentRequest;
 import models.user.UserDto;
 import models.user.service.LoginService;
 
+/**
+ * 결제 데이터 검증
+ * 
+ * @author 5563a
+ *
+ */
 @Component
 public class PaymentValidation implements Validator{
 
@@ -25,7 +31,6 @@ public class PaymentValidation implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
-		PaymentRequest paymentRequest=(PaymentRequest) target;
 		
 		if (errors.hasErrors()) {
 			
@@ -34,22 +39,6 @@ public class PaymentValidation implements Validator{
 		}
 		
 		
-		UserDto user = loginService.getUser(paymentRequest.getUserNum());
-
-		if (user == null) {
-			throw new RuntimeException("데이터 변조가 감지되었습니다.");
-		}
-
-		String userNo_Id = user.getMemNo() + user.getMemId();
-
-		String tocken = paymentRequest.getUserKey();
-
-
-		boolean check = BCrypt.checkpw(userNo_Id, tocken);
-
-		if (!check) {
-			throw new RuntimeException("데이터 변조가 감지되었습니다.");
-		}
 		
 	}
 

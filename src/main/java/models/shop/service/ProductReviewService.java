@@ -21,6 +21,13 @@ public class ProductReviewService {
 	@Autowired
 	private HttpSession session;
 	
+	/**
+	 * 리뷰 작성, 업데이트
+	 * 리뷰가 존재하면 업데이트, 존재하지 않으면 작성
+	 * 
+	 * @param request
+	 * @return
+	 */
 	public ProductReviewDto writeReview(ProductReviewRequest request) {
 		
 		ProductReviewDto dto=new ProductReviewDto();
@@ -35,7 +42,11 @@ public class ProductReviewService {
 		
 		return productReviewDao.insertOrUpdate(dto);
 	}
-	
+	/**
+	 * 리뷰 불러오기
+	 * @param payment
+	 * @return
+	 */
 	public ProductReviewDto getReivewForPayment(Long payment) {
 		
 		return productReviewDao.getForPayment(payment);

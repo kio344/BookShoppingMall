@@ -33,9 +33,17 @@ public class PaymentService {
 	@Autowired
 	private HttpSession session;
 
+	/**
+	 * 결제 정보 추가
+	 * 
+	 * @param paymentRequest
+	 * @return
+	 */
 	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
 
-		PaymentDto paymentDto = PaymentDto.toDto(paymentRequest);
+		UserDto user=getLoginUser(session);
+		
+		PaymentDto paymentDto = PaymentDto.toDto(paymentRequest,user.getMemNo());
 
 		return paymentDao.AddPayment(paymentDto);
 
@@ -58,6 +66,12 @@ public class PaymentService {
 		return payment;
 	}
 
+	/**
+	 * 결제정보 업데이트 처리
+	 * @param paymentNum
+	 * @param progress
+	 * @return
+	 */
 	public PaymentDto updateProgress(Long paymentNum, PaymentProgress progress) {
 
 		PaymentDto payment = paymentDao.updateProgress(paymentNum, progress);
@@ -79,26 +93,19 @@ public class PaymentService {
 
 		PaymentRequest request = new PaymentRequest();
 
+		/** 상품 유효값 검증 S */
 		ProductRequestDto product = shopService.getProduct(productNum);
 
 		if (product == null) {
 			throw new RuntimeException("잘못된 접근 입니다.");
 		}
 
-		UserDto user = getLoginUser(session);
+		/** 상품 유효값 검증 E */
 
-		if (user == null) {
-			throw new RuntimeException("로그인 후 이용 가능한 서비스입니다.");
-		}
+		
+		
 
-		request.setProductNum(product.getNum());
-
-		request.setUserNum(user.getMemNo());
-
-		String userKey = user.getMemNo() + user.getMemId();
-		System.out.println(userKey);
-		request.setUserKey(BCrypt.hashpw(userKey, BCrypt.gensalt(10)));
-
+		
 		return request;
 	}
 
@@ -114,6 +121,7 @@ public class PaymentService {
 
 	}
 
+	
 	/**
 	 * 유저No 를 통해 구매 내역 가져오기
 	 * 
@@ -125,19 +133,37 @@ public class PaymentService {
 		return paymentDao.getsUserPayment(userNo, progress);
 
 	}
-
+	
+	/**
+	 * 유저No 를 통해 구매 내역 가져오기
+	 * 
+	 * @param userNo
+	 * @return
+	 */
 	public List<PaymentDto> gets(Long userNo) {
 
 		return paymentDao.getsUserPayment(userNo);
 
 	}
-
+	
+	/**
+	 * 유저No 를 통해 구매 내역 가져오기 + 페이지 네이션
+	 * 
+	 * @param userNo
+	 * @return
+	 */
 	public List<PaymentDto> gets(Long userNo, int start, int offset) {
 
 		return paymentDao.getsUserPayment(userNo, start, offset);
 
 	}
-
+	
+	/**
+	 * 유저No 를 통해 구매 내역 항목 수 가져오기
+	 * 
+	 * @param userNo
+	 * @return
+	 */
 	public long getsC(Long userNo) {
 
 		return paymentDao.getsUserPaymentC(userNo);

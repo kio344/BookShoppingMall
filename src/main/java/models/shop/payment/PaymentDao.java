@@ -20,6 +20,12 @@ public class PaymentDao {
 	private EntityManager em;
 	
 
+	/**
+	 * 결제 정보 추가
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public PaymentDto AddPayment(PaymentDto dto) {
 		
 		ProductRequest product=em.find(ProductRequest.class, dto.getProduct().getNum());

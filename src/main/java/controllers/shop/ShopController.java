@@ -28,6 +28,12 @@ public class ShopController {
 	@Autowired
 	private ShopService service;
 
+	/**
+	 * 쇼핑몰 메인페이지
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/index")
 	public String shop(Model model, HttpSession session) {
 
@@ -37,12 +43,23 @@ public class ShopController {
 		model.addAttribute("addJs", addJs);
 		model.addAttribute("addCss", addCss);
 
+		//상품 세팅
 		ProductSetting(model, session);
 
 		return "shop/shop";
 
 	}
 
+	/**
+	 * 진열된 상품 세팅
+	 * 
+	 * 입고된 상품
+	 * 베스트셀러
+	 * 추천 도서(로그인)
+	 * 
+	 * @param model
+	 * @param session
+	 */
 	private void ProductSetting(Model model, HttpSession session) {
 
 		UserDto user = JmsUtil.getLoginUser(session);
