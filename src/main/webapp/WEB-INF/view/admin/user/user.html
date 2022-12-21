@@ -6,5 +6,12 @@
 	
 	<h1>테스트중</h1>
 	<h1>테스트중</h1>
+	
+	<form th:action="@{/admin/user}" method="post">
+	<th:block th:each="list : ${userInfo}" th:object="${userInfo}">
+	<input type="text" value="*{fakeName}">
+	
+	</form>
+	
 </main>
 </html>
