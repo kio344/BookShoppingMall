@@ -36,6 +36,7 @@ public class UserManagementController {
 	public String userManager(@RequestParam(required = false, name = "search", defaultValue = "") String search,
 			@RequestParam(required = false, name = "searchType", defaultValue = "") String searchType,
 			@RequestParam(required = false, defaultValue = "1") int page, Model model) {
+		
 		List<UserDto> dto = userInfoDao.gets();
 		int limit = 5;
 		String link = "/admin/user?search=" + search + "&searchType=" + searchType;
