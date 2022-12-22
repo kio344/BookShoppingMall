@@ -47,7 +47,6 @@ public class UserDao {
 	 */
 	public List<UserDto> search(String search, String searchType, int start, int offset) {
 		
-
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("SELECT u FROM User u WHERE ");
@@ -74,8 +73,6 @@ public class UserDao {
 		List<UserDto> list = entity.getResultStream().map(UserDto::toDto).toList();
 		System.out.println("list : " + list);
 		return list;
-	
-	
 	}
 	
 	public UserDto check(UserDto param) {
@@ -160,7 +157,6 @@ public class UserDao {
 	public UserDto get(Long memNo) {
 		
 		User user=em.find(User.class, memNo);
-		
 		
 		return UserDto.toDto(user);
 	}

@@ -52,16 +52,21 @@
 					</td>
 
 					<td>
+					
 					<select th:name="userType + ${('_') + (list.memNo)}" th:value="*{userType}">
-							<option value="ADMIN">관리자</option>
-							<option value="SELLER">판매자</option>
-							<option value="USER">회원</option>
+							<option th:if="*{userType.toString() == 'ADMIN'}" th:value="ADMIN" selected>관리자</option>
+							<option th:unless="*{userType.toString() == 'ADMIN'}" th:value="ADMIN">관리자</option>
+							<option th:if="*{userType.toString() == 'SELLER'}" th:value="SELLER" selected>판매자</option>
+							<option th:unless="*{userType.toString() == 'SELLER'}" th:value="SELLER">판매자</option>
+							<option th:if="*{userType.toString() == 'USER' }" th:value="USER" selected>회원</option>
+							<option th:unless="*{userType.toString() == 'USER' }" th:value="USER">회원</option>
 					</select>
 					</td>
 
 					<td><input type="text"
 						th:name="adress + ${('_') + (list.memNo)}" th:value="*{adress}">
 					</td>
+					
 					</th:block>
 				</tr>
 			</tbody>
