@@ -1,5 +1,6 @@
 package controllers.mypage;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import javax.validation.Valid;
@@ -37,10 +38,10 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/changeInfo")
-	public String ChangeInfo(@Valid UserRequest request, Errors errors) {
+	public String ChangeInfo(@Valid UserRequest request, Errors errors, HttpServletRequest req) {
 		
 		
-		service.change(request);
+		service.change(request, req);
 		
 		return "redirect:/mypage/userInfo";
 	}

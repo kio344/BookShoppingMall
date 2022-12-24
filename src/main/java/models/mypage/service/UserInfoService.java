@@ -19,11 +19,20 @@ public class UserInfoService {
 	@Autowired
 	private HttpSession session;
 	
-	public void change(UserRequest req) {
+	public void change(UserRequest userRequest, HttpServletRequest request) {
+		StringBuffer sb = new StringBuffer();
 		
-//		req.setBirthDay(request.getParameter("birthDay"));
+		sb.append(request.getParameter("postcode"));
+		sb.append("/");
+		sb.append(request.getParameter("addr"));
+		sb.append("/");
+		sb.append(request.getParameter("extraaddr"));
+		sb.append("/");
+		sb.append(request.getParameter("adress"));
 		
-		UserDto dto = dao.update(req);
+		userRequest.setAdress(sb.toString());
+		
+		UserDto dto = dao.update(userRequest);
 		session.removeAttribute("user");
 		session.setAttribute("user", dto);
 	}
