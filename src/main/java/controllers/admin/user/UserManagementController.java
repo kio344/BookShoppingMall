@@ -50,7 +50,6 @@ public class UserManagementController {
 			List<UserDto> user = searchService.search(search, searchType, (page - 1) * limit, limit);
 			model.addAttribute("userInfo", user);
 		}
-
 		return "admin/user/user";
 	}
 

@@ -1,5 +1,7 @@
 package models.user.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mindrot.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ public class JoinService {
 	@Autowired
 	private UserDao userDao;
 
-	public void join(JoinRequest joinRequest, Errors errors) {
+	public void join(JoinRequest joinRequest, Errors errors, HttpServletRequest req) {
 		
 		if (errors.hasErrors()) {
 			return;
@@ -46,7 +48,16 @@ public class JoinService {
 			throw new MobilePatternException();
 		}
 		String hash = BCrypt.hashpw(memPw, BCrypt.gensalt(10));
+		StringBuffer sb = new StringBuffer();
 		
+		sb.append(req.getParameter("postcode"));
+		sb.append("/");
+		sb.append(req.getParameter("addr"));
+		sb.append("/");
+		sb.append(req.getParameter("extraaddr"));
+		sb.append("/");
+		sb.append(req.getParameter("adress"));
+		joinRequest.setAdress(sb.toString());
 		UserDto param = new UserDto();
 		param.setMemId(memId);
 		param.setMemPw(hash);

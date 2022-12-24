@@ -1,5 +1,6 @@
 package controllers.user;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ public class UserJoinController {
 	}
 	
 	@PostMapping
-	public String process(@Valid JoinRequest joinRequest, Errors errors, Model model) {
+	public String process(@Valid JoinRequest joinRequest, Errors errors, Model model, HttpServletRequest req) {
 		
 		model.addAttribute("addCss", new String[] { "/member/join" });
 		
 		try {
-			service.join(joinRequest, errors);
+			service.join(joinRequest, errors, req);
 		} catch (CommonException e) {
 			String field = e.getField();
 			if (field == null) {
