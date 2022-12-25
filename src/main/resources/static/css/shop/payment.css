@@ -87,7 +87,7 @@
 
 .btn_grup{
 	display: flex;
-	margin-top: 50px;
+	margin-top: 25px;
 }
 
 .btn_grup button{
@@ -112,17 +112,23 @@
 	padding: 5px;
 	display: flex;
 	align-items: center;
+	flex-direction: column;
 }
 dl dd span{
-	display:block;
-	position: absolute;
-	margin-left: 220px;
 	color: red;
+	display: block;
+	padding: 5px;
 }
 
 
 .productInfo dl dt{
 }
+
+#findAddressArea{
+	display: flex;
+	
+}
+
 #findAddress{
 	border-right: 0px solid black;
 	border-radius: 4px 0px 0px 4px;
@@ -151,7 +157,7 @@ dl dd span{
 
 }
 .buyInfoArea dl dt{
-	width: 90px;
+	width: 110px;
 }
 .buyInfoArea dl dd{
 	width: 100%;
@@ -188,6 +194,12 @@ dl dd span{
 	width: 400px;
 	height: 800px;
 	border: 0px solid black;
+}
+input[type=radio]{
+	width: 20px;
+}
+h3{
+	display: inline-block;
 }
 
 

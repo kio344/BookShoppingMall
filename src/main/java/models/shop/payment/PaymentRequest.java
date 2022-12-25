@@ -19,16 +19,14 @@ public class PaymentRequest {
 	@NotBlank(message = "휴대전화번호를 입력하세요.")
 	private String recipient_mobile;
 
-	@NotBlank(message = "우편번호를 입력하세요.")
+	private String addressType;
+	
 	private String zipCode;
 
-	@NotBlank(message = "주소를 입력하세요.")
 	private String roadAddress;
 
-	@NotBlank(message = "상세 주소를 입력하세요.")
 	private String detailAddress;
 
-	@NotBlank(message = "참고항목을 입력하세요.")
 	private String reqAddress;
 
 	private String address;
@@ -41,7 +39,13 @@ public class PaymentRequest {
 		this.productNum = productNum;
 	}
 
+	public void setAddressType(String adressType) {
+		this.addressType = adressType;
+	}
 	
+	public String getAddressType() {
+		return addressType;
+	}
 
 	public Integer getCount() {
 		return count;
@@ -119,6 +123,10 @@ public class PaymentRequest {
 			this.address += "(" + reqAddress + ")";
 		}
 
+	}
+	
+	public void setAddress(String address) {
+		this.address=address;
 	}
 
 	@Override

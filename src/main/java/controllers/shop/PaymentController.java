@@ -130,7 +130,7 @@ public class PaymentController {
 	@PostMapping("/payment/processErr")
 	public String payment(@Valid PaymentRequest paymentRequest, Errors error, Model model) {
 
-		// paymentRequest.setAddress();
+		validation.validate(paymentRequest, error);
 
 		return goPayment(paymentRequest, model);
 	}
@@ -157,6 +157,10 @@ public class PaymentController {
 
 			validation.validate(paymentRequest, error);
 
+			if (error.hasErrors()) {
+				throw new RuntimeException("정보를 확인해주세요");
+			}
+			
 			result.setData(paymentRequest);
 
 			return ResponseEntity.ok(result);
@@ -174,16 +178,17 @@ public class PaymentController {
 	/**
 	 * 결제하기 payment 추가 관련
 	 * 
+	 * Payment테이블에 데이터 추가
 	 * 
 	 * @param paymentRequest
 	 * @return 이 기반으로 tossAPi 호출하여 결제 진행
 	 */
 	@ResponseBody
 	@PostMapping("/payment/process")
-	public PaymentDto paymentProcess(PaymentRequest paymentRequest) {
+	public PaymentDto paymentProcess(@Valid PaymentRequest paymentRequest,Errors errors) {
 
-		paymentRequest.setAddress();
-
+		validation.validate(paymentRequest, errors);
+		
 		return paymentService.paymentProcess(paymentRequest);
 
 	}
