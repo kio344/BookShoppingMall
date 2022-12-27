@@ -14,4 +14,4 @@
   ![1](https://user-images.githubusercontent.com/105355770/209686775-816d607e-eed7-463e-9a7e-f7732b6b77c2.png)
   3-3 : 관리자가 가입한 모든 회원들의 정보(이름, 닉네임, 주소, 유저타입)를 변경 가능하다.
   ![3](https://user-images.githubusercontent.com/105355770/209687144-c28715d5-e0b4-447f-8aad-2febe387a402.png)
-  3-4 : 
+  3-4 : 판매자는 
