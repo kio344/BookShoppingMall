@@ -5,7 +5,7 @@
 2. 목표 : 이전 프로젝트인 WorkOutProject 개선판, 새로운 기능들 추가.
   프로젝트에 참여한 인원 : 김민호, 박문수, 탁정모, 정민상, 배민서
   <br>
-  3-1 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%EA%B4%80%EB%A6%AC%EC%9E%90%EC%99%80-%ED%8C%90%EB%A7%A4%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80--%EA%B9%80%EB%AF%BC%ED%98%B8-")>[김민호]</a>
+  3-1 : <a href="https://github.com/kio344/BookShoppingMall/blob/main/README.md#%EA%B4%80%EB%A6%AC%EC%9E%90%EC%99%80-%ED%8C%90%EB%A7%A4%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80--%EA%B9%80%EB%AF%BC%ED%98%B8-")>[김민호]</a>
     <br>
   3-2 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%ED%9A%8C%EC%9B%90%EC%9D%B4-%EC%A0%91%EA%B7%BC-%EA%B0%80%EB%8A%A5%ED%95%9C-%ED%8E%98%EC%9D%B4%EC%A7%80--%EB%B0%95%EB%AC%B8%EC%88%98-">[박문수]</a>
     <br>
