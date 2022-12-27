@@ -45,6 +45,7 @@ public class UserManagementController {
 		model.addAttribute("userInfo", dto);
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("addCss", new String[] { "/board/admin/adminUser"});
+		model.addAttribute("addCss", new String[] {"/board/index"});
 		
 		if(!searchType.isBlank()) {
 			List<UserDto> user = searchService.search(search, searchType, (page - 1) * limit, limit);
