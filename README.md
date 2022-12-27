@@ -5,15 +5,15 @@
 2. 목표 : 이전 프로젝트인 WorkOutProject 개선판, 새로운 기능들 추가.
   프로젝트에 참여한 인원 : 김민호, 박문수, 탁정모, 정민상, 배민서
   <br>
-  3-1 : [김민호](#관리자와-판매자-페이지--김민호)
+  3-1 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%EA%B4%80%EB%A6%AC%EC%9E%90%EC%99%80-%ED%8C%90%EB%A7%A4%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80--%EA%B9%80%EB%AF%BC%ED%98%B8-")>[김민호]</a>
     <br>
-  3-2 : [박문수](#회원이-접근-가능한-페이지--박문수)
+  3-2 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%ED%9A%8C%EC%9B%90%EC%9D%B4-%EC%A0%91%EA%B7%BC-%EA%B0%80%EB%8A%A5%ED%95%9C-%ED%8E%98%EC%9D%B4%EC%A7%80--%EB%B0%95%EB%AC%B8%EC%88%98-">[박문수]</a>
     <br>
-  3-3 : [탁정모](#bookshoppingmall-메인-페이지--탁정모)
+  3-3 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#bookshoppingmall-%EB%A9%94%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80--%ED%83%81%EC%A0%95%EB%AA%A8-">[탁정모]</a>
     <br>
-  3-4 : [정민상](#쇼핑몰-구매-페이지--정민상)
+  3-4 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%EC%87%BC%ED%95%91%EB%AA%B0-%EA%B5%AC%EB%A7%A4-%ED%8E%98%EC%9D%B4%EC%A7%80--%EC%A0%95%EB%AF%BC%EC%83%81-">[정민상]</a>
     <br>
-  3-5 : 배민서
+  3-5 : 배민서 ( 레이아웃 담당 ) 
     <br>
 3. 내용 : 사이트 내에 게시판과 리뷰등을 작성할 수 있게 만들어서 소비자가 서로 상호작용할 수 있도록 게시판 기능 구현,
 
@@ -44,7 +44,7 @@
   ![스크린샷 2022-12-28 시간: 00 52 07](https://user-images.githubusercontent.com/105355770/209690241-86ce4674-e70f-4930-9a16-b6725e4578e6.png)
   
   
-  # 회원이 접근 가능한 페이지 ( 박문수 ) 
+  ## 회원이 접근 가능한 페이지 ( 박문수 ) 
 
   3-2-1 : 로그인 페이지 카카오 로그인 API를 이용해 카카오아이디로 로그인이 가능하다. 
   ![스크린샷 2022-12-28 시간: 00 55 54](https://user-images.githubusercontent.com/105355770/209690617-75a61e05-e9db-4eeb-91c4-2138ef2f2fc2.png)
@@ -64,7 +64,16 @@
   ![박문수-추천게시판](https://user-images.githubusercontent.com/105355770/209691534-bcea9fc1-5d25-4329-8166-9141370026dc.png)
   ![박문수-커뮤니티-공지사항](https://user-images.githubusercontent.com/105355770/209691550-68d00d64-5448-44f1-8cde-25a2b344702b.png)
   
-  # 쇼핑몰 구매 페이지 ( 정민상 ) 
+  ## BookShoppingMall 메인 페이지 ( 탁정모 ) 
+  
+  3-3-1 : BookShoppingMall 메인 페이지로 들어오게 되면 상단에 회원가입과 로그인을 할 수 있다.
+  ![탁정모-회원가입-로그인](https://user-images.githubusercontent.com/105355770/209693370-b9d96961-cbe1-4263-b015-696bc217c2c7.png)
+  3-3-2 : 회원가입을 누를 시 회원가입이 가능한 페이지가 나오고 회원가입을 누르면 로그인 페이지로 이동한다.
+  ![탁정모-회원가입](https://user-images.githubusercontent.com/105355770/209693496-d0014948-43bd-4bb4-8c8b-bebb52fda5c2.png)
+  3-3-3 : 로그인 페이지이다.
+  ![탁정모-로그인](https://user-images.githubusercontent.com/105355770/209693547-ce1efa5d-46e4-48e9-9bd7-aee6899d3097.png)
+  
+  ## 쇼핑몰 구매 페이지 ( 정민상 ) 
   3-4-1 : 로고 옆 메뉴를 클릭 후 Book Shop을 클릭하면 쇼핑몰 메인 페이지가 나온다
   ![정민상-판매 페이지 메인페이지](https://user-images.githubusercontent.com/105355770/209692374-0d40e450-2832-4f06-aa7c-5878f1fd1dfc.png)
   
@@ -80,13 +89,7 @@
   3-4-5 : 주문 정보를 입력하고 결제하기를 누르면 결제수단 창이 나오게 된다.
   ![정민상-상품구매-결제수단](https://user-images.githubusercontent.com/105355770/209692749-baac83ec-8c2b-4a69-8ee5-c6f28d0922ee.png)
   
-  # BookShoppingMall 메인 페이지 ( 탁정모 ) 
-  3-3-1 : BookShoppingMall 메인 페이지로 들어오게 되면 상단에 회원가입과 로그인을 할 수 있다.
-  ![탁정모-회원가입-로그인](https://user-images.githubusercontent.com/105355770/209693370-b9d96961-cbe1-4263-b015-696bc217c2c7.png)
-  3-3-2 : 회원가입을 누를 시 회원가입이 가능한 페이지가 나오고 회원가입을 누르면 로그인 페이지로 이동한다.
-  ![탁정모-회원가입](https://user-images.githubusercontent.com/105355770/209693496-d0014948-43bd-4bb4-8c8b-bebb52fda5c2.png)
-  3-3-3 : 로그인 페이지이다.
-  ![탁정모-로그인](https://user-images.githubusercontent.com/105355770/209693547-ce1efa5d-46e4-48e9-9bd7-aee6899d3097.png)
+
 
 
 
