@@ -87,7 +87,7 @@
 						<dd>
 							<input  th:field="${paymentRequest.recipient_name}" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.recipient_name'))}" >	
 							
-							<input style="border-color: #FF5A5A" th:field="${paymentRequest.recipient_name}" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.recipient_name'))}" >	
+							<input style="border-color: #FF5A5A"   th:field="${paymentRequest.recipient_name}"  th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.recipient_name'))}" >	
 							
 							
 							<span th:each="err : ${#fields.errors('paymentRequest.recipient_name')}" th:text="${err}"></span>
@@ -108,18 +108,39 @@
 				</div>
 				<div>
 					<h2>배송주소</h2>
+					<input  id="defaultAddress"  type="radio" th:field="${paymentRequest.addressType}" value="defaultAddress" checked="checked"> 
+					<label for="defaultAddress">
+						<h3>기본 배송주소</h3>					
+					</label>
+					
+					
+					<dl>
+						<dd>
+							<input th:name="address" th:value="${session.user.adress}">
+						</dd>
+					</dl>
+					
+					<input id="addressType" type="radio" th:field="${paymentRequest.addressType}"  value="newAddress" > 
+					
+					<label for="addressType">
+						<h3>새로 입력하기</h3> 
+					</label>
+					
 					<dl>
 						<dt>우편번호</dt>
 						<dd>
-							<input readonly="readonly" th:field="${paymentRequest.zipCode}"  >	
+							<div id="findAddressArea">
+								<input readonly="readonly" th:field="${paymentRequest.zipCode}"  >	
+								
+								<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}" >
+									찾기
+								</button>
+								
+								<button style="border-color: #FF5A5A" type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}">
+									찾기
+								</button>
+							</div>
 							
-							<button type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}" >
-								찾기
-							</button>
-							
-							<button style="border-color: #FF5A5A" type="button" id="findAddressBtn" onclick="sample4_execDaumPostcode()" th:if="${!#lists.isEmpty(#fields.errors('paymentRequest.zipCode'))}">
-								찾기
-							</button>
 							
 							<span th:each="err : ${#fields.errors('paymentRequest.zipCode')}" th:text="${err}"></span>
 							
