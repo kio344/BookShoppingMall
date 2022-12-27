@@ -7,11 +7,11 @@
   <br>
   3-1 : <a href="https://github.com/kio344/BookShoppingMall/blob/main/README.md#%EA%B4%80%EB%A6%AC%EC%9E%90%EC%99%80-%ED%8C%90%EB%A7%A4%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80--%EA%B9%80%EB%AF%BC%ED%98%B8-")>[김민호]</a>
     <br>
-  3-2 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%ED%9A%8C%EC%9B%90%EC%9D%B4-%EC%A0%91%EA%B7%BC-%EA%B0%80%EB%8A%A5%ED%95%9C-%ED%8E%98%EC%9D%B4%EC%A7%80--%EB%B0%95%EB%AC%B8%EC%88%98-">[박문수]</a>
+  3-2 : <a href="https://github.com/kio344/BookShoppingMall/blob/main/README.md#%ED%9A%8C%EC%9B%90%EC%9D%B4-%EC%A0%91%EA%B7%BC-%EA%B0%80%EB%8A%A5%ED%95%9C-%ED%8E%98%EC%9D%B4%EC%A7%80--%EB%B0%95%EB%AC%B8%EC%88%98-">[박문수]</a>
     <br>
-  3-3 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#bookshoppingmall-%EB%A9%94%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80--%ED%83%81%EC%A0%95%EB%AA%A8-">[탁정모]</a>
+  3-3 : <a href="https://github.com/kio344/BookShoppingMall/blob/main/README.md#bookshoppingmall-%EB%A9%94%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80--%ED%83%81%EC%A0%95%EB%AA%A8-">[탁정모]</a>
     <br>
-  3-4 : <a href="https://github.com/kio344/BookShoppingMall/edit/main/README.md#%EC%87%BC%ED%95%91%EB%AA%B0-%EA%B5%AC%EB%A7%A4-%ED%8E%98%EC%9D%B4%EC%A7%80--%EC%A0%95%EB%AF%BC%EC%83%81-">[정민상]</a>
+  3-4 : <a href="https://github.com/kio344/BookShoppingMall/blob/main/README.md#%EC%87%BC%ED%95%91%EB%AA%B0-%EA%B5%AC%EB%A7%A4-%ED%8E%98%EC%9D%B4%EC%A7%80--%EC%A0%95%EB%AF%BC%EC%83%81-">[정민상]</a>
     <br>
   3-5 : 배민서 ( 레이아웃 담당 ) 
     <br>
