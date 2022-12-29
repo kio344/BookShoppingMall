@@ -41,9 +41,9 @@
 }
 
 main{
+	padding-top:70px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 }
 
@@ -176,3 +176,14 @@ main{
 	color: white;
 	margin: 10px;
 }
+
+/**/
+html,body{
+	height: 100%
+}
+nav{
+	position: absolute;
+}
+main{
+	min-height: 1000px;
+	}

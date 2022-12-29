@@ -203,3 +203,16 @@ h3{
 }
 
 
+/*  */
+html,body{
+	height: 100%
+}
+nav{
+	position: absolute;
+}
+main{
+	height:90%;
+	display: flex;
+	flex-grow: 1;
+}
+
