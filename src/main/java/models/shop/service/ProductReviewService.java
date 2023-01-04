@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import models.shop.payment.PaymentDto;
+import models.shop.product.ProductDao;
 import models.shop.productReview.ProductReviewDao;
 import models.shop.productReview.ProductReviewDto;
 import models.shop.productReview.ProductReviewRequest;
@@ -18,6 +19,9 @@ public class ProductReviewService {
 
 	@Autowired
 	private ProductReviewDao productReviewDao;
+	
+	@Autowired
+	private ProductDao productDao;
 	
 
 	
@@ -40,7 +44,13 @@ public class ProductReviewService {
 		dto.setScore(request.getScore());
 		dto.setContent(request.getContent());
 		
-		return productReviewDao.insertOrUpdate(dto);
+		ProductReviewDto result =productReviewDao.insertOrUpdate(dto);
+		
+		productDao.updateProductScore(result.getPayment().getProduct().getNum());
+		
+		 
+		
+		return result;
 	}
 	/**
 	 * 리뷰 불러오기

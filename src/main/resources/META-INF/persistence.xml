@@ -5,8 +5,8 @@
             <!--  필수 속성 -->
         <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.user" value="Dev" />
-            <property name="javax.persistence.jdbc.password" value="aA!123456" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://dsm.bmserver.org:3306/BookShoppingMall" />
+            <property name="javax.persistence.jdbc.password" value="aA!000219" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.0.12:3306/BookShoppingMall" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" /> 
         
 			 <!-- 옵션 -->

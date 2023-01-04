@@ -9,13 +9,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import models.seller.product.Progress;
 
+@NamedStoredProcedureQuery(
+        name = ProductRequest.NamedQuery_updateProductScore,
+        procedureName = "updateProductScore",
+        resultClasses = ProductRequest.class,
+        parameters = {
+                @StoredProcedureParameter(name = "updateBookNum", type = Long.class, mode = ParameterMode.IN),
+       })
+
 @Entity
 public class ProductRequest extends BaseEntity {
+	
+	 public static final String NamedQuery_updateProductScore = "updateProductScore";
+	
 
 	@Id
 	@GeneratedValue
