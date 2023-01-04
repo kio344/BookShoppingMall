@@ -9,8 +9,7 @@
 	<th:block th:replace="layouts/shop/productSearchNav::productSearchNav"></th:block>
 
 	<ul class="searchResult">
-		<li th:each="product : ${searchResult}">
-			<a >
+		<li th:each="product : ${searchResult}"><a>
 				<div class="bookImg">
 					<img alt=""
 						th:src="@{/productImages/}+${product.num%10}+${'/'}+${product.num}">
@@ -19,8 +18,24 @@
 				<div class="product_info">
 					<dl class="bookTitle">
 						<dt th:text="${product.bookName}"></dt>
-						<dd th:text="${product.category}+'		(★★★★☆)'"></dd>
+						<dd th:text="${product.category}"></dd>
+						<dd>
+							<span> <th:block th:if="${product.score!= 0}">
 
+									<th:block th:each="num : ${#numbers.sequence(1,product.score)}">
+										★
+									</th:block>
+
+								</th:block> <th:block th:if="${5-product.score != 0}">
+
+									<th:block th:each="num : ${#numbers.sequence(1,5-product.score)}">
+										☆
+									</th:block>
+
+								</th:block>
+
+							</span> <span class="score" th:text="'( '+${product.score}+' )'"></span>
+						</dd>
 
 					</dl>
 					<dl class="bookWriter">
@@ -41,24 +56,17 @@
 						<dd th:text="${product.price}+' 원'"></dd>
 					</dl>
 				</div>
-				</a>
-				<div class="productBtn_grp">
-				
-					<a th:href="@{'/shop/product/'+${product.num}}">
-						구매하기
-					</a>
-					<a class="shareBtn"
-						th:data-bookimg="@{/productImages/}+${product.num%10}+${'/'}+${product.num}"
-						th:data-booknum='${product.num}'
-						th:data-writer='${product.writer}'
-						th:data-price='${product.price}'
-						th:data-bookname='${product.bookName}'
-						th:data-publisher='${product.publisher}'>
-						공유하기
-					</a>
-				</div>
+		</a>
+			<div class="productBtn_grp">
 
-		</li>
+				<a th:href="@{'/shop/product/'+${product.num}}"> 구매하기 </a> <a
+					class="shareBtn"
+					th:data-bookimg="@{/productImages/}+${product.num%10}+${'/'}+${product.num}"
+					th:data-booknum='${product.num}' th:data-writer='${product.writer}'
+					th:data-price='${product.price}'
+					th:data-bookname='${product.bookName}'
+					th:data-publisher='${product.publisher}'> 공유하기 </a>
+			</div></li>
 	</ul>
 	<th:block th:replace="layouts/commons/pagination_v2::pagination_v2"></th:block>
 

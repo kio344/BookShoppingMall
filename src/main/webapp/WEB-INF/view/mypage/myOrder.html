@@ -47,6 +47,12 @@
 							
 							</th:block>
 							
+							<th:block th:if="*{#strings.equals(progress, 'PAYMENT_BEFORE')}">
+							
+								<button th:data-payment="*{num}" >취소된 항목</button>
+							
+							</th:block>
+							
 							<th:block th:if="*{#strings.equals(progress, 'SHIPPING')}">
 							
 								<button th:data-payment="*{num}"  >배송중</button>

@@ -62,6 +62,7 @@ public class PaymentController {
 
 		// 결제 정보 관련 설정
 		PaymentRequest paymentRequest = paymentService.paymentSetting(productNum);
+		paymentRequest.setAddressType("defaultAddress");
 
 		// 결제할 상품정보 가져오기
 		ProductRequestDto product = shopService.getProduct(productNum);
